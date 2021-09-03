@@ -1,0 +1,31 @@
+/*#region Top*/
+.top
+{
+    width: 70vw;
+    height: 20vh;
+
+    position: relative;
+    left: 15vw;
+}
+    .top img
+    {
+        width: 100%;
+    }
+/*#endregion*/
+
+/*#region Middle*/
+.mid
+{
+    width: 85vw;
+    height: calc(70vh - 1px);
+
+    position: relative;
+    left: 7.5vw;
+    
+    padding-bottom: 20px;
+}
+    .mid .leftA, .mid .important, .mid p
+    {
+        margin-top: 10px;
+    }
+/*#endregion*/

@@ -1,0 +1,79 @@
+/*#region Top*/
+.top
+{    
+    background-color: var(--baby-blue);
+    width: 100%;
+    height: 35vh;
+
+    position: relative;
+    top: 0;
+    left: 0;
+
+    z-index: 2;
+}
+    .top img
+    {
+        height: 100%;
+    }
+
+.degrade
+{
+    background-image: linear-gradient(0deg,var(--dark-space-cadet), rgba(255, 255, 255, 0));
+    width: 100%;
+    height: calc(35vh);
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    z-index: 3;
+}
+
+.trianguloUp
+{
+    position: absolute;
+    top: 1px;
+
+    border-left-width: calc(50vw + 1px);
+    border-right-width: calc(50vw + 1px);
+    border-bottom-width: calc(35vh + 1px);
+
+    z-index: 1000;
+}
+/*#endregion*/
+
+/*#region Middle*/
+.mid
+{
+    width: 85vw;
+    height: 50vh;
+
+    position: relative;
+    top: -6vh;
+    left: 7.5vw;
+
+    z-index: 5;
+}
+    .mid .leftA, .mid .important, .mid .normal, .mid p
+    {
+        margin-top: 10px;
+    }
+/*#endregion*/
+
+/*#region Bottom*/
+.bot
+{
+    width: 65vw;
+    height: 15vh;
+
+    position: relative;
+    top: -3vh;
+    left: 17.5vw;
+
+    z-index: 5;
+}
+    .bot img
+    {
+        width: 100%;
+    }
+/*#endregion*/

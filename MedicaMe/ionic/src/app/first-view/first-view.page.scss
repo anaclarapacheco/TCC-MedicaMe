@@ -1,0 +1,83 @@
+/*#region Top*/
+.top
+{    
+    background-color: var(--baby-blue);
+    width: 100%;
+    height: 50vh;
+
+    position: relative;
+    top: 0;
+    left: 0;
+
+    z-index: 2;
+}
+    .top img
+    {
+        height: 100%;
+    }
+
+.degrade
+{
+    background-image: linear-gradient(0deg,var(--dark-space-cadet), var(--state-blue), rgba(255, 255, 255, 0.1));
+    width: 100%;
+    height: 50vh;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    z-index: 3;
+}
+
+.trianguloUp
+{
+    position: absolute;
+    top: 17vh;
+
+    border-left-width: 50vw;
+    border-right-width: 50vw;
+    border-bottom-width: calc(35vh + 1px);
+
+    z-index: 4;
+}
+/*#endregion*/
+
+/*#region Middle*/
+.mid
+{
+    width: 85vw;
+    height: 30vh;
+
+    position: relative;
+    top: -10vh;
+    left: 7.5vw;
+
+    z-index: 5;
+}
+    .mid h3
+    {
+        margin-bottom: 15px;
+    }
+    .mid button
+    {
+        margin-bottom: 20px;
+    }
+/*#endregion*/
+
+/*#region Bottom*/
+.bot
+{
+    width: 85vw;
+    height: 20vh;
+
+    position: relative;
+    top: -7vh;
+    left: 7.5vw;
+
+    z-index: 5;
+}
+    .bot img
+    {
+        height: 100%;
+    }
+/*#endregion*/

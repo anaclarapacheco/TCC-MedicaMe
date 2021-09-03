@@ -1,0 +1,31 @@
+<ion-content>
+  <div class="card flex">
+    <div class="top full flex">
+      <div class="degrade"></div>
+
+      <div class="trianguloUp leftP"></div>
+      <div class="trianguloUp rightP"></div>
+    </div>
+    
+    <div class="mid horizontal centerA flex">
+      <h3 class="line">Dados adicionais</h3>
+
+      <span class="line leftA">Nome</span>
+      <input type="text" class="input">
+
+      <span class="line leftA">Data de nascimento</span>
+      <ion-item class="input">
+        <ion-datetime displayFormat="DD/MM/YYYY" min="1950-01-01" max="2040-12-31"></ion-datetime>
+      </ion-item>
+
+      <p class="aviso invisivel">Preencha todos os campos</p>
+
+      <button (click)="continuar()" class="important">Continuar</button>
+      <button (click)="deixar()" class="normal">Deixar para depois</button>
+    </div>
+
+    <div class="bot full flex">
+      <img src="../../assets/IMG/Logo/Light (Lado).png" alt="Logo do aplicativo: Medicame">
+    </div>
+  </div>
+</ion-content>

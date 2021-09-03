@@ -1,0 +1,25 @@
+<ion-content>
+  <div class="card">
+    <div class="top">
+      <div class="degrade"></div>
+
+      <div class="trianguloUp leftP"></div>
+      <div class="trianguloUp rightP"></div>
+    </div>
+    
+    <div class="mid full flex">
+      <h3>Você é um dependente?</h3>
+
+      <button (click)="nao()" class="important">Não</button>
+      <button (click)="sim()" class="normal">Sim</button>
+
+      <div class="line leftA">
+        <p>O que é um <a (click)="dependente()">dependente?</a></p>
+      </div>
+    </div>
+
+    <div class="bot full flex">
+      <img src="../../assets/IMG/Logo/Light (Cima).png" alt="Logo do aplicativo: Medicame">
+    </div>
+  </div>
+</ion-content>

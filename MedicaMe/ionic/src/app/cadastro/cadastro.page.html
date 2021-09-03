@@ -1,0 +1,27 @@
+<ion-content>
+  <div class="card flex">
+    <div class="top full flex">
+      <img src="../../assets/IMG/Logo/Light (Lado).png" alt="Logo do aplicativo: Medicame">
+    </div>
+    
+    <div class="mid horizontal centerA flex">
+      <h3 class="line">Preencha os campos para criar sua conta!</h3>
+
+      <span class="line leftA">E-mail</span>
+      <input type="email" class="input">
+
+      <span class="line leftA">Senha</span>
+      <input type="password" class="input">
+
+      <span class="line leftA">Confirmar senha</span>
+      <input type="password" class="input">
+      <p class="aviso invisivel">Preencha todos os campos</p>
+
+      <button (click)="criar()" class="important">Criar</button>
+      <span class="line">- ou -</span>
+      <button (click)="entrarGoogle()" class="normal">Entrar com Google</button>
+      
+      <p>Já possui uma conta? Faça <a (click)="entrar()">login!</a></p>
+    </div>
+  </div>
+</ion-content>

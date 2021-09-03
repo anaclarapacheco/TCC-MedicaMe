@@ -1,0 +1,36 @@
+/*#region Tutorial*/
+.content
+{
+    width: 85vw;
+    height: 70vh;
+    
+    position: relative;
+    top: 5vh;
+    left: 7.5vw;
+    
+    color: var(--rich-black);
+}
+/*#endregion*/
+
+/*#region Bottom*/
+.bot
+{
+    width: 85vw;
+    height: 20vh;
+
+    position: absolute;
+    top: 75vh;
+    left: 7.5vw;
+}
+    .bot svg
+    {
+        height: 20px;
+
+        position: absolute;
+        right: 10px;
+
+        border-radius: 10px;
+
+        color: var(--rich-black);
+    }
+/*#endregion*/
