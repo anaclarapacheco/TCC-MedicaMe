@@ -1,0 +1,7 @@
+{
+  "name": "MedicaMe",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

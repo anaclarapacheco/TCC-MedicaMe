@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "MedicaMe",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
