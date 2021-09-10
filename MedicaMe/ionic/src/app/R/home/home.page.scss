@@ -1,1 +1,96 @@
+/*#region Mid Geral*/
+.meio
+{
+    width: 90%;
+    margin-left: 5%;
 
+    margin-top: calc((100vw / 5) + 20px);
+
+    color: var(--rich-black);
+}
+
+.meio .top, .meio .content
+{
+    margin-top: 20px;
+}
+
+.meio .content
+{
+    margin-bottom: calc((100vw / 5) + 20px);
+}
+/*#endregion*/
+
+/*#region Medicamentos - Geral*/
+.medicamentos
+{
+    width: 100%;
+    height: 70px;
+
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+    padding: 10px;
+    box-sizing: border-box;
+
+    border-radius: 15px;
+}
+
+.medicamentos img
+{
+    height: 100%;
+}
+
+.medicamentos .text
+{
+    height: 100%;
+
+    margin-left: 20px;
+}
+
+.medicamentos h3
+{
+    font-family: 'Saira';
+}
+/*#endregion*/
+
+/*#region Medicamentos - Pedente*/
+.pendente h3
+{
+    color: var(--red);
+}
+
+.pendente .medicamentos
+{
+    border-color: var(--red);
+    border-style: solid;
+    border-width: 2px;
+
+    color: var(--rich-black);
+}
+
+.pendente svg
+{
+    height: 40px;
+}
+
+.tomei
+{
+    fill: var(--state-blue);
+
+    margin-left: auto;
+}
+
+.nao-tomei
+{
+    fill: var(--red);
+
+    margin-left: 10px;
+}
+/*#endregion*/
+
+/*#region Medicamentos - Próximo*/
+.proximo .medicamentos
+{
+    background-color: var(--lavander);
+}
+/*#endregion*/
