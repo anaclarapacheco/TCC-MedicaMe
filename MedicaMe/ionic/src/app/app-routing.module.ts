@@ -43,6 +43,14 @@ const routes: Routes = [
     path: 'R/home',
     loadChildren: () => import('./R/home/home.module').then( m => m.HomePageModule)
   },
+  {
+    path: 'R/lembretes',
+    loadChildren: () => import('./R/lembretes/lembretes.module').then( m => m.LembretesPageModule)
+  },
+  {
+    path: 'R/dependentes',
+    loadChildren: () => import('./R/dependentes/dependentes.module').then( m => m.DependentesPageModule)
+  },
 ];
 
 @NgModule({

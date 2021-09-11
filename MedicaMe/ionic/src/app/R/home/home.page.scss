@@ -16,7 +16,7 @@
 
 .meio .content
 {
-    margin-bottom: calc((100vw / 5) + 20px);
+    margin-bottom: calc((100vw / 5) + 40px);
 }
 /*#endregion*/
 
@@ -34,23 +34,26 @@
 
     border-radius: 15px;
 }
+    .medicamentos img
+    {
+        height: 100%;
+    }
 
-.medicamentos img
-{
-    height: 100%;
-}
+    .medicamentos .text
+    {
+        height: 100%;
 
-.medicamentos .text
-{
-    height: 100%;
+        margin-left: 20px;
+    }
 
-    margin-left: 20px;
-}
-
-.medicamentos h3
-{
-    font-family: 'Saira';
-}
+    .medicamentos h3
+    {
+        font-family: 'Saira';
+    }
+    .medicamentos p
+    {
+        color: var(--space-cadet);
+    }
 /*#endregion*/
 
 /*#region Medicamentos - Pedente*/

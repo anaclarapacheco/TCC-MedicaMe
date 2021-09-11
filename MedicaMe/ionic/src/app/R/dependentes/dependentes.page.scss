@@ -1,0 +1,97 @@
+/*#region Mid Geral*/
+.meio
+{
+    width: 90%;
+    margin-left: 5%;
+
+    margin-top: calc((100vw / 5) + 20px);
+
+    color: var(--rich-black);
+}
+
+.meio .top, .meio .content
+{
+    margin-top: 20px;
+}
+
+.meio .content
+{
+    margin-bottom: calc((100vw / 5) + 100px);
+}
+/*#endregion*/
+
+/*#region Dependentes*/
+.dependentes
+{
+    background-color: var(--lavander);
+    width: 100%;
+    height: 130px;
+
+    margin-bottom: 20px;
+
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+    .dependentes img
+    {
+        width: 50px;
+        height: 50px;
+
+        margin-left: 10px;
+        margin-right: 20px;
+    }
+    .dependentes .text
+    {
+        width: 70%;
+        margin-top: 10px;
+    }
+    .dependentes .text svg
+    {
+        height: 30px;
+        fill: var(--red);
+
+        margin-left: auto;
+    }
+    .dependentes .text h3
+    {
+        width: calc(100% - 30px);
+        font-family: 'Saira';
+    }
+    .dependentes .text p
+    {
+        font-family: 'Roboto Light';
+        color: var(--space-cadet);
+    }
+    .dependentes button
+    {
+        height: 30px;
+
+        margin-top: auto;
+
+        border-top-right-radius: 0%;
+        border-top-left-radius: 0%;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+    .dependentes svg
+    {
+        fill: var(--white);
+        height: 80%;
+
+        margin-left: 10px;
+    }
+/*#endregion*/
+
+/*#region Botão*/
+.important
+{
+    background-color: var(--space-cadet);
+    width: 80vw;
+
+    position: fixed;
+    bottom: calc((100vw / 5) + 40px);
+    left: 10vw;
+
+    color: var(--white);
+}
+/*#endregion*/

@@ -1,23 +1,14 @@
-import { FormatWidth, getLocaleDateFormat } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController } from '@ionic/angular'
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.page.html',
-  styleUrls: ['./home.page.scss'],
-
-
+  selector: 'app-dependentes',
+  templateUrl: './dependentes.page.html',
+  styleUrls: ['./dependentes.page.scss'],
 })
-export class HomePage implements OnInit {
+export class DependentesPage implements OnInit {
 
-  data: any = "";
-
-  constructor(public navCtrl: NavController) {
-    let nowData = new Date();
-
-    this.data = String(nowData.getDate()).padStart(2, '0') + '/' + String(nowData.getMonth() + 1).padStart(2, '0')  + '/' + nowData.getFullYear();
-   }
+  constructor(public navCtrl: NavController) { }
 
   //#region Abrir e Fechar o Menu
   open()
@@ -53,14 +44,14 @@ export class HomePage implements OnInit {
   //#endregion
 
   //#region Tabs
-  dependentes()
-  {
-    this.navCtrl.navigateForward('R/dependentes');
-  }
-  
   lembretes()
   {
     this.navCtrl.navigateForward('R/lembretes');
+  }
+  
+  home()
+  {
+    this.navCtrl.navigateForward('R/home');
   }
 
   estoque()

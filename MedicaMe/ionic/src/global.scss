@@ -23,6 +23,12 @@
     font-weight: normal;
     font-style: normal;
  }
+ @font-face {
+    font-family: 'Roboto Light';
+    src: url(../src/assets/FONT/Roboto-Light.ttf);
+    font-weight: normal;
+    font-style: normal;
+ }
 /*#endregion*/
 
 /*#region Root*/
@@ -48,6 +54,7 @@
  {
      font-family: 'Saira Bold';
      font-size: 1.3em;
+     color: var(--dark-space-cadet);
  }
 
  p
@@ -147,7 +154,7 @@ button
 
     border-radius: 50px;
     box-sizing: border-box;
-    box-shadow: 0px 4px 4px rgb(122, 122, 165, 0.2);
+    box-shadow: 0px 4px 4px rgb(122, 122, 165, 0.5);
 }
 
 .button
@@ -255,7 +262,6 @@ button
 
 #menu
 {
-    background-color: rgba(20, 17, 21, 0.5);
     width: 100vw;
     height: 110vh;
 
@@ -265,15 +271,22 @@ button
 
     z-index: 10;
 }
+    #menu #back
+    {
+        background-color: var(--space-cadet);
+        width: 30vw;
+        height: 110vh;
+        
+        opacity: 0.5;
+    }
     #menu .content
     {
         background-color: var(--white);
         width: 70vw;
         height: 100vh;
 
-        display: block;
-
         position: absolute;
+        top: 0px;
         right: 0px;
     }
         #menu .content .top
@@ -281,7 +294,10 @@ button
             background-color: var(--dark-space-cadet);
             width: 100%;
             height: 15vh;
-        
+        }
+        #menu .content .top h3
+        {
+            color: var(--white);
         }
         #menu .content .top .button svg
         {
@@ -324,22 +340,31 @@ button
 
     position: fixed;
     bottom: 0px;
+
+    font-size: 1em;
 }
     .tabs .middle
     {
-        font-size: 1em;
-        color: var(--baby-blue);
+        padding: 0px;
     }
     .tabs .middle p
     {
         position: relative;
         top: calc((-100vw / 5) / 2);
+
+        color: var(--baby-blue);
     }
+
+    .tabs .flex
+    {
+        flex-direction: column;
+    }    
 
     .tabs .button svg
     {
         fill: var(--white);
-        width: 55%;
+        width: 40%;
+        margin-bottom: 10px;
     }
     
     .tabs .button .principal
@@ -350,7 +375,8 @@ button
 
         position: relative;
         top: calc((-100vw / 5) / 2);
-        left: -5px;      
+
+        margin-bottom: 3px;
 
         border-color: var(--dark-space-cadet);
         border-style: solid;
@@ -359,7 +385,10 @@ button
     }
     .tabs .button .principal svg
     {
-        fill: var(--dark-space-cadet)
+        fill: var(--dark-space-cadet);
+        width: 55%;
+
+        margin: 0px;
     }
 /*#endregion*/
 
