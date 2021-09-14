@@ -16,7 +16,7 @@
 
 .meio .content
 {
-    margin-bottom: calc((100vw / 5) + 100px);
+    margin-bottom: calc((100vw / 5) + ((100vw / 5) / 2) + 65px);
 }
 /*#endregion*/
 
@@ -89,7 +89,7 @@
     width: 80vw;
 
     position: fixed;
-    bottom: calc((100vw / 5) + 40px);
+    bottom: calc((100vw / 5) + ((100vw / 5) / 2) + 10px);
     left: 10vw;
 
     color: var(--white);

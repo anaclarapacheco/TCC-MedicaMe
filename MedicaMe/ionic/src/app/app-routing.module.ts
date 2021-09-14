@@ -51,6 +51,11 @@ const routes: Routes = [
     path: 'R/dependentes',
     loadChildren: () => import('./R/dependentes/dependentes.module').then( m => m.DependentesPageModule)
   },
+  {
+    path: 'R/estoque',
+    loadChildren: () => import('./R/estoque/estoque.module').then( m => m.EstoquePageModule)
+  },
+
 ];
 
 @NgModule({
