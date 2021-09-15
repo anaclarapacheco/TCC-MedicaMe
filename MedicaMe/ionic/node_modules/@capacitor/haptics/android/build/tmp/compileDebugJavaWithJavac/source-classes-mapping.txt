@@ -1,0 +1,14 @@
+com/capacitorjs/plugins/haptics/arguments/HapticsImpactType.java
+ com.capacitorjs.plugins.haptics.arguments.HapticsImpactType
+com/capacitorjs/plugins/haptics/arguments/HapticsVibrationType.java
+ com.capacitorjs.plugins.haptics.arguments.HapticsVibrationType
+com/capacitorjs/plugins/haptics/HapticsPlugin.java
+ com.capacitorjs.plugins.haptics.HapticsPlugin
+com/capacitorjs/plugins/haptics/arguments/HapticsSelectionType.java
+ com.capacitorjs.plugins.haptics.arguments.HapticsSelectionType
+com/capacitorjs/plugins/haptics/arguments/HapticsNotificationType.java
+ com.capacitorjs.plugins.haptics.arguments.HapticsNotificationType
+com/capacitorjs/plugins/haptics/BuildConfig.java
+ com.capacitorjs.plugins.haptics.BuildConfig
+com/capacitorjs/plugins/haptics/Haptics.java
+ com.capacitorjs.plugins.haptics.Haptics

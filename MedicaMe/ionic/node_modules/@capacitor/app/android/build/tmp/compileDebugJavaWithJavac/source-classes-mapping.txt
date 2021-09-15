@@ -1,0 +1,5 @@
+com/capacitorjs/plugins/app/AppPlugin.java
+ com.capacitorjs.plugins.app.AppPlugin
+ com.capacitorjs.plugins.app.AppPlugin$1
+com/capacitorjs/plugins/app/BuildConfig.java
+ com.capacitorjs.plugins.app.BuildConfig
