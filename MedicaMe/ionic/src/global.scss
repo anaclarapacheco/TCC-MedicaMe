@@ -1,4 +1,47 @@
- /*#region Fontes*/
+/*#region Root*/
+:root
+{
+    --dark-space-cadet: #17173B;
+    --space-cadet: #342F4C;
+    --state-blue: #6063CC;
+    --baby-blue: #B2CAFF;
+    --lavander: #E2E2F9;
+    --white: #F8F0FF;
+    --red: #E03654;
+    --yellow: #FACC22;
+}
+
+::selection
+{
+    background-color: var(--dark-space-cadet);
+    color: var(--white);
+}
+
+h3
+{
+    font-family: 'Saira Bold';
+    font-size: 1.3em;
+    color: var(--dark-space-cadet);
+}
+
+p
+{
+    font-family: 'Roboto';
+}
+
+a
+{
+    font-family: 'Roboto';
+    color: var(--red);
+}
+
+p, h1, h2, h3, h4, h5, h6, span, a
+{
+    margin: 0;
+}
+/*#endregion*/
+
+/*#region Fontes*/
  @font-face {
     font-family: 'Saira';
     src: url(../src/assets/FONT/Saira.ttf);
@@ -31,49 +74,6 @@
  }
 /*#endregion*/
 
-/*#region Root*/
- :root
- {
-     --rich-black: #141115;
-     --dark-space-cadet: #17173B;
-     --space-cadet: #342F4C;
-     --state-blue: #6063CC;
-     --baby-blue: #B2CAFF;
-     --lavander: #E2E2F9;
-     --white: #F8F0FF;
-     --red: #E03654;
-     --yellow: #FACC22;
- }
- ::selection
- {
-     background-color: var(--rich-black);
-     color: var(--white);
- }
-
- h3
- {
-     font-family: 'Saira Bold';
-     font-size: 1.3em;
-     color: var(--dark-space-cadet);
- }
-
- p
- {
-     font-family: 'Roboto';
- }
-
- a
- {
-     font-family: 'Roboto';
-     color: var(--red);
- }
-
- p, h1, h2, h3, h4, h5, h6, span, a
- {
-     margin: 0;
- }
- /*#endregion*/
-
  /*#region Flex e Line*/
  .flex
  {
@@ -101,6 +101,18 @@
  .line
 {
     width: 100%;
+}
+
+.centraliza
+{
+    width: 100vw;
+    height: 100vh;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    z-index: 200;
 }
  /*#endregion*/
 
@@ -170,7 +182,7 @@ button
 .important
 {
     background-color: var(--yellow);
-    color: var(--rich-black);
+    color: var(--dark-space-cadet);
 }
 
 .normal
@@ -191,7 +203,7 @@ button
 {
     background-color: var(--white);
     width: 100%;
-    height: 32px;
+    height: 40px;
 
     margin: 0;
 
@@ -200,7 +212,7 @@ button
     box-sizing: border-box;
 
     font-family: 'Saira';
-    color: var(--rich-black);
+    color: var(--dark-space-cadet);
 }
 .aviso
 {
@@ -235,6 +247,67 @@ button
 }
 /*#endregion*/
 
+/*#region Fundo*/
+#back
+{
+    background-color: var(--space-cadet);
+    height: 100vh;
+
+    position: fixed;
+    top: 0px;
+    left: 0px;
+
+    opacity: 0.5;
+
+    z-index: 100;
+}
+/*#endregion*/
+
+/*#region Alerta*/
+.alert
+{
+    background-color: var(--white);
+    width: 90vw;
+
+    padding-bottom: 20px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    z-index: 200;
+
+    .top
+    {
+        background-color: var(--dark-space-cadet);
+        min-height: 8vh;
+
+        overflow: hidden;
+        
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+
+        font-size: 1.6em;
+        font-family: 'Saira Bold';
+    }
+
+    .content
+    {
+        width: 90%;
+        margin-top: 20px;
+        margin-left: 5%;
+
+        color: var(--space-cadet);
+        font-size: 1.4em;
+
+        button
+        {
+            margin-top: 20px;
+        }
+    }
+}
+/*#endregion*/
+
 /*#region NavBar*/
 .nav
 {
@@ -248,19 +321,21 @@ button
     justify-content: space-between;
 
     padding-left: 5px;
-}
-    .nav img
+
+    img
     {
         width: 50%;
         margin-left: 5px;
     }
-    .nav .button svg
+    
+    .button svg
     {
         fill: var(--white);
         width: 50%;
     }
+}
 
-#menu
+.menu
 {
     width: 100vw;
     height: 110vh;
@@ -269,19 +344,14 @@ button
     top: 0px;
     left: 0px;
 
-    z-index: 9;
-}
-    #menu #back
-    {
-        background-color: var(--space-cadet);
-        width: 30vw;
-        height: 110vh;
-        
-        opacity: 0.5;
+    z-index: 10;
 
-        z-index: 9;
+    #back
+    {
+        width: 30vw;
     }
-    #menu .content
+
+    .content
     {
         background-color: var(--white);
         width: calc(70vw + 1px);
@@ -291,48 +361,61 @@ button
         top: 0px;
         right: 0px;
 
-        z-index: 10;
-    }
-        #menu .content .top
+        .top
         {
             background-color: var(--dark-space-cadet);
             width: 100%;
             height: 13vh;
-        }
-        #menu .content .top h3
-        {
-            color: var(--white);
-        }
-        #menu .content .top .button svg
-        {
-            fill: var(--white);
-            width: 70%;
+
+            h3
+            {
+                color: var(--white);
+            }
+
+            .button
+            {
+                margin-left: 10px;
+            }
+            
+            .button svg
+            {
+                fill: var(--white);
+                width: 60%;
+            }
         }
 
-        #menu .content .mid .itens
+        .mid
         {
-            height: calc(100vw / 5);
+            .itens
+            {
+                height: calc(100vw / 5);
+    
+                border-top-color: var(--lavander);
+                border-top-style: solid;
+                border-top-width: 2px;
+            }
 
-            border-top-color: var(--lavander);
-            border-top-style: solid;
-            border-top-width: 2px;
+            .itens h3
+            {
+                color: var(--dark-space-cadet);
+                font-family: 'Roboto';
+                font-size: 1em;
+            }
+
+            .button
+            {
+                width: calc(80vw / 5);
+                height: calc(80vw / 5);
+            }
+
+            .button svg
+            {
+                fill: var(--state-blue);
+                width: 70%;
+            }
         }
-        #menu .content .mid .itens h3
-        {
-            color: var(--rich-black);
-            font-family: 'Roboto';
-            font-size: 1em;
-        }
-        #menu .content .mid .button
-        {
-            width: calc(80vw / 5);
-            height: calc(80vw / 5);
-        }
-        #menu .content .mid .button svg
-        {
-            fill: var(--state-blue);
-            width: 70%;
-        }
+    }
+}
 /*#endregion*/
 
 /*#region Tabs*/

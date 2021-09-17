@@ -6,7 +6,7 @@
 
     margin-top: calc((100vw / 5) + 20px);
 
-    color: var(--rich-black);
+    color: var(--dark-space-cadet);
 }
 
 .meio .top, .meio .content
@@ -43,19 +43,22 @@
     .lembretes .text
     {
         width: 70%;
+        margin-top: 10px;
     }
     .lembretes .text h3
     {
+        color: var(--dark-space-cadet);
         font-family: 'Saira';
     }
     .lembretes .text p
     {
+        color: var(--space-cadet);
+
         margin-top: 10px;
     }
     .lembretes .text .descricao
     {
         font-family: 'Roboto Light';
-        color: var(--space-cadet);
 
         white-space: nowrap;
         overflow: hidden;

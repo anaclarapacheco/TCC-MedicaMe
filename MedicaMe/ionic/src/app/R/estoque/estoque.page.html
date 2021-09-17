@@ -8,7 +8,7 @@
     </div>
   </div>
 
-  <div id="menu" class="invisivel">
+  <div id="mEstoque" class="menu invisivel">
     <div id="back" (click)="close()"></div>
 
     <div class="content">
@@ -49,6 +49,15 @@
           </div>
           <h3>Adicionar responsável</h3>
         </div>
+
+        <div class="itens vertical flex" (click)="sair()">
+          <div class="button full flex">
+            <svg viewBox="0 0 24 24">
+              <path d="M16 2v7h-2v-5h-12v16h12v-5h2v7h-16v-20h16zm2 9v-4l6 5-6 5v-4h-10v-2h10z"/>
+            </svg>
+          </div>
+          <h3>Sair</h3>
+        </div>
       </div>
     </div>
   </div>
@@ -67,7 +76,7 @@
           <p>150ml</p>
         </div>
 
-        <button class="normal full flex" (click)="editar()">
+        <button class="normal full flex" (click)="editar(150)">
           Editar quantidade
 
           <svg viewBox="0 0 24 24">
@@ -84,7 +93,7 @@
           <p class="atencao">150ml</p>
         </div>
 
-        <button class="danger full flex" (click)="editar()">
+        <button class="danger full flex" (click)="editar(150)">
           Editar quantidade
 
           <svg viewBox="0 0 24 24">
@@ -101,7 +110,7 @@
           <p>150ml</p>
         </div>
 
-        <button class="normal full flex" (click)="editar()">
+        <button class="normal full flex" (click)="editar(150)">
           Editar quantidade
 
           <svg viewBox="0 0 24 24">
@@ -118,7 +127,7 @@
           <p>150ml</p>
         </div>
 
-        <button class="normal full flex" (click)="editar()">
+        <button class="normal full flex" (click)="editar(150)">
           Editar quantidade
 
           <svg viewBox="0 0 24 24">
@@ -135,7 +144,7 @@
           <p>150ml</p>
         </div>
 
-        <button class="normal full flex" (click)="editar()">
+        <button class="normal full flex" (click)="editar(150)">
           Editar quantidade
 
           <svg viewBox="0 0 24 24">
@@ -152,7 +161,7 @@
           <p>150ml</p>
         </div>
 
-        <button class="normal full flex" (click)="editar()">
+        <button class="normal full flex" (click)="editar(150)">
           Editar quantidade
 
           <svg viewBox="0 0 24 24">
@@ -169,7 +178,7 @@
           <p>150ml</p>
         </div>
 
-        <button class="normal full flex" (click)="editar()">
+        <button class="normal full flex" (click)="editar(150)">
           Editar quantidade
 
           <svg viewBox="0 0 24 24">
@@ -177,39 +186,25 @@
           </svg>
         </button>
       </div>
+    </div>
+  </div>
 
-      <div class="medicamentos full flex">
-        <img src="../../../assets/IMG/Logo/Light (Base).png" alt="Logo do aplicativo MedicaMe">
+  <div id="eQuantidade" class="invisivel">
+    <div id="back"></div>
 
-        <div class="text leftA">
-          <h3>DipperZec</h3>
-          <p>150ml</p>
+    <div class="centraliza full flex" (click)="fechar()">
+      <div class="alert">
+        <div class="top full flex">
+          Ajuste a quantidade
         </div>
 
-        <button class="normal full flex" (click)="editar()">
-          Editar quantidade
-
-          <svg viewBox="0 0 24 24">
-            <path d="M19.769 9.923l-12.642 12.639-7.127 1.438 1.438-7.128 12.641-12.64 5.69 5.691zm1.414-1.414l2.817-2.82-5.691-5.689-2.816 2.817 5.69 5.692z"/>
-          </svg>
-        </button>
-      </div>
-
-      <div class="medicamentos full flex">
-        <img src="../../../assets/IMG/Logo/Light (Base).png" alt="Logo do aplicativo MedicaMe">
-
-        <div class="text leftA">
-          <h3>DipperZec</h3>
-          <p>150ml</p>
+        <div class="content flex centerA">
+          <input id="quantidade" type="number" class="rightA" [(ngModel)]="editarQuantidade">
+          <p class="leftA">ml</p>
         </div>
 
-        <button class="normal full flex" (click)="editar()">
-          Editar quantidade
-
-          <svg viewBox="0 0 24 24">
-            <path d="M19.769 9.923l-12.642 12.639-7.127 1.438 1.438-7.128 12.641-12.64 5.69 5.691zm1.414-1.414l2.817-2.82-5.691-5.689-2.816 2.817 5.69 5.692z"/>
-          </svg>
-        </button>
+        <button (click)="menos()">-</button>
+        <button (click)="mais()">+</button>
       </div>
     </div>
   </div>

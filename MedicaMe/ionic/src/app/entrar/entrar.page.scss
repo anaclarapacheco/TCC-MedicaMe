@@ -6,11 +6,12 @@
 
     position: relative;
     left: 15vw;
-}
-    .top img
+
+    img
     {
         width: 100%;
     }
+}
 /*#endregion*/
 
 /*#region Middle*/
@@ -23,13 +24,15 @@
     left: 7.5vw;
     
     padding-bottom: 20px;
-}
-    .mid .leftA, .mid .important, .mid p
+
+    .leftA, .important, p
     {
         margin-top: 10px;
     }
-    .mid h3
+
+    h3, span
     {
         color: var(--white);
     }
+}
 /*#endregion*/

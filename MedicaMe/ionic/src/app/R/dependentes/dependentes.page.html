@@ -8,7 +8,7 @@
     </div>
   </div>
 
-  <div id="menu" class="invisivel">
+  <div id="mDependentes" class="menu invisivel">
     <div id="back" (click)="close()"></div>
 
     <div class="content">
@@ -49,6 +49,15 @@
           </div>
           <h3>Adicionar responsável</h3>
         </div>
+
+        <div class="itens vertical flex" (click)="sair()">
+          <div class="button full flex">
+            <svg viewBox="0 0 24 24">
+              <path d="M16 2v7h-2v-5h-12v16h12v-5h2v7h-16v-20h16zm2 9v-4l6 5-6 5v-4h-10v-2h10z"/>
+            </svg>
+          </div>
+          <h3>Sair</h3>
+        </div>
       </div>
     </div>
   </div>
@@ -59,13 +68,15 @@
     </div>
 
     <div class="content">
+      {{dependentes}}
+      
       <div class="dependentes full flex">
         <img src="../../../assets/IMG/Logo/Light (Base).png" alt="Logo do aplicativo MedicaMe">
 
         <div class="text flex leftA">
           <h3>Gabriel Santos</h3>
 
-          <svg viewBox="0 0 24 24">
+          <svg viewBox="0 0 24 24" (click)="removerDependente(x)">
             <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.538l-4.592-4.548 4.546-4.587-1.416-1.403-4.545 4.589-4.588-4.543-1.405 1.405 4.593 4.552-4.547 4.592 1.405 1.405 4.555-4.596 4.591 4.55 1.403-1.416z"/>
           </svg>
 
@@ -73,7 +84,7 @@
           <p>Idade: 17 anos</p>
         </div>
 
-        <button class="normal full flex" (click)="editar()">Administrar</button>
+        <button class="normal full flex" (click)="editarDependente(x)">Administrar</button>
       </div>
 
       <div class="dependentes full flex">
@@ -82,7 +93,7 @@
         <div class="text flex leftA">
           <h3>Gabriel Santos</h3>
 
-          <svg viewBox="0 0 24 24">
+          <svg viewBox="0 0 24 24" (click)="removerDependente(x)">
             <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.538l-4.592-4.548 4.546-4.587-1.416-1.403-4.545 4.589-4.588-4.543-1.405 1.405 4.593 4.552-4.547 4.592 1.405 1.405 4.555-4.596 4.591 4.55 1.403-1.416z"/>
           </svg>
 
@@ -90,7 +101,7 @@
           <p>Idade: 17 anos</p>
         </div>
 
-        <button class="normal full flex" (click)="editar()">Administrar</button>
+        <button class="normal full flex" (click)="editarDependente(x)">Administrar</button>
       </div>
 
       <div class="dependentes full flex">
@@ -99,7 +110,7 @@
         <div class="text flex leftA">
           <h3>Gabriel Santos</h3>
 
-          <svg viewBox="0 0 24 24">
+          <svg viewBox="0 0 24 24" (click)="removerDependente(x)">
             <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.538l-4.592-4.548 4.546-4.587-1.416-1.403-4.545 4.589-4.588-4.543-1.405 1.405 4.593 4.552-4.547 4.592 1.405 1.405 4.555-4.596 4.591 4.55 1.403-1.416z"/>
           </svg>
 
@@ -107,7 +118,7 @@
           <p>Idade: 17 anos</p>
         </div>
 
-        <button class="normal full flex" (click)="editar()">Administrar</button>
+        <button class="normal full flex" (click)="editarDependente(x)">Administrar</button>
       </div>
 
       <div class="dependentes full flex">
@@ -116,7 +127,7 @@
         <div class="text flex leftA">
           <h3>Gabriel Santos</h3>
 
-          <svg viewBox="0 0 24 24">
+          <svg viewBox="0 0 24 24" (click)="removerDependente(x)">
             <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.538l-4.592-4.548 4.546-4.587-1.416-1.403-4.545 4.589-4.588-4.543-1.405 1.405 4.593 4.552-4.547 4.592 1.405 1.405 4.555-4.596 4.591 4.55 1.403-1.416z"/>
           </svg>
 
@@ -124,7 +135,7 @@
           <p>Idade: 17 anos</p>
         </div>
 
-        <button class="normal full flex" (click)="editar()">Administrar</button>
+        <button class="normal full flex" (click)="editarDependente(x)">Administrar</button>
       </div>
 
       <div class="dependentes full flex">
@@ -133,7 +144,7 @@
         <div class="text flex leftA">
           <h3>Gabriel Santos</h3>
 
-          <svg viewBox="0 0 24 24">
+          <svg viewBox="0 0 24 24" (click)="removerDependente(x)">
             <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.538l-4.592-4.548 4.546-4.587-1.416-1.403-4.545 4.589-4.588-4.543-1.405 1.405 4.593 4.552-4.547 4.592 1.405 1.405 4.555-4.596 4.591 4.55 1.403-1.416z"/>
           </svg>
 
@@ -141,12 +152,119 @@
           <p>Idade: 17 anos</p>
         </div>
 
-        <button class="normal full flex" (click)="editar()">Administrar</button>
+        <button class="normal full flex" (click)="editarDependente(x)">Administrar</button>
+      </div>
+
+      <div class="dependentes full flex">
+        <img src="../../../assets/IMG/Logo/Light (Base).png" alt="Logo do aplicativo MedicaMe">
+
+        <div class="text flex leftA">
+          <h3>Gabriel Santos</h3>
+
+          <svg viewBox="0 0 24 24" (click)="removerDependente(x)">
+            <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.538l-4.592-4.548 4.546-4.587-1.416-1.403-4.545 4.589-4.588-4.543-1.405 1.405 4.593 4.552-4.547 4.592 1.405 1.405 4.555-4.596 4.591 4.55 1.403-1.416z"/>
+          </svg>
+
+          <p>E-mail: gmabrieltsky@gmail.com</p>
+          <p>Idade: 17 anos</p>
+        </div>
+
+        <button class="normal full flex" (click)="editarDependente(x)">Administrar</button>
+      </div>
+
+      <div class="dependentes full flex">
+        <img src="../../../assets/IMG/Logo/Light (Base).png" alt="Logo do aplicativo MedicaMe">
+
+        <div class="text flex leftA">
+          <h3>Gabriel Santos</h3>
+
+          <svg viewBox="0 0 24 24" (click)="removerDependente(x)">
+            <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.538l-4.592-4.548 4.546-4.587-1.416-1.403-4.545 4.589-4.588-4.543-1.405 1.405 4.593 4.552-4.547 4.592 1.405 1.405 4.555-4.596 4.591 4.55 1.403-1.416z"/>
+          </svg>
+
+          <p>E-mail: gmabrieltsky@gmail.com</p>
+          <p>Idade: 17 anos</p>
+        </div>
+
+        <button class="normal full flex" (click)="editarDependente(x)">Administrar</button>
+      </div>
+
+      <div class="dependentes full flex">
+        <img src="../../../assets/IMG/Logo/Light (Base).png" alt="Logo do aplicativo MedicaMe">
+
+        <div class="text flex leftA">
+          <h3>Gabriel Santos</h3>
+
+          <svg viewBox="0 0 24 24" (click)="removerDependente(x)">
+            <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.538l-4.592-4.548 4.546-4.587-1.416-1.403-4.545 4.589-4.588-4.543-1.405 1.405 4.593 4.552-4.547 4.592 1.405 1.405 4.555-4.596 4.591 4.55 1.403-1.416z"/>
+          </svg>
+
+          <p>E-mail: gmabrieltsky@gmail.com</p>
+          <p>Idade: 17 anos</p>
+        </div>
+
+        <button class="normal full flex" (click)="editarDependente(x)">Administrar</button>
+      </div>
+
+      <div class="dependentes full flex">
+        <img src="../../../assets/IMG/Logo/Light (Base).png" alt="Logo do aplicativo MedicaMe">
+
+        <div class="text flex leftA">
+          <h3>Gabriel Santos</h3>
+
+          <svg viewBox="0 0 24 24" (click)="removerDependente(x)">
+            <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.538l-4.592-4.548 4.546-4.587-1.416-1.403-4.545 4.589-4.588-4.543-1.405 1.405 4.593 4.552-4.547 4.592 1.405 1.405 4.555-4.596 4.591 4.55 1.403-1.416z"/>
+          </svg>
+
+          <p>E-mail: gmabrieltsky@gmail.com</p>
+          <p>Idade: 17 anos</p>
+        </div>
+
+        <button class="normal full flex" (click)="editarDependente(x)">Administrar</button>
       </div>
     </div>
   </div>
 
-  <button class="important" (click)="novoDependente()">Novo dependente</button>
+  <div id="rDependentes" class="invisivel">
+    <div id="back"></div>
+
+    <div class="centraliza full flex" (click)="nao()">
+      <div class="alert">
+        <div class="top full flex">
+          TEM CERTEZA DISSO?
+        </div>
+
+        <div class="content centerA">
+          <p>Deseja realmente REMOVER o dependente?</p>
+
+          <button class="important" (click)="nao()">Não</button>
+          <button class="normal" (click)="sim()">Sim</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="aDependentes" class="invisivel">
+    <div id="back"></div>
+
+    <div class="centraliza full flex" (click)="entendi()">
+      <div class="alert">
+        <div class="top full flex">
+          Adicionando dependente
+        </div>
+
+        <div class="content centerA">
+          <p>Você deve adicionar o seu e-mail pelo nosso aplicativo no celular do usuário  que será o dependente.</p>
+
+          <button class="important" (click)="entendi()">Entendi!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="botao">
+    <button class="important" (click)="novoDependente()">Novo dependente</button>
+  </div>
 
   <div class="tabs full flex">
     <div class="button full flex" (click)="home()">

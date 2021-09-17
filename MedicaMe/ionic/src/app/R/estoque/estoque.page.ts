@@ -8,64 +8,106 @@ import { NavController } from '@ionic/angular';
 })
 export class EstoquePage implements OnInit {
 
-  constructor(public navCtrl: NavController) { }
+  public editarQuantidade: number;
 
-    //#region Abrir e Fechar o Menu
-    open()
+  constructor(public navCtrl: NavController) {
+    //this.carregarEstoque();
+  }
+
+  //#region Abrir e Fechar o Menu
+  open()
+  {
+    var menu = document.getElementById('mEstoque');
+    menu.classList.remove('invisivel');
+  }
+
+  close()
+  {
+    var menu = document.getElementById('mEstoque');
+    menu.classList.add('invisivel');
+  }
+  //#endregion
+
+  //#region SideMenu
+  tutorial()
+  {
+    this.navCtrl.navigateForward('R/tutorial');
+  }
+
+  dadosAdicionais()
+  {
+    this.navCtrl.navigateForward('dados-adicionais');
+  }
+
+  adicionarResponsavel()
+  {
+    this.navCtrl.navigateForward('digitar-responsavel');
+  }
+
+  sair()
+  {
+    this.navCtrl.navigateForward('first-view');
+  }
+  //#endregion
+
+  //#region Editar quantidade do medicamento
+  fechar()
+  {
+    var estoque = document.getElementById('eQuantidade');
+    estoque.classList.add('invisivel');
+  }
+
+  editar(quantidade: any)
+  {
+    this.editarQuantidade = quantidade;
+
+    var estoque = document.getElementById('eQuantidade');
+    estoque.classList.remove('invisivel');
+  }
+
+  menos()
+  {
+    if(this.editarQuantidade != 0)
     {
-      var menu = document.getElementById('menu');
-      menu.classList.add('visivel');
-      menu.classList.remove('invisivel');
+      this.editarQuantidade--;
     }
+  }
+
+  mais()
+  {
+    this.editarQuantidade++;
+  }
+  //#endregion
+
+  //#region Carregar o Estoque
+  carregarEstoque()
+  {
+    //
+  }
+  //#endregion
+
+  //#region Tabs
+  home()
+  {
+    this.navCtrl.navigateForward('R/home');
+  }
   
-    close()
-    {
-      var menu = document.getElementById('menu');
-      menu.classList.add('invisivel');
-      menu.classList.remove('visivel');
-    }
-    //#endregion
-  
-    //#region SideMenu
-    tutorial()
-    {
-      this.navCtrl.navigateForward('R/tutorial');
-    }
-  
-    dadosAdicionais()
-    {
-      this.navCtrl.navigateForward('dados-adicionais');
-    }
-  
-    adicionarResponsavel()
-    {
-      this.navCtrl.navigateForward('digitar-responsavel');
-    }
-    //#endregion
-  
-    //#region Tabs
-    home()
-    {
-      this.navCtrl.navigateForward('R/home');
-    }
-    
-    lembretes()
-    {
-      this.navCtrl.navigateForward('R/lembretes');
-    }
-  
-    dependentes()
-    {
-      this.navCtrl.navigateForward('R/dependentes');
-    }
-  
-    relatorio()
-    {
-      this.navCtrl.navigateForward('R/relatorio');
-    }
-    //#endregion
+  lembretes()
+  {
+    this.navCtrl.navigateForward('R/lembretes');
+  }
+
+  dependentes()
+  {
+    this.navCtrl.navigateForward('R/dependentes');
+  }
+
+  relatorio()
+  {
+    this.navCtrl.navigateForward('R/relatorio');
+  }
+  //#endregion
 
   ngOnInit() {
   }
-
 }

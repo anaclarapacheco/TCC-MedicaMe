@@ -1,7 +1,27 @@
+/*#region My*/
+.sc-ion-picker-md-h
+{
+  --background: var(--white);
+}
+
+.picker-opt
+{
+  background: var(--lavander);
+  color: var(--dark-space-cadet);
+}
+
+.picker-opt.picker-opt-selected, .picker-button.sc-ion-picker-md, .picker-button.ion-activated.sc-ion-picker-md
+{
+  color: var(--state-blue);
+}
+/*#endregion*/
+
+/*#region Ionic*/
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
 
 /** Ionic CSS Variables **/
+
 :root {
   /** primary **/
   --ion-color-primary: #3880ff;
@@ -75,7 +95,7 @@
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 
-  --rich-black: #141115;
+  --dark-space-cadet: #141115;
   --dark-space-cadet: #17173B;
   --space-cadet: #342F4C;
   --state-blue: #6063CC;
@@ -91,24 +111,6 @@
    * Dark Colors
    * -------------------------------------------
    */
-
-  //  $colors: (cachorro: #65049d);
-
-  .sc-ion-picker-md-h
-  {
-    --background: var(--white);
-  }
-
-  .picker-opt
-  {
-    background: var(--lavander);
-    color: var(--dark-space-cadet);
-  }
-
-  .picker-opt.picker-opt-selected, .picker-button.sc-ion-picker-md, .picker-button.ion-activated.sc-ion-picker-md
-  {
-    color: var(--state-blue);
-  }
 
   body {
     --ion-color-primary: #428cff;
@@ -181,7 +183,7 @@
    */
 
   .ios body {
-    --ion-background-color: #000000;
+    --ion-background-color: var(--white);
     --ion-background-color-rgb: 0,0,0;
 
     --ion-text-color: #ffffff;
@@ -260,3 +262,4 @@
     --ion-card-background: #1e1e1e;
   }
 }
+/*#endregion*/

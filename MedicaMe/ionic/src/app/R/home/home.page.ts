@@ -22,16 +22,14 @@ export class HomePage implements OnInit {
   //#region Abrir e Fechar o Menu
   open()
   {
-    var menu = document.getElementById('menu');
-    menu.classList.add('visivel');
+    var menu = document.getElementById('mHome');
     menu.classList.remove('invisivel');
   }
 
   close()
   {
-    var menu = document.getElementById('menu');
+    var menu = document.getElementById('mHome');
     menu.classList.add('invisivel');
-    menu.classList.remove('visivel');
   }
   //#endregion
 
@@ -49,6 +47,11 @@ export class HomePage implements OnInit {
   adicionarResponsavel()
   {
     this.navCtrl.navigateForward('digitar-responsavel');
+  }
+
+  sair()
+  {
+    this.navCtrl.navigateForward('first-view');
   }
   //#endregion
 
@@ -76,5 +79,4 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
   }
-
 }

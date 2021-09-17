@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+//import { AndroidFullScreen } from "@ionic-native/android-full-screen/ngx";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  constructor(/*private fullscreen: AndroidFullScreen*/) {
+    //this.fullscreen.immersiveWidth();
+    //this.fullscreen.immersiveHeight();
+  }
 }

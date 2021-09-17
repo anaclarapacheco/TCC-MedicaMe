@@ -1,4 +1,4 @@
-/*#region Mid Geral*/
+/*#region Geral*/
 .meio
 {
     width: 90%;
@@ -6,17 +6,23 @@
 
     margin-top: calc((100vw / 5) + 20px);
 
-    color: var(--rich-black);
+    color: var(--dark-space-cadet);
+
+    .top, .meio .content
+    {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .content
+    {
+        margin-bottom: calc((100vw / 5) + ((100vw / 5) / 2) + 65px);
+    }
 }
 
-.meio .top, .meio .content
+#rDependentes #back, #aDependentes #back
 {
-    margin-top: 20px;
-}
-
-.meio .content
-{
-    margin-bottom: calc((100vw / 5) + ((100vw / 5) / 2) + 65px);
+    width: 100vw;
 }
 /*#endregion*/
 
@@ -31,8 +37,8 @@
 
     border-radius: 10px;
     box-sizing: border-box;
-}
-    .dependentes img
+
+    img
     {
         width: 50px;
         height: 50px;
@@ -40,29 +46,36 @@
         margin-left: 10px;
         margin-right: 20px;
     }
-    .dependentes .text
+
+    .text
     {
         width: 70%;
         margin-top: 10px;
-    }
-    .dependentes .text svg
-    {
-        height: 30px;
-        fill: var(--red);
 
-        margin-left: auto;
+        svg
+        {
+            height: 30px;
+            fill: var(--red);
+    
+            margin-left: auto;
+        }
+    
+        h3
+        {
+            width: calc(100% - 30px);
+    
+            color: vasr(--dark-space-cadet);
+            font-family: 'Saira';
+        }
+    
+        p
+        {
+            color: var(--space-cadet);
+            font-family: 'Roboto Light';
+        }
     }
-    .dependentes .text h3
-    {
-        width: calc(100% - 30px);
-        font-family: 'Saira';
-    }
-    .dependentes .text p
-    {
-        font-family: 'Roboto Light';
-        color: var(--space-cadet);
-    }
-    .dependentes button
+
+    button
     {
         height: 30px;
 
@@ -73,17 +86,19 @@
         border-bottom-right-radius: 10px;
         border-bottom-left-radius: 10px;
     }
-    .dependentes svg
+
+    svg
     {
         fill: var(--white);
         height: 80%;
 
         margin-left: 10px;
     }
+}
 /*#endregion*/
 
 /*#region Botão*/
-.important
+#botao .important
 {
     background-color: var(--space-cadet);
     width: 80vw;
