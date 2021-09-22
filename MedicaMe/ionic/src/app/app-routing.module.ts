@@ -55,6 +55,15 @@ const routes: Routes = [
     path: 'R/estoque',
     loadChildren: () => import('./R/estoque/estoque.module').then( m => m.EstoquePageModule)
   },
+  {
+    path: 'R/novo-lembrete',
+    loadChildren: () => import('./R/novo-lembrete/novo-lembrete.module').then( m => m.NovoLembretePageModule)
+  },
+  {
+    path: 'R/relatorio',
+    loadChildren: () => import('./R/relatorio/relatorio.module').then( m => m.RelatorioPageModule)
+  },
+
 
 ];
 

@@ -1,24 +1,24 @@
 <ion-content>
-  <div class="card flex">
-    <div class="top full flex">
-      <img src="../../assets/IMG/Logo/Light (Lado).png" alt="Logo do aplicativo: Medicame">
-    </div>
-    
-    <div class="mid horizontal flex centerA">
-      <h3 class="line">Preencha os campos para criar sua conta!</h3>
-
-      <span class="line leftA">E-mail</span>
-      <input type="email" class="input">
-
-      <span class="line leftA">Senha</span>
-      <input type="password" class="input">
-      <p class="aviso invisivel">Preencha todos os campos</p>
-
-      <button (click)="entrar()" class="important">Entrar</button>
-      <span class="line">- ou -</span>
-      <button (click)="entrarGoogle()" class="normal">Entrar com Google</button>
+  <div class="card full flex">
+    <div class="content">
+      <div class="top full flex">
+        <img src="../../assets/IMG/Logo/Light (Lado).png" alt="Logo do aplicativo: Medicame">
+      </div>
       
-      <p>Não possui uma conta? <a (click)="cadastrar()">Cadastre-se!</a></p>
+      <div class="mid horizontal flex centerA">
+        <h3 class="line">Preencha os campos para criar sua conta!</h3>
+
+        <span class="line leftA">E-mail</span>
+        <input type="email" class="input">
+
+        <span class="line leftA">Senha</span>
+        <input type="password" class="input">
+        <p class="aviso invisivel">Preencha todos os campos</p>
+
+        <button (click)="entrar()" class="important">Entrar</button>
+        
+        <p>Não possui uma conta? <a (click)="cadastrar()">Cadastre-se!</a></p>
+      </div>
     </div>
   </div>
 </ion-content>

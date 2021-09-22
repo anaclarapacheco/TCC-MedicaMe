@@ -2,31 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-lembretes',
-  templateUrl: './lembretes.page.html',
-  styleUrls: ['./lembretes.page.scss'],
+  selector: 'app-relatorio',
+  templateUrl: './relatorio.page.html',
+  styleUrls: ['./relatorio.page.scss'],
 })
-export class LembretesPage implements OnInit {
+export class RelatorioPage implements OnInit {
 
   constructor(public navCtrl: NavController) { }
-
-  //#region Novo Lembrete
-  novoLembrete()
-  {
-    this.navCtrl.navigateForward('R/novo-lembrete');
-  }
-  //#endregion
 
   //#region Abrir e Fechar o Menu
   open()
   {
-    var menu = document.getElementById('mLembretes');
+    var menu = document.getElementById('mRelatorio');
     menu.classList.remove('invisivel');
   }
 
   close()
   {
-    var menu = document.getElementById('mLembretes');
+    var menu = document.getElementById('mRelatorio');
     menu.classList.add('invisivel');
   }
   //#endregion
@@ -69,9 +62,9 @@ export class LembretesPage implements OnInit {
     this.navCtrl.navigateForward('R/estoque');
   }
 
-  relatorio()
+  lembretes()
   {
-    this.navCtrl.navigateForward('R/relatorio');
+    this.navCtrl.navigateForward('R/lembretes');
   }
   //#endregion
 

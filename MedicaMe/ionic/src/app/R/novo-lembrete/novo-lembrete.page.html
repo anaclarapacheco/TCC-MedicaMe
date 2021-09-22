@@ -1,0 +1,68 @@
+<ion-content>
+  <div class="card full flex">
+    <div class="content">
+      <div class="top full flex">
+        <img src="../../../assets/IMG/Logo/Light (Simples).png" alt="Logo do aplicativo: MedicaMe">
+        <h3 class="line">{{titulo}}</h3>
+      </div>
+      
+      <div class="mid full flex">
+        <div id="um" class="full flex">
+          <span class="line leftA">Nome do medicamento</span>
+          <input type="text" class="input">
+  
+          <span class="line leftA">Forma farmacêutica</span>
+          <input type="text" class="input">
+  
+          <span class="line leftA">Dosagem</span>
+          <input type="number" class="input">
+  
+          <h3 class="line centerA">Descrição</h3>
+          <textarea class="input"></textarea>
+          <p class="aviso invisivel">Preencha todos os campos</p>
+
+          <button (click)="proximo()" class="important full flex">
+            Próximo
+            <svg viewBox="0 0 24 24">
+              <path d="M0 3.795l2.995-2.98 11.132 11.185-11.132 11.186-2.995-2.981 8.167-8.205-8.167-8.205zm18.04 8.205l-8.167 8.205 2.995 2.98 11.132-11.185-11.132-11.186-2.995 2.98 8.167 8.206z"/>
+            </svg>
+          </button>
+          <button (click)="cancelar()" class="normal">Cancelar</button>
+        </div>
+  
+        <div id="dois" class="full flex invisivel">
+          <div class="bloco flex">
+            <span class="line leftA">Ínicio</span>
+            <input type="time" class="input">
+          </div>
+
+          <div class="bloco flex">
+            <span class="line leftA">Final</span>
+            <input type="time" class="input">
+          </div>
+
+          <span class="line leftA">Dias</span>
+          <input type="number" class="input">
+
+          <span class="line leftA">Horas</span>
+          <input type="time" class="input">
+  
+          <h3 class="line centerA no">Estoque</h3>
+          <span class="line leftA">Quantidade atual</span>
+          <input type="number" class="input">
+
+          <span class="line leftA">Quantidade miníma (notificação)</span>
+          <input type="number" class="input">
+
+          <button (click)="proximo()" class="important">Criar Lembrete</button>
+          <button (click)="voltar()" class="normal full flex">
+            Voltar
+            <svg viewBox="0 0 24 24">
+              <path d="M0 3.795l2.995-2.98 11.132 11.185-11.132 11.186-2.995-2.981 8.167-8.205-8.167-8.205zm18.04 8.205l-8.167 8.205 2.995 2.98 11.132-11.185-11.132-11.186-2.995 2.98 8.167 8.206z"/>
+            </svg>
+        </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

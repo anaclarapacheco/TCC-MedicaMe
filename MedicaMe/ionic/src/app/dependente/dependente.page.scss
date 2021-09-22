@@ -1,3 +1,10 @@
+/*#region Geral*/
+.card
+{
+    padding: 0px;
+}
+/*#endregion*/
+
 /*#region Top*/
 .top
 {    
@@ -10,35 +17,36 @@
     left: 0;
 
     z-index: 2;
-}
-    .top img
+
+    img
     {
         height: 100%;
     }
 
-.degrade
-{
-    background-image: linear-gradient(0deg,var(--dark-space-cadet), var(--state-blue), rgba(255, 255, 255, 0.1));
-    width: 100%;
-    height: 50vh;
+    .degrade
+    {
+        background-image: linear-gradient(0deg,var(--dark-space-cadet), var(--state-blue), rgba(255, 255, 255, 0.1));
+        width: 100%;
+        height: 50vh;
 
-    position: absolute;
-    top: 0;
-    left: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
 
-    z-index: 3;
-}
+        z-index: 3;
+    }
 
-.trianguloUp
-{
-    position: absolute;
-    top: 17vh;
+    .trianguloUp
+    {
+        position: absolute;
+        top: 17vh;
 
-    border-left-width: 50vw;
-    border-right-width: 50vw;
-    border-bottom-width: calc(35vh + 1px);
+        border-left-width: 50vw;
+        border-right-width: 50vw;
+        border-bottom-width: calc(35vh + 1px);
 
-    z-index: 4;
+        z-index: 4;
+    }
 }
 /*#endregion*/
 
@@ -53,16 +61,18 @@
     left: 7.5vw;
 
     z-index: 5;
-}
-    .mid h3
+
+    h3
     {
         color: var(--white);
         margin-bottom: 15px;
     }
-    .mid button
+
+    button
     {
         margin-bottom: 20px;
     }
+}
 /*#endregion*/
 
 /*#region Bottom*/
@@ -76,9 +86,10 @@
     left: 7.5vw;
 
     z-index: 5;
-}
-    .bot img
+
+    img
     {
         height: 100%;
     }
+}
 /*#endregion*/

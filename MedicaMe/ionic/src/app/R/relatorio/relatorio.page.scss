@@ -1,0 +1,21 @@
+/*#region Mid Geral*/
+.meio
+{
+    width: 90%;
+    margin-left: 5%;
+
+    margin-top: calc((100vw / 5) + 20px);
+
+    color: var(--dark-space-cadet);
+}
+
+.meio .top, .meio .content
+{
+    margin-top: 20px;
+}
+
+.meio .content
+{
+    margin-bottom: calc((100vw / 5) + ((100vw / 5) / 2) + 65px);;
+}
+/*#endregion*/

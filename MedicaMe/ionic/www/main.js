@@ -93,6 +93,14 @@ const routes = [
         path: 'R/estoque',
         loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_R_estoque_estoque_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./R/estoque/estoque.module */ 1073)).then(m => m.EstoquePageModule)
     },
+    {
+        path: 'R/novo-lembrete',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_R_novo-lembrete_novo-lembrete_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./R/novo-lembrete/novo-lembrete.module */ 5283)).then(m => m.NovoLembretePageModule)
+    },
+    {
+        path: 'R/relatorio',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_R_relatorio_relatorio_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./R/relatorio/relatorio.module */ 3911)).then(m => m.RelatorioPageModule)
+    },
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -128,8 +136,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+//import { AndroidFullScreen } from "@ionic-native/android-full-screen/ngx";
 let AppComponent = class AppComponent {
-    constructor() { }
+    constructor() {
+        //this.fullscreen.immersiveWidth();
+        //this.fullscreen.immersiveHeight();
+    }
 };
 AppComponent.ctorParameters = () => [];
 AppComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([

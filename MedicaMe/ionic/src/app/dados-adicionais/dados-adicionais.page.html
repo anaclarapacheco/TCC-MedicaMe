@@ -1,31 +1,33 @@
 <ion-content>
-  <div class="card flex">
+  <div class="card horizontal flex">
     <div class="top full flex">
       <div class="degrade"></div>
 
       <div class="trianguloUp leftP"></div>
       <div class="trianguloUp rightP"></div>
     </div>
-    
-    <div class="mid horizontal centerA flex">
-      <h3 class="line">Dados adicionais</h3>
 
-      <span class="line leftA">Nome</span>
-      <input type="text" class="input">
+    <div class="content">
+      <div class="mid horizontal centerA flex">
+        <h3 class="line">Dados adicionais</h3>
 
-      <span class="line leftA">Data de nascimento</span>
-      <ion-item class="input">
-        <ion-datetime displayFormat="DD/MM/YYYY" min="1950-01-01" max="2040-12-31"></ion-datetime>
-      </ion-item>
+        <span class="line leftA">Nome</span>
+        <input type="text" class="input">
 
-      <p class="aviso invisivel">Preencha todos os campos</p>
+        <span class="line leftA">Data de nascimento</span>
+        <ion-item class="input">
+          <ion-datetime displayFormat="DD/MM/YYYY" min="1950-01-01" max="2040-12-31"></ion-datetime>
+        </ion-item>
 
-      <button (click)="continuar()" class="important">Continuar</button>
-      <button (click)="deixar()" class="normal">Deixar para depois</button>
-    </div>
+        <p class="aviso invisivel">Preencha todos os campos</p>
 
-    <div class="bot full flex">
-      <img src="../../assets/IMG/Logo/Light (Lado).png" alt="Logo do aplicativo: Medicame">
+        <button (click)="continuar()" class="important">Continuar</button>
+        <button (click)="deixar()" class="normal">Deixar para depois</button>
+      </div>
+
+      <div class="bot full flex">
+        <img src="../../assets/IMG/Logo/Light (Lado).png" alt="Logo do aplicativo: Medicame">
+      </div>
     </div>
   </div>
 </ion-content>

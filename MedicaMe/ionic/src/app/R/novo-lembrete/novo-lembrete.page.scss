@@ -1,0 +1,109 @@
+/*#region Geral*/
+.content
+{
+    overflow: hidden;
+}
+/*#endregion*/
+
+/*#region Top*/
+.top
+{
+    width: 80vw;
+    overflow: hidden;
+
+    border-bottom-color: var(--white);
+    border-bottom-width: 3px;
+    border-bottom-style: solid;
+
+    h3
+    {
+        color: var(--white);
+
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    img
+    {
+        width: 80%;
+    }
+}
+/*#endregion*/
+
+/*#region Middle*/
+.mid
+{
+    width: 80vw;
+    overflow: hidden;
+
+    .bloco
+    {
+        width: 45%;
+    }
+
+    .bloco:nth-of-type(1)
+    {
+        margin-right: 10%;
+    }
+
+    span, h3, button
+    {
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    span, h3
+    {
+        color: var(--white);
+    }
+
+    h3
+    {
+        border-bottom-color: var(--white);
+        border-bottom-width: 3px;
+        border-bottom-style: solid;
+
+        line-height: 40px;
+
+        margin-bottom: 20px;
+    }
+
+    .no
+    {
+        margin-bottom: 0px;
+    }
+
+    textarea
+    {
+        height: 80px;
+
+        resize: none;
+    }
+
+    .important svg
+    {
+        height: 20px;
+
+        position: absolute;
+        right: calc(10vw + 10px);
+
+        border-radius: 10px;
+        
+        fill: var(--dark-space-cadet);
+    }
+
+    .normal svg
+    {
+        height: 20px;
+
+        position: absolute;
+        left: calc(10vw + 10px);
+
+        transform: rotate(180deg);
+
+        border-radius: 10px;
+        
+        fill: var(--white);
+    }
+}
+/*#endregion*/

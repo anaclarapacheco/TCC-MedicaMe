@@ -1,5 +1,5 @@
 <ion-content>
-  <div class="card flex">
+  <div class="card full flex">
     <div class="top full flex">
       <div class="degrade"></div>
 
@@ -7,19 +7,21 @@
       <div class="trianguloUp rightP"></div>
     </div>
     
-    <div class="mid horizontal centerA flex">
-      <h3 class="line">Digite o e-mail do responsável</h3>
+    <div class="content">
+      <div class="mid horizontal centerA flex">
+        <h3 class="line">Digite o e-mail do responsável</h3>
 
-      <span class="line leftA">E-mail</span>
-      <input type="email" class="input">
-      <p class="aviso invisivel">E-mail inexistente</p>
+        <span class="line leftA">E-mail</span>
+        <input type="email" class="input">
+        <p class="aviso invisivel">E-mail inexistente</p>
 
-      <button (click)="registrar()" class="important">Registrar</button>
-      <button (click)="voltar()" class="normal">Voltar</button>
-    </div>
+        <button (click)="registrar()" class="important">Registrar</button>
+        <button (click)="voltar()" class="normal">Voltar</button>
+      </div>
 
-    <div class="bot full flex">
-      <img src="../../assets/IMG/Logo/Light (Cima).png" alt="Logo do aplicativo: Medicame">
+      <div class="bot full flex">
+        <img src="../../assets/IMG/Logo/Light (Cima).png" alt="Logo do aplicativo: Medicame">
+      </div>
     </div>
   </div>
 </ion-content>

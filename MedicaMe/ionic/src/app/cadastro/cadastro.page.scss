@@ -1,15 +1,20 @@
+/*#region Geral*/
+.content
+{
+    overflow: hidden;
+}
+/*#endregion*/
+
 /*#region Top*/
 .top
 {
-    width: 70vw;
-    height: 15vh;
-
-    position: relative;
-    left: 15vw;
+    width: 80vw;
+    overflow: hidden;
 
     img
     {
-        width: 100%;
+        width: 90%;
+        margin-bottom: 30px;
     }
 }
 /*#endregion*/
@@ -17,19 +22,16 @@
 /*#region Middle*/
 .mid
 {
-    width: 85vw;
-    height: calc(85vh - 1px);
+    width: 80vw;
+    overflow: hidden;
 
-    position: relative;
-    left: 7.5vw;
-    
-    padding-bottom: 20px;
-
-    .leftA, .important, p
+    span, p, button
     {
-        margin-top: 10px;
+        margin-top: 30px;
+        margin-bottom: 10px;
     }
-    h3, span
+
+    span, h3
     {
         color: var(--white);
     }

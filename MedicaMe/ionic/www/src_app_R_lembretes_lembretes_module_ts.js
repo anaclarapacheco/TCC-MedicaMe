@@ -106,6 +106,11 @@ let LembretesPage = class LembretesPage {
     constructor(navCtrl) {
         this.navCtrl = navCtrl;
     }
+    //#region Novo Lembrete
+    novoLembrete() {
+        this.navCtrl.navigateForward('R/novo-lembrete');
+    }
+    //#endregion
     //#region Abrir e Fechar o Menu
     open() {
         var menu = document.getElementById('mLembretes');
