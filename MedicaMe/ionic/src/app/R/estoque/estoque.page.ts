@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Event } from '@angular/router';
 import { NavController } from '@ionic/angular';
 
 @Component({
@@ -13,6 +14,45 @@ export class EstoquePage implements OnInit {
   constructor(public navCtrl: NavController) {
     //this.carregarEstoque();
   }
+  
+  //#region Editar quantidade do medicamento
+  fechar()
+  {    
+    if(event.target == document.getElementById('fecha'))
+    {
+      var estoque = document.getElementById('eQuantidade');
+      estoque.classList.add('invisivel');
+    }
+  }
+
+  editar(quantidade: any)
+  {
+    this.editarQuantidade = quantidade;
+
+    var estoque = document.getElementById('eQuantidade');
+    estoque.classList.remove('invisivel');
+  }
+
+  menos()
+  {
+    if(this.editarQuantidade != 0)
+    {
+      this.editarQuantidade--;
+    }
+  }
+
+  mais()
+  {
+    this.editarQuantidade++;
+  }
+  //#endregion
+
+  //#region Carregar o Estoque
+  carregarEstoque()
+  {
+    //
+  }
+  //#endregion
 
   //#region Abrir e Fechar o Menu
   open()
@@ -47,42 +87,6 @@ export class EstoquePage implements OnInit {
   sair()
   {
     this.navCtrl.navigateForward('first-view');
-  }
-  //#endregion
-
-  //#region Editar quantidade do medicamento
-  fechar()
-  {
-    var estoque = document.getElementById('eQuantidade');
-    estoque.classList.add('invisivel');
-  }
-
-  editar(quantidade: any)
-  {
-    this.editarQuantidade = quantidade;
-
-    var estoque = document.getElementById('eQuantidade');
-    estoque.classList.remove('invisivel');
-  }
-
-  menos()
-  {
-    if(this.editarQuantidade != 0)
-    {
-      this.editarQuantidade--;
-    }
-  }
-
-  mais()
-  {
-    this.editarQuantidade++;
-  }
-  //#endregion
-
-  //#region Carregar o Estoque
-  carregarEstoque()
-  {
-    //
   }
   //#endregion
 

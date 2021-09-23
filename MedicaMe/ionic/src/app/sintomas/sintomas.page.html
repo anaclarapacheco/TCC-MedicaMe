@@ -1,0 +1,18 @@
+<ion-content>
+  <div class="card full flex">
+    <div class="content">
+      <div class="top full flex">
+        <img src="../../../assets/IMG/Logo/Light (Simples).png" alt="Logo do aplicativo: MedicaMe">
+      </div>
+      
+      <div class="mid full flex">
+        <h3 class="line centerA">Como está se sentindo?</h3>
+        <textarea class="input" placeholder="EX: Hoje eu me senti enjoado..."></textarea>
+        <p class="aviso invisivel">Preencha o campo, por favor</p>
+
+        <button (click)="adicionarSintoma()" class="important">Adicionar sintoma</button>
+        <button (click)="cancelar()" class="normal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</ion-content>

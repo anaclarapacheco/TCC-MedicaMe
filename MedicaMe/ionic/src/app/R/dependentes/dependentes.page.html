@@ -228,7 +228,7 @@
   <div id="rDependentes" class="invisivel">
     <div id="back"></div>
 
-    <div class="centraliza full flex" (click)="nao()">
+    <div id="nao" class="centraliza full flex" (click)="nao()">
       <div class="alert">
         <div class="top full flex">
           TEM CERTEZA DISSO?
@@ -237,7 +237,7 @@
         <div class="content centerA">
           <p>Deseja realmente REMOVER o dependente?</p>
 
-          <button class="important" (click)="nao()">Não</button>
+          <button id="naoBtn" class="important" (click)="nao()">Não</button>
           <button class="normal" (click)="sim()">Sim</button>
         </div>
       </div>
@@ -247,7 +247,7 @@
   <div id="aDependentes" class="invisivel">
     <div id="back"></div>
 
-    <div class="centraliza full flex" (click)="entendi()">
+    <div id="entendi" class="centraliza full flex" (click)="entendi()">
       <div class="alert">
         <div class="top full flex">
           Adicionando dependente
@@ -256,7 +256,7 @@
         <div class="content centerA">
           <p>Você deve adicionar o seu e-mail pelo nosso aplicativo no celular do usuário  que será o dependente.</p>
 
-          <button class="important" (click)="entendi()">Entendi!</button>
+          <button id="entendiBtn" class="important" (click)="entendi()">Entendi!</button>
         </div>
       </div>
     </div>

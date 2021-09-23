@@ -33,62 +33,67 @@
     box-sizing: border-box;
 
     border-radius: 15px;
-}
-    .medicamentos img
+
+    img
     {
-        height: 100%;
+        height: 90%;
     }
 
-    .medicamentos .text
+    .text
     {
         height: 100%;
 
-        margin-left: 20px;
+        margin-left: 10px;
     }
 
-    .medicamentos h3
+    h3
     {
         color: var(--dark-space-cadet);
         font-family: 'Saira';
     }
-    .medicamentos p
+
+    p
     {
         color: var(--space-cadet);
     }
+}
 /*#endregion*/
 
 /*#region Medicamentos - Pedente*/
-.pendente h3
+.pendente
 {
-    color: var(--red);
-}
+    h3
+    {
+        color: var(--red);
+    }
 
-.pendente .medicamentos
-{
-    border-color: var(--red);
-    border-style: solid;
-    border-width: 2px;
+    .medicamentos
+    {
+        border-color: var(--red);
+        border-style: solid;
+        border-width: 2px;
 
-    color: var(--dark-space-cadet);
-}
+        color: var(--dark-space-cadet);
+    }
 
-.pendente svg
-{
-    height: 40px;
-}
+    svg
+    {
+        height: 40px;
+    }
 
-.tomei
-{
-    fill: var(--state-blue);
+    .tomei
+    {
+        fill: var(--state-blue);
 
-    margin-left: auto;
-}
+        margin-left: auto;
+    }
 
-.nao-tomei
-{
-    fill: var(--red);
+    .nao-tomei
+    {
+        fill: var(--red);
 
-    margin-left: 10px;
+        margin-left: 10px;
+    }
 }
 /*#endregion*/
 

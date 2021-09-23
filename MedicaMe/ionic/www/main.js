@@ -101,6 +101,10 @@ const routes = [
         path: 'R/relatorio',
         loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_R_relatorio_relatorio_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./R/relatorio/relatorio.module */ 3911)).then(m => m.RelatorioPageModule)
     },
+    {
+        path: 'sintomas',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_sintomas_sintomas_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./sintomas/sintomas.module */ 2146)).then(m => m.SintomasPageModule)
+    },
 ];
 let AppRoutingModule = class AppRoutingModule {
 };

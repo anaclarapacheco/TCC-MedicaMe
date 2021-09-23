@@ -62,7 +62,11 @@ const routes: Routes = [
   {
     path: 'R/relatorio',
     loadChildren: () => import('./R/relatorio/relatorio.module').then( m => m.RelatorioPageModule)
+  },  {
+    path: 'sintomas',
+    loadChildren: () => import('./sintomas/sintomas.module').then( m => m.SintomasPageModule)
   },
+
 
 
 ];

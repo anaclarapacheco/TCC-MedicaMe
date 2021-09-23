@@ -13,8 +13,7 @@
 
     img
     {
-        width: 90%;
-        margin-bottom: 30px;
+        width: 80%;
     }
 }
 /*#endregion*/
@@ -25,15 +24,30 @@
     width: 80vw;
     overflow: hidden;
 
-    span, p, button
+    h3, button
     {
-        margin-top: 30px;
+        margin-top: 20px;
         margin-bottom: 10px;
     }
 
-    span, h3, p
+    h3
     {
         color: var(--white);
+    
+        border-bottom-color: var(--white);
+        border-bottom-width: 3px;
+        border-bottom-style: solid;
+
+        line-height: 40px;
+
+        margin-bottom: 20px;
+    }
+
+    textarea
+    {
+        height: 200px;
+
+        resize: none;
     }
 }
 /*#endregion*/

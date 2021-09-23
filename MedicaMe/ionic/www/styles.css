@@ -1351,12 +1351,9 @@ p, h1, h2, h3, h4, h5, h6, span, a {
   right: -50%;
 }
 /*#endregion*/
-/*#region On/Off*/
+/*#region Off*/
 .invisivel {
   display: none;
-}
-.visiel {
-  display: block;
 }
 /*#endregion*/
 /*#region Botão*/
@@ -1403,7 +1400,7 @@ button {
 }
 .aviso {
   font-family: "Saira Italic";
-  color: var(--red);
+  color: var(--red) !important;
 }
 /*#endregion*/
 /*#region Card*/
@@ -1550,13 +1547,8 @@ button {
   bottom: 0px;
   font-size: 1em;
 }
-.tabs .middle {
-  padding: 0px;
-}
-.tabs .middle p {
-  position: relative;
-  top: calc((-100vw / 5) / 2);
-  color: var(--baby-blue);
+.tabs p {
+  color: var(--white);
 }
 .tabs .flex {
   flex-direction: column;
@@ -1565,6 +1557,14 @@ button {
   fill: var(--white);
   width: 40%;
   margin-bottom: 10px;
+}
+.tabs .middle {
+  padding: 0px;
+}
+.tabs .middle p {
+  position: relative;
+  top: calc((-100vw / 5) / 2);
+  color: var(--baby-blue);
 }
 .tabs .button .principal {
   background-color: var(--baby-blue);

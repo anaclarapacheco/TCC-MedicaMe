@@ -141,15 +141,10 @@ p, h1, h2, h3, h4, h5, h6, span, a
 }
  /*#endregion*/
 
- /*#region On/Off*/
+ /*#region Off*/
 .invisivel
 {
     display: none;
-}
-
-.visiel
-{
-    display: block;
 }
 /*#endregion*/
 
@@ -214,10 +209,11 @@ button
     font-family: 'Saira';
     color: var(--dark-space-cadet);
 }
+
 .aviso
 {
     font-family: 'Saira Italic';
-    color: var(--red);
+    color: var(--red) !important;
 }
 /*#endregion*/
 
@@ -433,32 +429,38 @@ button
     bottom: 0px;
 
     font-size: 1em;
-}
-    .tabs .middle
-    {
-        padding: 0px;
-    }
-    .tabs .middle p
-    {
-        position: relative;
-        top: calc((-100vw / 5) / 2);
 
-        color: var(--baby-blue);
+    p
+    {
+        color: var(--white);
     }
 
-    .tabs .flex
+    .flex
     {
         flex-direction: column;
     }    
 
-    .tabs .button svg
+    .button svg
     {
         fill: var(--white);
         width: 40%;
         margin-bottom: 10px;
     }
+
+    .middle
+    {
+        padding: 0px;
+
+        p
+        {
+            position: relative;
+            top: calc((-100vw / 5) / 2);
+
+            color: var(--baby-blue);
+        }
+    }
     
-    .tabs .button .principal
+    .button .principal
     {
         background-color: var(--baby-blue);
         width: calc(100vw / 5);
@@ -473,14 +475,16 @@ button
         border-style: solid;
         border-radius: 100%;
         border-width: 4px;
-    }
-    .tabs .button .principal svg
-    {
-        fill: var(--dark-space-cadet);
-        width: 55%;
 
-        margin: 0px;
+        svg
+        {
+            fill: var(--dark-space-cadet);
+            width: 55%;
+    
+            margin: 0px;
+        }
     }
+}
 /*#endregion*/
 
  /*#region Ionic*/

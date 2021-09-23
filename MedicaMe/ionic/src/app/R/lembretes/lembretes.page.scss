@@ -31,8 +31,8 @@
 
     border-radius: 10px;
     box-sizing: border-box;
-}
-    .lembretes img
+
+    img
     {
         width: 50px;
         height: 50px;
@@ -40,31 +40,36 @@
         margin-left: 10px;
         margin-right: 20px;
     }
-    .lembretes .text
+
+    .text
     {
         width: 70%;
         margin-top: 10px;
-    }
-    .lembretes .text h3
-    {
-        color: var(--dark-space-cadet);
-        font-family: 'Saira';
-    }
-    .lembretes .text p
-    {
-        color: var(--space-cadet);
 
-        margin-top: 10px;
+        h3
+        {
+            color: var(--dark-space-cadet);
+            font-family: 'Saira';
+        }
+    
+        p
+        {
+            color: var(--space-cadet);
+    
+            margin-top: 10px;
+        }
+    
+        .descricao
+        {
+            font-family: 'Roboto Light';
+    
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     }
-    .lembretes .text .descricao
-    {
-        font-family: 'Roboto Light';
 
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    .lembretes button
+    button
     {
         height: 30px;
 
@@ -75,13 +80,15 @@
         border-bottom-right-radius: 10px;
         border-bottom-left-radius: 10px;
     }
-    .lembretes svg
+    
+    svg
     {
         fill: var(--white);
         height: 80%;
 
         margin-left: 10px;
     }
+}
 /*#endregion*/
 
 /*#region Botão*/

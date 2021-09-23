@@ -30,7 +30,7 @@
 }
 /*#endregion*/
 
-/*#region Lembretes*/
+/*#region Estoque*/
 .medicamentos
 {
     background-color: var(--lavander);
@@ -41,33 +41,44 @@
 
     border-radius: 10px;
     box-sizing: border-box;
-}
-    .medicamentos img
+
+    img
     {
         width: 50px;
         height: 50px;
 
         margin-left: 10px;
         margin-right: 20px;
+        margin-top: 10px;
     }
-    .medicamentos .text
+
+    .text
     {
         width: 70%;
         margin-top: 10px;
-    }
-    .medicamentos .text h3
-    {
-        color: var(--dark-space-cadet);
-        font-family: 'Saira';
-    }
-    .medicamentos .text p
-    {
-        color: var(--space-cadet);
-        font-family: 'Roboto';
 
-        margin-top: 10px;
+        svg
+        {
+            height: 30px;
+            fill: var(--red);
+            
+            margin-left: auto;
+        }
+
+        h3
+        {
+            color: var(--dark-space-cadet);
+            font-family: 'Saira';
+        }
+
+        p
+        {
+            color: var(--space-cadet);
+            font-family: 'Roboto';
+        }
     }
-    .medicamentos button
+
+    button
     {
         height: 30px;
 
@@ -78,13 +89,15 @@
         border-bottom-right-radius: 10px;
         border-bottom-left-radius: 10px;
     }
-    .medicamentos svg
+
+    svg
     {
         fill: var(--white);
         height: 80%;
 
         margin-left: 10px;
     }
+}
 /*#endregion*/
 
 /*#region Alerta*/
@@ -93,6 +106,11 @@
     width: 70vw;
 
     padding: 0;
+
+    h3
+    {
+        color: var(--white);
+    }
 
     .content
     {
@@ -127,6 +145,10 @@
     {
         border-top-left-radius: 0;
         border-top-right-radius: 0;
+
+        box-shadow: none;
+
+        color: var(--white);
     }
 
     button:nth-of-type(1)
