@@ -1,0 +1,160 @@
+/*#region Mid Geral*/
+.meio
+{
+    width: 90%;
+
+    margin-top: calc((100vw / 5) + 20px);
+    margin-left:  5%;
+
+    .top
+    {
+        background-color: var(--dark-space-cadet);
+        width: 100%;
+        min-height: 40px;
+
+        box-sizing: border-box;
+        padding: 0px 10px 0px 10px;
+
+        border-radius: 10px 10px 0px 0px;
+
+        h3
+        {
+            color: var(--white) !important;
+        }
+    }
+
+    .content, .bot
+    {
+        background-color: var(--lavander);
+        overflow: hidden;
+
+        border-radius: 10px;
+    }
+}
+/*#endregion*/
+
+/*#region Medicamentos*/
+.meio .content
+{
+    width: 100%;
+
+    margin-bottom: 180px;
+
+    .line
+    {
+        width: 90%;
+
+        margin-left: 5%;
+
+        border-color: var(--state-blue);
+        border-width: 2px 0px 0px 0px;
+        border-style: solid;
+    }
+}
+
+.medicamento
+{
+    width: 90%;
+    min-height: 200px;
+
+    margin-left: 5%;
+
+    padding: 15px;
+    box-sizing: border-box;
+
+    img
+    {
+        width: 35%;
+
+        max-height: 170px;
+    }
+
+    .text
+    {
+        width: 60%;
+
+        margin-left: 5%;
+
+        h3
+        {
+            margin-top: 7px;
+            font-size: 2em;
+        }
+
+        p
+        {
+            margin-top: 7px;
+            font-size: 1.3em;
+            color: var(--space-cadet) !important;
+        }
+    }
+}
+/*#endregion*/
+
+/*#region Alarme*/
+.alarm
+{
+    margin-bottom: 180px;
+
+    .medicamento
+    {
+        background-color: var(--lavander);
+        width: 100%;
+
+        margin: 0;
+
+        border-radius: 0px 0px 10px 10px;
+    }
+
+    div:nth-of-type(3)
+    {
+        justify-content: space-between;
+    }
+
+    button
+    {
+        width: calc((90vw / 2) - 20px);
+        height: calc((90vw / 2) - 20px);
+
+        margin-top: 30px;
+
+        border-radius: 20px;
+
+        padding: 10px;
+        box-sizing: border-box;
+
+        font-size: 2em;
+
+        svg
+        {
+            width: 100%;
+            height: 55%;
+        }
+    }
+
+    .danger
+    {
+        fill: var(--white);
+    }
+}
+/*#endregion*/
+
+/*#region Bottom*/
+.meio .bot
+{
+    width: 90%;
+
+    position: fixed;
+    bottom: 20px;
+
+    .mid
+    {
+        height: 100px;
+
+        button
+        {
+            width: 90%;
+        }
+    }
+}
+/*#endregion*/

@@ -16,7 +16,10 @@
 /*#region Top*/
 .top
 {    
+    background-image: url(../../assets/IMG/Telas/Dados-Adicionais.jpg);
     background-color: var(--baby-blue);
+    background-position-x: center;
+    background-size: cover;
     width: 100%;
     height: 35vh;
 
@@ -33,7 +36,7 @@
 
     .degrade
     {
-        background-image: linear-gradient(0deg,var(--dark-space-cadet), rgba(255, 255, 255, 0));
+        background-image: linear-gradient(0deg, var(--dark-space-cadet), rgba(23, 23, 59, 0.8), rgba(96, 99, 204, 0.5), rgba(255, 255, 255, 0.1));
         width: 100%;
         height: calc(35vh);
 

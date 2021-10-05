@@ -13,7 +13,8 @@ export class HomePage implements OnInit {
 
   data: any = "";
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController)
+  {
     let nowData = new Date();
 
     this.data = String(nowData.getDate()).padStart(2, '0') + '/' + String(nowData.getMonth() + 1).padStart(2, '0')  + '/' + nowData.getFullYear();

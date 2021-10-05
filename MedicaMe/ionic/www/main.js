@@ -105,6 +105,10 @@ const routes = [
         path: 'sintomas',
         loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_sintomas_sintomas_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./sintomas/sintomas.module */ 2146)).then(m => m.SintomasPageModule)
     },
+    {
+        path: 'D/home',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_D_home_home_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./D/home/home.module */ 8627)).then(m => m.HomePageModule)
+    },
 ];
 let AppRoutingModule = class AppRoutingModule {
 };

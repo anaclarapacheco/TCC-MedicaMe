@@ -10,16 +10,18 @@ export class FirstViewPage implements OnInit {
 
   constructor (public navCtrl: NavController) { }
 
+  //#region Navegação
   criarConta()
   {
-    this.navCtrl.navigateForward("cadastro");
+    this.navCtrl.navigateForward('cadastro');
   }
 
   entrar()
   {
     this.navCtrl.navigateForward('entrar');
   }
+  //#endregion
 
-  ngOnInit() {
+  ngOnInit(){
   }
 }
