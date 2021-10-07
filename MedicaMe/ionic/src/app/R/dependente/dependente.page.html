@@ -8,11 +8,7 @@
     </div>
   </div>
 
-  <div id="lDep" class="dep vertical flex invisivel">
-    <p>Dependente: Gabriel Santos de Sousa</p>
-  </div>
-
-  <div id="mLembretes" class="menu invisivel">
+  <div id="mDependente" class="menu invisivel">
     <div id="back" (click)="close()"></div>
 
     <div class="content">
@@ -67,56 +63,48 @@
   </div>
 
   <div class="meio">
-    <div class="top centerA">
-      <h3>Seus lembretes</h3>
+    <div class="top full flex">
+
+      <svg viewBox="0 0 24 24" class="svg">
+        <path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/>
+      </svg>
+
+      <svg viewBox="0 0 24 24">
+        <path d="M10.118 16.064c2.293-.529 4.428-.993 3.394-2.945-3.146-5.942-.834-9.119 2.488-9.119 3.388 0 5.644 3.299 2.488 9.119-1.065 1.964 1.149 2.427 3.394 2.945 1.986.459 2.118 1.43 2.118 3.111l-.003.825h-15.994c0-2.196-.176-3.407 2.115-3.936zm-10.116 3.936h6.001c-.028-6.542 2.995-3.697 2.995-8.901 0-2.009-1.311-3.099-2.998-3.099-2.492 0-4.226 2.383-1.866 6.839.775 1.464-.825 1.812-2.545 2.209-1.49.344-1.589 1.072-1.589 2.333l.002.619z"/>
+      </svg>
+      
+      <div class="text leftA">
+        <p>Dependente</p>
+        <h3>Gabriel Santos de Sousa</h3>
+      </div>
     </div>
 
     <div class="content">
-      <div class="lembretes full flex">
-        <img src="../../../assets/IMG/Icon/Capsula.png" alt="Capsula">
+      <button class="important full flex">
+        <svg viewBox="0 0 24 24">
+          <path d="M17 3v-2c0-.552.447-1 1-1s1 .448 1 1v2c0 .552-.447 1-1 1s-1-.448-1-1zm-12 1c.553 0 1-.448 1-1v-2c0-.552-.447-1-1-1-.553 0-1 .448-1 1v2c0 .552.447 1 1 1zm13 13v-3h-1v4h3v-1h-2zm-5 .5c0 2.481 2.019 4.5 4.5 4.5s4.5-2.019 4.5-4.5-2.019-4.5-4.5-4.5-4.5 2.019-4.5 4.5zm11 0c0 3.59-2.91 6.5-6.5 6.5s-6.5-2.91-6.5-6.5 2.91-6.5 6.5-6.5 6.5 2.91 6.5 6.5zm-14.237 3.5h-7.763v-13h19v1.763c.727.33 1.399.757 2 1.268v-9.031h-3v1c0 1.316-1.278 2.339-2.658 1.894-.831-.268-1.342-1.111-1.342-1.984v-.91h-9v1c0 1.316-1.278 2.339-2.658 1.894-.831-.268-1.342-1.111-1.342-1.984v-.91h-3v21h11.031c-.511-.601-.938-1.273-1.268-2z"/>
+        </svg>
 
-        <div class="text leftA">
-          <h3>DipperZec</h3>
-          <p class="descricao">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est saepe, dicta, sapiente quas nobis voluptates facere obcaecati numquam repellat doloremque quos! Amet numquam doloribus, ut alias cupiditate exercitationem maiores voluptates.</p>
-          <p>Até amanhã</p>
-        </div>
+        Lembretes
+      </button>
 
-        <button class="normal full flex" (click)="editar()">
-          Editar
+      <button class="normal full flex">
+        <svg viewBox="0 0 24 24">
+          <path d="M22 13v-13h-20v24h8.409c4.857 0 3.335-8 3.335-8 3.009.745 8.256.419 8.256-3zm-4-7h-12v-1h12v1zm0 3h-12v-1h12v1zm0 3h-12v-1h12v1zm-2.091 6.223c2.047.478 4.805-.279 6.091-1.179-1.494 1.998-5.23 5.708-7.432 6.881 1.156-1.168 1.563-4.234 1.341-5.702z"/>
+        </svg>
 
-          <svg viewBox="0 0 24 24">
-            <path d="M19.769 9.923l-12.642 12.639-7.127 1.438 1.438-7.128 12.641-12.64 5.69 5.691zm1.414-1.414l2.817-2.82-5.691-5.689-2.816 2.817 5.69 5.692z"/>
-          </svg>
-        </button>
-      </div>
+        Relatório
+      </button>
 
-      <div class="lembretes full flex">
-        <img src="../../../assets/IMG/Icon/Comprimido.png" alt="Comprimido">
+      <button class="normal full flex">
+        <svg viewBox="0 0 24 24">
+          <path d="M1 24h22v-12h-22v12zm8-9h6v2h-6v-2zm15-7v2h-24v-2l4.474-8h15.087l4.439 8z"/>
+        </svg>
 
-        <div class="text leftA">
-          <h3>DipperZec</h3>
-          <p class="descricao">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est saepe, dicta, sapiente quas nobis voluptates facere obcaecati numquam repellat doloremque quos! Amet numquam doloribus, ut alias cupiditate exercitationem maiores voluptates.</p>
-          <p>Até amanhã</p>
-        </div>
-
-        <button class="normal full flex" (click)="editar()">
-          Editar
-
-          <svg viewBox="0 0 24 24">
-            <path d="M19.769 9.923l-12.642 12.639-7.127 1.438 1.438-7.128 12.641-12.64 5.69 5.691zm1.414-1.414l2.817-2.82-5.691-5.689-2.816 2.817 5.69 5.692z"/>
-          </svg>
-        </button>
-      </div>
+        Estoque
+      </button>
     </div>
   </div>
-
-  <button class="important full flex" (click)="novoLembrete()">
-    <svg viewBox="0 0 24 24">
-      <path d="M11 11v-11h1v11h11v1h-11v11h-1v-11h-11v-1h11z"/>
-    </svg>
-
-    Novo lembrete
-  </button>
 
   <div class="tabs full flex">
     <div class="button full flex" (click)="home()">
@@ -126,27 +114,27 @@
       <p>Home</p>
     </div>
 
-    <div class="button full flex" (click)="estoque()">
+    <div class="button full flex" (click)="lembretes()">
       <svg viewBox="0 0 24 24">
-        <path d="M1 24h22v-12h-22v12zm8-9h6v2h-6v-2zm15-7v2h-24v-2l4.474-8h15.087l4.439 8z"/>
+        <path d="M17 3v-2c0-.552.447-1 1-1s1 .448 1 1v2c0 .552-.447 1-1 1s-1-.448-1-1zm-12 1c.553 0 1-.448 1-1v-2c0-.552-.447-1-1-1-.553 0-1 .448-1 1v2c0 .552.447 1 1 1zm13 13v-3h-1v4h3v-1h-2zm-5 .5c0 2.481 2.019 4.5 4.5 4.5s4.5-2.019 4.5-4.5-2.019-4.5-4.5-4.5-4.5 2.019-4.5 4.5zm11 0c0 3.59-2.91 6.5-6.5 6.5s-6.5-2.91-6.5-6.5 2.91-6.5 6.5-6.5 6.5 2.91 6.5 6.5zm-14.237 3.5h-7.763v-13h19v1.763c.727.33 1.399.757 2 1.268v-9.031h-3v1c0 1.316-1.278 2.339-2.658 1.894-.831-.268-1.342-1.111-1.342-1.984v-.91h-9v1c0 1.316-1.278 2.339-2.658 1.894-.831-.268-1.342-1.111-1.342-1.984v-.91h-3v21h11.031c-.511-.601-.938-1.273-1.268-2z"/>
       </svg>
-      <p>Estoque</p>
+      <p>Lembretes</p>
     </div>
 
     <div class="button middle">
       <div class="principal full flex">
         <svg viewBox="0 0 24 24">
-          <path d="M17 3v-2c0-.552.447-1 1-1s1 .448 1 1v2c0 .552-.447 1-1 1s-1-.448-1-1zm-12 1c.553 0 1-.448 1-1v-2c0-.552-.447-1-1-1-.553 0-1 .448-1 1v2c0 .552.447 1 1 1zm13 13v-3h-1v4h3v-1h-2zm-5 .5c0 2.481 2.019 4.5 4.5 4.5s4.5-2.019 4.5-4.5-2.019-4.5-4.5-4.5-4.5 2.019-4.5 4.5zm11 0c0 3.59-2.91 6.5-6.5 6.5s-6.5-2.91-6.5-6.5 2.91-6.5 6.5-6.5 6.5 2.91 6.5 6.5zm-14.237 3.5h-7.763v-13h19v1.763c.727.33 1.399.757 2 1.268v-9.031h-3v1c0 1.316-1.278 2.339-2.658 1.894-.831-.268-1.342-1.111-1.342-1.984v-.91h-9v1c0 1.316-1.278 2.339-2.658 1.894-.831-.268-1.342-1.111-1.342-1.984v-.91h-3v21h11.031c-.511-.601-.938-1.273-1.268-2z"/>
+          <path d="M10.118 16.064c2.293-.529 4.428-.993 3.394-2.945-3.146-5.942-.834-9.119 2.488-9.119 3.388 0 5.644 3.299 2.488 9.119-1.065 1.964 1.149 2.427 3.394 2.945 1.986.459 2.118 1.43 2.118 3.111l-.003.825h-15.994c0-2.196-.176-3.407 2.115-3.936zm-10.116 3.936h6.001c-.028-6.542 2.995-3.697 2.995-8.901 0-2.009-1.311-3.099-2.998-3.099-2.492 0-4.226 2.383-1.866 6.839.775 1.464-.825 1.812-2.545 2.209-1.49.344-1.589 1.072-1.589 2.333l.002.619z"/>
         </svg>
       </div>
-      <p>Lembretes</p>
+      <p>Dependentes</p>
     </div>
 
-    <div class="button full flex" (click)="dependentes()">
+    <div class="button full flex" (click)="estoque()">
       <svg viewBox="0 0 24 24">
-        <path d="M10.118 16.064c2.293-.529 4.428-.993 3.394-2.945-3.146-5.942-.834-9.119 2.488-9.119 3.388 0 5.644 3.299 2.488 9.119-1.065 1.964 1.149 2.427 3.394 2.945 1.986.459 2.118 1.43 2.118 3.111l-.003.825h-15.994c0-2.196-.176-3.407 2.115-3.936zm-10.116 3.936h6.001c-.028-6.542 2.995-3.697 2.995-8.901 0-2.009-1.311-3.099-2.998-3.099-2.492 0-4.226 2.383-1.866 6.839.775 1.464-.825 1.812-2.545 2.209-1.49.344-1.589 1.072-1.589 2.333l.002.619z"/>
+        <path d="M1 24h22v-12h-22v12zm8-9h6v2h-6v-2zm15-7v2h-24v-2l4.474-8h15.087l4.439 8z"/>
       </svg>
-      <p>Dependentes</p>
+      <p>Estoque</p>
     </div>
 
     <div class="button full flex" (click)="relatorio()">

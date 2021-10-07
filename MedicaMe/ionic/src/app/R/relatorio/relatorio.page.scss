@@ -7,15 +7,15 @@
     margin-top: calc((100vw / 5) + 20px);
 
     color: var(--dark-space-cadet);
+
+    .content
+    {
+        margin-bottom: calc((100vw / 5) + ((100vw / 5) / 2) + 20px);;
+    }
 }
 
-.meio .top, .meio .content
+.visivel
 {
-    margin-top: 20px;
-}
-
-.meio .content
-{
-    margin-bottom: calc((100vw / 5) + ((100vw / 5) / 2) + 65px);;
+    margin-top: calc((100vw / 5) + 60px);
 }
 /*#endregion*/

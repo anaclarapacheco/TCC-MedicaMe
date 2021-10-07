@@ -335,6 +335,23 @@ button
     }
 }
 
+.dep
+{
+    background-color: var(--dark-space-cadet);
+    width: 100vw;
+    height: 35px;
+
+    position: fixed;
+    top: calc(100vw / 5);
+    left: 0px;
+
+    padding: 0px 0px 0px 10px;
+
+    border-width: 5px 0px 0px 0px;
+    border-color: var(--white);
+    border-style: solid;
+}
+
 .menu
 {
     width: 100vw;

@@ -9,11 +9,12 @@
         <h3 class="line">Preencha os campos para criar sua conta!</h3>
 
         <span class="line leftA">E-mail</span>
-        <input type="email" class="input">
+        <input [(ngModel)]="email" type="email" class="input">
 
         <span class="line leftA">Senha</span>
-        <input type="password" class="input">
-        <p class="aviso invisivel">Preencha todos os campos</p>
+        <input [(ngModel)]="senha" type="password" class="input">
+        
+        <p id="erroEntrar" class="aviso invisivel">{{erro}}</p>
 
         <button (click)="entrar()" class="important">Entrar</button>
         

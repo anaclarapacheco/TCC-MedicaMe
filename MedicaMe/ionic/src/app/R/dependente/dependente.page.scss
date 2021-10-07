@@ -1,0 +1,69 @@
+/*#region Meio*/
+.meio
+{
+    width: 80%;
+
+    margin-top: calc((100vw / 5) + 20px);
+    margin-left: 10%;
+    margin-bottom: calc((100vw / 5) + 20px);
+
+    color: var(--dark-space-cadet);
+
+    .top
+    {
+        height: 150px;
+
+        margin: 0px 0px 20px 0px;
+
+        flex-wrap: nowrap;
+
+        .svg
+        {
+            width: 40px;
+
+            position: absolute;
+            top: calc((100vw / 5) + 10px);
+            left: 10px;
+
+            transform: rotate(180deg);
+        }
+
+        svg
+        {
+            background-color: var(--dark-space-cadet);
+            width: 30%;
+
+            margin: 0px 20px 0px 0px;
+            padding: 10px;
+            border-radius: 100%;
+
+            fill: var(--white);
+        }
+    }
+
+    .content
+    {
+        .important
+        {
+            fill: var(--dark-space-cadet);
+        }
+
+        .normal
+        {
+            fill: var(--white);
+        }
+
+        button 
+        {
+            margin: 30px 0px 0px 0px;
+
+            svg
+            {
+                height: 70%;
+
+                margin: 0px 15px 0px 0px;
+            }
+        }
+    }
+}
+/*#endregion*/

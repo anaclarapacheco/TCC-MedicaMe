@@ -1,22 +1,27 @@
-/*#region Mid Geral*/
+/*#region Geral*/
 .meio
 {
     width: 90%;
-    margin-left: 5%;
 
     margin-top: calc((100vw / 5) + 20px);
+    margin-left: 5%;
 
     color: var(--dark-space-cadet);
 
-    .top, .content
+    .top
     {
-        margin-top: 20px;
+        margin: 0px 0px 20px 0px;
     }
 
     .content
     {
         margin-bottom: calc((100vw / 5) + ((100vw / 5) / 2) + 65px);;
     }
+}
+
+.visivel
+{
+    margin-top: calc((100vw / 5) + 60px);
 }
 /*#endregion*/
 
@@ -27,9 +32,10 @@
     width: 100%;
     height: 130px;
 
-    margin-bottom: 20px;
+    margin: 0px 0px 20px 0px;
 
     border-radius: 10px;
+
     box-sizing: border-box;
 
     img
@@ -37,14 +43,13 @@
         width: 50px;
         height: 50px;
 
-        margin-left: 10px;
-        margin-right: 20px;
+        margin: 0px 20px 0px 10px;
     }
 
     .text
     {
         width: 70%;
-        margin-top: 10px;
+        margin: 10px 0px 0px 0px;
 
         h3
         {
@@ -56,15 +61,15 @@
         {
             color: var(--space-cadet);
     
-            margin-top: 10px;
+            margin: 10px 0px 0px 0px;
         }
     
         .descricao
         {
             font-family: 'Roboto Light';
     
-            white-space: nowrap;
             overflow: hidden;
+            white-space: nowrap;
             text-overflow: ellipsis;
         }
     }
@@ -73,20 +78,17 @@
     {
         height: 30px;
 
-        margin-top: auto;
+        margin: auto 0px 0px 0px;
 
-        border-top-right-radius: 0%;
-        border-top-left-radius: 0%;
-        border-bottom-right-radius: 10px;
-        border-bottom-left-radius: 10px;
-    }
-    
-    svg
-    {
-        fill: var(--white);
-        height: 80%;
+        border-radius: 0% 0% 10px 10px;
 
-        margin-left: 10px;
+        svg
+        {
+            fill: var(--white);
+            height: 70%;
+
+            margin: 0px 0px 0px 15px;
+        }
     }
 }
 /*#endregion*/
@@ -97,7 +99,15 @@
     width: 80vw;
 
     position: fixed;
-    bottom: calc((100vw / 5) + ((100vw / 5) / 2) + 10px);
     left: 10vw;
+    bottom: calc((100vw / 5) + ((100vw / 5) / 2) + 10px);
+
+    svg
+    {
+        fill: var(--dark-space-cadet);
+        height: 50%;
+
+        margin: 0px 15px 0px 0px;
+    }
 }
 /*#endregion*/

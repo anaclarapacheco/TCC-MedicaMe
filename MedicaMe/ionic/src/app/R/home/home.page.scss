@@ -2,21 +2,16 @@
 .meio
 {
     width: 90%;
-    margin-left: 5%;
 
     margin-top: calc((100vw / 5) + 20px);
+    margin-left: 5%;
 
     color: var(--dark-space-cadet);
-}
 
-.meio .top, .meio .content
-{
-    margin-top: 20px;
-}
-
-.meio .content
-{
-    margin-bottom: calc((100vw / 5) + ((100vw / 5) / 2) + 10px);
+    .content
+    {
+        margin-bottom: calc((100vw / 5) + ((100vw / 5) / 2) + 10px);
+    }
 }
 /*#endregion*/
 
@@ -26,13 +21,12 @@
     width: 100%;
     height: 70px;
 
-    margin-top: 10px;
-    margin-bottom: 20px;
-
     padding: 10px;
-    box-sizing: border-box;
+    margin: 10px 0px 20px 0px;
 
     border-radius: 15px;
+
+    box-sizing: border-box;
 
     img
     {
@@ -43,7 +37,7 @@
     {
         height: 100%;
 
-        margin-left: 10px;
+        margin: 0px 0px 0px 10px;
     }
 
     h3

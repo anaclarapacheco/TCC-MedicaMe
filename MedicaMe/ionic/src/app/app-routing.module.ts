@@ -71,6 +71,11 @@ const routes: Routes = [
     path: 'D/home',
     loadChildren: () => import('./D/home/home.module').then( m => m.HomePageModule)
   },
+  {
+    path: 'R/dependente',
+    loadChildren: () => import('./R/dependente/dependente.module').then( m => m.DependentePageModule)
+  },
+
 
 
 
