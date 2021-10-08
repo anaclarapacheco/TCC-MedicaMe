@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { $ } from 'protractor';
+import { ServidorService } from '../services/servidor.service';
 
 @Component({
   selector: 'app-entrar',
@@ -8,7 +10,7 @@ import { NavController } from '@ionic/angular';
 })
 export class EntrarPage implements OnInit {
 
-  constructor(public navCtrl: NavController) { }
+  constructor(public navCtrl: NavController, public servidor: ServidorService) { }
 
   //#region Valores dos iputs
   public email: any;
@@ -28,7 +30,18 @@ export class EntrarPage implements OnInit {
     }
     else
     {
-      this.navCtrl.navigateForward('R/home');
+      //Valores que serão enviados
+      let dados = {
+        phpEmail : this.email,
+        phpSenha : this.senha
+      }
+
+      //Enviando ao PHP
+      this.servidor.ler('entrar.php/', dados).subscribe((res: any) =>{
+        console.log(res);
+      });
+
+      //this.navCtrl.navigateForward('R/home');
 
       //this.navCtrl.navigateForward('D/home');
     }
