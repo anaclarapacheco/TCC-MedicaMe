@@ -32,12 +32,12 @@ export class EntrarPage implements OnInit {
     {
       //Valores que serão enviados
       let dados = {
-        phpEmail : this.email,
-        phpSenha : this.senha
-      }
+        phpEmail: this.email,
+        phpSenha: this.senha,
+      }    
 
       //Enviando ao PHP
-      this.servidor.ler('entrar.php/', dados).subscribe((res: any) =>{
+      this.servidor.gravar('entrar.php/', dados).subscribe((res: any) => {
         console.log(res);
       });
 

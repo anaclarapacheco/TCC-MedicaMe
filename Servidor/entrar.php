@@ -10,8 +10,8 @@
     $input = file_get_contents('php://input');
     $data = json_decode($input, true);
 
-    $email = $data["phpEmail"];
-    $senha = $data["phpSenha"];
+    $email = $data['phpEmail'];
+    $senha = $data['phpSenha'];
 
     $usuarios[] = array(
         'Email' => $email,

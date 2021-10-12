@@ -75,10 +75,10 @@ const routes: Routes = [
     path: 'R/dependente',
     loadChildren: () => import('./R/dependente/dependente.module').then( m => m.DependentePageModule)
   },
-
-
-
-
+  {
+    path: 'R/historico',
+    loadChildren: () => import('./R/historico/historico.module').then( m => m.HistoricoPageModule)
+  },
 ];
 
 @NgModule({

@@ -24,6 +24,13 @@ export class RelatorioPage implements OnInit {
   }
   //#endregion
 
+  //#region Navegação
+  historico()
+  {
+    this.navCtrl.navigateBack('R/historico')
+  }
+  //#endregion
+
   //#region SideMenu
   tutorial()
   {

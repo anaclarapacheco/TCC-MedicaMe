@@ -1,21 +1,64 @@
-/*#region Mid Geral*/
+/*#region Geral*/
 .meio
 {
     width: 90%;
-    margin-left: 5%;
 
     margin-top: calc((100vw / 5) + 20px);
+    margin-left: 5%;
 
     color: var(--dark-space-cadet);
 
     .content
     {
-        margin-bottom: calc((100vw / 5) + ((100vw / 5) / 2) + 20px);;
+        margin-bottom: calc((100vw / 5) + ((100vw / 5) / 2) + 20px);
     }
 }
 
 .visivel
 {
     margin-top: calc((100vw / 5) + 60px);
+}
+/*#endregion*/
+
+/*#region Meio*/
+.calendario
+{
+    background-color: var(--dark-space-cadet);
+    width: 90%;
+    height: 250px;
+
+    margin: 20px 0px 0px 5%;
+
+    border-radius: 10px;
+}
+
+.relatorio
+{
+    background-color: var(--lavander);
+    width: 100%;
+    height: 50px;
+
+    margin: 20px 0px 30px 0px;
+
+    border-radius: 10px;
+
+    box-shadow: 0px 4px 4px rgb(122, 122, 165, 0.5);
+
+    h3
+    {
+        font-family: 'Saira';
+    }
+}
+
+.buttons
+{
+    width: 90%;
+
+    margin: 0px 0px 0px 5%;
+
+    button
+    {
+        margin: 20px 0px 0px 0px;
+    }
 }
 /*#endregion*/
