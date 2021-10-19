@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
-import { $ } from 'protractor';
+import { NavegationService } from '../services/navegation.service';
 import { ServidorService } from '../services/servidor.service';
 
 @Component({
@@ -10,7 +9,7 @@ import { ServidorService } from '../services/servidor.service';
 })
 export class EntrarPage implements OnInit {
 
-  constructor(public navCtrl: NavController, public servidor: ServidorService) { }
+  constructor(public nav: NavegationService, public servidor: ServidorService) { }
 
   //#region Valores dos iputs
   public email: any;
@@ -22,6 +21,9 @@ export class EntrarPage implements OnInit {
   //#region Entrar
   entrar()
   {
+    //Reset
+    document.getElementById('erroEntrar').classList.add('invisivel');
+
     //Verificação dos valores do input
     if(this.email == '' || this.senha == '' || this.email == null || this.senha == null)
     {
@@ -39,23 +41,43 @@ export class EntrarPage implements OnInit {
       //Enviando ao PHP
       this.servidor.gravar('entrar.php/', dados).subscribe((res: any) => {
         console.log(res);
+
+        /*
+        //Validando valores
+        if (res[0].Erro == 'false')
+        {
+          //Descobrindo qual é o Tipo do Usuário
+          switch (res[0].TipoUsuario)
+          {
+            case 'Responsável':
+              this.nav.rHome(dados[0].phpEmail);
+
+              break;
+
+            case 'Dependente':
+              this.nav.dHome(dados[0].phpEmail);
+
+              break;
+          }
+        }
+        else
+        {
+          this.erro = 'E-mail ou Senha inválidos, digite novamente!';
+          document.getElementById('erroEntrar').classList.remove('invisivel');
+        }
+        */
       });
-
-      //this.navCtrl.navigateForward('R/home');
-
-      //this.navCtrl.navigateForward('D/home');
     }
   }
   //#endregion
 
-  //#region Cadastrar
+  //#region Navegação
   cadastrar()
   {
-    this.navCtrl.navigateForward('cadastro');
+    this.nav.cadastro();
   }
   //#endregion
 
   ngOnInit() {
   }
-
 }

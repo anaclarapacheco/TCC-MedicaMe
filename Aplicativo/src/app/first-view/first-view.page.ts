@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavegationService } from '../services/navegation.service';
 
 @Component({
   selector: 'app-first-view',
@@ -8,17 +8,17 @@ import { NavController } from '@ionic/angular';
 })
 export class FirstViewPage implements OnInit {
 
-  constructor (public navCtrl: NavController) { }
+  constructor (public nav: NavegationService) { }
 
   //#region Navegação
   criarConta()
   {
-    this.navCtrl.navigateForward('cadastro');
+    this.nav.cadastro();
   }
 
   entrar()
   {
-    this.navCtrl.navigateForward('entrar');
+    this.nav.entrar();
   }
   //#endregion
 
