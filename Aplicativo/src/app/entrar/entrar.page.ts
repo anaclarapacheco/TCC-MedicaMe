@@ -40,16 +40,15 @@ export class EntrarPage implements OnInit {
 
       //Enviando ao PHP
       this.servidor.gravar('entrar.php/', dados).subscribe((res: any) => {
-        console.log(res);
-
-        /*
         //Validando valores
+        console.log(res);
+        
         if (res[0].Erro == 'false')
         {
           //Descobrindo qual é o Tipo do Usuário
           switch (res[0].TipoUsuario)
           {
-            case 'Responsável':
+            case 'Responsavel':
               this.nav.rHome(dados[0].phpEmail);
 
               break;
@@ -65,7 +64,6 @@ export class EntrarPage implements OnInit {
           this.erro = 'E-mail ou Senha inválidos, digite novamente!';
           document.getElementById('erroEntrar').classList.remove('invisivel');
         }
-        */
       });
     }
   }
