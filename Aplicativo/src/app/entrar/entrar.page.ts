@@ -1,3 +1,4 @@
+import { JsonpClientBackend } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NavegationService } from '../services/navegation.service';
 import { ServidorService } from '../services/servidor.service';
@@ -36,25 +37,24 @@ export class EntrarPage implements OnInit {
       let dados = {
         phpEmail: this.email,
         phpSenha: this.senha,
-      }    
-
+      }
+      
       //Enviando ao PHP
-      this.servidor.gravar('entrar.php/', dados).subscribe((res: any) => {
-        //Validando valores
+      this.servidor.gravar('entrar.php/', dados).subscribe((res : any = []) => {
         console.log(res);
-        
+
         if (res[0].Erro == 'false')
         {
           //Descobrindo qual é o Tipo do Usuário
           switch (res[0].TipoUsuario)
           {
             case 'Responsavel':
-              this.nav.rHome(dados[0].phpEmail);
+              this.nav.rHome(dados.phpEmail);
 
               break;
 
             case 'Dependente':
-              this.nav.dHome(dados[0].phpEmail);
+              this.nav.dHome(dados.phpEmail);
 
               break;
           }

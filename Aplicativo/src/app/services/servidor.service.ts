@@ -17,7 +17,7 @@ export class ServidorService {
 
   gravar(url: any, data: any)
   {
-    let retorno = {responseType: 'text' as 'json'};
+    const retorno = {responseType: 'text' as 'json'};
 
     return this.http.post(`${this.url_base + url}`, data, retorno);
   }

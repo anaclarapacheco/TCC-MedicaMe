@@ -24,7 +24,7 @@
     /*#endregion*/
 
     /*#region Banco de Dados*/
-    $sql = $pdo->query("CALL VerificarLogin(\" $Email \", \" $Senha \")");
+    $sql = $pdo->query("SELECT * FROM `usuario` WHERE `nm_email_usuario` = '$Email' And `nm_senha_usuario` = '$Senha'");
 
     while($dados = $sql->fetch())
     {
