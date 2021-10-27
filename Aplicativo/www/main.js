@@ -47,15 +47,15 @@ const routes = [
     },
     {
         path: 'first-view',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_first-view_first-view_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./first-view/first-view.module */ 2286)).then(m => m.FirstViewPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_first-view_first-view_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./first-view/first-view.module */ 2286)).then(m => m.FirstViewPageModule)
     },
     {
         path: 'cadastro',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_cadastro_cadastro_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./cadastro/cadastro.module */ 8379)).then(m => m.CadastroPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_cadastro_cadastro_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./cadastro/cadastro.module */ 8379)).then(m => m.CadastroPageModule)
     },
     {
         path: 'dados-adicionais',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_dados-adicionais_dados-adicionais_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./dados-adicionais/dados-adicionais.module */ 4597)).then(m => m.DadosAdicionaisPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_dados-adicionais_dados-adicionais_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./dados-adicionais/dados-adicionais.module */ 4597)).then(m => m.DadosAdicionaisPageModule)
     },
     {
         path: 'dependente',
@@ -63,7 +63,7 @@ const routes = [
     },
     {
         path: 'entrar',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_entrar_entrar_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./entrar/entrar.module */ 1096)).then(m => m.EntrarPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_entrar_entrar_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./entrar/entrar.module */ 1096)).then(m => m.EntrarPageModule)
     },
     {
         path: 'digitar-responsavel',
@@ -108,6 +108,14 @@ const routes = [
     {
         path: 'D/home',
         loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_D_home_home_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./D/home/home.module */ 8627)).then(m => m.HomePageModule)
+    },
+    {
+        path: 'R/dependente',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_R_dependente_dependente_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./R/dependente/dependente.module */ 6394)).then(m => m.DependentePageModule)
+    },
+    {
+        path: 'R/historico',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_R_historico_historico_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./R/historico/historico.module */ 6513)).then(m => m.HistoricoPageModule)
     },
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -178,10 +186,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 7716);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser */ 9075);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 9895);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ 9895);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 476);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app.component */ 5041);
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app-routing.module */ 158);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common/http */ 1841);
+
 
 
 
@@ -195,8 +205,8 @@ AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.NgModule)({
         declarations: [_app_component__WEBPACK_IMPORTED_MODULE_0__.AppComponent],
         entryComponents: [],
-        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__.BrowserModule, _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.IonicModule.forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_1__.AppRoutingModule],
-        providers: [{ provide: _angular_router__WEBPACK_IMPORTED_MODULE_6__.RouteReuseStrategy, useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.IonicRouteStrategy }],
+        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__.BrowserModule, _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.IonicModule.forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_1__.AppRoutingModule, _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpClientModule],
+        providers: [{ provide: _angular_router__WEBPACK_IMPORTED_MODULE_7__.RouteReuseStrategy, useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.IonicRouteStrategy }],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_0__.AppComponent],
     })
 ], AppModule);

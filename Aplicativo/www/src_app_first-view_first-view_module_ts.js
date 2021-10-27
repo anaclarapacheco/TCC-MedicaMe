@@ -96,29 +96,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _raw_loader_first_view_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./first-view.page.html */ 8658);
 /* harmony import */ var _first_view_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./first-view.page.scss */ 4826);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ 476);
+/* harmony import */ var _services_navegation_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/navegation.service */ 6192);
 
 
 
 
 
 let FirstViewPage = class FirstViewPage {
-    constructor(navCtrl) {
-        this.navCtrl = navCtrl;
+    constructor(nav) {
+        this.nav = nav;
     }
     //#region Navegação
     criarConta() {
-        this.navCtrl.navigateForward('cadastro');
+        this.nav.cadastro();
     }
     entrar() {
-        this.navCtrl.navigateForward('entrar');
+        this.nav.entrar();
     }
     //#endregion
     ngOnInit() {
     }
 };
 FirstViewPage.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__.NavController }
+    { type: _services_navegation_service__WEBPACK_IMPORTED_MODULE_2__.NavegationService }
 ];
 FirstViewPage = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Component)({
@@ -158,7 +158,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\r\n  <div class=\"card\">\r\n    <div class=\"top\">\r\n      <div class=\"degrade\"></div>\r\n\r\n      <div class=\"trianguloUp leftP\"></div>\r\n      <div class=\"trianguloUp rightP\"></div>\r\n    </div>\r\n    \r\n    <div class=\"mid centerA\">\r\n      <h3>Já possui uma conta?</h3>\r\n\r\n      <button (click)=\"criarConta()\" class=\"important\">Criar conta</button>\r\n      <button (click)=\"entrar()\" class=\"normal\">Entrar</button>\r\n    </div>\r\n\r\n    <div class=\"bot full flex\">\r\n      <img src=\"../../assets/IMG/Logo/Light (Cima).png\" alt=\"Logo do aplicativo: MedicaMe\">\r\n    </div>\r\n  </div>\r\n</ion-content>");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\r\n  <div class=\"card\">\r\n    <div class=\"top\">\r\n      <div class=\"degrade\"></div>\r\n\r\n      <div class=\"trianguloUp leftP\"></div>\r\n      <div class=\"trianguloUp rightP\"></div>\r\n    </div>\r\n    \r\n    <div class=\"mid centerA\">\r\n      <h3>Já possui uma conta?</h3>\r\n\r\n      <button (click)=\"criarConta()\" class=\"important\">Criar conta</button>\r\n      <button (click)=\"entrar()\" class=\"normal\">Entrar</button>\r\n    </div>\r\n\r\n    <div class=\"bot full flex\">\r\n      <img src=\"../../assets/IMG/Logo/Light (Cima).png\" alt=\"Logo do aplicativo: MedicaMe\">\r\n    </div>\r\n  </div>\r\n</ion-content>\r\n");
 
 /***/ })
 

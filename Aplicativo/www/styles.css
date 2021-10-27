@@ -9,6 +9,9 @@
 .picker-opt.picker-opt-selected, .picker-button.sc-ion-picker-md, .picker-button.ion-activated.sc-ion-picker-md {
   color: var(--state-blue);
 }
+.data .hydrated {
+  --padding-start: 2px !important;
+}
 /*#endregion*/
 /*#region Ionic*/
 /** Ionic CSS Variables **/
@@ -1483,6 +1486,18 @@ button {
 .nav .button svg {
   fill: var(--white);
   width: 50%;
+}
+.dep {
+  background-color: var(--dark-space-cadet);
+  width: 100vw;
+  height: 35px;
+  position: fixed;
+  top: calc(100vw / 5);
+  left: 0px;
+  padding: 0px 0px 0px 10px;
+  border-width: 5px 0px 0px 0px;
+  border-color: var(--white);
+  border-style: solid;
 }
 .menu {
   width: 100vw;

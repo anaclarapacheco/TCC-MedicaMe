@@ -92,37 +92,82 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "CadastroPage": () => (/* binding */ CadastroPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _raw_loader_cadastro_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./cadastro.page.html */ 5525);
 /* harmony import */ var _cadastro_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./cadastro.page.scss */ 3583);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ 476);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _services_navegation_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/navegation.service */ 6192);
+/* harmony import */ var _services_servidor_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/servidor.service */ 8914);
+
 
 
 
 
 
 let CadastroPage = class CadastroPage {
-    constructor(navCtrl) {
-        this.navCtrl = navCtrl;
+    constructor(nav, servidor) {
+        this.nav = nav;
+        this.servidor = servidor;
     }
+    //#endregion
+    //#region Cadastar
     criar() {
-        this.navCtrl.navigateForward('dados-adicionais');
+        //Reset
+        document.getElementById('erroCadastrar').classList.add('invisivel');
+        document.getElementById('erroEmail').classList.add('invisivel');
+        document.getElementById('erroSenha').classList.add('invisivel');
+        //Variaveis
+        let validacaoEmail = /\S+@\S+\.\S+/;
+        //Verificação dos valores do input
+        if (this.email == '' || this.senha == '' || this.confirmarSenha == '' || this.email == null || this.senha == null || this.confirmarSenha == null) {
+            this.erro = 'Preencha todos os campos!';
+            document.getElementById('erroCadastrar').classList.remove('invisivel');
+        }
+        else if (!validacaoEmail.test(this.email)) {
+            document.getElementById('erroEmail').classList.remove('invisivel');
+        }
+        else if (this.senha.length < 5) {
+            document.getElementById('erroSenha').classList.remove('invisivel');
+        }
+        else if (this.senha != this.confirmarSenha) {
+            this.erro = 'As duas senhas não coincidem, digite novamente!';
+            document.getElementById('erroCadastrar').classList.remove('invisivel');
+        }
+        else {
+            //Valores que serão enviados
+            let dados = 'phpEmail=' + this.email + '&phpSenha=' + this.senha;
+            //Enviando ao PHP
+            this.servidor.enviar('cadastrar.php', dados).subscribe(res => {
+                if (res == false) {
+                    localStorage.setItem('locEmail', this.email);
+                    this.nav.dadosAdicionais();
+                }
+                else {
+                    this.erro = 'E-mail ou Senha inválidos, digite novamente!';
+                    document.getElementById('erroCadastar').classList.remove('invisivel');
+                }
+            });
+        }
     }
-    entrarGoogle() {
-        //Coisas da Api
-    }
+    //#endregion
+    //#region Navegação
     entrar() {
-        this.navCtrl.navigateForward('entrar');
+        this.nav.entrar();
     }
+    //#endregion
+    //#region OnInit
     ngOnInit() {
+        document.getElementById('erroCadastrar').classList.add('invisivel');
+        document.getElementById('erroEmail').classList.add('invisivel');
+        document.getElementById('erroSenha').classList.add('invisivel');
     }
 };
 CadastroPage.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__.NavController }
+    { type: _services_navegation_service__WEBPACK_IMPORTED_MODULE_2__.NavegationService },
+    { type: _services_servidor_service__WEBPACK_IMPORTED_MODULE_3__.ServidorService }
 ];
-CadastroPage = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Component)({
+CadastroPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
         selector: 'app-cadastro',
         template: _raw_loader_cadastro_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_cadastro_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]
@@ -159,7 +204,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\r\n  <div class=\"card full flex\">\r\n    <div class=\"content\">\r\n      <div class=\"top full flex\">\r\n        <img src=\"../../assets/IMG/Logo/Light (Lado).png\" alt=\"Logo do aplicativo: MedicaMe\">\r\n      </div>\r\n      \r\n      <div class=\"mid horizontal centerA flex\">\r\n        <h3 class=\"line\">Preencha os campos para criar sua conta!</h3>\r\n\r\n        <span class=\"line leftA\">E-mail</span>\r\n        <input type=\"email\" class=\"input\">\r\n\r\n        <span class=\"line leftA\">Senha</span>\r\n        <input type=\"password\" class=\"input\">\r\n\r\n        <span class=\"line leftA\">Confirmar senha</span>\r\n        <input type=\"password\" class=\"input\">\r\n        <p class=\"aviso invisivel\">Preencha todos os campos</p>\r\n\r\n        <button (click)=\"criar()\" class=\"important\">Criar</button>\r\n        \r\n        <p>Já possui uma conta? Faça <a (click)=\"entrar()\">login!</a></p>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</ion-content>");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\r\n  <div class=\"card full flex\">\r\n    <div class=\"content\">\r\n      <div class=\"top full flex\">\r\n        <img src=\"../../assets/IMG/Logo/Light (Lado).png\" alt=\"Logo do aplicativo: MedicaMe\">\r\n      </div>\r\n      \r\n      <div class=\"mid horizontal centerA flex\">\r\n        <h3 class=\"line\">Preencha os campos para criar sua conta!</h3>\r\n\r\n        <span class=\"line leftA\">E-mail</span>\r\n        <input [(ngModel)]=\"email\" type=\"email\" class=\"input\">\r\n        <p id=\"erroEmail\" class=\"aviso invisivel\">E-mail inválido, digite novamente!</p>\r\n\r\n        <span class=\"line leftA\">Senha</span>\r\n        <input [(ngModel)]=\"senha\" type=\"password\" class=\"input\">\r\n        <p id=\"erroSenha\" class=\"aviso invisivel\">Senha muito pequena, digite no mínimo 5 caracteres!</p>\r\n\r\n        <span class=\"line leftA\">Confirmar senha</span>\r\n        <input [(ngModel)]=\"confirmarSenha\" type=\"password\" class=\"input\">\r\n        <p id=\"erroCadastrar\" class=\"aviso invisivel\">{{erro}}</p>\r\n\r\n        <button (click)=\"criar()\" class=\"important\">Criar</button>\r\n        \r\n        <p>Já possui uma conta? Faça <a (click)=\"entrar()\">login!</a></p>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</ion-content>\r\n");
 
 /***/ })
 

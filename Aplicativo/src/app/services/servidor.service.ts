@@ -10,15 +10,8 @@ export class ServidorService {
 
   constructor(private http: HttpClient) { }
 
-  ler(url: any, data: any)
+  enviar(url: any, data: any)
   {
-    return this.http.get(`${this.url_base + url}`, data);
-  }
-
-  gravar(url: any, data: any)
-  {
-    const retorno = {responseType: 'text' as 'json'};
-
-    return this.http.post(`${this.url_base + url}`, data, retorno);
+    return this.http.get(`${this.url_base + url}?${data}`);
   }
 }

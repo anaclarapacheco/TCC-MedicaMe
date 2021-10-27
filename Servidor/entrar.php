@@ -1,7 +1,7 @@
 <?php
     /*#region Headers*/
     header('Access-Control-Allow-Origin: *');
-    header('Access-Control-Allow-Method: POST');
+    header('Access-Control-Allow-Method: GET');
     header('Access-Control-Allow-Headers: Content-Type');
     header('Access-Length: 0');
     header('Content-Type: text/plain');
@@ -17,16 +17,16 @@
     /*#endregion*/
 
     /*#region Variavéis*/
-    $Email = $data['phpEmail'];
-    $Senha = $data['phpSenha'];
+    $Email = $_GET['phpEmail'];
+    $Senha = $_GET['phpSenha'];
     $Erro = 'true';
     $TipoUsuario = null;
     /*#endregion*/
 
     /*#region Banco de Dados*/
-    $sql = $pdo->query("SELECT * FROM `usuario` WHERE `nm_email_usuario` = '$Email' And `nm_senha_usuario` = '$Senha'");
+    $SQL = $PDO->query("SELECT * FROM `usuario` WHERE `nm_email_usuario` = '$Email' And `nm_senha_usuario` = '$Senha'");
 
-    while($dados = $sql->fetch())
+    while($dados = $SQL->fetch())
     {
         $Erro = 'false';
 
@@ -42,11 +42,11 @@
     /*#endregion*/
 
     /*#region Envio*/
-    $usuario[] = array(
+    $Usuario[] = array(
         'Erro' => $Erro,
-        'TipoUsuario' => $TipoUsuario,
+        'TipoUsuario' => $TipoUsuario
     );
 
-    echo json_encode($usuario);
+    echo json_encode($Usuario);
     /*#endregion*/
 ?>

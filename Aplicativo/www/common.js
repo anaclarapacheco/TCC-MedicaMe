@@ -438,6 +438,113 @@ const openURL = async (url, ev, direction, animation) => {
 
 
 
+/***/ }),
+
+/***/ 6192:
+/*!************************************************!*\
+  !*** ./src/app/services/navegation.service.ts ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "NavegationService": () => (/* binding */ NavegationService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ionic/angular */ 476);
+
+
+
+let NavegationService = class NavegationService {
+    constructor(navCtrl) {
+        this.navCtrl = navCtrl;
+    }
+    /*#region Verificação*/
+    varificar() {
+        if (localStorage.getItem('locEmail') == '' || localStorage.getItem('locEmail') == null) {
+            this.firstView();
+        }
+    }
+    /*#endregion*/
+    /*#region Geral*/
+    firstView() {
+        this.navCtrl.navigateForward('first-view');
+    }
+    entrar() {
+        this.navCtrl.navigateForward('entrar');
+    }
+    cadastro() {
+        this.navCtrl.navigateForward('cadastro');
+    }
+    dadosAdicionais() {
+        this.navCtrl.navigateForward('dados-adicionais');
+    }
+    dependente() {
+        this.navCtrl.navigateForward('dependente');
+    }
+    /*#endregion*/
+    /*#region Responsável*/
+    rHome() {
+        this.navCtrl.navigateForward('R/home');
+    }
+    /*#endregion*/
+    /*#region Dependete*/
+    dHome() {
+        this.navCtrl.navigateForward('D/home');
+    }
+};
+NavegationService.ctorParameters = () => [
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_0__.NavController }
+];
+NavegationService = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Injectable)({
+        providedIn: 'root'
+    })
+], NavegationService);
+
+
+
+/***/ }),
+
+/***/ 8914:
+/*!**********************************************!*\
+  !*** ./src/app/services/servidor.service.ts ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ServidorService": () => (/* binding */ ServidorService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common/http */ 1841);
+
+
+
+let ServidorService = class ServidorService {
+    constructor(http) {
+        this.http = http;
+        this.url_base = "https://cors-anywhere.herokuapp.com/https://medicame.000webhostapp.com/";
+    }
+    enviar(url, data) {
+        return this.http.get(`${this.url_base + url}?${data}`);
+    }
+};
+ServidorService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_0__.HttpClient }
+];
+ServidorService = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Injectable)({
+        providedIn: 'root'
+    })
+], ServidorService);
+
+
+
 /***/ })
 
 }]);

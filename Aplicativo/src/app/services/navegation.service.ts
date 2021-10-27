@@ -9,7 +9,7 @@ export class NavegationService {
   constructor(public navCtrl: NavController) { }
 
   /*#region Verificação*/
-  login()
+  varificar()
   {
     if(localStorage.getItem('locEmail') == '' || localStorage.getItem('locEmail') == null)
     {
@@ -33,20 +33,28 @@ export class NavegationService {
   {
     this.navCtrl.navigateForward('cadastro');
   }
+
+  dadosAdicionais()
+  {
+    this.navCtrl.navigateForward('dados-adicionais');
+  }
+
+  dependente()
+  {
+    this.navCtrl.navigateForward('dependente');
+  }
   /*#endregion*/
 
   /*#region Responsável*/
-  rHome(login: any)
+  rHome()
   {
-    localStorage.setItem('locEmail', login);
     this.navCtrl.navigateForward('R/home');
   }
   /*#endregion*/
 
   /*#region Dependete*/
-  dHome(login: any)
+  dHome()
   {
-    localStorage.setItem('locEmail', login);
     this.navCtrl.navigateForward('D/home');
   }
   /*#endregion*/
