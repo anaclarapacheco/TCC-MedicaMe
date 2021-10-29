@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavegationService } from 'src/app/services/navegation.service';
+import { ServidorService } from 'src/app/services/servidor.service';
 
 @Component({
   selector: 'app-tutorial',
@@ -8,14 +9,41 @@ import { NavController } from '@ionic/angular';
 })
 export class TutorialPage implements OnInit {
 
-  constructor(public navCtrl: NavController) { }
+  //#region Constructor
+  constructor(private nav: NavegationService, private servidor: ServidorService)
+  {
+    this.servidor.verificar();
+  }
+  //#endregion
 
+  //#region Próximo item do carrossel
+  proximo()
+  {
+    //
+  }
+  //#endregion
+
+  //#region Navegação
   pular()
   {
-    this.navCtrl.navigateForward('D/home');
-  }
+    switch (localStorage.getItem('DTutorial')) {
+      case 'dHome':
+        this.nav.dHome();
+        break;
 
-  ngOnInit() {
-  }
+      case 'dependente':
+        this.nav.dependente();
+        break
+    }
 
+    localStorage.removeItem('DTutorial');
+  }
+  //#endregion
+
+  //#region OnInit
+  ngOnInit()
+  {
+    this.servidor.verificar();
+  }
+  //#endregion
 }

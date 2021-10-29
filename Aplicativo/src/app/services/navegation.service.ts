@@ -8,16 +8,6 @@ export class NavegationService {
 
   constructor(public navCtrl: NavController) { }
 
-  //#region Verificação
-  verificar()
-  {
-    if(localStorage.getItem('locEmail') == '' || localStorage.getItem('locEmail') == null)
-    {
-      this.firstView();
-    }
-  }
-  //#endregion
-
   //#region Geral
   firstView()
   {
@@ -59,6 +49,26 @@ export class NavegationService {
   rHome()
   {
     this.navCtrl.navigateForward('R/home');
+  }
+
+  rLembretes()
+  {
+    this.navCtrl.navigateForward('R/lembretes');
+  }
+
+  rEstoque()
+  {
+    this.navCtrl.navigateForward('R/estoque');
+  }
+  
+  rDependentes()
+  {
+    this.navCtrl.navigateForward('R/dependentes');
+  }
+
+  rRelatorio()
+  {
+    this.navCtrl.navigateForward('R/relatorio');
   }
   //#endregion
 

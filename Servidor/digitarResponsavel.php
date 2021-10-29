@@ -19,20 +19,29 @@
     /*#region Variavéis*/
     $EmailResponsavel = $_GET['phpEmailResponsavel'];
     $EmailDependente = $_GET['phpEmailDependente'];
-    $Erro = 'true';
+
+    $Erro = true;
     /*#endregion*/
 
     /*#region Banco de Dados*/
-    $SQL = $PDO->query("SELECT `nm_email_usuario` FROM `usuario` WHERE `nm_email_usuario` = '$EmailResponsavel'")
-
-    if($SQL->fetch())
+    if($EmailResponsavel != null & $EmailDependente != null)
     {
-        $PDO->query("UPDATE `usuario` SET `nm_email_responsavel` = '$EmailResponsavel' WHERE `nm_email_usuario` = '$EmailDependente'")
-        $Erro = 'false';
+        $SQL = $PDO->query("SELECT `nm_email_usuario` FROM `usuario` WHERE `nm_email_usuario` = '$EmailResponsavel'");
+
+        if($SQL->fetch() != false)
+        {
+            $Erro = false;
+
+            $PDO->query("UPDATE `usuario` SET `nm_email_responsavel` = '$EmailResponsavel' WHERE `nm_email_usuario` = '$EmailDependente'");
+        }    
     }
     /*#endregion*/
 
     /*#region Envio*/
-    echo ($Erro);
+    $Resposta[] = array(
+        'Erro' => $Erro
+    );
+
+    echo json_encode($Resposta);
     /*#endregion*/
 ?>

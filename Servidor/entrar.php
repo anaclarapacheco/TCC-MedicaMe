@@ -19,34 +19,38 @@
     /*#region Variavéis*/
     $Email = $_GET['phpEmail'];
     $Senha = $_GET['phpSenha'];
-    $Erro = 'true';
+
+    $Erro = true;
     $TipoUsuario = null;
     /*#endregion*/
 
     /*#region Banco de Dados*/
-    $SQL = $PDO->query("SELECT * FROM `usuario` WHERE `nm_email_usuario` = '$Email' And `nm_senha_usuario` = '$Senha'");
-
-    while($dados = $SQL->fetch())
+    if($Email != null & $Senha != null)
     {
-        $Erro = 'false';
+        $SQL = $PDO->query("SELECT * FROM `usuario` WHERE `nm_email_usuario` = '$Email' And `nm_senha_usuario` = '$Senha'");
 
-        if($dados['nm_email_responsavel'] == null)
+        while($dados = $SQL->fetch())
         {
-            $TipoUsuario = 'Responsavel';
-        }
-        else
-        {
-            $TipoUsuario = 'Dependente';
+            $Erro = false;
+
+            if($dados['nm_email_responsavel'] == null)
+            {
+                $TipoUsuario = 'Responsavel';
+            }
+            else
+            {
+                $TipoUsuario = 'Dependente';
+            }
         }
     }
     /*#endregion*/
 
     /*#region Envio*/
-    $Usuario[] = array(
+    $Resposta[] = array(
         'Erro' => $Erro,
-        'TipoUsuario' => $TipoUsuario
+        'Tipo Usuario' => $TipoUsuario
     );
 
-    echo json_encode($Usuario);
+    echo json_encode($Resposta);
     /*#endregion*/
 ?>

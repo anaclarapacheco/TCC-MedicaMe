@@ -113,8 +113,9 @@ let EntrarPage = class EntrarPage {
     //#region Entrar
     entrar() {
         //Reset
-        document.getElementById('erroEntrar').classList.add('invisivel');
+        this.reset();
         //Verificação dos valores do input
+        let validacaoEmail = /\S+@\S+\.\S+/;
         if (this.email == '' || this.senha == '' || this.email == null || this.senha == null) {
             this.erro = 'Preencha todos os campos!';
             document.getElementById('erroEntrar').classList.remove('invisivel');
@@ -124,9 +125,9 @@ let EntrarPage = class EntrarPage {
             let dados = 'phpEmail=' + this.email + '&phpSenha=' + this.senha;
             //Enviando ao PHP
             this.servidor.enviar('entrar.php', dados).subscribe(res => {
-                if (res[0].Erro == 'false') {
+                if (res[0]['Erro'] == false) {
                     //Descobrindo qual é o Tipo do Usuário
-                    switch (res[0].TipoUsuario) {
+                    switch (res[0]['Tipo Usuario']) {
                         case 'Responsavel':
                             this.nav.rHome();
                             break;
@@ -134,6 +135,7 @@ let EntrarPage = class EntrarPage {
                             this.nav.dHome();
                             break;
                     }
+                    localStorage.setItem('email', this.email);
                 }
                 else {
                     this.erro = 'E-mail ou Senha inválidos, digite novamente!';
@@ -143,6 +145,11 @@ let EntrarPage = class EntrarPage {
         }
     }
     //#endregion
+    //#region Reset
+    reset() {
+        document.getElementById('erroEntrar').classList.add('invisivel');
+    }
+    //#endregion
     //#region Navegação
     cadastrar() {
         this.nav.cadastro();
@@ -150,7 +157,7 @@ let EntrarPage = class EntrarPage {
     //#endregion
     //#region OnInit
     ngOnInit() {
-        document.getElementById('erroEntrar').classList.add('invisivel');
+        this.reset();
     }
 };
 EntrarPage.ctorParameters = () => [

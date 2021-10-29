@@ -9,7 +9,7 @@ import { ServidorService } from '../services/servidor.service';
 })
 export class EntrarPage implements OnInit {
 
-  constructor(public nav: NavegationService, public servidor: ServidorService) { }
+  constructor(private nav: NavegationService, private servidor: ServidorService) { }
 
   //#region Valores do Frontend
   public email: any;
@@ -22,9 +22,11 @@ export class EntrarPage implements OnInit {
   entrar()
   {
     //Reset
-    document.getElementById('erroEntrar').classList.add('invisivel');
+    this.reset();
 
     //Verificação dos valores do input
+    let validacaoEmail = /\S+@\S+\.\S+/;
+
     if(this.email == '' || this.senha == '' || this.email == null || this.senha == null)
     {
       this.erro = 'Preencha todos os campos!';
@@ -37,21 +39,21 @@ export class EntrarPage implements OnInit {
       
       //Enviando ao PHP
       this.servidor.enviar('entrar.php', dados).subscribe(res => {
-        if (res[0].Erro == 'false')
+        if (res[0]['Erro'] == false)
         {
           //Descobrindo qual é o Tipo do Usuário
-          switch (res[0].TipoUsuario)
+          switch (res[0]['Tipo Usuario'])
           {
             case 'Responsavel':
               this.nav.rHome();
-
               break;
 
             case 'Dependente':
               this.nav.dHome();
-
               break;
           }
+
+          localStorage.setItem('email', this.email);
         }
         else
         {
@@ -60,6 +62,13 @@ export class EntrarPage implements OnInit {
         }
       });
     }
+  }
+  //#endregion
+
+  //#region Reset
+  reset()
+  {
+    document.getElementById('erroEntrar').classList.add('invisivel');
   }
   //#endregion
 
@@ -73,7 +82,7 @@ export class EntrarPage implements OnInit {
   //#region OnInit
   ngOnInit()
   {
-    document.getElementById('erroEntrar').classList.add('invisivel');
+    this.reset();
   }
   //#endregion
 }

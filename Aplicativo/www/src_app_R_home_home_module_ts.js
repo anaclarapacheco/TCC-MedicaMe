@@ -92,23 +92,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "HomePage": () => (/* binding */ HomePage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _raw_loader_home_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./home.page.html */ 799);
 /* harmony import */ var _home_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./home.page.scss */ 8021);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ 476);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var src_app_services_navegation_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/navegation.service */ 6192);
+/* harmony import */ var src_app_services_servidor_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/servidor.service */ 8914);
+
 
 
 
 
 
 let HomePage = class HomePage {
-    constructor(navCtrl) {
-        this.navCtrl = navCtrl;
+    //#region Constructor
+    constructor(nav, servidor) {
+        this.nav = nav;
+        this.servidor = servidor;
+        //#endregion
+        //#region Valores do FrontEnd
         this.data = "";
+        //Verificar Login
+        this.servidor.verificar();
+        //Data de hoje
         let nowData = new Date();
         this.data = String(nowData.getDate()).padStart(2, '0') + '/' + String(nowData.getMonth() + 1).padStart(2, '0') + '/' + nowData.getFullYear();
     }
+    //#endregion
     //#region Abrir e Fechar o Menu
     open() {
         var menu = document.getElementById('mHome');
@@ -119,42 +129,49 @@ let HomePage = class HomePage {
         menu.classList.add('invisivel');
     }
     //#endregion
-    //#region SideMenu
+    //#region Navegação
     tutorial() {
-        this.navCtrl.navigateForward('R/tutorial');
+        localStorage.setItem('RTutorial', 'rHome');
+        this.nav.rTutorial();
     }
     dadosAdicionais() {
-        this.navCtrl.navigateForward('dados-adicionais');
+        localStorage.setItem('dadosAdicionais', 'rHome');
+        this.nav.dadosAdicionais();
     }
     adicionarResponsavel() {
-        this.navCtrl.navigateForward('digitar-responsavel');
+        localStorage.setItem('digitarResponsavel', 'rHome');
+        this.nav.digitarResponsavel();
     }
     sair() {
-        this.navCtrl.navigateForward('first-view');
+        this.servidor.limpar();
     }
-    //#endregion
-    //#region Tabs
-    dependentes() {
-        this.navCtrl.navigateForward('R/dependentes');
+    home() {
+        this.nav.rHome();
     }
     lembretes() {
-        this.navCtrl.navigateForward('R/lembretes');
+        this.nav.rLembretes();
     }
     estoque() {
-        this.navCtrl.navigateForward('R/estoque');
+        this.nav.rEstoque();
+    }
+    dependentes() {
+        this.nav.rDependentes();
     }
     relatorio() {
-        this.navCtrl.navigateForward('R/relatorio');
+        this.nav.rRelatorio();
     }
     //#endregion
+    //#region OnInit
     ngOnInit() {
+        this.servidor.verificar();
     }
 };
 HomePage.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__.NavController }
+    { type: src_app_services_navegation_service__WEBPACK_IMPORTED_MODULE_2__.NavegationService },
+    { type: src_app_services_servidor_service__WEBPACK_IMPORTED_MODULE_3__.ServidorService }
 ];
-HomePage = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Component)({
+HomePage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
         selector: 'app-home',
         template: _raw_loader_home_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_home_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]

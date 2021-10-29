@@ -10,7 +10,7 @@
 
         <span class="line leftA">E-mail</span>
         <input [(ngModel)]="email" type="email" class="input">
-        <p id="erroEmail" class="aviso invisivel">E-mail inválido, digite novamente!</p>
+        <p id="erroEmail" class="aviso invisivel">{{erroEmail}}</p>
 
         <span class="line leftA">Senha</span>
         <input [(ngModel)]="senha" type="password" class="input">

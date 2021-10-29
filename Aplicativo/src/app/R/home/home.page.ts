@@ -1,6 +1,6 @@
-import { FormatWidth, getLocaleDateFormat } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavegationService } from 'src/app/services/navegation.service';
+import { ServidorService } from 'src/app/services/servidor.service';
 
 @Component({
   selector: 'app-home',
@@ -11,14 +11,21 @@ import { NavController } from '@ionic/angular';
 })
 export class HomePage implements OnInit {
 
-  data: any = "";
-
-  constructor(public navCtrl: NavController)
+  //#region Constructor
+  constructor(private nav: NavegationService, private servidor: ServidorService)
   {
-    let nowData = new Date();
+    //Verificar Login
+    this.servidor.verificar();
 
+    //Data de hoje
+    let nowData = new Date();
     this.data = String(nowData.getDate()).padStart(2, '0') + '/' + String(nowData.getMonth() + 1).padStart(2, '0')  + '/' + nowData.getFullYear();
-   }
+  }
+  //#endregion
+
+  //#region Valores do FrontEnd
+  data: any = "";
+  //#endregion
 
   //#region Abrir e Fechar o Menu
   open()
@@ -34,50 +41,60 @@ export class HomePage implements OnInit {
   }
   //#endregion
 
-  //#region SideMenu
+  //#region Navegação
   tutorial()
   {
-    this.navCtrl.navigateForward('R/tutorial');
+    localStorage.setItem('RTutorial', 'rHome');
+    this.nav.rTutorial();
   }
 
   dadosAdicionais()
   {
-    this.navCtrl.navigateForward('dados-adicionais');
+    localStorage.setItem('dadosAdicionais', 'rHome');
+    this.nav.dadosAdicionais();
   }
 
   adicionarResponsavel()
   {
-    this.navCtrl.navigateForward('digitar-responsavel');
+    localStorage.setItem('digitarResponsavel', 'rHome');
+    this.nav.digitarResponsavel();
   }
 
   sair()
   {
-    this.navCtrl.navigateForward('first-view');
+    this.servidor.limpar();
   }
-  //#endregion
 
-  //#region Tabs
-  dependentes()
+  home()
   {
-    this.navCtrl.navigateForward('R/dependentes');
+    this.nav.rHome();
   }
-  
+
   lembretes()
   {
-    this.navCtrl.navigateForward('R/lembretes');
+    this.nav.rLembretes();
   }
 
   estoque()
   {
-    this.navCtrl.navigateForward('R/estoque');
+    this.nav.rEstoque();
+  }
+
+  dependentes()
+  {
+    this.nav.rDependentes();
   }
 
   relatorio()
   {
-    this.navCtrl.navigateForward('R/relatorio');
+    this.nav.rRelatorio();
   }
   //#endregion
 
-  ngOnInit() {
+  //#region OnInit
+  ngOnInit()
+  {
+    this.servidor.verificar();
   }
+  //#endregion
 }

@@ -112,7 +112,7 @@ let DadosAdicionaisPage = class DadosAdicionaisPage {
         this.customYearValues = [2020, 2016, 2008, 2004, 2000, 1996];
         this.customDayShortNames = ['s\u00f8n', 'man', 'tir', 'ons', 'tor', 'fre', 'l\u00f8r'];
         //Verificar Login
-        this.nav.verificar();
+        this.servidor.verificar();
         //Adicionar valor máximo e minimo no ion-datetime
         let nowData = new Date();
         this.maximo = nowData.getFullYear() + '-' + String(nowData.getMonth() + 1).padStart(2, '0') + '-' + String(nowData.getDate()).padStart(2, '0');
@@ -130,16 +130,16 @@ let DadosAdicionaisPage = class DadosAdicionaisPage {
                     }
                 }]
         };
-        //Puxar valores
-        let dados = 'phpEmail=' + localStorage.getItem('locEmail');
+        //Puxar valores se já existentes
+        let dados = 'phpEmail=' + localStorage.getItem('email');
         this.servidor.enviar('dadosAdicionaisVal.php', dados).subscribe(res => {
-            if (res[0].Erro == 'false') {
-                this.nome = res[0].Nome;
-                this.data = res[0].Data;
-                this.txtAdicionar = "Atualizar";
+            if (res[0]['Nome'] != null) {
+                this.nome = res[0]['Nome'];
+                this.data = res[0]['Data de Nascimento'];
+                this.txtAdicionar = 'Atualizar';
             }
             else {
-                this.txtAdicionar = "Adicionar";
+                this.txtAdicionar = 'Adicionar';
             }
         });
     }
@@ -147,38 +147,45 @@ let DadosAdicionaisPage = class DadosAdicionaisPage {
     //#region Adicionar dados adicionais
     adicionar() {
         //Reset
-        document.getElementById('erroDadosAdicionais').classList.add('invisivel');
+        this.reset();
         //Verificação dos valores do input
         if (this.nome == '' || this.data == '' || this.nome == null || this.data == null) {
             document.getElementById('erroDadosAdicionais').classList.remove('invisivel');
         }
         else {
             //Valores que serão enviados
-            let dados = 'phpNome=' + this.nome + '&phpData=' + this.data.substring(0, 10) + '&phpEmail=' + localStorage.getItem('locEmail');
+            let dados = 'phpNome=' + this.nome + '&phpData=' + this.data.substring(0, 10) + '&phpEmail=' + localStorage.getItem('email');
             //Enviando ao PHP
             this.servidor.enviar('dadosAdicionais.php', dados).subscribe(res => {
-                if (res == false) {
+                if (res[0]['Erro'] == false) {
                     this.continuar();
                 }
             });
         }
     }
     //#endregion
+    //#region Reset
+    reset() {
+        document.getElementById('erroDadosAdicionais').classList.add('invisivel');
+    }
+    //#endregion
     //#region Navegação
     continuar() {
-        switch (localStorage.getItem('locNavDadosAdicionais')) {
+        switch (localStorage.getItem('dadosAdicionais')) {
             case 'dependente':
                 this.nav.dependente();
                 break;
-            default:
-                this.nav.dependente();
+            case 'rHome':
+                this.nav.rHome();
                 break;
         }
+        localStorage.removeItem('dadosAdicionais');
     }
     //#endregion
     //#region OnInit
     ngOnInit() {
-        document.getElementById('erroDadosAdicionais').classList.add('invisivel');
+        this.reset();
+        this.servidor.verificar();
     }
 };
 DadosAdicionaisPage.ctorParameters = () => [

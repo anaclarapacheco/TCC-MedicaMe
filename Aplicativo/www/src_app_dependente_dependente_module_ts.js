@@ -92,11 +92,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "DependentePage": () => (/* binding */ DependentePage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _raw_loader_dependente_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./dependente.page.html */ 7934);
 /* harmony import */ var _dependente_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dependente.page.scss */ 6830);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 7716);
 /* harmony import */ var _services_navegation_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/navegation.service */ 6192);
+/* harmony import */ var _services_servidor_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/servidor.service */ 8914);
+
 
 
 
@@ -104,33 +106,38 @@ __webpack_require__.r(__webpack_exports__);
 
 let DependentePage = class DependentePage {
     //#region Constructor
-    constructor(nav) {
+    constructor(nav, servidor) {
         this.nav = nav;
-        this.nav.verificar();
+        this.servidor = servidor;
+        //Verificar Login
+        this.servidor.verificar();
     }
     //#endregion
     //#region Navegação
     nao() {
-        localStorage.setItem('locNavRTutorial', 'rHome');
+        localStorage.setItem('RTutorial', 'rHome');
         this.nav.rTutorial();
     }
     sim() {
-        localStorage.setItem('locNavDigitarResponsavel', 'dependente');
+        localStorage.setItem('digitarResponsavel', 'dependente');
         this.nav.digitarResponsavel();
     }
     dependente() {
-        localStorage.setItem('locNavDTutorial', 'dHome');
+        localStorage.setItem('DTutorial', 'dependente');
         this.nav.dTutorial();
     }
     //#endregion
+    //#region Oninit
     ngOnInit() {
+        this.servidor.verificar();
     }
 };
 DependentePage.ctorParameters = () => [
-    { type: _services_navegation_service__WEBPACK_IMPORTED_MODULE_2__.NavegationService }
+    { type: _services_navegation_service__WEBPACK_IMPORTED_MODULE_2__.NavegationService },
+    { type: _services_servidor_service__WEBPACK_IMPORTED_MODULE_3__.ServidorService }
 ];
-DependentePage = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Component)({
+DependentePage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
         selector: 'app-dependente',
         template: _raw_loader_dependente_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_dependente_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]

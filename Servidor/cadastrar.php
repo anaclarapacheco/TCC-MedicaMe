@@ -19,22 +19,29 @@
     /*#region Variavéis*/
     $Email = $_GET['phpEmail'];
     $Senha = $_GET['phpSenha'];
-    $Erro = 'true';
+
+    $Erro = true;
     /*#endregion*/
 
     /*#region Banco de Dados*/
-    $SQL = $PDO->query("SELECT `nm_email_usuario` FROM `usuario` WHERE `nm_email_usuario` = '$Email'");
-
-    if($SQL->fetch() == false)
+    if($Email != null & $Senha != null)
     {
-        if($PDO->query("INSERT INTO `usuario` VALUES ('$Email', '$Senha', null, null, null)"))
+        $SQL = $PDO->query("SELECT `nm_email_usuario` FROM `usuario` WHERE `nm_email_usuario` = '$Email'");
+        
+        if($SQL->fetch() == false)
         {
-            $Erro = 'false';
+            $Erro = false;
+
+            $PDO->query("INSERT INTO `usuario` VALUES ('$Email', '$Senha', null, null, null)");
         }
     }
     /*#endregion*/
 
     /*#region Envio*/
-    echo($Erro);
+    $Resposta[] = array(
+        'Erro' => $Erro
+    );
+
+    echo json_encode($Resposta);
     /*#endregion*/
 ?>

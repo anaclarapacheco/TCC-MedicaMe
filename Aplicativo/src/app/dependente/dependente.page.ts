@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavegationService } from '../services/navegation.service';
+import { ServidorService } from '../services/servidor.service';
 
 @Component({
   selector: 'app-dependente',
@@ -9,32 +10,37 @@ import { NavegationService } from '../services/navegation.service';
 export class DependentePage implements OnInit {
 
   //#region Constructor
-  constructor(public nav: NavegationService)
+  constructor(private nav: NavegationService, private servidor: ServidorService)
   {
-    this.nav.verificar();
+    //Verificar Login
+    this.servidor.verificar();
   }
   //#endregion
 
   //#region Navegação
   nao()
   {
-    localStorage.setItem('locNavRTutorial', 'rHome');
+    localStorage.setItem('RTutorial', 'rHome');
     this.nav.rTutorial();
   }
 
   sim()
   {
-    localStorage.setItem('locNavDigitarResponsavel', 'dependente');
+    localStorage.setItem('digitarResponsavel', 'dependente');
     this.nav.digitarResponsavel();
   }
 
   dependente()
   {
-    localStorage.setItem('locNavDTutorial', 'dHome');
+    localStorage.setItem('DTutorial', 'dependente');
     this.nav.dTutorial();
   }
   //#endregion
 
-  ngOnInit() {
+  //#region Oninit
+  ngOnInit()
+  {
+    this.servidor.verificar();
   }
+  //#endregion
 }

@@ -113,9 +113,7 @@ let CadastroPage = class CadastroPage {
     //#region Cadastar
     criar() {
         //Reset
-        document.getElementById('erroCadastrar').classList.add('invisivel');
-        document.getElementById('erroEmail').classList.add('invisivel');
-        document.getElementById('erroSenha').classList.add('invisivel');
+        this.reset();
         //Variaveis
         let validacaoEmail = /\S+@\S+\.\S+/;
         //Verificação dos valores do input
@@ -124,6 +122,7 @@ let CadastroPage = class CadastroPage {
             document.getElementById('erroCadastrar').classList.remove('invisivel');
         }
         else if (!validacaoEmail.test(this.email)) {
+            this.erroEmail = 'E-mail inválido, digite novamente!';
             document.getElementById('erroEmail').classList.remove('invisivel');
         }
         else if (this.senha.length < 5) {
@@ -138,17 +137,24 @@ let CadastroPage = class CadastroPage {
             let dados = 'phpEmail=' + this.email + '&phpSenha=' + this.senha;
             //Enviando ao PHP
             this.servidor.enviar('cadastrar.php', dados).subscribe(res => {
-                if (res == false) {
-                    localStorage.setItem('locEmail', this.email);
-                    localStorage.setItem('locNavDadosAdicionais', 'dependente');
+                if (res[0]['Erro'] == false) {
+                    localStorage.setItem('email', this.email);
+                    localStorage.setItem('dadosAdicionais', 'dependente');
                     this.nav.dadosAdicionais();
                 }
                 else {
-                    this.erro = 'E-mail ou Senha inválidos, digite novamente!';
-                    document.getElementById('erroCadastar').classList.remove('invisivel');
+                    this.erroEmail = 'E-mail já utilizado, digite novamente!';
+                    document.getElementById('erroEmail').classList.remove('invisivel');
                 }
             });
         }
+    }
+    //#endregion
+    //#region Reset
+    reset() {
+        document.getElementById('erroCadastrar').classList.add('invisivel');
+        document.getElementById('erroEmail').classList.add('invisivel');
+        document.getElementById('erroSenha').classList.add('invisivel');
     }
     //#endregion
     //#region Navegação
@@ -158,9 +164,7 @@ let CadastroPage = class CadastroPage {
     //#endregion
     //#region OnInit
     ngOnInit() {
-        document.getElementById('erroCadastrar').classList.add('invisivel');
-        document.getElementById('erroEmail').classList.add('invisivel');
-        document.getElementById('erroSenha').classList.add('invisivel');
+        this.reset;
     }
 };
 CadastroPage.ctorParameters = () => [
@@ -205,7 +209,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\r\n  <div class=\"card full flex\">\r\n    <div class=\"content\">\r\n      <div class=\"top full flex\">\r\n        <img src=\"../../assets/IMG/Logo/Light (Lado).png\" alt=\"Logo do aplicativo: MedicaMe\">\r\n      </div>\r\n      \r\n      <div class=\"mid horizontal centerA flex\">\r\n        <h3 class=\"line\">Preencha os campos para criar sua conta!</h3>\r\n\r\n        <span class=\"line leftA\">E-mail</span>\r\n        <input [(ngModel)]=\"email\" type=\"email\" class=\"input\">\r\n        <p id=\"erroEmail\" class=\"aviso invisivel\">E-mail inválido, digite novamente!</p>\r\n\r\n        <span class=\"line leftA\">Senha</span>\r\n        <input [(ngModel)]=\"senha\" type=\"password\" class=\"input\">\r\n        <p id=\"erroSenha\" class=\"aviso invisivel\">Senha muito pequena, digite no mínimo 5 caracteres!</p>\r\n\r\n        <span class=\"line leftA\">Confirmar senha</span>\r\n        <input [(ngModel)]=\"confirmarSenha\" type=\"password\" class=\"input\">\r\n        <p id=\"erroCadastrar\" class=\"aviso invisivel\">{{erro}}</p>\r\n\r\n        <button (click)=\"criar()\" class=\"important\">Criar</button>\r\n        \r\n        <p>Já possui uma conta? Faça <a (click)=\"entrar()\">login!</a></p>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</ion-content>\r\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\r\n  <div class=\"card full flex\">\r\n    <div class=\"content\">\r\n      <div class=\"top full flex\">\r\n        <img src=\"../../assets/IMG/Logo/Light (Lado).png\" alt=\"Logo do aplicativo: MedicaMe\">\r\n      </div>\r\n      \r\n      <div class=\"mid horizontal centerA flex\">\r\n        <h3 class=\"line\">Preencha os campos para criar sua conta!</h3>\r\n\r\n        <span class=\"line leftA\">E-mail</span>\r\n        <input [(ngModel)]=\"email\" type=\"email\" class=\"input\">\r\n        <p id=\"erroEmail\" class=\"aviso invisivel\">{{erroEmail}}</p>\r\n\r\n        <span class=\"line leftA\">Senha</span>\r\n        <input [(ngModel)]=\"senha\" type=\"password\" class=\"input\">\r\n        <p id=\"erroSenha\" class=\"aviso invisivel\">Senha muito pequena, digite no mínimo 5 caracteres!</p>\r\n\r\n        <span class=\"line leftA\">Confirmar senha</span>\r\n        <input [(ngModel)]=\"confirmarSenha\" type=\"password\" class=\"input\">\r\n        <p id=\"erroCadastrar\" class=\"aviso invisivel\">{{erro}}</p>\r\n\r\n        <button (click)=\"criar()\" class=\"important\">Criar</button>\r\n        \r\n        <p>Já possui uma conta? Faça <a (click)=\"entrar()\">login!</a></p>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</ion-content>\r\n");
 
 /***/ })
 

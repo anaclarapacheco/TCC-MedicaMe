@@ -18,20 +18,20 @@
 
     /*#region Variavéis*/
     $Email = $_GET['phpEmail'];
+
+    $Erro = true;
     $Nome = null;
     $Date = null;
-    $Erro = 'true';
     /*#endregion*/
 
     /*#region Banco de Dados*/
-    $SQL = $PDO->query("SELECT `nm_usuario`, `dt_nascimento_usuario` FROM `usuario` WHERE `nm_email_usuario` = '$Email'");
-
-    while($dados = $SQL->fetch())
+    if($Email != null)
     {
-        if($dados['nm_usuario'] != null)
-        {
-            $Erro = 'false';
+        $SQL = $PDO->query("SELECT `nm_email_usuario`, `nm_usuario`, `dt_nascimento_usuario` FROM `usuario` WHERE `nm_email_usuario` = '$Email'");
 
+        while($dados = $SQL->fetch())
+        {            
+            $Erro = false;
             $Nome = $dados['nm_usuario'];
             $Date = $dados['dt_nascimento_usuario'];
         }
@@ -39,12 +39,12 @@
     /*#endregion*/
 
     /*#region Envio*/
-    $Usuario[] = array(
+    $Resposta[] = array(
         'Erro' => $Erro,
         'Nome' => $Nome,
-        'Data' => $Date
+        'Data de Nascimento' => $Date
     );
 
-    echo json_encode($Usuario);
+    echo json_encode($Resposta);
     /*#endregion*/
 ?>

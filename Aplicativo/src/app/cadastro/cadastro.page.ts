@@ -9,7 +9,7 @@ import { ServidorService } from '../services/servidor.service';
 })
 export class CadastroPage implements OnInit {
 
-  constructor(public nav: NavegationService, public servidor: ServidorService) { }
+  constructor(private nav: NavegationService, private servidor: ServidorService) { }
 
   //#region Valores do Frontend
   public email: any;
@@ -17,15 +17,14 @@ export class CadastroPage implements OnInit {
   public confirmarSenha: any;
 
   public erro: any;
+  public erroEmail: any;
   //#endregion
 
   //#region Cadastar
   criar()
   {
     //Reset
-    document.getElementById('erroCadastrar').classList.add('invisivel');
-    document.getElementById('erroEmail').classList.add('invisivel');
-    document.getElementById('erroSenha').classList.add('invisivel');
+    this.reset();
 
     //Variaveis
     let validacaoEmail = /\S+@\S+\.\S+/;
@@ -33,11 +32,12 @@ export class CadastroPage implements OnInit {
     //Verificação dos valores do input
     if(this.email == '' || this.senha == '' || this.confirmarSenha == '' || this.email == null || this.senha == null || this.confirmarSenha == null)
     {
-      this.erro = 'Preencha todos os campos!';
+      this.erro = 'Preencha todos os campos!'
       document.getElementById('erroCadastrar').classList.remove('invisivel');
     }
     else if (!validacaoEmail.test(this.email))
     {
+      this.erroEmail = 'E-mail inválido, digite novamente!';
       document.getElementById('erroEmail').classList.remove('invisivel');
     }
     else if (this.senha.length < 5)
@@ -56,19 +56,28 @@ export class CadastroPage implements OnInit {
       
       //Enviando ao PHP
       this.servidor.enviar('cadastrar.php', dados).subscribe(res => {
-        if (res == false)
+        if (res[0]['Erro'] == false)
         {
-          localStorage.setItem('locEmail', this.email);
-          localStorage.setItem('locNavDadosAdicionais', 'dependente');
+          localStorage.setItem('email', this.email);
+          localStorage.setItem('dadosAdicionais', 'dependente');
           this.nav.dadosAdicionais();
         }
         else
         {
-          this.erro = 'E-mail ou Senha inválidos, digite novamente!';
-          document.getElementById('erroCadastar').classList.remove('invisivel');
+          this.erroEmail = 'E-mail já utilizado, digite novamente!';
+          document.getElementById('erroEmail').classList.remove('invisivel');
         }
       });
     }
+  }
+  //#endregion
+
+  //#region Reset
+  reset()
+  {
+    document.getElementById('erroCadastrar').classList.add('invisivel');
+    document.getElementById('erroEmail').classList.add('invisivel');
+    document.getElementById('erroSenha').classList.add('invisivel');
   }
   //#endregion
 
@@ -82,9 +91,7 @@ export class CadastroPage implements OnInit {
   //#region OnInit
   ngOnInit()
   {
-    document.getElementById('erroCadastrar').classList.add('invisivel');
-    document.getElementById('erroEmail').classList.add('invisivel');
-    document.getElementById('erroSenha').classList.add('invisivel');
+    this.reset
   }
   //#endregion
 }

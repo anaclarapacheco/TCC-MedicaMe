@@ -13,7 +13,7 @@
 
         <span class="line leftA">E-mail</span>
         <input [(ngModel)]="email" type="email" class="input">
-        <p id="erroDigitarResponsavel" class="aviso invisivel">{{erro}}</p>
+        <p id="erroDigitarResponsavel" class="aviso invisivel">{{erro}}<a id="erroEmailInexistente" class="aqui invisivel" (click)="criar()">aqui!</a></p>
 
         <button (click)="registrar()" class="important">Registrar</button>
         <button (click)="voltar()" class="normal">Voltar</button>

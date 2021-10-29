@@ -8,7 +8,7 @@ import { NavegationService } from '../services/navegation.service';
 })
 export class FirstViewPage implements OnInit {
 
-  constructor (public nav: NavegationService) { }
+  constructor (private nav: NavegationService) { }
 
   //#region Navegação
   criarConta()

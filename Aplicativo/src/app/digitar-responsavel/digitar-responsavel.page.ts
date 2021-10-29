@@ -10,9 +10,10 @@ import { ServidorService } from '../services/servidor.service';
 export class DigitarResponsavelPage implements OnInit {
 
   //#region Constructor
-  constructor(public nav: NavegationService, public servidor: ServidorService)
+  constructor(private nav: NavegationService, private servidor: ServidorService)
   {
-    this.nav.verificar();
+    //Verificar Login
+    this.servidor.verificar();
   }
   //#endregion
 
@@ -26,7 +27,10 @@ export class DigitarResponsavelPage implements OnInit {
   registrar()
   {
     //Reset
-    document.getElementById('erroDigitarResponsavel').classList.add('invisivel');
+    this.reset();
+
+    //Variaveis
+    let validacaoEmail = /\S+@\S+\.\S+/;
 
     //Verificação dos valores do input
     if(this.email == '' || this.email == null)
@@ -34,39 +38,81 @@ export class DigitarResponsavelPage implements OnInit {
       this.erro = 'Preencha todos os campos!';
       document.getElementById('erroDigitarResponsavel').classList.remove('invisivel');
     }
+    else if (!validacaoEmail.test(this.email))
+    {
+      this.erro = 'E-mail inválido, digite novamente!';
+      document.getElementById('erroDigitarResponsavel').classList.remove('invisivel');
+    }
+    else if (this.email == localStorage.getItem('email'))
+    {
+      this.erro = 'Digite o e-mail da pessoa que será responsavel por você, não o seu próprio e-mail!';
+      document.getElementById('erroDigitarResponsavel').classList.remove('invisivel');
+    }
     else
     {
       //Valores que serão enviados
-      let dados = 'phpEmailResponsavel=' + this.email + '&phpEmailDependente=' + localStorage.getItem('locEmail');
+      let dados = 'phpEmailResponsavel=' + this.email + '&phpEmailDependente=' + localStorage.getItem('email');
 
       //Enviando ao PHP
       this.servidor.enviar('digitarResponsavel.php', dados).subscribe(res => {
-        if(res == false)
+        if(res[0]['Erro'] == false)
         {
-          localStorage.setItem('locNavDTutorial', 'dHome');
+          localStorage.setItem('DTutorial', 'dHome');
+          localStorage.removeItem('digitarResponsavel');
           this.nav.dTutorial();
         }
         else
         {
-          this.erro = 'Preencha todos os campos!';
+          this.erro = 'O e-mail inserido não está cadastrado, digite um e-mail que já possui conta no MedicaMe ou crie uma ';
           document.getElementById('erroDigitarResponsavel').classList.remove('invisivel');
+          document.getElementById('erroEmailInexistente').classList.remove('invisivel');
         }
       });
      }
   }
   //#endregion
 
-  //#region Navegação
-  voltar()
+  //#region Reset
+  reset()
   {
-    switch (localStorage.getItem('locNavDigitarResponsavel')) {
-      case 'dependente':
-        this.nav.dependente();
-        break;
-    }
+    document.getElementById('erroDigitarResponsavel').classList.add('invisivel');
+    document.getElementById('erroEmailInexistente').classList.add('invisivel');
   }
   //#endregion
 
-  ngOnInit() {
+  //#region Navegação
+  criar()
+  {
+    localStorage.setItem('digitarResponsavel', 'cadastrar');
+    this.voltar();
   }
+
+  voltar()
+  {
+    switch (localStorage.getItem('digitarResponsavel')) {
+      case 'dependente':
+        this.nav.dependente();
+        break;
+
+      case 'cadastrar':
+        this.nav.cadastro();
+        break;
+
+      case 'rHome':
+        this.nav.rHome();
+        break;
+    }
+
+    localStorage.removeItem('digitarResponsavel');
+  }
+  //#endregion
+
+  //#region OnInit
+  ngOnInit()
+  {
+    this.reset();
+
+    this.servidor.verificar();
+  }
+  //#endregion
 }

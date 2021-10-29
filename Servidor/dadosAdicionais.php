@@ -20,17 +20,24 @@
     $Nome = $_GET['phpNome'];
     $Date = $_GET['phpData'];
     $Email = $_GET['phpEmail'];
-    $Erro = 'true';
+
+    $Erro = true;
     /*#endregion*/
 
     /*#region Banco de Dados*/
-    if($PDO->query("UPDATE `usuario` SET `nm_usuario` = '$Nome', `dt_nascimento_usuario` = '$Date' WHERE `nm_email_usuario` = '$Email'"))
+    if($Nome != null & $Date != null & $Email != null)
     {
-        $Erro = 'false';
-    }    
+        $Erro = false;
+
+        $PDO->query("UPDATE `usuario` SET `nm_usuario` = '$Nome', `dt_nascimento_usuario` = '$Date' WHERE `nm_email_usuario` = '$Email'");
+    }
     /*#endregion*/
 
     /*#region Envio*/
-    echo($Erro);
+    $Resposta[] = array(
+        'Erro' => $Erro
+    );
+
+    echo json_encode($Resposta);
     /*#endregion*/
 ?>

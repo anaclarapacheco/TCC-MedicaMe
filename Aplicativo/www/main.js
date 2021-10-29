@@ -71,15 +71,15 @@ const routes = [
     },
     {
         path: 'D/tutorial',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_D_tutorial_tutorial_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./D/tutorial/tutorial.module */ 1897)).then(m => m.TutorialPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_D_tutorial_tutorial_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./D/tutorial/tutorial.module */ 1897)).then(m => m.TutorialPageModule)
     },
     {
         path: 'R/tutorial',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_R_tutorial_tutorial_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./R/tutorial/tutorial.module */ 3404)).then(m => m.TutorialPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_R_tutorial_tutorial_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./R/tutorial/tutorial.module */ 3404)).then(m => m.TutorialPageModule)
     },
     {
         path: 'R/home',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_R_home_home_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./R/home/home.module */ 933)).then(m => m.HomePageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_R_home_home_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./R/home/home.module */ 933)).then(m => m.HomePageModule)
     },
     {
         path: 'R/lembretes',
