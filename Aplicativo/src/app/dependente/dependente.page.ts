@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavegationService } from '../services/navegation.service';
 
 @Component({
   selector: 'app-dependente',
@@ -8,22 +8,32 @@ import { NavController } from '@ionic/angular';
 })
 export class DependentePage implements OnInit {
 
-  constructor(public navCtrl: NavController) { }
+  //#region Constructor
+  constructor(public nav: NavegationService)
+  {
+    this.nav.verificar();
+  }
+  //#endregion
 
+  //#region Navegação
   nao()
   {
-    this.navCtrl.navigateForward('R/tutorial');
+    localStorage.setItem('locNavRTutorial', 'rHome');
+    this.nav.rTutorial();
   }
 
   sim()
   {
-    this.navCtrl.navigateForward('digitar-responsavel');
+    localStorage.setItem('locNavDigitarResponsavel', 'dependente');
+    this.nav.digitarResponsavel();
   }
 
   dependente()
   {
-    this.navCtrl.navigateForward('D/tutorial');
+    localStorage.setItem('locNavDTutorial', 'dHome');
+    this.nav.dTutorial();
   }
+  //#endregion
 
   ngOnInit() {
   }

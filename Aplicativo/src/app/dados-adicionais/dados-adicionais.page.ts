@@ -17,7 +17,7 @@ export class DadosAdicionaisPage implements OnInit {
   constructor(public nav: NavegationService, public servidor: ServidorService)
   {
     //Verificar Login
-    this.nav.varificar();
+    this.nav.verificar();
 
     //Adicionar valor máximo e minimo no ion-datetime
     let nowData = new Date();
@@ -38,6 +38,23 @@ export class DadosAdicionaisPage implements OnInit {
         }
       }]
     }
+
+    //Puxar valores
+    let dados = 'phpEmail=' + localStorage.getItem('locEmail');
+
+    this.servidor.enviar('dadosAdicionaisVal.php', dados).subscribe(res => {
+      if(res[0].Erro == 'false')
+      {
+        this.nome = res[0].Nome;
+        this.data = res[0].Data;
+
+        this.txtAdicionar = "Atualizar";
+      }
+      else
+      {
+        this.txtAdicionar = "Adicionar";
+      }
+    });
   }
   //#endregion
 
@@ -47,6 +64,8 @@ export class DadosAdicionaisPage implements OnInit {
 
   public maximo: any;
   public minimo: any;
+
+  public txtAdicionar: any;
   //#endregion
 
   //#region Adicionar dados adicionais
@@ -69,7 +88,6 @@ export class DadosAdicionaisPage implements OnInit {
       this.servidor.enviar('dadosAdicionais.php', dados).subscribe(res => {
         if (res == false)
         {
-          localStorage.setItem('locNavDadosAdicionais', 'dependente');
           this.continuar();
         }
       });
@@ -83,15 +101,11 @@ export class DadosAdicionaisPage implements OnInit {
     switch (localStorage.getItem('locNavDadosAdicionais'))
     {
       case 'dependente':
-        localStorage.removeItem('locNavDadosAdicionais');
         this.nav.dependente();
-        
         break;
 
       default:
-        localStorage.removeItem('locNavDadosAdicionais');
         this.nav.dependente();
-        
         break;
     }
   }

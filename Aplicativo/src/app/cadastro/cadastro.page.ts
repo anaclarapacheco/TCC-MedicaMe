@@ -59,6 +59,7 @@ export class CadastroPage implements OnInit {
         if (res == false)
         {
           localStorage.setItem('locEmail', this.email);
+          localStorage.setItem('locNavDadosAdicionais', 'dependente');
           this.nav.dadosAdicionais();
         }
         else

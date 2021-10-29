@@ -12,8 +12,8 @@
         <h3 class="line">Digite o e-mail do responsável</h3>
 
         <span class="line leftA">E-mail</span>
-        <input type="email" class="input">
-        <p class="aviso invisivel">E-mail inexistente</p>
+        <input [(ngModel)]="email" type="email" class="input">
+        <p id="erroDigitarResponsavel" class="aviso invisivel">{{erro}}</p>
 
         <button (click)="registrar()" class="important">Registrar</button>
         <button (click)="voltar()" class="normal">Voltar</button>

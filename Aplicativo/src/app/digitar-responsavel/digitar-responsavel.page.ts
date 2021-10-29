@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavegationService } from '../services/navegation.service';
+import { ServidorService } from '../services/servidor.service';
 
 @Component({
   selector: 'app-digitar-responsavel',
@@ -8,19 +9,63 @@ import { NavController } from '@ionic/angular';
 })
 export class DigitarResponsavelPage implements OnInit {
 
-  constructor(public navCtrl: NavController) { }
+  //#region Constructor
+  constructor(public nav: NavegationService, public servidor: ServidorService)
+  {
+    this.nav.verificar();
+  }
+  //#endregion
 
+  //#region Valores do Frontend
+  public email: any;
+
+  public erro: any;
+  //#endregion
+
+  //#region Adicionar dados adicionais
   registrar()
   {
-    //Verificar se o e-mail do responsável existe
+    //Reset
+    document.getElementById('erroDigitarResponsavel').classList.add('invisivel');
 
-    this.navCtrl.navigateForward('D/tutorial')
+    //Verificação dos valores do input
+    if(this.email == '' || this.email == null)
+    {
+      this.erro = 'Preencha todos os campos!';
+      document.getElementById('erroDigitarResponsavel').classList.remove('invisivel');
+    }
+    else
+    {
+      //Valores que serão enviados
+      let dados = 'phpEmailResponsavel=' + this.email + '&phpEmailDependente=' + localStorage.getItem('locEmail');
+
+      //Enviando ao PHP
+      this.servidor.enviar('digitarResponsavel.php', dados).subscribe(res => {
+        if(res == false)
+        {
+          localStorage.setItem('locNavDTutorial', 'dHome');
+          this.nav.dTutorial();
+        }
+        else
+        {
+          this.erro = 'Preencha todos os campos!';
+          document.getElementById('erroDigitarResponsavel').classList.remove('invisivel');
+        }
+      });
+     }
   }
+  //#endregion
 
+  //#region Navegação
   voltar()
   {
-    this.navCtrl.navigateForward('dependente');
+    switch (localStorage.getItem('locNavDigitarResponsavel')) {
+      case 'dependente':
+        this.nav.dependente();
+        break;
+    }
   }
+  //#endregion
 
   ngOnInit() {
   }

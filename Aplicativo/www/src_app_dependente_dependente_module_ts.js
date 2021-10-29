@@ -96,30 +96,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _raw_loader_dependente_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./dependente.page.html */ 7934);
 /* harmony import */ var _dependente_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dependente.page.scss */ 6830);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ 476);
+/* harmony import */ var _services_navegation_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/navegation.service */ 6192);
 
 
 
 
 
 let DependentePage = class DependentePage {
-    constructor(navCtrl) {
-        this.navCtrl = navCtrl;
+    //#region Constructor
+    constructor(nav) {
+        this.nav = nav;
+        this.nav.verificar();
     }
+    //#endregion
+    //#region Navegação
     nao() {
-        this.navCtrl.navigateForward('R/tutorial');
+        localStorage.setItem('locNavRTutorial', 'rHome');
+        this.nav.rTutorial();
     }
     sim() {
-        this.navCtrl.navigateForward('digitar-responsavel');
+        localStorage.setItem('locNavDigitarResponsavel', 'dependente');
+        this.nav.digitarResponsavel();
     }
     dependente() {
-        this.navCtrl.navigateForward('D/tutorial');
+        localStorage.setItem('locNavDTutorial', 'dHome');
+        this.nav.dTutorial();
     }
+    //#endregion
     ngOnInit() {
     }
 };
 DependentePage.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__.NavController }
+    { type: _services_navegation_service__WEBPACK_IMPORTED_MODULE_2__.NavegationService }
 ];
 DependentePage = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Component)({

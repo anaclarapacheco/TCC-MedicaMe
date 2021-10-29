@@ -92,35 +92,70 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "DigitarResponsavelPage": () => (/* binding */ DigitarResponsavelPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _raw_loader_digitar_responsavel_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./digitar-responsavel.page.html */ 8690);
 /* harmony import */ var _digitar_responsavel_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./digitar-responsavel.page.scss */ 9038);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ 476);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _services_navegation_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/navegation.service */ 6192);
+/* harmony import */ var _services_servidor_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/servidor.service */ 8914);
+
 
 
 
 
 
 let DigitarResponsavelPage = class DigitarResponsavelPage {
-    constructor(navCtrl) {
-        this.navCtrl = navCtrl;
+    //#region Constructor
+    constructor(nav, servidor) {
+        this.nav = nav;
+        this.servidor = servidor;
+        this.nav.verificar();
     }
+    //#endregion
+    //#region Adicionar dados adicionais
     registrar() {
-        //Verificar se o e-mail do responsável existe
-        this.navCtrl.navigateForward('D/tutorial');
+        //Reset
+        document.getElementById('erroDigitarResponsavel').classList.add('invisivel');
+        //Verificação dos valores do input
+        if (this.email == '' || this.email == null) {
+            this.erro = 'Preencha todos os campos!';
+            document.getElementById('erroDigitarResponsavel').classList.remove('invisivel');
+        }
+        else {
+            //Valores que serão enviados
+            let dados = 'phpEmailResponsavel=' + this.email + '&phpEmailDependente=' + localStorage.getItem('locEmail');
+            //Enviando ao PHP
+            this.servidor.enviar('digitarResponsavel.php', dados).subscribe(res => {
+                if (res == false) {
+                    localStorage.setItem('locNavDTutorial', 'dHome');
+                    this.nav.dTutorial();
+                }
+                else {
+                    this.erro = 'Preencha todos os campos!';
+                    document.getElementById('erroDigitarResponsavel').classList.remove('invisivel');
+                }
+            });
+        }
     }
+    //#endregion
+    //#region Navegação
     voltar() {
-        this.navCtrl.navigateForward('dependente');
+        switch (localStorage.getItem('locNavDigitarResponsavel')) {
+            case 'dependente':
+                this.nav.dependente();
+                break;
+        }
     }
+    //#endregion
     ngOnInit() {
     }
 };
 DigitarResponsavelPage.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__.NavController }
+    { type: _services_navegation_service__WEBPACK_IMPORTED_MODULE_2__.NavegationService },
+    { type: _services_servidor_service__WEBPACK_IMPORTED_MODULE_3__.ServidorService }
 ];
-DigitarResponsavelPage = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Component)({
+DigitarResponsavelPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
         selector: 'app-digitar-responsavel',
         template: _raw_loader_digitar_responsavel_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_digitar_responsavel_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]
@@ -157,7 +192,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\r\n  <div class=\"card full flex\">\r\n    <div class=\"top full flex\">\r\n      <div class=\"degrade\"></div>\r\n\r\n      <div class=\"trianguloUp leftP\"></div>\r\n      <div class=\"trianguloUp rightP\"></div>\r\n    </div>\r\n    \r\n    <div class=\"content\">\r\n      <div class=\"mid horizontal centerA flex\">\r\n        <h3 class=\"line\">Digite o e-mail do responsável</h3>\r\n\r\n        <span class=\"line leftA\">E-mail</span>\r\n        <input type=\"email\" class=\"input\">\r\n        <p class=\"aviso invisivel\">E-mail inexistente</p>\r\n\r\n        <button (click)=\"registrar()\" class=\"important\">Registrar</button>\r\n        <button (click)=\"voltar()\" class=\"normal\">Voltar</button>\r\n      </div>\r\n\r\n      <div class=\"bot full flex\">\r\n        <img src=\"../../assets/IMG/Logo/Light (Cima).png\" alt=\"Logo do aplicativo: MedicaMe\">\r\n      </div>\r\n    </div>\r\n  </div>\r\n</ion-content>");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\r\n  <div class=\"card full flex\">\r\n    <div class=\"top full flex\">\r\n      <div class=\"degrade\"></div>\r\n\r\n      <div class=\"trianguloUp leftP\"></div>\r\n      <div class=\"trianguloUp rightP\"></div>\r\n    </div>\r\n    \r\n    <div class=\"content\">\r\n      <div class=\"mid horizontal centerA flex\">\r\n        <h3 class=\"line\">Digite o e-mail do responsável</h3>\r\n\r\n        <span class=\"line leftA\">E-mail</span>\r\n        <input [(ngModel)]=\"email\" type=\"email\" class=\"input\">\r\n        <p id=\"erroDigitarResponsavel\" class=\"aviso invisivel\">{{erro}}</p>\r\n\r\n        <button (click)=\"registrar()\" class=\"important\">Registrar</button>\r\n        <button (click)=\"voltar()\" class=\"normal\">Voltar</button>\r\n      </div>\r\n\r\n      <div class=\"bot full flex\">\r\n        <img src=\"../../assets/IMG/Logo/Light (Cima).png\" alt=\"Logo do aplicativo: MedicaMe\">\r\n      </div>\r\n    </div>\r\n  </div>\r\n</ion-content>\r\n");
 
 /***/ })
 

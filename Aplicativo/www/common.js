@@ -461,14 +461,14 @@ let NavegationService = class NavegationService {
     constructor(navCtrl) {
         this.navCtrl = navCtrl;
     }
-    /*#region Verificação*/
-    varificar() {
+    //#region Verificação
+    verificar() {
         if (localStorage.getItem('locEmail') == '' || localStorage.getItem('locEmail') == null) {
             this.firstView();
         }
     }
-    /*#endregion*/
-    /*#region Geral*/
+    //#endregion
+    //#region Geral
     firstView() {
         this.navCtrl.navigateForward('first-view');
     }
@@ -484,13 +484,22 @@ let NavegationService = class NavegationService {
     dependente() {
         this.navCtrl.navigateForward('dependente');
     }
-    /*#endregion*/
-    /*#region Responsável*/
+    digitarResponsavel() {
+        this.navCtrl.navigateForward('digitar-responsavel');
+    }
+    //#endregion
+    //#region Responsável
+    rTutorial() {
+        this.navCtrl.navigateForward('R/tutorial');
+    }
     rHome() {
         this.navCtrl.navigateForward('R/home');
     }
-    /*#endregion*/
-    /*#region Dependete*/
+    //#endregion
+    //#region Dependete
+    dTutorial() {
+        this.navCtrl.navigateForward('D/tutorial');
+    }
     dHome() {
         this.navCtrl.navigateForward('D/home');
     }
@@ -528,7 +537,7 @@ __webpack_require__.r(__webpack_exports__);
 let ServidorService = class ServidorService {
     constructor(http) {
         this.http = http;
-        this.url_base = "https://cors-anywhere.herokuapp.com/https://medicame.000webhostapp.com/";
+        this.url_base = "https://medicame.000webhostapp.com/";
     }
     enviar(url, data) {
         return this.http.get(`${this.url_base + url}?${data}`);

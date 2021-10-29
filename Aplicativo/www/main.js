@@ -59,7 +59,7 @@ const routes = [
     },
     {
         path: 'dependente',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_dependente_dependente_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./dependente/dependente.module */ 2012)).then(m => m.DependentePageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_dependente_dependente_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./dependente/dependente.module */ 2012)).then(m => m.DependentePageModule)
     },
     {
         path: 'entrar',
@@ -67,7 +67,7 @@ const routes = [
     },
     {
         path: 'digitar-responsavel',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_digitar-responsavel_digitar-responsavel_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./digitar-responsavel/digitar-responsavel.module */ 9919)).then(m => m.DigitarResponsavelPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_digitar-responsavel_digitar-responsavel_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./digitar-responsavel/digitar-responsavel.module */ 9919)).then(m => m.DigitarResponsavelPageModule)
     },
     {
         path: 'D/tutorial',

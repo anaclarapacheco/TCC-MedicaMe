@@ -8,17 +8,17 @@ export class NavegationService {
 
   constructor(public navCtrl: NavController) { }
 
-  /*#region Verificação*/
-  varificar()
+  //#region Verificação
+  verificar()
   {
     if(localStorage.getItem('locEmail') == '' || localStorage.getItem('locEmail') == null)
     {
       this.firstView();
     }
   }
-  /*#endregion*/
+  //#endregion
 
-  /*#region Geral*/
+  //#region Geral
   firstView()
   {
     this.navCtrl.navigateForward('first-view');
@@ -43,19 +43,34 @@ export class NavegationService {
   {
     this.navCtrl.navigateForward('dependente');
   }
-  /*#endregion*/
 
-  /*#region Responsável*/
+  digitarResponsavel()
+  {
+    this.navCtrl.navigateForward('digitar-responsavel');
+  }
+  //#endregion
+
+  //#region Responsável
+  rTutorial()
+  {
+    this.navCtrl.navigateForward('R/tutorial');
+  }
+  
   rHome()
   {
     this.navCtrl.navigateForward('R/home');
   }
-  /*#endregion*/
+  //#endregion
 
-  /*#region Dependete*/
+  //#region Dependete
+  dTutorial()
+  {
+    this.navCtrl.navigateForward('D/tutorial');
+  }
+  
   dHome()
   {
     this.navCtrl.navigateForward('D/home');
   }
-  /*#endregion*/
+  //#endregion
 }

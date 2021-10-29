@@ -112,7 +112,7 @@ let DadosAdicionaisPage = class DadosAdicionaisPage {
         this.customYearValues = [2020, 2016, 2008, 2004, 2000, 1996];
         this.customDayShortNames = ['s\u00f8n', 'man', 'tir', 'ons', 'tor', 'fre', 'l\u00f8r'];
         //Verificar Login
-        this.nav.varificar();
+        this.nav.verificar();
         //Adicionar valor máximo e minimo no ion-datetime
         let nowData = new Date();
         this.maximo = nowData.getFullYear() + '-' + String(nowData.getMonth() + 1).padStart(2, '0') + '-' + String(nowData.getDate()).padStart(2, '0');
@@ -130,6 +130,18 @@ let DadosAdicionaisPage = class DadosAdicionaisPage {
                     }
                 }]
         };
+        //Puxar valores
+        let dados = 'phpEmail=' + localStorage.getItem('locEmail');
+        this.servidor.enviar('dadosAdicionaisVal.php', dados).subscribe(res => {
+            if (res[0].Erro == 'false') {
+                this.nome = res[0].Nome;
+                this.data = res[0].Data;
+                this.txtAdicionar = "Atualizar";
+            }
+            else {
+                this.txtAdicionar = "Adicionar";
+            }
+        });
     }
     //#endregion
     //#region Adicionar dados adicionais
@@ -146,7 +158,6 @@ let DadosAdicionaisPage = class DadosAdicionaisPage {
             //Enviando ao PHP
             this.servidor.enviar('dadosAdicionais.php', dados).subscribe(res => {
                 if (res == false) {
-                    localStorage.setItem('locNavDadosAdicionais', 'dependente');
                     this.continuar();
                 }
             });
@@ -157,11 +168,9 @@ let DadosAdicionaisPage = class DadosAdicionaisPage {
     continuar() {
         switch (localStorage.getItem('locNavDadosAdicionais')) {
             case 'dependente':
-                localStorage.removeItem('locNavDadosAdicionais');
                 this.nav.dependente();
                 break;
             default:
-                localStorage.removeItem('locNavDadosAdicionais');
                 this.nav.dependente();
                 break;
         }
@@ -214,7 +223,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\r\n  <div class=\"card horizontal flex\">\r\n    <div class=\"top full flex\">\r\n      <div class=\"degrade\"></div>\r\n\r\n      <div class=\"trianguloUp leftP\"></div>\r\n      <div class=\"trianguloUp rightP\"></div>\r\n    </div>\r\n\r\n    <div class=\"content\">\r\n      <div class=\"mid horizontal centerA flex\">\r\n        <h3 class=\"line\">Dados adicionais</h3>\r\n\r\n        <span class=\"line leftA\">Nome</span>\r\n        <input [(ngModel)]=\"nome\" type=\"text\" class=\"input\">\r\n\r\n        <span class=\"line leftA\">Data de nascimento</span>\r\n        <div class=\"data input\">\r\n          <ion-item class=\"input\">\r\n            <ion-datetime [(ngModel)]=\"data\" displayFormat=\"DD/MM/YYYY\" min=\"{{minimo}}\" max=\"{{maximo}}\"></ion-datetime>\r\n          </ion-item>\r\n        </div>\r\n\r\n        <p id=\"erroDadosAdicionais\" class=\"aviso invisivel\">Preencha todos os campos!</p>\r\n\r\n        <button (click)=\"adicionar()\" class=\"important\">Adicionar</button>\r\n        <button (click)=\"continuar()\" class=\"normal\">Deixar para depois</button>\r\n      </div>\r\n\r\n      <div class=\"bot full flex\">\r\n        <img src=\"../../assets/IMG/Logo/Light (Lado).png\" alt=\"Logo do aplicativo: MedicaMe\">\r\n      </div>\r\n    </div>\r\n  </div>\r\n</ion-content>\r\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\r\n  <div class=\"card horizontal flex\">\r\n    <div class=\"top full flex\">\r\n      <div class=\"degrade\"></div>\r\n\r\n      <div class=\"trianguloUp leftP\"></div>\r\n      <div class=\"trianguloUp rightP\"></div>\r\n    </div>\r\n\r\n    <div class=\"content\">\r\n      <div class=\"mid horizontal centerA flex\">\r\n        <h3 class=\"line\">Dados adicionais</h3>\r\n\r\n        <span class=\"line leftA\">Nome</span>\r\n        <input [(ngModel)]=\"nome\" type=\"text\" class=\"input\">\r\n\r\n        <span class=\"line leftA\">Data de nascimento</span>\r\n        <div class=\"data input\">\r\n          <ion-item class=\"input\">\r\n            <ion-datetime [(ngModel)]=\"data\" displayFormat=\"DD/MM/YYYY\" min=\"{{minimo}}\" max=\"{{maximo}}\"></ion-datetime>\r\n          </ion-item>\r\n        </div>\r\n\r\n        <p id=\"erroDadosAdicionais\" class=\"aviso invisivel\">Preencha todos os campos!</p>\r\n\r\n        <button (click)=\"adicionar()\" class=\"important\">{{txtAdicionar}}</button>\r\n        <button (click)=\"continuar()\" class=\"normal\">Deixar para depois</button>\r\n      </div>\r\n\r\n      <div class=\"bot full flex\">\r\n        <img src=\"../../assets/IMG/Logo/Light (Lado).png\" alt=\"Logo do aplicativo: MedicaMe\">\r\n      </div>\r\n    </div>\r\n  </div>\r\n</ion-content>\r\n");
 
 /***/ })
 
