@@ -55,7 +55,7 @@ export class CadastroPage implements OnInit {
       let dados = 'phpEmail=' + this.email + '&phpSenha=' + this.senha;
       
       //Enviando ao PHP
-      this.servidor.enviar('cadastrar.php', dados).subscribe(res => {
+      this.servidor.enviar('Cadastrar/main.php', dados).subscribe(res => {
         if (res[0]['Erro'] == false)
         {
           localStorage.setItem('email', this.email);
@@ -91,6 +91,7 @@ export class CadastroPage implements OnInit {
   //#region OnInit
   ngOnInit()
   {
+    //Reset
     this.reset
   }
   //#endregion

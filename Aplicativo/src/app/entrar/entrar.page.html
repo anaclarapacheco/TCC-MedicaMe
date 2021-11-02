@@ -16,7 +16,10 @@
         
         <p id="erroEntrar" class="aviso invisivel">{{erro}}</p>
 
-        <button (click)="entrar()" class="important">Entrar</button>
+        <button (click)="entrar()" class="important full flex">
+          <div></div>
+          <span>Entrar</span>
+        </button>
         
         <p>Não possui uma conta? <a (click)="cadastrar()">Cadastre-se!</a></p>
       </div>

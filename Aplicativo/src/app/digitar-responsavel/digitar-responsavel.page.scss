@@ -17,6 +17,11 @@
     color: #FACC22;
     font-family: 'Saira Italic';
 }
+
+.important:active div, .normal:active div
+{
+    width: 80%;
+}
 /*#endregion*/
 
 /*#region Top*/

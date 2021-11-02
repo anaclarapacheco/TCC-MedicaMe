@@ -25,6 +25,9 @@ export class ServidorService {
   limpar()
   {
     localStorage.removeItem('email');
+    localStorage.removeItem('emailDependente');
+    localStorage.removeItem('nomeDependente');
+    
     this.nav.firstView();
   }
   //#endregion

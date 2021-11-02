@@ -9,13 +9,7 @@ import { ServidorService } from '../services/servidor.service';
 })
 export class DigitarResponsavelPage implements OnInit {
 
-  //#region Constructor
-  constructor(private nav: NavegationService, private servidor: ServidorService)
-  {
-    //Verificar Login
-    this.servidor.verificar();
-  }
-  //#endregion
+  constructor(private nav: NavegationService, private servidor: ServidorService){}
 
   //#region Valores do Frontend
   public email: any;
@@ -54,7 +48,7 @@ export class DigitarResponsavelPage implements OnInit {
       let dados = 'phpEmailResponsavel=' + this.email + '&phpEmailDependente=' + localStorage.getItem('email');
 
       //Enviando ao PHP
-      this.servidor.enviar('digitarResponsavel.php', dados).subscribe(res => {
+      this.servidor.enviar('Digitar Responsavel/main.php', dados).subscribe(res => {
         if(res[0]['Erro'] == false)
         {
           localStorage.setItem('DTutorial', 'dHome');
@@ -101,6 +95,10 @@ export class DigitarResponsavelPage implements OnInit {
       case 'rHome':
         this.nav.rHome();
         break;
+
+      case 'rLembretes':
+        this.nav.rLembretes();
+        break;
     }
 
     localStorage.removeItem('digitarResponsavel');
@@ -110,8 +108,10 @@ export class DigitarResponsavelPage implements OnInit {
   //#region OnInit
   ngOnInit()
   {
+    //Reset
     this.reset();
 
+    //Verificar Login
     this.servidor.verificar();
   }
   //#endregion

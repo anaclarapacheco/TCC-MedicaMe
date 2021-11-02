@@ -23,8 +23,15 @@
 
         <p id="erroDadosAdicionais" class="aviso invisivel">Preencha todos os campos!</p>
 
-        <button (click)="adicionar()" class="important">{{txtAdicionar}}</button>
-        <button (click)="continuar()" class="normal">Deixar para depois</button>
+        <button (click)="adicionar()" class="important full flex">
+          <div></div>
+          <span>{{txtAdicionar}}</span>
+        </button>
+
+        <button (click)="continuar()" class="normal full flex">
+          <div></div>
+          <span>Deixar para depois</span>
+        </button>
       </div>
 
       <div class="bot full flex">

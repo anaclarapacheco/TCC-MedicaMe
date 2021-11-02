@@ -9,13 +9,13 @@
   </div>
 
   <div id="lDep" class="dep vertical flex invisivel">
-    <p>Dependente: Gabriel Santos de Sousa</p>
+    <p>Dependente: {{nomeDependente}}</p>
   </div>
 
   <div id="mLembretes" class="menu invisivel">
     <div id="back" (click)="close()"></div>
 
-    <div class="content">
+    <div id="lMenu" class="content">
       <div class="top full flex">
         <h3>Configurações</h3>
 
@@ -66,7 +66,7 @@
     </div>
   </div>
 
-  <div class="meio">
+  <div id="lMeio" class="meio">
     <div class="top centerA">
       <h3>Seus lembretes</h3>
     </div>
@@ -111,11 +111,13 @@
   </div>
 
   <button class="important full flex" (click)="novoLembrete()">
+    <div></div>
+
     <svg viewBox="0 0 24 24">
       <path d="M11 11v-11h1v11h11v1h-11v11h-1v-11h-11v-1h11z"/>
     </svg>
 
-    Novo lembrete
+    <span>Novo lembrete</span>
   </button>
 
   <div class="tabs full flex">

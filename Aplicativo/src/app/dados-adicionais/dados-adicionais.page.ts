@@ -15,10 +15,7 @@ export class DadosAdicionaisPage implements OnInit {
 
   //#region Constructor
   constructor(public nav: NavegationService, public servidor: ServidorService)
-  {
-    //Verificar Login
-    this.servidor.verificar();
-
+  {    
     //Adicionar valor máximo e minimo no ion-datetime
     let nowData = new Date();
 
@@ -38,23 +35,6 @@ export class DadosAdicionaisPage implements OnInit {
         }
       }]
     }
-
-    //Puxar valores se já existentes
-    let dados = 'phpEmail=' + localStorage.getItem('email');
-
-    this.servidor.enviar('dadosAdicionaisVal.php', dados).subscribe(res => {
-      if(res[0]['Nome'] != null)
-      {
-        this.nome = res[0]['Nome'];
-        this.data = res[0]['Data de Nascimento']
-
-        this.txtAdicionar = 'Atualizar';
-      }
-      else
-      {
-        this.txtAdicionar = 'Adicionar';
-      }
-    });
   }
   //#endregion
 
@@ -85,7 +65,7 @@ export class DadosAdicionaisPage implements OnInit {
       let dados = 'phpNome=' + this.nome + '&phpData=' + this.data.substring(0, 10) + '&phpEmail=' + localStorage.getItem('email');
 
       //Enviando ao PHP
-      this.servidor.enviar('dadosAdicionais.php', dados).subscribe(res => {
+      this.servidor.enviar('Dados Adicionais/main.php', dados).subscribe(res => {
         if (res[0]['Erro'] == false)
         {
           this.continuar();
@@ -114,6 +94,10 @@ export class DadosAdicionaisPage implements OnInit {
       case 'rHome':
         this.nav.rHome();
         break;
+
+      case 'rLembretes':
+          this.nav.rLembretes();
+          break;
     }
 
     localStorage.removeItem('dadosAdicionais');
@@ -123,8 +107,28 @@ export class DadosAdicionaisPage implements OnInit {
   //#region OnInit
   ngOnInit()
   {
+    //Reset
     this.reset();
+
+    //Verificar Login
     this.servidor.verificar();
+
+    //Puxar valores se já existentes
+    let dados = 'phpEmail=' + localStorage.getItem('email');
+
+    this.servidor.enviar('Dados Adicionais/valores.php', dados).subscribe(res => {
+      if(res[0]['Nome'] != null)
+      {
+        this.nome = res[0]['Nome'];
+        this.data = res[0]['Data de Nascimento']
+
+        this.txtAdicionar = 'Atualizar';
+      }
+      else
+      {
+        this.txtAdicionar = 'Adicionar';
+      }
+    });
   }
   //#endregion
 }

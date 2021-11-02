@@ -15,8 +15,15 @@
         <input [(ngModel)]="email" type="email" class="input">
         <p id="erroDigitarResponsavel" class="aviso invisivel">{{erro}}<a id="erroEmailInexistente" class="aqui invisivel" (click)="criar()">aqui!</a></p>
 
-        <button (click)="registrar()" class="important">Registrar</button>
-        <button (click)="voltar()" class="normal">Voltar</button>
+        <button (click)="registrar()" class="important full flex">
+          <div></div>
+          <span>Registrar</span>
+        </button>
+
+        <button (click)="voltar()" class="normal full flex">
+          <div></div>
+          <span>Voltar</span>
+        </button>
       </div>
 
       <div class="bot full flex">

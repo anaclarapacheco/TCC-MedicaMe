@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavegationService } from 'src/app/services/navegation.service';
+import { ServidorService } from 'src/app/services/servidor.service';
 
 @Component({
   selector: 'app-lembretes',
@@ -8,73 +9,148 @@ import { NavController } from '@ionic/angular';
 })
 export class LembretesPage implements OnInit {
 
-  constructor(public navCtrl: NavController) { }
+  constructor(private nav: NavegationService, private servidor: ServidorService){}
 
-  //#region Novo Lembrete
-  novoLembrete()
-  {
-    this.navCtrl.navigateForward('R/novo-lembrete');
-  }
+  //#region Valores
+  public nomeDependente: any;
+  public email: any
   //#endregion
 
   //#region Abrir e Fechar o Menu
   open()
   {
+    //Variaveis
     var menu = document.getElementById('mLembretes');
+    var content = document.getElementById('lMenu');
+
+    //Abre
     menu.classList.remove('invisivel');
+
+    //Preparação
+    menu.classList.remove('OutFundo');
+    content.classList.remove('OutMenu');
+
+    //Animação
+    setTimeout(function()
+    {
+      menu.classList.add('InFundo');
+      content.classList.add('InMenu');
+    }, 100);
   }
 
   close()
   {
+    //Variaveis
     var menu = document.getElementById('mLembretes');
-    menu.classList.add('invisivel');
+    var content = document.getElementById('lMenu');
+
+    //Preparação
+    menu.classList.remove('InFundo');
+    content.classList.remove('InMenu');
+
+    //Animação
+    menu.classList.add('OutFundo');
+    content.classList.add('OutMenu');
+    
+    //Fecha
+    setTimeout(function()
+    {
+      menu.classList.add('invisivel');
+    }, 1000);
   }
   //#endregion
 
-  //#region SideMenu
+  //#region Navegação
+  novoLembrete()
+  {
+    this.nav.rNovoLembrete();
+  }
+
   tutorial()
   {
-    this.navCtrl.navigateForward('R/tutorial');
+    localStorage.setItem('RTutorial', 'rLembretes');
+    this.nav.rTutorial();
   }
 
   dadosAdicionais()
   {
-    this.navCtrl.navigateForward('dados-adicionais');
+    localStorage.setItem('dadosAdicionais', 'rLembretes');
+    this.nav.dadosAdicionais();
   }
 
   adicionarResponsavel()
   {
-    this.navCtrl.navigateForward('digitar-responsavel');
+    localStorage.setItem('digitarResponsavel', 'rLembretes');
+    this.nav.digitarResponsavel();
   }
 
   sair()
   {
-    this.navCtrl.navigateForward('first-view');
+    this.servidor.limpar();
   }
-  //#endregion
 
-  //#region Tabs
-  dependentes()
-  {
-    this.navCtrl.navigateForward('R/dependentes');
-  }
-  
   home()
   {
-    this.navCtrl.navigateForward('R/home');
+    this.nav.rHome();
+  }
+
+  lembretes()
+  {
+    this.nav.rLembretes();
   }
 
   estoque()
   {
-    this.navCtrl.navigateForward('R/estoque');
+    this.nav.rEstoque();
+  }
+
+  dependentes()
+  {
+    this.nav.rDependentes();
   }
 
   relatorio()
   {
-    this.navCtrl.navigateForward('R/relatorio');
+    this.nav.rRelatorio();
   }
   //#endregion
 
-  ngOnInit() {
+  //#region OnInit
+  ngOnInit()
+  {
+    //Verificar Login
+    this.servidor.verificar();
+
+    //Dependente
+    if(localStorage.getItem('emailDependente') != null && localStorage.getItem('emailDependente') != '')
+    {
+      document.getElementById('lDep').classList.remove('invisivel');
+      document.getElementById('lMeio').classList.add('depMeio');
+
+      this.nomeDependente = localStorage.getItem('nomeDependente');
+      this.email = localStorage.getItem('emailDependente');
+    }
+    else
+    {
+      document.getElementById('lDep').classList.add('invisivel');
+      document.getElementById('lMeio').classList.remove('depMeio');
+
+      this.email = localStorage.getItem('email');
+    }
+
+    //Puxar lista de lembretes
+    let dados = 'phpEmail=' + this.email;
+
+    this.servidor.enviar('Responsavel/Lembretes/main.php', dados).subscribe(res => {
+      if(res[0]['Erro'] == false)
+      {
+        console.log('Tem');
+      }
+      else
+      {
+        console.log('Não Tem');
+      }
+    });
   }
+  //#endregion
 }

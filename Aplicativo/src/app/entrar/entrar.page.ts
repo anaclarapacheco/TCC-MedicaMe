@@ -38,7 +38,7 @@ export class EntrarPage implements OnInit {
       let dados = 'phpEmail=' + this.email + '&phpSenha=' + this.senha;
       
       //Enviando ao PHP
-      this.servidor.enviar('entrar.php', dados).subscribe(res => {
+      this.servidor.enviar('Entrar/main.php', dados).subscribe(res => {
         if (res[0]['Erro'] == false)
         {
           //Descobrindo qual é o Tipo do Usuário
@@ -82,6 +82,7 @@ export class EntrarPage implements OnInit {
   //#region OnInit
   ngOnInit()
   {
+    //Reset
     this.reset();
   }
   //#endregion

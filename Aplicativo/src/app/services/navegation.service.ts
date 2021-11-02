@@ -56,6 +56,11 @@ export class NavegationService {
     this.navCtrl.navigateForward('R/lembretes');
   }
 
+  rNovoLembrete()
+  {
+    this.navCtrl.navigateForward('R/novo-lembrete')
+  }
+
   rEstoque()
   {
     this.navCtrl.navigateForward('R/estoque');

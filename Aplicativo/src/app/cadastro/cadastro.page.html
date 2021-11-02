@@ -20,7 +20,10 @@
         <input [(ngModel)]="confirmarSenha" type="password" class="input">
         <p id="erroCadastrar" class="aviso invisivel">{{erro}}</p>
 
-        <button (click)="criar()" class="important">Criar</button>
+        <button (click)="criar()" class="important full flex">
+          <div></div>
+          <span>Criar</span>
+        </button>
         
         <p>Já possui uma conta? Faça <a (click)="entrar()">login!</a></p>
       </div>

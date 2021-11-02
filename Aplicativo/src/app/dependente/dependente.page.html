@@ -10,8 +10,15 @@
     <div class="mid full flex">
       <h3>Você é um dependente?</h3>
 
-      <button (click)="nao()" class="important">Não</button>
-      <button (click)="sim()" class="normal">Sim</button>
+      <button (click)="nao()" class="important full flex">
+        <div></div>
+        <span>Não</span>
+      </button>
+
+      <button (click)="sim()" class="normal full flex">
+        <div></div>
+        <span>Sim</span>
+      </button>
 
       <div class="line leftA">
         <p>O que é um <a (click)="dependente()">dependente?</a></p>

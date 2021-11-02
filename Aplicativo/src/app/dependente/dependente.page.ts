@@ -9,13 +9,7 @@ import { ServidorService } from '../services/servidor.service';
 })
 export class DependentePage implements OnInit {
 
-  //#region Constructor
-  constructor(private nav: NavegationService, private servidor: ServidorService)
-  {
-    //Verificar Login
-    this.servidor.verificar();
-  }
-  //#endregion
+  constructor(private nav: NavegationService, private servidor: ServidorService){}
 
   //#region Navegação
   nao()
@@ -40,6 +34,7 @@ export class DependentePage implements OnInit {
   //#region Oninit
   ngOnInit()
   {
+    //Verificar Login
     this.servidor.verificar();
   }
   //#endregion

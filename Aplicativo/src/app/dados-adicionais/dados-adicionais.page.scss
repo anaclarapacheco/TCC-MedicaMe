@@ -11,6 +11,11 @@
 
     z-index: 20;
 }
+
+.important:active div, .normal:active div
+{
+    width: 80%;
+}
 /*#endregion*/
 
 /*#region Top*/

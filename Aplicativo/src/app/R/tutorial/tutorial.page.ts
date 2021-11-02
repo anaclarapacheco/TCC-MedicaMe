@@ -9,12 +9,7 @@ import { ServidorService } from 'src/app/services/servidor.service';
 })
 export class TutorialPage implements OnInit {
 
-  //#region Constructor
-  constructor(private nav: NavegationService, private servidor: ServidorService)
-  {
-    this.servidor.verificar();
-  }
-  //#endregion
+  constructor(private nav: NavegationService, private servidor: ServidorService){}
 
   //#region Próximo item do carrossel
   proximo()
@@ -30,6 +25,10 @@ export class TutorialPage implements OnInit {
       case 'rHome':
         this.nav.rHome();
         break;
+
+      case 'rLembretes':
+          this.nav.rLembretes();
+          break;
     }
 
     localStorage.removeItem('RTutorial');
@@ -39,6 +38,7 @@ export class TutorialPage implements OnInit {
   //#region OnInit
   ngOnInit()
   {
+    //Verificar Login
     this.servidor.verificar();
   }
   //#endregion

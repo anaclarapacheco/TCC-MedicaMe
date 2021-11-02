@@ -14,9 +14,6 @@ export class HomePage implements OnInit {
   //#region Constructor
   constructor(private nav: NavegationService, private servidor: ServidorService)
   {
-    //Verificar Login
-    this.servidor.verificar();
-
     //Data de hoje
     let nowData = new Date();
     this.data = String(nowData.getDate()).padStart(2, '0') + '/' + String(nowData.getMonth() + 1).padStart(2, '0')  + '/' + nowData.getFullYear();
@@ -30,14 +27,44 @@ export class HomePage implements OnInit {
   //#region Abrir e Fechar o Menu
   open()
   {
+    //Variaveis
     var menu = document.getElementById('mHome');
+    var content = document.getElementById('hMenu');
+
+    //Abre
     menu.classList.remove('invisivel');
+
+    //Preparação
+    menu.classList.remove('OutFundo');
+    content.classList.remove('OutMenu');
+
+    //Animação
+    setTimeout(function()
+    {
+      menu.classList.add('InFundo');
+      content.classList.add('InMenu');
+    }, 100);
   }
 
   close()
   {
+    //Variaveis
     var menu = document.getElementById('mHome');
-    menu.classList.add('invisivel');
+    var content = document.getElementById('hMenu');
+
+    //Preparação
+    menu.classList.remove('InFundo');
+    content.classList.remove('InMenu');
+
+    //Animação
+    menu.classList.add('OutFundo');
+    content.classList.add('OutMenu');
+    
+    //Fecha
+    setTimeout(function()
+    {
+      menu.classList.add('invisivel');
+    }, 1000);
   }
   //#endregion
 
@@ -94,6 +121,7 @@ export class HomePage implements OnInit {
   //#region OnInit
   ngOnInit()
   {
+    //Verificar Login
     this.servidor.verificar();
   }
   //#endregion
