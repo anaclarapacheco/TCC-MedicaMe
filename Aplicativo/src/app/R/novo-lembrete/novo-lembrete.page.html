@@ -9,16 +9,16 @@
       <div class="mid full flex">
         <div id="um" class="full flex">
           <span class="line leftA">Nome do medicamento</span>
-          <input type="text" class="input">
+          <input [(ngModel)]="nomdeMedicamento" type="text" class="input">
   
           <span class="line leftA">Forma farmacêutica</span>
-          <input type="text" class="input">
+          <input [(ngModel)]="formaFarma" type="text" class="input">
   
           <span class="line leftA">Dosagem</span>
-          <input type="number" class="input">
+          <input [(ngModel)]="dosagem" type="number" class="input">
   
           <h3 class="line centerA">Descrição</h3>
-          <textarea class="input"></textarea>
+          <textarea [(ngModel)]="descricao" class="input"></textarea>
           <p class="aviso invisivel">Preencha todos os campos</p>
 
           <button (click)="proximo()" class="important full flex">

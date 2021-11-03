@@ -197,6 +197,7 @@ button
 .important
 {
     background-color: var(--yellow);
+    color: var(--dark-space-cadet) !important;
     
     div
     {
@@ -214,6 +215,7 @@ button
 .normal
 {
     background-color: var(--state-blue);    
+    color: var(--white) !important;
 
     div
     {
@@ -236,7 +238,7 @@ button
 .danger
 {
     background-color: var(--red);
-    color: var(--white);
+    color: var(--white) !important;
 }
 /*#endregion*/
 

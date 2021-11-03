@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NavegationService } from 'src/app/services/navegation.service';
 import { ServidorService } from 'src/app/services/servidor.service';
 
@@ -9,7 +9,7 @@ import { ServidorService } from 'src/app/services/servidor.service';
   encapsulation: ViewEncapsulation.None,
 })
 
-export class LembretesPage implements OnInit {
+export class LembretesPage implements AfterViewInit {
 
   constructor(private nav: NavegationService, private servidor: ServidorService){}
 
@@ -64,6 +64,12 @@ export class LembretesPage implements OnInit {
   //#endregion
 
   //#region Editar
+  teste()
+  {
+    console.log('funcionou');
+    
+  }
+
   editar(codigo: any)
   {
     localStorage.setItem('agendamento', codigo);
@@ -127,7 +133,7 @@ export class LembretesPage implements OnInit {
   //#endregion
 
   //#region OnInit
-  ngOnInit()
+  ngAfterViewInit()
   {
     //Verificar Login
     this.servidor.verificar();
@@ -175,7 +181,7 @@ export class LembretesPage implements OnInit {
             <p class="descricao">` + descricao + `</p>
             <p>` + dataFinal + `</p>
             </div>
-            <button class="normal full flex" (click)="editar(` + codigo + `)"> Editar
+            <button class="normal full flex" (click)="teste()"> Editar
             <svg viewBox="0 0 24 24">
             <path d="M19.769 9.923l-12.642 12.639-7.127 1.438 1.438-7.128 12.641-12.64 5.69 5.691zm1.414-1.414l2.817-2.82-5.691-5.689-2.816 2.817 5.69 5.692z"/>
             </svg>
@@ -187,7 +193,10 @@ export class LembretesPage implements OnInit {
       else
       {
         document.getElementById('lembretes').innerHTML = `
-          <div class="semMedicamento centerA">
+          <div class="semMedicamento full flex">
+          <svg viewBox="0 0 24 24">
+          <path d="M12 5.177l8.631 15.823h-17.262l8.631-15.823zm0-4.177l-12 22h24l-12-22zm-1 9h2v6h-2v-6zm1 9.75c-.689 0-1.25-.56-1.25-1.25s.561-1.25 1.25-1.25 1.25.56 1.25 1.25-.561 1.25-1.25 1.25z"/>
+          </svg>
           <p>Você ainda não agendou lembretes para os seus medicamentos, clique no botão: "Novo Lembrete", para criar o primeiro!</p>
           </div>
         `;
