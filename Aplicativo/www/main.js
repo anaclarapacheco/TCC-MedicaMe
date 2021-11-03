@@ -83,7 +83,7 @@ const routes = [
     },
     {
         path: 'R/lembretes',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_R_lembretes_lembretes_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./R/lembretes/lembretes.module */ 7016)).then(m => m.LembretesPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_R_lembretes_lembretes_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./R/lembretes/lembretes.module */ 7016)).then(m => m.LembretesPageModule)
     },
     {
         path: 'R/dependentes',

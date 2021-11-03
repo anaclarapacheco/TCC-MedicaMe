@@ -124,7 +124,7 @@ let EntrarPage = class EntrarPage {
             //Valores que serão enviados
             let dados = 'phpEmail=' + this.email + '&phpSenha=' + this.senha;
             //Enviando ao PHP
-            this.servidor.enviar('entrar.php', dados).subscribe(res => {
+            this.servidor.enviar('Entrar/main.php', dados).subscribe(res => {
                 if (res[0]['Erro'] == false) {
                     //Descobrindo qual é o Tipo do Usuário
                     switch (res[0]['Tipo Usuario']) {
@@ -157,6 +157,7 @@ let EntrarPage = class EntrarPage {
     //#endregion
     //#region OnInit
     ngOnInit() {
+        //Reset
         this.reset();
     }
 };
@@ -187,7 +188,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/*#region Geral*/\n.content {\n  overflow: hidden;\n}\n/*#endregion*/\n/*#region Top*/\n.top {\n  width: 80vw;\n  overflow: hidden;\n}\n.top img {\n  width: 90%;\n  margin-bottom: 30px;\n}\n/*#endregion*/\n/*#region Middle*/\n.mid {\n  width: 80vw;\n  overflow: hidden;\n}\n.mid span, .mid p, .mid button {\n  margin: 30px 0px 10px 0px;\n}\n.mid span, .mid h3, .mid p {\n  color: var(--white);\n}\n/*#endregion*/\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImVudHJhci5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsZ0JBQUE7QUFDQTtFQUVJLGdCQUFBO0FBQUo7QUFFQSxhQUFBO0FBRUEsY0FBQTtBQUNBO0VBRUksV0FBQTtFQUNBLGdCQUFBO0FBREo7QUFHSTtFQUVJLFVBQUE7RUFDQSxtQkFBQTtBQUZSO0FBS0EsYUFBQTtBQUVBLGlCQUFBO0FBQ0E7RUFFSSxXQUFBO0VBQ0EsZ0JBQUE7QUFKSjtBQU1JO0VBRUkseUJBQUE7QUFMUjtBQVFJO0VBRUksbUJBQUE7QUFQUjtBQVVBLGFBQUEiLCJmaWxlIjoiZW50cmFyLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qI3JlZ2lvbiBHZXJhbCovXHJcbi5jb250ZW50XHJcbntcclxuICAgIG92ZXJmbG93OiBoaWRkZW47XHJcbn1cclxuLyojZW5kcmVnaW9uKi9cclxuXHJcbi8qI3JlZ2lvbiBUb3AqL1xyXG4udG9wXHJcbntcclxuICAgIHdpZHRoOiA4MHZ3O1xyXG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcclxuXHJcbiAgICBpbWdcclxuICAgIHtcclxuICAgICAgICB3aWR0aDogOTAlO1xyXG4gICAgICAgIG1hcmdpbi1ib3R0b206IDMwcHg7XHJcbiAgICB9XHJcbn1cclxuLyojZW5kcmVnaW9uKi9cclxuXHJcbi8qI3JlZ2lvbiBNaWRkbGUqL1xyXG4ubWlkXHJcbntcclxuICAgIHdpZHRoOiA4MHZ3O1xyXG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcclxuXHJcbiAgICBzcGFuLCBwLCBidXR0b25cclxuICAgIHtcclxuICAgICAgICBtYXJnaW46IDMwcHggMHB4IDEwcHggMHB4O1xyXG4gICAgfVxyXG5cclxuICAgIHNwYW4sIGgzLCBwXHJcbiAgICB7XHJcbiAgICAgICAgY29sb3I6IHZhcigtLXdoaXRlKTtcclxuICAgIH1cclxufVxyXG4vKiNlbmRyZWdpb24qL1xyXG4iXX0= */");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/*#region Geral*/\n.content {\n  overflow: hidden;\n}\n.important:active div {\n  width: 80%;\n}\n/*#endregion*/\n/*#region Top*/\n.top {\n  width: 80vw;\n  overflow: hidden;\n}\n.top img {\n  width: 90%;\n  margin-bottom: 30px;\n}\n/*#endregion*/\n/*#region Middle*/\n.mid {\n  width: 80vw;\n  overflow: hidden;\n}\n.mid span, .mid p, .mid button {\n  margin: 30px 0px 10px 0px;\n}\n.mid span, .mid h3, .mid p {\n  color: var(--white);\n}\n/*#endregion*/\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImVudHJhci5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsZ0JBQUE7QUFDQTtFQUVJLGdCQUFBO0FBQUo7QUFHQTtFQUVJLFVBQUE7QUFESjtBQUdBLGFBQUE7QUFFQSxjQUFBO0FBQ0E7RUFFSSxXQUFBO0VBQ0EsZ0JBQUE7QUFGSjtBQUlJO0VBRUksVUFBQTtFQUNBLG1CQUFBO0FBSFI7QUFNQSxhQUFBO0FBRUEsaUJBQUE7QUFDQTtFQUVJLFdBQUE7RUFDQSxnQkFBQTtBQUxKO0FBT0k7RUFFSSx5QkFBQTtBQU5SO0FBU0k7RUFFSSxtQkFBQTtBQVJSO0FBV0EsYUFBQSIsImZpbGUiOiJlbnRyYXIucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLyojcmVnaW9uIEdlcmFsKi9cclxuLmNvbnRlbnRcclxue1xyXG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcclxufVxyXG5cclxuLmltcG9ydGFudDphY3RpdmUgZGl2XHJcbntcclxuICAgIHdpZHRoOiA4MCU7XHJcbn1cclxuLyojZW5kcmVnaW9uKi9cclxuXHJcbi8qI3JlZ2lvbiBUb3AqL1xyXG4udG9wXHJcbntcclxuICAgIHdpZHRoOiA4MHZ3O1xyXG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcclxuXHJcbiAgICBpbWdcclxuICAgIHtcclxuICAgICAgICB3aWR0aDogOTAlO1xyXG4gICAgICAgIG1hcmdpbi1ib3R0b206IDMwcHg7XHJcbiAgICB9XHJcbn1cclxuLyojZW5kcmVnaW9uKi9cclxuXHJcbi8qI3JlZ2lvbiBNaWRkbGUqL1xyXG4ubWlkXHJcbntcclxuICAgIHdpZHRoOiA4MHZ3O1xyXG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcclxuXHJcbiAgICBzcGFuLCBwLCBidXR0b25cclxuICAgIHtcclxuICAgICAgICBtYXJnaW46IDMwcHggMHB4IDEwcHggMHB4O1xyXG4gICAgfVxyXG5cclxuICAgIHNwYW4sIGgzLCBwXHJcbiAgICB7XHJcbiAgICAgICAgY29sb3I6IHZhcigtLXdoaXRlKTtcclxuICAgIH1cclxufVxyXG4vKiNlbmRyZWdpb24qL1xyXG4iXX0= */");
 
 /***/ }),
 
@@ -202,7 +203,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\r\n  <div class=\"card full flex\">\r\n    <div class=\"content\">\r\n      <div class=\"top full flex\">\r\n        <img src=\"../../assets/IMG/Logo/Light (Lado).png\" alt=\"Logo do aplicativo: MedicaMe\">\r\n      </div>\r\n      \r\n      <div class=\"mid horizontal flex centerA\">\r\n        <h3 class=\"line\">Preencha os campos para criar sua conta!</h3>\r\n\r\n        <span class=\"line leftA\">E-mail</span>\r\n        <input [(ngModel)]=\"email\" type=\"email\" class=\"input\">\r\n\r\n        <span class=\"line leftA\">Senha</span>\r\n        <input [(ngModel)]=\"senha\" type=\"password\" class=\"input\">\r\n        \r\n        <p id=\"erroEntrar\" class=\"aviso invisivel\">{{erro}}</p>\r\n\r\n        <button (click)=\"entrar()\" class=\"important\">Entrar</button>\r\n        \r\n        <p>Não possui uma conta? <a (click)=\"cadastrar()\">Cadastre-se!</a></p>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</ion-content>\r\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\r\n  <div class=\"card full flex\">\r\n    <div class=\"content\">\r\n      <div class=\"top full flex\">\r\n        <img src=\"../../assets/IMG/Logo/Light (Lado).png\" alt=\"Logo do aplicativo: MedicaMe\">\r\n      </div>\r\n      \r\n      <div class=\"mid horizontal flex centerA\">\r\n        <h3 class=\"line\">Preencha os campos para criar sua conta!</h3>\r\n\r\n        <span class=\"line leftA\">E-mail</span>\r\n        <input [(ngModel)]=\"email\" type=\"email\" class=\"input\">\r\n\r\n        <span class=\"line leftA\">Senha</span>\r\n        <input [(ngModel)]=\"senha\" type=\"password\" class=\"input\">\r\n        \r\n        <p id=\"erroEntrar\" class=\"aviso invisivel\">{{erro}}</p>\r\n\r\n        <button (click)=\"entrar()\" class=\"important full flex\">\r\n          <div></div>\r\n          <span>Entrar</span>\r\n        </button>\r\n        \r\n        <p>Não possui uma conta? <a (click)=\"cadastrar()\">Cadastre-se!</a></p>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</ion-content>\r\n");
 
 /***/ })
 

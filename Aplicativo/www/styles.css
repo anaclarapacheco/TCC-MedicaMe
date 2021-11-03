@@ -1370,6 +1370,18 @@ button {
   box-sizing: border-box;
   box-shadow: 0px 4px 4px rgba(122, 122, 165, 0.5);
 }
+button div {
+  width: 0;
+  height: 45px;
+  position: absolute;
+  border-radius: 50px;
+  box-sizing: border-box;
+  transition: width 0.5s;
+  z-index: 9;
+}
+button svg, button span {
+  z-index: 10;
+}
 .button {
   width: calc(100vw / 5);
   height: calc(100vw / 5);
@@ -1378,11 +1390,28 @@ button {
 }
 .important {
   background-color: var(--yellow);
-  color: var(--dark-space-cadet);
+}
+.important div {
+  background-color: #f5b609;
+}
+.important span {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  color: var(--dark-space-cadet) !important;
 }
 .normal {
   background-color: var(--state-blue);
-  color: var(--white);
+}
+.normal div {
+  background-color: #5951ce;
+}
+.normal span {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  color: var(--white) !important;
+}
+.important:active div, .normal:active div {
+  width: 100%;
 }
 .danger {
   background-color: var(--red);
@@ -1431,12 +1460,10 @@ button {
 /*#endregion*/
 /*#region Fundo*/
 #back {
-  background-color: var(--space-cadet);
   height: 100vh;
   position: fixed;
   top: 0px;
   left: 0px;
-  opacity: 0.5;
   z-index: 100;
 }
 /*#endregion*/
@@ -1499,7 +1526,11 @@ button {
   border-color: var(--white);
   border-style: solid;
 }
+.depMeio {
+  margin-top: calc((100vw / 5) + 50px) !important;
+}
 .menu {
+  background-color: transparent;
   width: 100vw;
   height: 110vh;
   position: fixed;
@@ -1516,7 +1547,7 @@ button {
   height: 100vh;
   position: absolute;
   top: 0px;
-  right: 0px;
+  right: -70vw;
 }
 .menu .content .top {
   background-color: var(--dark-space-cadet);
@@ -1554,6 +1585,22 @@ button {
 .menu .content .mid .button svg {
   fill: var(--state-blue);
   width: 60%;
+}
+.InFundo {
+  background-color: rgba(52, 47, 76, 0.5);
+  transition: background-color 0.5s;
+}
+.OutFundo {
+  background-color: transparent;
+  transition: background-color 0.3s;
+}
+.InMenu {
+  right: 0px !important;
+  transition: right 0.5s;
+}
+.OutMenu {
+  right: -70vw;
+  transition: right 0.3s;
 }
 /*#endregion*/
 /*#region Tabs*/

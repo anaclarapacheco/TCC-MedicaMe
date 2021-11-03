@@ -105,13 +105,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let TutorialPage = class TutorialPage {
-    //#region Constructor
     constructor(nav, servidor) {
         this.nav = nav;
         this.servidor = servidor;
-        this.servidor.verificar();
     }
-    //#endregion
     //#region Próximo item do carrossel
     proximo() {
         //
@@ -123,12 +120,16 @@ let TutorialPage = class TutorialPage {
             case 'rHome':
                 this.nav.rHome();
                 break;
+            case 'rLembretes':
+                this.nav.rLembretes();
+                break;
         }
         localStorage.removeItem('RTutorial');
     }
     //#endregion
     //#region OnInit
     ngOnInit() {
+        //Verificar Login
         this.servidor.verificar();
     }
 };
@@ -174,7 +175,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\r\n  <div class=\"content centerA\">\r\n    <h3>Sendo um responsável</h3>\r\n\r\n    <!--\r\n      URL das imagens (../../../assets/IMG/Tutoriais/Responsável/) \r\n      As imagens estão renomeados de 01 até 09 e o texto que vai em cada imagem tá no Discord\r\n\r\n      Faz o carrossel aqui em baixo\r\n    -->\r\n\r\n    <img src=\"\" alt=\"\">\r\n    <p></p>\r\n\r\n    <!-- Faz o carrossel aqui em cima -->\r\n  </div>\r\n\r\n  <div class=\"bot vertical flex\">    \r\n    <button (click)=\"proximo()\" class=\"important full flex\">\r\n      Próximo\r\n      <svg viewBox=\"0 0 24 24\">\r\n        <path d=\"M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z\"/>\r\n      </svg>\r\n    </button>\r\n    <button (click)=\"pular()\" class=\"normal\">Pular</button>\r\n  </div>\r\n</ion-content>\r\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\r\n  <div class=\"content centerA\">\r\n    <h3>Sendo um responsável</h3>\r\n\r\n    <!--\r\n      URL das imagens (../../../assets/IMG/Tutoriais/Responsável/) \r\n      As imagens estão renomeados de 01 até 09 e o texto que vai em cada imagem tá no Discord\r\n\r\n      Faz o carrossel aqui em baixo\r\n    -->\r\n\r\n    <img src=\"\" alt=\"\">\r\n    <p></p>\r\n\r\n    <!-- Faz o carrossel aqui em cima -->\r\n  </div>\r\n\r\n  <div class=\"bot vertical flex\">    \r\n    <button (click)=\"proximo()\" class=\"important full flex\">\r\n      <div></div>\r\n\r\n      <span>Próximo</span>\r\n\r\n      <svg viewBox=\"0 0 24 24\">\r\n        <path d=\"M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z\"/>\r\n      </svg>\r\n    </button>\r\n\r\n    <button (click)=\"pular()\" class=\"normal full flex\">\r\n      <div></div>\r\n      <span>Pular</span>\r\n    </button>\r\n  </div>\r\n</ion-content>\r\n");
 
 /***/ })
 

@@ -491,6 +491,9 @@ let NavegationService = class NavegationService {
     rLembretes() {
         this.navCtrl.navigateForward('R/lembretes');
     }
+    rNovoLembrete() {
+        this.navCtrl.navigateForward('R/novo-lembrete');
+    }
     rEstoque() {
         this.navCtrl.navigateForward('R/estoque');
     }
@@ -557,6 +560,8 @@ let ServidorService = class ServidorService {
     //#region Limpar login
     limpar() {
         localStorage.removeItem('email');
+        localStorage.removeItem('emailDependente');
+        localStorage.removeItem('nomeDependente');
         this.nav.firstView();
     }
     //#endregion

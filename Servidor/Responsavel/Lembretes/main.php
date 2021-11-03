@@ -20,33 +20,34 @@
     $Email = $_GET['phpEmail'];
 
     $Erro = true;
-    $Nome = null;
-    $Descricao = null;
-    $QuantidadeDosagem = null;
-    $Date = null;
+    $cont = 1;
     /*#endregion*/
 
     /*#region Banco de Dados*/
     if($Email != null)
     {
-        $SQL = $PDO->query("SELECT `m.nm_medicamento`, `a.ds_recomendacao_medicamento`, `a.qt_dosagem_medicamento`, IFNULL(CONCAT('Até o dia ', DATE(`a.dt_final_agendamento`)), 'Sem data prevista') AS `dt_final_agendamento` FROM `agendamento a` JOIN `medicamento m` ON (`a.cd_medicamento` = `m.cd_medicamento)` WHERE `a.nm_email_usuario` = '$Email'");
+        $SQL = $PDO->query("SELECT m.`nm_medicamento`, a.`ds_recomendacao_medicamento`, a.`cd_agendamento`, m.`cd_forma_farmaceutica`, IFNULL(DATE(a.`dt_final_agendamento`), 'Sem data prevista') AS `dt_final_agendamento` FROM `agendamento` a JOIN `medicamento` m ON (a.`cd_medicamento` = m.`cd_medicamento`) WHERE `nm_email_usuario` = '$Email'");
 
         while($dados = $SQL->fetch())
         {
             $Erro = false;
 
-            $Resposta[] = array(
-                'Erro' => false,
-                'Nome' => $Nome,
-                'Descrição' => $Descricao,
-                'Quantidade de Dosagem' => $QuantidadeDosagem,
-                'Data Final' => $Date
+            $Resposta[$cont++] = array(
+                'Nome' => $dados['nm_medicamento'],
+                'Descrição' => $dados['ds_recomendacao_medicamento'],
+                'Agendamento' => $dados['cd_agendamento'],
+                'Forma Farmaceutica' => $dados['cd_forma_farmaceutica'],
+                'Data Final' => $dados['dt_final_agendamento']
             );
         }
     }
     /*#endregion*/
 
     /*#region Envio*/
+    $Resposta[0] = array(
+        'Erro' => $Erro
+    );
+
     echo json_encode($Resposta);
     /*#endregion*/
 ?>

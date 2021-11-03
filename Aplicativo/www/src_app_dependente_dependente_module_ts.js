@@ -105,14 +105,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let DependentePage = class DependentePage {
-    //#region Constructor
     constructor(nav, servidor) {
         this.nav = nav;
         this.servidor = servidor;
-        //Verificar Login
-        this.servidor.verificar();
     }
-    //#endregion
     //#region Navegação
     nao() {
         localStorage.setItem('RTutorial', 'rHome');
@@ -129,6 +125,7 @@ let DependentePage = class DependentePage {
     //#endregion
     //#region Oninit
     ngOnInit() {
+        //Verificar Login
         this.servidor.verificar();
     }
 };
@@ -174,7 +171,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\r\n  <div class=\"card\">\r\n    <div class=\"top\">\r\n      <div class=\"degrade\"></div>\r\n\r\n      <div class=\"trianguloUp leftP\"></div>\r\n      <div class=\"trianguloUp rightP\"></div>\r\n    </div>\r\n    \r\n    <div class=\"mid full flex\">\r\n      <h3>Você é um dependente?</h3>\r\n\r\n      <button (click)=\"nao()\" class=\"important\">Não</button>\r\n      <button (click)=\"sim()\" class=\"normal\">Sim</button>\r\n\r\n      <div class=\"line leftA\">\r\n        <p>O que é um <a (click)=\"dependente()\">dependente?</a></p>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"bot full flex\">\r\n      <img src=\"../../assets/IMG/Logo/Light (Cima).png\" alt=\"Logo do aplicativo: MedicaMe\">\r\n    </div>\r\n  </div>\r\n</ion-content>\r\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\r\n  <div class=\"card\">\r\n    <div class=\"top\">\r\n      <div class=\"degrade\"></div>\r\n\r\n      <div class=\"trianguloUp leftP\"></div>\r\n      <div class=\"trianguloUp rightP\"></div>\r\n    </div>\r\n    \r\n    <div class=\"mid full flex\">\r\n      <h3>Você é um dependente?</h3>\r\n\r\n      <button (click)=\"nao()\" class=\"important full flex\">\r\n        <div></div>\r\n        <span>Não</span>\r\n      </button>\r\n\r\n      <button (click)=\"sim()\" class=\"normal full flex\">\r\n        <div></div>\r\n        <span>Sim</span>\r\n      </button>\r\n\r\n      <div class=\"line leftA\">\r\n        <p>O que é um <a (click)=\"dependente()\">dependente?</a></p>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"bot full flex\">\r\n      <img src=\"../../assets/IMG/Logo/Light (Cima).png\" alt=\"Logo do aplicativo: MedicaMe\">\r\n    </div>\r\n  </div>\r\n</ion-content>\r\n");
 
 /***/ })
 

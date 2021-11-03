@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NavegationService } from 'src/app/services/navegation.service';
 import { ServidorService } from 'src/app/services/servidor.service';
 
@@ -6,14 +6,17 @@ import { ServidorService } from 'src/app/services/servidor.service';
   selector: 'app-lembretes',
   templateUrl: './lembretes.page.html',
   styleUrls: ['./lembretes.page.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
+
 export class LembretesPage implements OnInit {
 
   constructor(private nav: NavegationService, private servidor: ServidorService){}
 
   //#region Valores
   public nomeDependente: any;
-  public email: any
+  public email: any;
+  public conteudo: any;
   //#endregion
 
   //#region Abrir e Fechar o Menu
@@ -57,6 +60,14 @@ export class LembretesPage implements OnInit {
     {
       menu.classList.add('invisivel');
     }, 1000);
+  }
+  //#endregion
+
+  //#region Editar
+  editar(codigo: any)
+  {
+    localStorage.setItem('agendamento', codigo);
+    this.novoLembrete();
   }
   //#endregion
 
@@ -144,11 +155,42 @@ export class LembretesPage implements OnInit {
     this.servidor.enviar('Responsavel/Lembretes/main.php', dados).subscribe(res => {
       if(res[0]['Erro'] == false)
       {
-        console.log('Tem');
+        document.getElementById('lembretes').innerHTML = '';
+        
+        for (let i = 1; i < Object.keys(res).length; i++)
+        {
+          //Variaveis
+          let formaFarma = res[i]['Forma Farmaceutica'];
+          let nome = res[i]['Nome'];
+          let descricao = res[i]['Descrição'];
+          let dataFinal = 'Até o dia ' + String(res[i]['Data Final']).substring(8, 10) + '/' + String(res[i]['Data Final']).substring(5, 7) + '/' + String(res[i]['Data Final']).substring(0, 4);
+          let codigo = res[i]['Agendamento'];
+
+          //Colocando na tela
+          document.getElementById('lembretes').innerHTML += `
+            <div class="lembretes full flex">
+            <img src="../../../assets/IMG/Icon/` + formaFarma + `.png">
+            <div class="text leftA">
+            <h3>` + nome + `</h3>
+            <p class="descricao">` + descricao + `</p>
+            <p>` + dataFinal + `</p>
+            </div>
+            <button class="normal full flex" (click)="editar(` + codigo + `)"> Editar
+            <svg viewBox="0 0 24 24">
+            <path d="M19.769 9.923l-12.642 12.639-7.127 1.438 1.438-7.128 12.641-12.64 5.69 5.691zm1.414-1.414l2.817-2.82-5.691-5.689-2.816 2.817 5.69 5.692z"/>
+            </svg>
+            </button>
+            </div>
+          `;
+        }
       }
       else
       {
-        console.log('Não Tem');
+        document.getElementById('lembretes').innerHTML = `
+          <div class="semMedicamento centerA">
+          <p>Você ainda não agendou lembretes para os seus medicamentos, clique no botão: "Novo Lembrete", para criar o primeiro!</p>
+          </div>
+        `;
       }
     });
   }
