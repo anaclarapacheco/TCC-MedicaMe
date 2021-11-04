@@ -64,7 +64,7 @@ export class HomePage implements OnInit {
     setTimeout(function()
     {
       menu.classList.add('invisivel');
-    }, 1000);
+    }, 301);
   }
   //#endregion
 
@@ -118,11 +118,13 @@ export class HomePage implements OnInit {
   }
   //#endregion
 
-  //#region OnInit
-  ngOnInit()
+  //#region ViewWillEnter
+  ionViewWillEnter()
   {
     //Verificar Login
     this.servidor.verificar();
   }
   //#endregion
+
+  ngOnInit(){}
 }

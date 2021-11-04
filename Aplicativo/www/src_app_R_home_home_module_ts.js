@@ -181,11 +181,13 @@ let HomePage = class HomePage {
         this.nav.rRelatorio();
     }
     //#endregion
-    //#region OnInit
-    ngOnInit() {
+    //#region ViewWillEnter
+    ionViewWillEnter() {
         //Verificar Login
         this.servidor.verificar();
     }
+    //#endregion
+    ngOnInit() { }
 };
 HomePage.ctorParameters = () => [
     { type: src_app_services_navegation_service__WEBPACK_IMPORTED_MODULE_2__.NavegationService },

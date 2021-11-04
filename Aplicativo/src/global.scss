@@ -162,26 +162,6 @@ button
     border-radius: 50px;
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgb(122, 122, 165, 0.5);
-
-    div
-    {
-        width: 0;
-        height: 45px;
-
-        position: absolute;
-
-        border-radius: 50px;
-        box-sizing: border-box;
-
-        transition: width 0.5s;
-
-        z-index: 9;
-    }
-
-    svg, span
-    {
-        z-index: 10;
-    }
 }
 
 .button
@@ -198,11 +178,6 @@ button
 {
     background-color: var(--yellow);
     color: var(--dark-space-cadet) !important;
-    
-    div
-    {
-        background-color: #f5b609;
-    }
 
     span
     {
@@ -217,22 +192,12 @@ button
     background-color: var(--state-blue);    
     color: var(--white) !important;
 
-    div
-    {
-        background-color: #5951ce;
-    }
-
     span
     {
         margin-top: 0 !important;
         margin-bottom: 0 !important;
         color: var(--white) !important;
     }
-}
-
-.important:active div, .normal:active div
-{
-    width: 100%;
 }
 
 .danger
@@ -250,6 +215,8 @@ button
     height: 40px;
 
     margin: 0;
+
+    padding-left: 6px;
 
     border: none;
     border-radius: 4px;

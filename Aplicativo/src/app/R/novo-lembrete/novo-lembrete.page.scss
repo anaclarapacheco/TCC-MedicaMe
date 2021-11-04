@@ -34,8 +34,7 @@
 .mid
 {
     width: 80vw;
-    height: auto;
-    overflow: hidden;
+    overflow: scroll;
 
     .bloco
     {
@@ -81,16 +80,21 @@
         resize: none;
     }
 
-    .important svg
+    .important
     {
-        height: 20px;
-
-        position: absolute;
-        right: calc(10vw + 10px);
-
-        border-radius: 10px;
+        position: inherit;
         
-        fill: var(--dark-space-cadet);
+        svg
+        {
+            height: 20px;
+
+            position: absolute;
+            right: calc(10vw + 10px);
+
+            border-radius: 10px;
+            
+            fill: var(--dark-space-cadet);
+        }
     }
 
     .normal svg
@@ -108,3 +112,15 @@
     }
 }
 /*#endregion*/
+
+//#region Um e Dois
+#um
+{
+    height: 74vh;
+}
+
+#dois
+{
+    height: 80vh;
+}
+//#endregion

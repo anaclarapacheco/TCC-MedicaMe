@@ -10,7 +10,7 @@
   color: var(--state-blue);
 }
 .data .hydrated {
-  --padding-start: 2px !important;
+  --padding-start: 0px !important;
 }
 /*#endregion*/
 /*#region Ionic*/
@@ -1370,18 +1370,6 @@ button {
   box-sizing: border-box;
   box-shadow: 0px 4px 4px rgba(122, 122, 165, 0.5);
 }
-button div {
-  width: 0;
-  height: 45px;
-  position: absolute;
-  border-radius: 50px;
-  box-sizing: border-box;
-  transition: width 0.5s;
-  z-index: 9;
-}
-button svg, button span {
-  z-index: 10;
-}
 .button {
   width: calc(100vw / 5);
   height: calc(100vw / 5);
@@ -1390,9 +1378,7 @@ button svg, button span {
 }
 .important {
   background-color: var(--yellow);
-}
-.important div {
-  background-color: #f5b609;
+  color: var(--dark-space-cadet) !important;
 }
 .important span {
   margin-top: 0 !important;
@@ -1401,21 +1387,16 @@ button svg, button span {
 }
 .normal {
   background-color: var(--state-blue);
-}
-.normal div {
-  background-color: #5951ce;
+  color: var(--white) !important;
 }
 .normal span {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
   color: var(--white) !important;
 }
-.important:active div, .normal:active div {
-  width: 100%;
-}
 .danger {
   background-color: var(--red);
-  color: var(--white);
+  color: var(--white) !important;
 }
 /*#endregion*/
 /*#region Input*/
@@ -1424,6 +1405,7 @@ button svg, button span {
   width: 100%;
   height: 40px;
   margin: 0;
+  padding-left: 6px;
   border: none;
   border-radius: 4px;
   box-sizing: border-box;

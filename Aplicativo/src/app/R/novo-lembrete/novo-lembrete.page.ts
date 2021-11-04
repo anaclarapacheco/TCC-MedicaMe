@@ -9,12 +9,12 @@ import { ServidorService } from 'src/app/services/servidor.service';
 })
 export class NovoLembretePage implements OnInit {
 
-  titulo: any = '';
-
+  //#region Constructor
   constructor(private nav: NavegationService, private servidor: ServidorService)
   {
     this.titulo = 'Informações do medicamento';
   }
+  //#endregion
 
   //#region Valores
   public nomeMedicamento: any;
@@ -24,40 +24,35 @@ export class NovoLembretePage implements OnInit {
 
   public nomeDependente: any;
   public email: any;
+
+  titulo: any;
   //#endregion  
 
   //#region Navegação
   proximo()
   {
-    //Trocar para o dois
-    var conteudo = document.getElementById('um');
-    conteudo.classList.add('invisivel');
-
+    document.getElementById('um').classList.add('invisivel');
+    document.getElementById('dois').classList.remove('invisivel');
     this.titulo = 'Período';
-    conteudo = document.getElementById('dois');
-    conteudo.classList.remove('invisivel');
   }
 
   voltar()
   {
-    //Trocar para o um
-    var conteudo = document.getElementById('dois');
-    conteudo.classList.add('invisivel');
-
+    document.getElementById('dois').classList.add('invisivel');
+    document.getElementById('um').classList.remove('invisivel');
     this.titulo = 'Informações do medicamento';
-    conteudo = document.getElementById('um');
-    conteudo.classList.remove('invisivel');
   }
 
   cancelar()
   {
     //Voltar
-    this.nav.rLembretes;
+    localStorage.removeItem('agendamento');
+    this.nav.rLembretes();
   }
   //#endregion
 
-  //#region OnInit
-  ngOnInit()
+  //#region ViewWillEnter
+  ionViewWillEnter()
   {
     //Verificar Login
     this.servidor.verificar();
@@ -72,6 +67,17 @@ export class NovoLembretePage implements OnInit {
     {
       this.email = localStorage.getItem('email');
     }
+
+    //Editar
+    if(localStorage.getItem('agendamento') != null && localStorage.getItem('agendamento') != '')
+    {
+      this.nomeMedicamento = '';
+      this.formaFarma = '';
+      this.dosagem = '';
+      this.descricao = '';
+    }
   }
   //#endregion
+
+  ngOnInit(){}
 }

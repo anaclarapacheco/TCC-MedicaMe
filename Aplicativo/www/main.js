@@ -95,7 +95,7 @@ const routes = [
     },
     {
         path: 'R/novo-lembrete',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_R_novo-lembrete_novo-lembrete_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./R/novo-lembrete/novo-lembrete.module */ 5283)).then(m => m.NovoLembretePageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_R_novo-lembrete_novo-lembrete_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./R/novo-lembrete/novo-lembrete.module */ 5283)).then(m => m.NovoLembretePageModule)
     },
     {
         path: 'R/relatorio',

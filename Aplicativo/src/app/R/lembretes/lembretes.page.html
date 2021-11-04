@@ -71,18 +71,42 @@
       <h3>Seus lembretes</h3>
     </div>
 
-    <div *ngFor="let item of " id="lembretes" class="content">
-      
+    <div class="content">
+      <div *ngIf="temLista">
+        <div *ngFor="let l of lista"  class="lembretes full flex">
+          <img src="../../../assets/IMG/Icon/{{l.FormaFarmaceutica}}.png">
+
+          <div class="text leftA">
+            <h3>{{l.Nome}}</h3>
+            <p class="descricao">{{l.Descricao}}</p>
+            <p>{{ 'Até o dia ' + l.DataFinal.substring(8, 10) + '/' + l.DataFinal.substring(5, 7) + '/' + l.DataFinal.substring(0, 4) }}</p>
+          </div>
+
+          <button class="normal full flex" (click)="editar(l.Agendamento)"> Editar
+            <svg viewBox="0 0 24 24">
+              <path d="M19.769 9.923l-12.642 12.639-7.127 1.438 1.438-7.128 12.641-12.64 5.69 5.691zm1.414-1.414l2.817-2.82-5.691-5.689-2.816 2.817 5.69 5.692z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div *ngIf="temListaNao">
+        <div class="semMedicamento full flex">
+          <svg viewBox="0 0 24 24">
+          <path d="M12 5.177l8.631 15.823h-17.262l8.631-15.823zm0-4.177l-12 22h24l-12-22zm-1 9h2v6h-2v-6zm1 9.75c-.689 0-1.25-.56-1.25-1.25s.561-1.25 1.25-1.25 1.25.56 1.25 1.25-.561 1.25-1.25 1.25z"/>
+          </svg>
+          
+          <p>Você ainda não agendou lembretes para os seus medicamentos, clique no botão: "Novo Lembrete", para criar o primeiro!</p>
+        </div>
+      </div>
     </div>
   </div>
 
   <button class="important full flex" (click)="novoLembrete()">
-    <div></div>
-
     <svg viewBox="0 0 24 24">
       <path d="M11 11v-11h1v11h11v1h-11v11h-1v-11h-11v-1h11z"/>
     </svg>
-
+    
     <span>Novo lembrete</span>
   </button>
 

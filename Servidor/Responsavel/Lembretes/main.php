@@ -20,7 +20,7 @@
     $Email = $_GET['phpEmail'];
 
     $Erro = true;
-    $cont = 1;
+    $foi = false;
     /*#endregion*/
 
     /*#region Banco de Dados*/
@@ -30,23 +30,26 @@
 
         while($dados = $SQL->fetch())
         {
-            $Erro = false;
+            $foi = true;
 
-            $Resposta[$cont++] = array(
+            $Resposta[] = array(
                 'Nome' => $dados['nm_medicamento'],
-                'Descrição' => $dados['ds_recomendacao_medicamento'],
+                'Descricao' => $dados['ds_recomendacao_medicamento'],
                 'Agendamento' => $dados['cd_agendamento'],
-                'Forma Farmaceutica' => $dados['cd_forma_farmaceutica'],
-                'Data Final' => $dados['dt_final_agendamento']
+                'FormaFarmaceutica' => $dados['cd_forma_farmaceutica'],
+                'DataFinal' => $dados['dt_final_agendamento']
             );
         }
     }
     /*#endregion*/
 
     /*#region Envio*/
-    $Resposta[0] = array(
-        'Erro' => $Erro
-    );
+    if(!$foi)
+    {
+        $Resposta[] = array(
+            'Erro' => $Erro
+        );
+    }
 
     echo json_encode($Resposta);
     /*#endregion*/

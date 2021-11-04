@@ -72,6 +72,11 @@
     width: 80vw;
     overflow: hidden;
 
+    .data
+    {
+        padding-left: 0px !important;
+    }
+
     span, p, button
     {
         margin-top: 30px;
