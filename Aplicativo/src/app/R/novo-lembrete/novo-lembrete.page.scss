@@ -88,8 +88,8 @@
         {
             height: 20px;
 
-            position: absolute;
-            right: calc(10vw + 10px);
+            position: relative;
+            right: -35%;
 
             border-radius: 10px;
             
@@ -110,6 +110,11 @@
         
         fill: var(--white);
     }
+
+    .aviso
+    {
+        margin-top: 20px;
+    }
 }
 /*#endregion*/
 
@@ -122,5 +127,10 @@
 #dois
 {
     height: 80vh;
+
+    .data
+    {
+        padding-left: 0px !important;
+    }
 }
 //#endregion

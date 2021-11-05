@@ -7,19 +7,22 @@
       </div>
       
       <div class="mid full flex">
-        <div id="um" class="full flex">
+        <div id="um" class="full flex invisivel">
           <span class="line leftA">Nome do medicamento</span>
-          <input [(ngModel)]="nomdeMedicamento" type="text" class="input">
+          <input [(ngModel)]="nomeMedicamento" type="text" class="input">
   
           <span class="line leftA">Forma farmacêutica</span>
-          <input [(ngModel)]="formaFarma" type="text" class="input">
+          <select [(ngModel)]="formaFarma" class="input">
+            <option value="vazio"></option>
+            <option *ngFor="let l of listaFarma" [ngValue]="l.Codigo">{{l.Nome}}</option>
+          </select> 
   
           <span class="line leftA">Dosagem</span>
           <input [(ngModel)]="dosagem" type="number" class="input">
   
           <h3 class="line centerA">Descrição</h3>
           <textarea [(ngModel)]="descricao" class="input"></textarea>
-          <p class="aviso invisivel">Preencha todos os campos</p>
+          <p id="avisoUm" class="aviso invisivel">{{txtAvisoUm}}</p>
 
           <button (click)="proximo()" class="important full flex">
             Próximo
@@ -30,15 +33,23 @@
           <button (click)="cancelar()" class="normal">Cancelar</button>
         </div>
   
-        <div id="dois" class="full flex invisivel">
+        <div id="dois" class="full flex">
           <div class="bloco flex">
             <span class="line leftA">Ínicio</span>
-            <input type="time" class="input">
+            <div class="data input">
+              <ion-item class="input">
+                <ion-datetime [(ngModel)]="dataInicial" displayFormat="DD/MM/YYYY" min="{{minimoIni}}" max="{{maximoIni}}"></ion-datetime>
+              </ion-item>
+            </div>
           </div>
 
           <div class="bloco flex">
             <span class="line leftA">Final</span>
-            <input type="time" class="input">
+            <div class="data input">
+              <ion-item class="input">
+                <ion-datetime [(ngModel)]="dataFinal" displayFormat="DD/MM/YYYY"></ion-datetime>
+              </ion-item>
+            </div>
           </div>
 
           <span class="line leftA">Dias</span>
