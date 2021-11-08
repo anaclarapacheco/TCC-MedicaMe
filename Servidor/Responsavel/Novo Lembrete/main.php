@@ -50,11 +50,11 @@
         if(!$foi)
         {
             $SQL = $PDO->query("INSERT INTO `medicamento` VALUES ('$MaxMedicamento', '$NomeMedicamento', '$FormaFarmaceutica')");
-            $SQL = $PDO->query("INSERT INTO `agendamento` VALUES ('$Email', '$MaxMedicamento', '$MaxAgenda', null, null, null, '$Descricao', '$Dosagem', null, null, null, 1)");
+            $SQL = $PDO->query("INSERT INTO `agendamento` VALUES ('$Email', '$MaxMedicamento', '$MaxAgenda', null, null, null, '$Descricao', '$Dosagem', null, null, null, null)");
         }
         else
         {
-            $SQL = $PDO->query("INSERT INTO `agendamento` VALUES ('$Email', '$CodigoMedicamento', '$MaxAgenda', null, null, null, '$Descricao', '$Dosagem', null, null, null, 1)");
+            $SQL = $PDO->query("INSERT INTO `agendamento` VALUES ('$Email', '$CodigoMedicamento', '$MaxAgenda', null, null, null, '$Descricao', '$Dosagem', null, null, null, null)");
         }
 
         $Erro = false;

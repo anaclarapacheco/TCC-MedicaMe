@@ -7,7 +7,7 @@
       </div>
       
       <div class="mid full flex">
-        <div id="um" class="full flex invisivel">
+        <div id="um" class="full flex">
           <span class="line leftA">Nome do medicamento</span>
           <input [(ngModel)]="nomeMedicamento" type="text" class="input">
   
@@ -33,12 +33,12 @@
           <button (click)="cancelar()" class="normal">Cancelar</button>
         </div>
   
-        <div id="dois" class="full flex">
+        <div id="dois" class="full flex invisivel">
           <div class="bloco flex">
             <span class="line leftA">Ínicio</span>
             <div class="data input">
               <ion-item class="input">
-                <ion-datetime [(ngModel)]="dataInicial" displayFormat="DD/MM/YYYY" min="{{minimoIni}}" max="{{maximoIni}}"></ion-datetime>
+                <ion-datetime [(ngModel)]="dataInicial" displayFormat="DD/MM/YYYY" min="{{minimo}}" max="{{maximo}}"></ion-datetime>
               </ion-item>
             </div>
           </div>
@@ -47,23 +47,23 @@
             <span class="line leftA">Final</span>
             <div class="data input">
               <ion-item class="input">
-                <ion-datetime [(ngModel)]="dataFinal" displayFormat="DD/MM/YYYY"></ion-datetime>
+                <ion-datetime [(ngModel)]="dataFinal" displayFormat="DD/MM/YYYY" min="{{minimo}}" max="{{maximo}}"></ion-datetime>
               </ion-item>
             </div>
           </div>
 
           <span class="line leftA">Dias</span>
-          <input type="number" class="input">
+          <input [(ngModel)]="dias" type="number" class="input">
 
           <span class="line leftA">Horas</span>
-          <input type="time" class="input">
+          <input [(ngModel)]="horas" type="number" class="input">
   
           <h3 class="line centerA no">Estoque</h3>
           <span class="line leftA">Quantidade atual</span>
-          <input type="number" class="input">
+          <input [(ngModel)]="quantidadeAtual" type="number" class="input">
 
           <span class="line leftA">Quantidade miníma (notificação)</span>
-          <input type="number" class="input">
+          <input [(ngModel)]="quantidadeMinima" type="number" class="input">
 
           <button (click)="criar()" class="important">Criar Lembrete</button>
 

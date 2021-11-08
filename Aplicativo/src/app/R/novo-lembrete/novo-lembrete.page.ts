@@ -18,8 +18,8 @@ export class NovoLembretePage implements OnInit {
     //Adicionar valor máximo e minimo no ion-datetime
     let nowData = new Date();
 
-    // this.minimoIni = nowData.getFullYear() + '-' + String(nowData.getMonth() + 1).padStart(2, '0') + '-' + String(nowData.getDate()).padStart(2, '0');
-    // this.maximoIni = String(nowData.getFullYear() + 2) + '-12-31';
+    this.minimo = nowData.getFullYear() + '-' + String(nowData.getMonth() + 1).padStart(2, '0') + '-' + String(nowData.getDate()).padStart(2, '0');
+    this.maximo = String(nowData.getFullYear() + 1) + '-12-31';
 
     //Pegando as formas farmaceuticas
     this.servidor.enviar('Responsavel/Novo Lembrete/formaFarma.php', null).subscribe(res => {
@@ -38,8 +38,12 @@ export class NovoLembretePage implements OnInit {
   //Dois
   public dataInicial: any;
   public dataFinal: any;
-  public maximoIni: any;
-  public minimoIni: any;
+  public maximo: any;
+  public minimo: any;
+  public dias: any;
+  public horas: any;
+  public quantidadeAtual: any;
+  public quantidadeMinima: any;
 
   public nomeDependente: any;
   public email: any;

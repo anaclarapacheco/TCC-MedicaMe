@@ -26,7 +26,7 @@
     /*#region Banco de Dados*/
     if($Email != null)
     {
-        $SQL = $PDO->query("SELECT m.`nm_medicamento`, a.`ds_recomendacao_medicamento`, a.`cd_agendamento`, m.`cd_forma_farmaceutica`, IFNULL(DATE(a.`dt_final_agendamento`), 'Sem data prevista') AS `dt_final_agendamento` FROM `agendamento` a JOIN `medicamento` m ON (a.`cd_medicamento` = m.`cd_medicamento`) WHERE `nm_email_usuario` = '$Email'");
+        $SQL = $PDO->query("SELECT m.`nm_medicamento`, a.`ds_recomendacao_medicamento`, a.`cd_agendamento`, m.`cd_forma_farmaceutica`, IFNULL(DATE(a.`dt_final_agendamento`), 'Sem data prevista') AS `dt_final_agendamento` FROM `agendamento` a JOIN `medicamento` m ON (a.`cd_medicamento` = m.`cd_medicamento`) WHERE `nm_email_usuario` = '$Email' AND `cd_situacao_agendamento` = 1");
 
         while($dados = $SQL->fetch())
         {
