@@ -74,6 +74,38 @@ export class LembretesPage implements OnInit {
   }
   //#endregion
 
+  //#region Remover Lembrete
+  removerMedicamento(codigo: any)
+  {
+    let dados = 'phpEmail=' + this.email + '&phpCodigo=' + codigo;
+
+    this.servidor.enviar('Responsavel/Lembretes/remover.php', dados).subscribe(res => {
+      this.listalembretes();
+    });
+  }
+  //#endregion
+
+  //#region Puxar Lembretes
+  listalembretes()
+  {
+    let dados = 'phpEmail=' + this.email;
+
+    this.servidor.enviar('Responsavel/Lembretes/main.php', dados).subscribe(res => {
+      if(res[0]['Erro'] == true)
+      {
+        this.temLista = false;
+        this.temListaNao = true;
+      }
+      else
+      {
+        this.lista = res;
+        this.temLista = true;
+        this.temListaNao = false;
+      }
+    });
+  }
+  //#endregion
+
   //#region Navegação
   novoLembrete()
   {
@@ -153,21 +185,7 @@ export class LembretesPage implements OnInit {
     }
 
     //Puxar lista de lembretes
-    let dados = 'phpEmail=' + this.email;
-
-    this.servidor.enviar('Responsavel/Lembretes/main.php', dados).subscribe(res => {
-      if(res[0]['Erro'] == true)
-      {
-        this.temLista = false;
-        this.temListaNao = true;
-      }
-      else
-      {
-        this.lista = res;
-        this.temLista = true;
-        this.temListaNao = false;
-      }
-    });
+    this.listalembretes();
   }
   //#endregion
 

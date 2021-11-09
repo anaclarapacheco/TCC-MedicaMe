@@ -52,7 +52,7 @@
             </div>
           </div>
 
-          <span class="line leftA">Dias</span>
+          <span class="line leftA">Quantidade de Dias</span>
           <input [(ngModel)]="dias" type="number" class="input">
 
           <span class="line leftA">Horas</span>
@@ -62,8 +62,10 @@
           <span class="line leftA">Quantidade atual</span>
           <input [(ngModel)]="quantidadeAtual" type="number" class="input">
 
-          <span class="line leftA">Quantidade miníma (notificação)</span>
+          <span class="line leftA">Quantidade mínima (notificação)</span>
           <input [(ngModel)]="quantidadeMinima" type="number" class="input">
+
+          <p id="avisoDois" class="aviso invisivel">{{txtAvisoDois}}</p>
 
           <button (click)="criar()" class="important">Criar Lembrete</button>
 

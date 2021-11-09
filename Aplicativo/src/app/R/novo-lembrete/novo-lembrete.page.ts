@@ -29,6 +29,10 @@ export class NovoLembretePage implements OnInit {
   //#endregion
 
   //#region Valores
+  //Padrão
+  public nomeDependente: any;
+  public email: any;
+
   //UM
   public nomeMedicamento: any;
   public formaFarma: any;
@@ -38,23 +42,24 @@ export class NovoLembretePage implements OnInit {
   //Dois
   public dataInicial: any;
   public dataFinal: any;
-  public maximo: any;
-  public minimo: any;
   public dias: any;
   public horas: any;
   public quantidadeAtual: any;
   public quantidadeMinima: any;
 
-  public nomeDependente: any;
-  public email: any;
-
+  //Extra
   public titulo: any;
+
+  public maximo: any;
+  public minimo: any;
+
   public txtAvisoUm: any
+  public txtAvisoDois: any
 
   public listaFarma: any = [];
   //#endregion 
 
-  //#region Navegação
+  //#region Próximo
   proximo()
   {
     //Verificação dos valores
@@ -86,7 +91,56 @@ export class NovoLembretePage implements OnInit {
       });
     }
   }
+  //#endregion
+  
+  //#region Criar lembrete
+  criar()
+  {
+    //Verificação dos valores
+    document.getElementById('avisoDois').classList.add('invisivel');
 
+    if(this.dataFinal == null && this.dias != null)
+    {
+      this.dataFinal = 'null';
+    }
+    else if (this.dataFinal == null && this.dias == null)
+    {
+      this.dataFinal = 'null';
+      this.dias = 'null';
+    }
+    else if (this.dataFinal != null && this.dias == null)
+    {
+      this.dias = 'null';
+    }    
+
+    if(this.dataInicial == '' || this.dataFinal == '' || this.dias == '' || this.horas == '' || this.quantidadeAtual == '' || this.quantidadeMinima == '' || this.dataInicial == null || this.dataFinal == null || this.dias == null || this.horas == null || this.quantidadeAtual == null || this.quantidadeMinima == null)
+    { 
+      this.dataFinal = null;
+      this.dias = null;
+      this.txtAvisoDois = 'O preenchimento dos campos: Data Inicial, Horas, Quantidade Atual e Quantidade mínima, são obrigatórios!';
+      document.getElementById('avisoDois').classList.remove('invisivel');
+    }
+    else
+    {
+      //Enviando ao PHP
+      let dados = 'phpDataInicial=' + this.dataInicial.substring(0, 10) + '&phpDataFinal=' + this.dataFinal.substring(0, 10) + '&phpDias=' + this.dias + '&phpHoras=' + this.horas + '&phpQuantidadeAtual=' + this.quantidadeAtual + '&phpQuantidadeMinima=' + this.quantidadeMinima + '&phpEmail=' + this.email;
+
+      this.servidor.enviar('Responsavel/Novo Lembrete/main pt2.php', dados).subscribe(res => {
+        if(res[0]['Erro'] == false)
+        {
+          this.cancelar();
+        }
+        else
+        {
+          this.txtAvisoDois = 'Erro na hora de criar o lembrete!';
+          document.getElementById('avisoDois').classList.remove('invisivel');
+        }
+      });
+    }
+  }
+  //#endregion
+  
+  //#region Navegação
   voltar()
   {
     //Troca pro Um
@@ -97,16 +151,20 @@ export class NovoLembretePage implements OnInit {
 
   cancelar()
   {
-    //Voltar
-    localStorage.removeItem('agendamento');
+    let dados = 'phpEmail=' + this.email;
 
-    //Troca pro Um
-    document.getElementById('dois').classList.add('invisivel');
-    document.getElementById('um').classList.remove('invisivel');
-    this.titulo = 'Informações do medicamento';
+    this.servidor.enviar('Responsavel/Novo Lembrete/remover.php', dados).subscribe(res => {
+      //Limpar
+      localStorage.removeItem('agendamento');
 
-    //Volta
-    this.nav.rLembretes();
+      //Troca pro Um
+      document.getElementById('dois').classList.add('invisivel');
+      document.getElementById('um').classList.remove('invisivel');
+      this.titulo = 'Informações do medicamento';
+
+      //Volta
+      this.nav.rLembretes();
+    });
   }
   //#endregion
 
@@ -135,10 +193,17 @@ export class NovoLembretePage implements OnInit {
       this.servidor.enviar('Responsavel/Novo Lembrete/editar.php', dados).subscribe( res => {
         if(res[0]['Erro'] == false)
         {
+          //Botando na tela
           this.nomeMedicamento = res[1]['Nome'];
           this.formaFarma = res[1]['FormaFarmaceutica'];
-          this.dosagem = res[0]['Dosagem'];
-          this.descricao = res[0]['Descricao'];
+          this.dosagem = res[1]['Dosagem'];
+          this.descricao = res[1]['Descricao'];
+          this.dataInicial = res[1]['DataInicial'];
+          this.dataFinal = res[1]['DataFinal'];
+          this.dias = res[1]['Dias'];
+          this.horas = res[1]['Horas'];
+          this.quantidadeAtual = res[1]['QuantidadeAtual'];
+          this.quantidadeMinima = res[1]['QuantidadeMinima'];
         }
       });
     }

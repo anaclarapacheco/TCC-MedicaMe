@@ -28,7 +28,7 @@
     /*#endregion*/
 
     /*#region Banco de Dados*/
-    if($NomeMedicamento != null || $FormaFarmaceutica != null || $Descricao != null || $Dosagem != null || $Email != null)
+    if($NomeMedicamento != null && $FormaFarmaceutica != null && $Descricao != null && $Dosagem != null && $Email != null)
     {
         //Código Máximo dos Agendamentos
         $SQL = $PDO->query("SELECT IFNULL(MAX(`cd_agendamento`) + 1, 1) FROM `agendamento`");
