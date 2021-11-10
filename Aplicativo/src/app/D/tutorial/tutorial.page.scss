@@ -34,3 +34,30 @@
         color: var(--dark-space-cadet);
     }
 /*#endregion*/
+
+/*#region Parte desorganizada da Ana*/
+
+ion-slides{
+    margin: 20px;
+}
+
+ion-slide{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+  
+.slides-md
+{    
+    --bullet-background-active: #B2CAFF;
+    --bullet-background: #6063CC;
+}
+  
+.swiper-pagination-bullet 
+{
+    width: 11px;
+    height: 11px;
+    background: #6063CC;
+    opacity: 1 !important;
+}
+/*#endregion*/

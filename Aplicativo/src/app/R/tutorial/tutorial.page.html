@@ -5,14 +5,76 @@
     <!--
       URL das imagens (../../../assets/IMG/Tutoriais/Responsável/) 
       As imagens estão renomeados de 01 até 09 e o texto que vai em cada imagem tá no Discord
-
-      Faz o carrossel aqui em baixo
+        
+      Inicio carrossel
     -->
 
-    <img src="" alt="">
-    <p></p>
+    <ion-slides (ionSlideDidChange)="slideChanged()" [pager]="true" [options]="sliderOptions">
+      <ion-slide>
+        <div class="slide">
+          <img src="../../../assets/IMG/Tutoriais/Responsável/01.png" alt="Tela Número 1 de tutorial">
+          <p>Ver os próximos lembretes e tomar ou cancelar o lembrete pendente</p>
+        </div>
+      </ion-slide>
+  
+      <ion-slide>
+        <div class="slide">
+          <img src="../../../assets/IMG/Tutoriais/Responsável/02.png" alt="Tela Número 2 de tutorial">
+          <p>Acessar as configurações para voltar aos dados adicionais, ao tutorial e para sair da conta</p>
+      </div>
+      </ion-slide>
+  
+      <ion-slide>
+        <div class="slide">
+          <img src="../../../assets/IMG/Tutoriais/Responsável/03.png" alt="Tela Número 3 de tutorial">
+          <p>Criar ou editar lembretes</p>
+        </div>
+      </ion-slide>
+  
+      <ion-slide>
+        <div class="slide">
+          <img src="../../../assets/IMG/Tutoriais/Responsável/04.png" alt="Tela Número 4 de tutorial">
+          <p>Adicionar quantidade do medicamento no estoque</p>
+        </div>
+      </ion-slide>
 
-    <!-- Faz o carrossel aqui em cima -->
+      <ion-slide>
+        <div class="slide">
+          <img src="../../../assets/IMG/Tutoriais/Responsável/05.png" alt="Tela Número 5 de tutorial">
+          <p>Ver os relatórios gerados</p>
+        </div>
+      </ion-slide>
+
+      <ion-slide>
+        <div class="slide">
+          <img src="../../../assets/IMG/Tutoriais/Responsável/06.png" alt="Tela Número 6 de tutorial">
+          <p>Adicionar e ver seus sintomas</p>
+        </div>
+      </ion-slide>
+
+      <ion-slide>
+        <div class="slide">
+          <img src="../../../assets/IMG/Tutoriais/Responsável/07.png" alt="Tela Número 7 de tutorial">
+          <p>Ver o histórico de medicamentos usados</p>
+        </div>
+      </ion-slide>
+
+      <ion-slide>
+        <div class="slide">
+          <img src="../../../assets/IMG/Tutoriais/Responsável/08.png" alt="Tela Número 8 de tutorial">
+          <p>Ver os seus dependentes, remove-los ou administrar seus lembretes, ver relatórios e estoque</p>
+        </div>
+      </ion-slide>
+
+      <ion-slide>
+        <div class="slide">
+          <img src="../../../assets/IMG/Tutoriais/Responsável/09.png" alt="Tela Número 9 de tutorial">
+          <p>Nas configurações é possível adicionar um responsável para se tornar um dependente</p>
+        </div>
+      </ion-slide>
+    </ion-slides>
+
+    <!-- Fim carrossel -->
   </div>
 
   <div class="bot vertical flex">    
