@@ -20,6 +20,9 @@ export class LembretesPage implements OnInit {
   lista: any = [];
   temLista: any;
   temListaNao: any;
+
+  codigo: any;
+  semData = ['Sem data prevista'];
   //#endregion
 
   //#region Abrir e Fechar o Menu
@@ -77,11 +80,65 @@ export class LembretesPage implements OnInit {
   //#region Remover Lembrete
   removerMedicamento(codigo: any)
   {
-    let dados = 'phpEmail=' + this.email + '&phpCodigo=' + codigo;
+    document.getElementById('rMedicamento').classList.remove('invisivel');
 
-    this.servidor.enviar('Responsavel/Lembretes/remover.php', dados).subscribe(res => {
-      this.listalembretes();
-    });
+    //Preparação
+    document.getElementById('rFundo').classList.remove('OutFundo');
+    document.getElementById('rAlert').classList.remove('OutAlerta');
+
+    //Animação
+    setTimeout(function()
+    {
+      document.getElementById('rAlert').classList.add('InAlerta');
+      document.getElementById('rFundo').classList.add('InFundo');
+    }, 100);
+
+    this.codigo = codigo;
+  }
+
+  nao()
+  {
+    if(event.target == document.getElementById('rFundo') || event.target == document.getElementById('rBtn'))
+    {
+      //Preparação
+      document.getElementById('rFundo').classList.remove('InFundo');
+      document.getElementById('rAlert').classList.remove('InAlerta');
+
+      //Animação
+      document.getElementById('rFundo').classList.add('OutFundo');
+      document.getElementById('rAlert').classList.add('OutAlerta');
+      
+      //Fecha
+      setTimeout(function()
+      {
+        document.getElementById('rMedicamento').classList.add('invisivel');
+      }, 301);
+    }
+  }
+
+  sim()
+  {
+    //Deletar o medicamento
+    let dados = 'phpEmail=' + this.email + '&phpCodigo=' + this.codigo;
+
+    this.servidor.enviar('Responsavel/Lembretes/remover.php', dados).subscribe(res =>{});
+
+    //Preparação
+    document.getElementById('rFundo').classList.remove('InFundo');
+    document.getElementById('rAlert').classList.remove('InFundo');
+
+    //Animação
+    document.getElementById('rFundo').classList.add('OutFundo');
+    document.getElementById('rAlert').classList.add('OutAlerta');
+    
+    //Fecha
+    setTimeout(function()
+    {
+      document.getElementById('rMedicamento').classList.add('invisivel');
+    }, 301);
+
+    //Recaregar lembretes
+    this.listalembretes();
   }
   //#endregion
 

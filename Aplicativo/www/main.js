@@ -91,7 +91,7 @@ const routes = [
     },
     {
         path: 'R/estoque',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_R_estoque_estoque_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./R/estoque/estoque.module */ 1073)).then(m => m.EstoquePageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_R_estoque_estoque_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./R/estoque/estoque.module */ 1073)).then(m => m.EstoquePageModule)
     },
     {
         path: 'R/novo-lembrete',

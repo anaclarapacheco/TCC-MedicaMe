@@ -53,8 +53,9 @@ export class NovoLembretePage implements OnInit {
   public maximo: any;
   public minimo: any;
 
-  public txtAvisoUm: any
-  public txtAvisoDois: any
+  public txtAvisoUm: any;
+  public txtAvisoDois: any;
+  public txtBotao: any;
 
   public listaFarma: any = [];
   //#endregion 
@@ -70,6 +71,14 @@ export class NovoLembretePage implements OnInit {
       this.txtAvisoUm = 'O preenchimento dos campos: Nome do medicamento, Forma farmacêutica e Dosagem, são obrigatórios!';
       document.getElementById('avisoUm').classList.remove('invisivel');
     }
+    else if(localStorage.getItem('agendamento') != null && localStorage.getItem('agendamento') != '')
+    {
+      //Trocnado pro 2
+      document.getElementById('um').classList.add('invisivel');
+      document.getElementById('dois').classList.remove('invisivel');
+      this.titulo = 'Período';
+      this.txtBotao = 'Atualizar Lembrete';
+    }
     else
     {
       //Enviando ao PHP
@@ -82,6 +91,7 @@ export class NovoLembretePage implements OnInit {
           document.getElementById('um').classList.add('invisivel');
           document.getElementById('dois').classList.remove('invisivel');
           this.titulo = 'Período';
+          this.txtBotao = 'Criar Lembrete';
         }
         else
         {
@@ -115,10 +125,25 @@ export class NovoLembretePage implements OnInit {
 
     if(this.dataInicial == '' || this.dataFinal == '' || this.dias == '' || this.horas == '' || this.quantidadeAtual == '' || this.quantidadeMinima == '' || this.dataInicial == null || this.dataFinal == null || this.dias == null || this.horas == null || this.quantidadeAtual == null || this.quantidadeMinima == null)
     { 
-      this.dataFinal = null;
-      this.dias = null;
       this.txtAvisoDois = 'O preenchimento dos campos: Data Inicial, Horas, Quantidade Atual e Quantidade mínima, são obrigatórios!';
       document.getElementById('avisoDois').classList.remove('invisivel');
+    }
+    else if(localStorage.getItem('agendamento') != null && localStorage.getItem('agendamento') != '')
+    {
+      //Enviando ao PHP
+      let dados = 'phpNomeMedicamento=' + this.nomeMedicamento + '&phpFormaFarmaceutica=' + this.formaFarma + '&phpDescricao=' + this.descricao + '&phpDosagem=' + this.dosagem + '&phpDataInicial=' + this.dataInicial.substring(0, 10) + '&phpDataFinal=' + this.dataFinal.substring(0, 10) + '&phpDias=' + this.dias + '&phpHoras=' + this.horas + '&phpQuantidadeAtual=' + this.quantidadeAtual + '&phpQuantidadeMinima=' + this.quantidadeMinima + '&phpEmail=' + this.email + '&phpCodigo=' + localStorage.getItem('agendamento');
+
+      this.servidor.enviar('Responsavel/Novo Lembrete/atualizar.php', dados).subscribe(res => {
+        if(res[0]['Erro'] == false)
+        {
+          this.cancelar();
+        }
+        else
+        {
+          this.txtAvisoDois = 'Erro na hora de criar o lembrete!';
+          document.getElementById('avisoDois').classList.remove('invisivel');
+        }
+      });
     }
     else
     {
@@ -137,6 +162,9 @@ export class NovoLembretePage implements OnInit {
         }
       });
     }
+
+    this.dataFinal = null;
+    this.dias = null;
   }
   //#endregion
   
@@ -185,26 +213,23 @@ export class NovoLembretePage implements OnInit {
       this.email = localStorage.getItem('email');
     }
 
-    //Editar
+    //Puxar para editar
     if(localStorage.getItem('agendamento') != null && localStorage.getItem('agendamento') != '')
     {
       let dados = 'phpEmail=' + this.email + '&phpCodigo=' + localStorage.getItem('agendamento');
 
       this.servidor.enviar('Responsavel/Novo Lembrete/editar.php', dados).subscribe( res => {
-        if(res[0]['Erro'] == false)
-        {
-          //Botando na tela
-          this.nomeMedicamento = res[1]['Nome'];
-          this.formaFarma = res[1]['FormaFarmaceutica'];
-          this.dosagem = res[1]['Dosagem'];
-          this.descricao = res[1]['Descricao'];
-          this.dataInicial = res[1]['DataInicial'];
-          this.dataFinal = res[1]['DataFinal'];
-          this.dias = res[1]['Dias'];
-          this.horas = res[1]['Horas'];
-          this.quantidadeAtual = res[1]['QuantidadeAtual'];
-          this.quantidadeMinima = res[1]['QuantidadeMinima'];
-        }
+        //Botando na tela
+        this.nomeMedicamento = res[0]['Nome'];
+        this.formaFarma = res[0]['FormaFarmaceutica'];
+        this.dosagem = res[0]['Dosagem'];
+        this.descricao = res[0]['Descricao'];
+        this.dataInicial = String(res[0]['DataInicial']).substring(0, 10);
+        this.dataFinal = String(res[0]['DataFinal']).substring(0, 10);
+        this.dias = res[0]['Dias'];
+        this.horas = res[0]['Horas'];
+        this.quantidadeAtual = res[0]['QuantidadeAtual'];
+        this.quantidadeMinima = res[0]['QuantidadeMinima'];
       });
     }
   }

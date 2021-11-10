@@ -319,6 +319,22 @@ button
         }
     }
 }
+
+//#region Animações - Alerta
+.InAlerta
+{
+    opacity: 1 !important;
+
+    transition: opacity 0.5s;
+}
+
+.OutAlerta
+{
+    opacity: 0 !important;
+
+    transition: opacity 0.3s;
+}
+//#endregion
 /*#endregion*/
 
 /*#region NavBar*/

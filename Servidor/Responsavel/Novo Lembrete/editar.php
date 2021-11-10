@@ -24,7 +24,23 @@
     /*#region Banco de Dados*/
     if($Email != null && $Codigo != null)
     {
-        //
+        $SQL = $PDO->query("SELECT * FROM `agendamento` a JOIN `medicamento` m ON (a.`cd_medicamento` = m.`cd_medicamento`) WHERE `nm_email_usuario` = '$Email' AND `cd_agendamento` = '$Codigo'");
+
+        while($dados = $SQL->fetch())
+        {
+            $Resposta[] = array(
+                'Nome' => $dados['nm_medicamento'],
+                'FormaFarmaceutica' => $dados['cd_forma_farmaceutica'],
+                'Dosagem' => $dados['qt_dosagem_medicamento'],
+                'Descricao' => $dados['ds_recomendacao_medicamento'],
+                'DataInicial' => $dados['dt_inicio_agendamento'],
+                'DataFinal' => $dados['dt_final_agendamento'],
+                'Dias' => $dados['qt_dias_agendamento'],
+                'Horas' => $dados['qt_horas_periodo_medicamento'],
+                'QuantidadeAtual' => $dados['qt_medicamento_usuario'],
+                'QuantidadeMinima' => $dados['qt_minima_medicamento_usuario']
+            );
+        }
     }
     /*#endregion*/
 

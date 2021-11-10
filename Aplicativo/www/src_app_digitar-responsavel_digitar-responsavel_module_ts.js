@@ -173,6 +173,9 @@ let DigitarResponsavelPage = class DigitarResponsavelPage {
             case 'rLembretes':
                 this.nav.rLembretes();
                 break;
+            case 'rEstoque':
+                this.nav.rEstoque();
+                break;
         }
         localStorage.removeItem('digitarResponsavel');
     }
