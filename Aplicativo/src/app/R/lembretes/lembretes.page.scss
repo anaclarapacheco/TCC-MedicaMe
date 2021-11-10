@@ -31,6 +31,7 @@
         margin-top: 10vh;
     }
 }
+
 /*#endregion*/
 
 /*#region Lembretes*/
@@ -122,10 +123,32 @@
 
     svg
     {
-        fill: var(--dark-space-cadet);
+        stroke: var(--dark-space-cadet);
         height: 50%;
 
-        margin: 0px 15px 0px 0px;
+        margin: 0px 10px 0px 0px;
     }
 }
 /*#endregion*/
+
+//#region Alerta
+#rMedicamento
+{
+    background-color: var(--dark-space-cadet);
+
+    .alert
+    {
+        opacity: 0;
+
+        h3
+        {
+            color: var(--white) !important;
+        }
+    }
+
+    .important
+    {
+        position: initial;
+    }
+}
+//#endregion

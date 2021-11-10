@@ -96,8 +96,12 @@ export class DadosAdicionaisPage implements OnInit {
         break;
 
       case 'rLembretes':
-          this.nav.rLembretes();
-          break;
+        this.nav.rLembretes();
+        break;
+      
+      case 'rEstoque':
+        this.nav.rEstoque();
+        break;
     }
 
     localStorage.removeItem('dadosAdicionais');

@@ -76,10 +76,11 @@
         <div *ngFor="let l of lista"  class="lembretes full flex">
           <img src="../../../assets/IMG/Icon/{{l.FormaFarmaceutica}}.png">
 
-          <div class="text leftA">
+          <div [ngSwitch]="l.DataFinal" class="text leftA">
             <h3>{{l.Nome}}</h3>
             <p class="descricao">{{l.Descricao}}</p>
-            <p>{{ 'Até o dia ' + l.DataFinal.substring(8, 10) + '/' + l.DataFinal.substring(5, 7) + '/' + l.DataFinal.substring(0, 4) }}</p>
+            <p *ngSwitchCase="semData[0]">Sem data prevista</p>
+            <p *ngSwitchDefault>{{ 'Até o dia ' + l.DataFinal.substring(8, 10) + '/' + l.DataFinal.substring(5, 7) + '/' + l.DataFinal.substring(0, 4) }}</p>
           </div>
 
           <svg class="svg" viewBox="0 0 24 24" (click)="removerMedicamento(l.Agendamento)">
@@ -106,13 +107,31 @@
     </div>
   </div>
 
-  <button class="important full flex" (click)="novoLembrete()">
-    <svg viewBox="0 0 24 24">
-      <path d="M11 11v-11h1v11h11v1h-11v11h-1v-11h-11v-1h11z"/>
+  <button class="botao important full flex" (click)="novoLembrete()">
+    <svg viewBox="0 0 100 100">
+      <line x1="50" y1="0" x2="50" y2="100" stroke-width="10"></line>
+      <line x1="0" y1="50" x2="100" y2="50" stroke-width="10"></line>
     </svg>
     
     <span>Novo lembrete</span>
   </button>
+
+  <div id="rMedicamento" class="invisivel">
+    <div id="rFundo" class="centraliza full flex" (click)="nao()">
+      <div id="rAlert" class="alert">
+        <div class="top full flex">
+          <h3>TEM CERTEZA DISSO?</h3>
+        </div>
+
+        <div class="content centerA">
+          <p>Deseja realmente REMOVER esse Medicamento?</p>
+
+          <button id="rBtn" class="important" (click)="nao()">Não</button>
+          <button id="rBtn" class="normal" (click)="sim()">Sim</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="tabs full flex">
     <div class="button full flex" (click)="home()">

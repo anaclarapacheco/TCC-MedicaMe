@@ -167,6 +167,9 @@ let DadosAdicionaisPage = class DadosAdicionaisPage {
             case 'rLembretes':
                 this.nav.rLembretes();
                 break;
+            case 'rEstoque':
+                this.nav.rEstoque();
+                break;
         }
         localStorage.removeItem('dadosAdicionais');
     }

@@ -146,7 +146,7 @@ let HomePage = class HomePage {
         //Fecha
         setTimeout(function () {
             menu.classList.add('invisivel');
-        }, 1000);
+        }, 301);
     }
     //#endregion
     //#region Navegação
