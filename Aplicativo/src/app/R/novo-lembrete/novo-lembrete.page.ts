@@ -37,7 +37,7 @@ export class NovoLembretePage implements OnInit {
   public nomeMedicamento: any;
   public formaFarma: any;
   public dosagem: any;
-  public descricao: any;
+  public descricao: any = '';
 
   //Dois
   public dataInicial: any;

@@ -21,7 +21,14 @@ export class HomePage implements OnInit {
   //#endregion
 
   //#region Valores do FrontEnd
-  data: any = "";
+  public data: any = "";
+  public medicamentos: any = [];
+  public pendentes: any = [];
+  public temMedic: any = false;
+  public temPendente: any = false;
+  public temMedicNao: any = false;
+
+  public formaFarma = ['1', '2', '3', '4'];
   //#endregion
 
   //#region Abrir e Fechar o Menu
@@ -65,6 +72,66 @@ export class HomePage implements OnInit {
     {
       menu.classList.add('invisivel');
     }, 301);
+  }
+  //#endregion
+
+  //#region Tomei ou Não tomei
+  enviar(codigo, situacao)
+  {
+    //Animação
+    document.getElementById(codigo).classList.add('OutAlerta');
+    setTimeout(function(){}, 301);
+
+    if(situacao == 'tomei')
+    {
+      let dados = '';
+      //
+    }
+    else
+    {
+      let dados = '';
+      //
+    }
+  }
+  //#endregion
+
+  //#region Carregar medicamentos pendentes
+  carregarPendente()
+  {
+    let dados = 'phpEmail=' + localStorage.getItem('email');
+
+    this.servidor.enviar('Responsavel/Home/pendente.php', dados).subscribe(res =>{
+      if(res[0].Erro != true)
+      {
+        this.temPendente = true;
+        this.pendentes = res;
+      }
+      else
+      {
+        this.temPendente = false;
+      }
+    });
+  }
+  //#endregion
+
+  //#region Carregar medicamentos de hoje
+  carregar()
+  {
+    let dados = 'phpEmail=' + localStorage.getItem('email');
+
+    this.servidor.enviar('Responsavel/Home/main.php', dados).subscribe(res =>{
+      if(res[0].Erro != true)
+      {
+        this.temMedic = true;
+        this.temMedicNao = false;
+        this.medicamentos = res;
+      }
+      else
+      {
+        this.temMedic = false;
+        this.temMedicNao = true;
+      }
+    });
   }
   //#endregion
 
@@ -123,6 +190,10 @@ export class HomePage implements OnInit {
   {
     //Verificar Login
     this.servidor.verificar();
+
+    //Carregar medicamentos
+    this.carregar();
+    this.carregarPendente();
   }
   //#endregion
 

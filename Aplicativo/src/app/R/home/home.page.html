@@ -69,82 +69,49 @@
     </div>
 
     <div class="content">
-      <div class="pendente">
+      <div *ngIf="temPendente" class="pendente">
         <h3>Pendentes</h3>
 
-        <div class="medicamentos vertical flex">
-          <img src="../../../assets/IMG/Icon/1.png" alt="Logo do aplicativo MedicaMe">
+        <div *ngFor="let l of pendentes" id="{{l.Agendamento}}" class="medicamentos vertical flex">
+          <img src="../../../assets/IMG/Icon/{{l.FormaFarmaceutica}}.png" alt="Logo do aplicativo MedicaMe">
 
-          <div class="text">
-            <h3>DipperZac</h3>
-            <p>14h00 - 25ml</p>
+          <div [ngSwitch]="l.FormaFarmaceutica" class="text">
+            <h3>{{l.Nome}}</h3>
+            <p>{{l.Previsao.substring(8, 10) + '/' + l.Previsao.substring(5, 7) + ' - ' +l.Previsao.substring(11, 13) + 'h' + l.Previsao.substring(14, 16)}}</p>
+            <p *ngSwitchCase="formaFarma[0]">{{l.Dosagem + 'ml'}}</p>
+            <p *ngSwitchCase="formaFarma[1]">{{l.Dosagem + ' gotas'}}</p>
+            <p *ngSwitchCase="formaFarma[2]">{{l.Dosagem + ' comprimido'}}</p>
+            <p *ngSwitchCase="formaFarma[3]">{{l.Dosagem + ' cápsula'}}</p>
           </div>
 
-          <svg viewBox="0 0 24 24" class="tomei">
+          <svg viewBox="0 0 24 24" class="tomei" (click)="enviar(l.Agendamento, 'tomei')">
             <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.25 17.292l-4.5-4.364 1.857-1.858 2.643 2.506 5.643-5.784 1.857 1.857-7.5 7.643z"/>
           </svg>
 
-          <svg viewBox="0 0 24 24" class="nao-tomei">
-            <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.538l-4.592-4.548 4.546-4.587-1.416-1.403-4.545 4.589-4.588-4.543-1.405 1.405 4.593 4.552-4.547 4.592 1.405 1.405 4.555-4.596 4.591 4.55 1.403-1.416z"/>
-          </svg>
-        </div>
-
-        <div class="medicamentos vertical flex">
-          <img src="../../../assets/IMG/Icon/2.png" alt="Logo do aplicativo MedicaMe">
-
-          <div class="text">
-            <h3>DipperZac</h3>
-            <p>14h00 - 25ml</p>
-          </div>
-
-          <svg viewBox="0 0 24 24" class="tomei">
-            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.25 17.292l-4.5-4.364 1.857-1.858 2.643 2.506 5.643-5.784 1.857 1.857-7.5 7.643z"/>
-          </svg>
-
-          <svg viewBox="0 0 24 24" class="nao-tomei">
+          <svg viewBox="0 0 24 24" class="nao-tomei" (click)="enviar(l.Agendamento, 'naoTomei')">
             <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.538l-4.592-4.548 4.546-4.587-1.416-1.403-4.545 4.589-4.588-4.543-1.405 1.405 4.593 4.552-4.547 4.592 1.405 1.405 4.555-4.596 4.591 4.55 1.403-1.416z"/>
           </svg>
         </div>
       </div>
 
-      <div class="proximo">
-        <h3>Próximos</h3>
+      <div *ngIf="temMedic" class="proximo">
+        <h3>Ainda Hoje</h3>
 
-        <div class="medicamentos vertical flex">
-          <img src="../../../assets/IMG/Icon/4.png" alt="Logo do aplicativo MedicaMe">
+        <div *ngFor="let l of medicamentos" class="medicamentos vertical flex">
+          <img src="../../../assets/IMG/Icon/{{l.FormaFarmaceutica}}.png">
 
-          <div class="text">
-            <h3>DipperZac</h3>
-            <p>14h00 - 25ml</p>
+          <div [ngSwitch]="l.FormaFarmaceutica" class="text">
+            <h3>{{l.Nome}}</h3>
+            <p *ngSwitchCase="formaFarma[0]">{{l.Previsao.substring(11, 13) + 'h' + l.Previsao.substring(14, 16) + ' - ' + l.Dosagem + 'ml'}}</p>
+            <p *ngSwitchCase="formaFarma[1]">{{l.Previsao.substring(11, 13) + 'h' + l.Previsao.substring(14, 16) + ' - ' + l.Dosagem + ' gotas'}}</p>
+            <p *ngSwitchCase="formaFarma[2]">{{+l.Previsao.substring(11, 13) + 'h' + l.Previsao.substring(14, 16) + ' - ' + l.Dosagem + ' comprimido'}}</p>
+            <p *ngSwitchCase="formaFarma[3]">{{l.Previsao.substring(11, 13) + 'h' + l.Previsao.substring(14, 16) + ' - ' + l.Dosagem + ' cápsula'}}</p>
           </div>
         </div>
+      </div>
 
-        <div class="medicamentos vertical flex">
-          <img src="../../../assets/IMG/Icon/3.png" alt="Logo do aplicativo MedicaMe">
-
-          <div class="text">
-            <h3>DipperZac</h3>
-            <p>14h00 - 25ml</p>
-          </div>
-        </div>
-
-        <div class="medicamentos vertical flex">
-          <img src="../../../assets/IMG/Icon/2.png" alt="Logo do aplicativo MedicaMe">
-
-          <div class="text">
-            <h3>DipperZac</h3>
-            <p>14h00 - 25ml</p>
-          </div>
-        </div>
-
-        <div class="medicamentos vertical flex">
-          <img src="../../../assets/IMG/Icon/1.png" alt="Logo do aplicativo MedicaMe">
-
-          <div class="text">
-            <h3>DipperZac</h3>
-            <p>14h00 - 25ml</p>
-          </div>
-        </div>
+      <div *ngIf="temMedicNao">
+        <h3 class="centerA">Nenhum medicamento para hoje!</h3>
       </div>
     </div>
   </div>

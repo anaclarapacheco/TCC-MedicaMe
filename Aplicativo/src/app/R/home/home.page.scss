@@ -19,7 +19,7 @@
 .medicamentos
 {
     width: 100%;
-    height: 70px;
+    height: 85px;
 
     padding: 10px;
     margin: 10px 0px 20px 0px;
@@ -68,6 +68,11 @@
         border-width: 2px;
 
         color: var(--dark-space-cadet);
+
+        animation-name: pendente;
+        animation-duration: 3s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
     }
 
     svg
@@ -88,6 +93,17 @@
 
         margin-left: 10px;
     }
+}
+
+@keyframes pendente
+{
+    0%{transform: rotate(0deg);}
+    75%{transform: rotate(0deg);}
+    80%{transform: rotate(-2deg);}
+    85%{transform: rotate(2deg);}
+    90%{transform: rotate(-2deg);}
+    95%{transform: rotate(2deg);}
+    100%{transform: rotate(0deg);}
 }
 /*#endregion*/
 

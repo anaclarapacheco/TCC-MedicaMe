@@ -11,13 +11,9 @@ import { ViewChild } from '@angular/core';
 })
 export class TutorialPage implements OnInit {
 
-  //#region Constructor
-  constructor(private nav: NavegationService, private servidor: ServidorService)
-  {
-    this.servidor.verificar();
-  }
-  //#endregion
+  constructor(private nav: NavegationService, private servidor: ServidorService){}
 
+  //#region IonSlides
   @ViewChild(IonSlides) slides: IonSlides;
   public sliderOptions = {
     pagination: {
@@ -26,26 +22,29 @@ export class TutorialPage implements OnInit {
       clickable: true
     }
   };
-  
+  //#endregion
+
   //#region Próximo item do carrossel
   proximo()
   {
-    this.slideChanged();
     const proximo = this.slides.slideNext();
+
+    if(this.fim)
+    {
+      this.pular();
+    }
   }
   //#endregion
 
   //#region Verifica se é o último slide
-  public fim = false;
-  slideChanged(){
-    if (this.fim){
-      this.pular();
-    }
-
+  fim: boolean;
+  slideChanged()
+  {
     var verificarFim = this.slides.isEnd();
+
     verificarFim.then(data => {
-      console.log(data);
-      if(data){
+      if(data)
+      {
         this.fim = true;
       }
     });
@@ -63,6 +62,10 @@ export class TutorialPage implements OnInit {
       case 'dependente':
         this.nav.dependente();
         break
+
+      default:
+        this.nav.dHome();
+        break;
     }
 
     localStorage.removeItem('DTutorial');
