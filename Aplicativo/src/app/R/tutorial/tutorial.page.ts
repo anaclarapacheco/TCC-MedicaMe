@@ -17,7 +17,7 @@ export class TutorialPage implements OnInit {
   public sliderOptions = {
     pagination: {
       el: ".swiper-pagination",
-      type: "bullets",
+      type: "bullets", 
       clickable: true
     }
   };
@@ -35,6 +35,7 @@ export class TutorialPage implements OnInit {
   slideChanged(){
     if (this.fim){
       this.pular();
+      alert("pula");
     }
 
     var verificarFim = this.slides.isEnd();
