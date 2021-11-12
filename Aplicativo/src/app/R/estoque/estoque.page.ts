@@ -16,6 +16,13 @@ export class EstoquePage implements OnInit {
   //#region Valores
   public nomeDependente: any;
   public email: any;
+  public codigo: any;
+  public medicamentos: any = [];
+  public temLista: any = false;
+  public temListaNao: any = false;
+
+  public formaFarmaceutica: any;
+  public formaFarma = ['1', '2', '3', '4'];
   //#endregion
 
   //#region Abrir e Fechar o Menu
@@ -65,26 +72,63 @@ export class EstoquePage implements OnInit {
   //#region Carregar o Estoque
   carregarEstoque()
   {
-    //
+    let dados = 'phpEmail=' + this.email;
+
+    this.servidor.enviar('Responsavel/Estoque/main.php', dados).subscribe(res =>{
+      if(res[0].Erro != true)
+      {
+        this.temLista = true;
+        this.temListaNao = false;
+        this.medicamentos = res;
+      }
+      else
+      {
+        this.temLista = false;
+        this.temListaNao = true;
+      }
+    });
   }
   //#endregion
 
-  //#region Editar quantidade do medicamento
-  fechar()
-  {    
-    if(event.target == document.getElementById('fecha'))
+  //#region Editar quantidade
+  editar(codigo, quantidade, formaFarma)
+  {
+    document.getElementById('eQuantidade').classList.remove('invisivel');
+
+    //Preparação
+    document.getElementById('qFundo').classList.remove('OutFundo');
+    document.getElementById('qAlert').classList.remove('OutAlerta');
+
+    //Animação
+    setTimeout(function()
     {
-      var estoque = document.getElementById('eQuantidade');
-      estoque.classList.add('invisivel');
-    }
+      document.getElementById('qAlert').classList.add('InAlerta');
+      document.getElementById('qFundo').classList.add('InFundo');
+    }, 100);
+
+    this.codigo = codigo;
+    this.editarQuantidade = quantidade;
+    this.formaFarmaceutica = formaFarma;
   }
 
-  editar(quantidade: any)
-  {
-    this.editarQuantidade = quantidade;
+  fechar()
+  {    
+    if(event.target == document.getElementById('qFundo'))
+    {
+      //Preparação
+      document.getElementById('qFundo').classList.remove('InFundo');
+      document.getElementById('qAlert').classList.remove('InAlerta');
 
-    var estoque = document.getElementById('eQuantidade');
-    estoque.classList.remove('invisivel');
+      //Animação
+      document.getElementById('qFundo').classList.add('OutFundo');
+      document.getElementById('qAlert').classList.add('OutAlerta');
+      
+      //Fecha
+      setTimeout(function()
+      {
+        document.getElementById('eQuantidade').classList.add('invisivel');
+      }, 301);
+    }
   }
 
   menos()
@@ -98,6 +142,71 @@ export class EstoquePage implements OnInit {
   mais()
   {
     this.editarQuantidade++;
+  }
+  //#endregion
+
+  //#region Remover Medicamento
+  removerMedicamento(codigo: any)
+  {
+    document.getElementById('rEstoque').classList.remove('invisivel');
+
+    //Preparação
+    document.getElementById('eFundo').classList.remove('OutFundo');
+    document.getElementById('eAlert').classList.remove('OutAlerta');
+
+    //Animação
+    setTimeout(function()
+    {
+      document.getElementById('eAlert').classList.add('InAlerta');
+      document.getElementById('eFundo').classList.add('InFundo');
+    }, 100);
+
+    this.codigo = codigo;
+  }
+
+  nao()
+  {
+    if(event.target == document.getElementById('eFundo') || event.target == document.getElementById('eBtn'))
+    {
+      //Preparação
+      document.getElementById('eFundo').classList.remove('InFundo');
+      document.getElementById('eAlert').classList.remove('InAlerta');
+
+      //Animação
+      document.getElementById('eFundo').classList.add('OutFundo');
+      document.getElementById('eAlert').classList.add('OutAlerta');
+      
+      //Fecha
+      setTimeout(function()
+      {
+        document.getElementById('rEstoque').classList.add('invisivel');
+      }, 301);
+    }
+  }
+
+  sim()
+  {
+    //Deletar o medicamento
+    let dados = 'phpEmail=' + this.email + '&phpCodigo=' + this.codigo;
+
+    this.servidor.enviar('Responsavel/Lembretes/remover.php', dados).subscribe(res =>{});
+
+    //Preparação
+    document.getElementById('eFundo').classList.remove('InFundo');
+    document.getElementById('eAlert').classList.remove('InFundo');
+
+    //Animação
+    document.getElementById('eFundo').classList.add('OutFundo');
+    document.getElementById('eAlert').classList.add('OutAlerta');
+    
+    //Fecha
+    setTimeout(function()
+    {
+      document.getElementById('rEstoque').classList.add('invisivel');
+    }, 301);
+
+    //Recaregar lembretes
+    this.carregarEstoque();
   }
   //#endregion
 

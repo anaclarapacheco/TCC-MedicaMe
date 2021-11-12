@@ -82,16 +82,11 @@ export class HomePage implements OnInit {
     document.getElementById(codigo).classList.add('OutAlerta');
     setTimeout(function(){}, 301);
 
-    if(situacao == 'tomei')
-    {
-      let dados = '';
-      //
-    }
-    else
-    {
-      let dados = '';
-      //
-    }
+    //Enviar ao PHP
+    let dados = 'phpSituacao=' + situacao + '&phpCodigo=' + codigo + '&phpEmail=' + localStorage.getItem('email');
+    this.servidor.enviar('Responsavel/Home/situacao.php', dados).subscribe(res => {
+      this.carregarPendente();
+    });
   }
   //#endregion
 

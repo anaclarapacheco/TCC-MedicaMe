@@ -1495,6 +1495,7 @@ button {
   top: 0px;
   justify-content: space-between;
   padding-left: 5px;
+  z-index: 100;
 }
 .nav img {
   width: 50%;
@@ -1515,6 +1516,7 @@ button {
   border-width: 5px 0px 0px 0px;
   border-color: var(--white);
   border-style: solid;
+  z-index: 100;
 }
 .depMeio {
   margin-top: calc((100vw / 5) + 50px) !important;
@@ -1526,7 +1528,7 @@ button {
   position: fixed;
   top: 0px;
   left: 0px;
-  z-index: 10;
+  z-index: 110;
 }
 .menu #back {
   width: 30vw;
@@ -1601,6 +1603,7 @@ button {
   position: fixed;
   bottom: 0px;
   font-size: 1em;
+  z-index: 100;
 }
 .tabs p {
   color: var(--white);

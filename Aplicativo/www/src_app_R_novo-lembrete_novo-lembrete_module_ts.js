@@ -109,6 +109,7 @@ let NovoLembretePage = class NovoLembretePage {
     constructor(nav, servidor) {
         this.nav = nav;
         this.servidor = servidor;
+        this.descricao = '';
         this.listaFarma = [];
         //Mudando titulo
         this.titulo = 'Informações do medicamento';

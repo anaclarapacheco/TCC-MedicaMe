@@ -72,29 +72,44 @@
     </div>
 
     <div class="content">
-      <div class="medicamentos full flex">
-        <img src="../../../assets/IMG/Icon/4.png" alt="Capsula">
+      <div *ngIf="temLista">
+        <div *ngFor="let l of medicamentos" class="medicamentos full flex">
+          <img src="../../../assets/IMG/Icon/{{l.FormaFarmaceutica}}.png">
 
-        <div class="text flex leftA">
-          <h3>DipperZec</h3>
+          <div [ngSwitch]="l.FormaFarmaceutica" class="text flex leftA">
+            <h3 class="line">{{l.Nome}}</h3>
 
-          <svg viewBox="0 0 24 24" (click)="removerMedicamento(x)">
+            <p *ngSwitchCase="formaFarma[0]">{{l.Quantidade + 'ml'}}</p>
+            <p *ngSwitchCase="formaFarma[1]">{{l.Quantidade + ' gotas'}}</p>
+            <p *ngSwitchCase="formaFarma[2]">{{l.Quantidade + ' comprimido'}}</p>
+            <p *ngSwitchCase="formaFarma[3]">{{l.Quantidade + ' cápsula'}}</p>
+          </div>
+
+          <svg viewBox="0 0 24 24" (click)="removerMedicamento(l.Agendamento)">
             <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.538l-4.592-4.548 4.546-4.587-1.416-1.403-4.545 4.589-4.588-4.543-1.405 1.405 4.593 4.552-4.547 4.592 1.405 1.405 4.555-4.596 4.591 4.55 1.403-1.416z"/>
           </svg>
 
-          <p class="line">150ml</p>
+          <button class="normal full flex" (click)="editar(l.Agendamento, l.Quantidade, l.FormaFarmaceutica)">
+            Editar quantidade
+
+            <svg viewBox="0 0 24 24">
+              <path d="M19.769 9.923l-12.642 12.639-7.127 1.438 1.438-7.128 12.641-12.64 5.69 5.691zm1.414-1.414l2.817-2.82-5.691-5.689-2.816 2.817 5.69 5.692z"/>
+            </svg>
+          </button>
         </div>
-
-        <button class="normal full flex" (click)="editar(150)">
-          Editar quantidade
-
-          <svg viewBox="0 0 24 24">
-            <path d="M19.769 9.923l-12.642 12.639-7.127 1.438 1.438-7.128 12.641-12.64 5.69 5.691zm1.414-1.414l2.817-2.82-5.691-5.689-2.816 2.817 5.69 5.692z"/>
-          </svg>
-        </button>
       </div>
 
-      <div class="medicamentos full flex">
+      <div *ngIf="temListaNao">
+        <div class="semMedicamento full flex">
+          <svg viewBox="0 0 24 24">
+          <path d="M12 5.177l8.631 15.823h-17.262l8.631-15.823zm0-4.177l-12 22h24l-12-22zm-1 9h2v6h-2v-6zm1 9.75c-.689 0-1.25-.56-1.25-1.25s.561-1.25 1.25-1.25 1.25.56 1.25 1.25-.561 1.25-1.25 1.25z"/>
+          </svg>
+          
+          <p>Você ainda não possui nenhum medicamento vá para lembretes, clique no botão: "Novo Lembrete" e crie o primeiro!</p>
+        </div>
+      </div>
+
+      <!-- <div class="medicamentos full flex">
         <img src="../../../assets/IMG/Icon/3.png" alt="Capsula">
 
         <div class="text flex leftA">
@@ -114,26 +129,44 @@
             <path d="M19.769 9.923l-12.642 12.639-7.127 1.438 1.438-7.128 12.641-12.64 5.69 5.691zm1.414-1.414l2.817-2.82-5.691-5.689-2.816 2.817 5.69 5.692z"/>
           </svg>
         </button>
-      </div>
+      </div> -->
     </div>
   </div>
 
   <div id="eQuantidade" class="invisivel">
-    <div id="back"></div>
-
-    <div id="fecha" class="centraliza full flex" (click)="fechar()">
-      <div class="alert">
+    <div id="qFundo" class="centraliza full flex" (click)="fechar()">
+      <div id="qAlert" class="alert">
         <div class="top full flex">
-          Ajuste a quantidade
+          <h3>Ajuste a quantidade</h3>
         </div>
 
-        <div class="content flex centerA">
-          <input id="quantidade" type="number" class="rightA" [(ngModel)]="editarQuantidade">
-          <p class="leftA">ml</p>
+        <div [ngSwitch]="formaFarmaceutica" class="content full flex">
+          <input id="quantidade" type="number" class="input rightA" [(ngModel)]="editarQuantidade">
+          <p class="leftA" *ngSwitchCase="formaFarma[0]">ml</p>
+          <p class="leftA" *ngSwitchCase="formaFarma[1]"> gotas</p>
+          <p class="leftA" *ngSwitchCase="formaFarma[2]"> comprimido</p>
+          <p class="leftA" *ngSwitchCase="formaFarma[3]"> cápsula</p>
         </div>
 
         <button (click)="menos()">-</button>
         <button (click)="mais()">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="rEstoque" class="invisivel">
+    <div id="eFundo" class="centraliza full flex" (click)="nao()">
+      <div id="eAlert" class="alert">
+        <div class="top full flex">
+          <h3>TEM CERTEZA DISSO?</h3>
+        </div>
+
+        <div class="content centerA">
+          <p>Deseja realmente REMOVER esse Medicamento?</p>
+
+          <button id="eBtn" class="important" (click)="nao()">Não</button>
+          <button id="eBtn" class="normal" (click)="sim()">Sim</button>
+        </div>
       </div>
     </div>
   </div>

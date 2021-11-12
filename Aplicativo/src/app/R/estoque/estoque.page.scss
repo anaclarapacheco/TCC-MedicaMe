@@ -62,13 +62,7 @@
         width: 70%;
         margin-top: 10px;
 
-        svg
-        {
-            height: 30px;
-            fill: var(--red);
-            
-            margin-left: auto;
-        }
+        flex-direction: row;
 
         h3
         {
@@ -80,7 +74,19 @@
         {
             color: var(--space-cadet);
             font-family: 'Roboto';
+
+            margin-top: 5px;
         }
+    }
+
+    svg
+    {
+        height: 30px;
+        fill: var(--red);
+        
+        position: relative;
+        right: 10px;
+        top: -10px;
     }
 
     button
@@ -93,83 +99,112 @@
         border-top-left-radius: 0%;
         border-bottom-right-radius: 10px;
         border-bottom-left-radius: 10px;
+
+        svg
+        {
+            fill: var(--white);
+            height: 80%;
+
+            position: initial;
+            top: 0px;
+            right: 0px;
+
+            margin-left: 10px;
+        }
     }
+}
+/*#endregion*/
+
+//#region Alerta
+#rEstoque
+{
+    background-color: var(--dark-space-cadet);
+
+    .alert
+    {
+        opacity: 0;
+
+        h3
+        {
+            font-size: 1em;
+            color: var(--white) !important;
+        }
+    }
+
+    .important
+    {
+        position: initial;
+    }
+}
+
+#eQuantidade
+{
+    background-color: var(--dark-space-cadet);
+
+    .alert
+    {
+        width: 80vw;
+        padding: 0px;
+        opacity: 0;
+
+        h3
+        {
+            font-size: 1em;
+            color: var(--white) !important;
+        }
+
+        .content
+        {
+            margin: 15px;
+            box-sizing: border-box;
+
+            .input, p
+            {
+                width: calc(50% - 15px);
+
+                padding: 0px;
+
+                outline: none;
+            }
+        }
+
+        button
+        {
+            width: 50%;
+        }
+        button:nth-of-type(1)
+        {
+            background-color: var(--space-cadet);
+
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 0px;
+        }
+        button:nth-of-type(2)
+        {
+            background-color: var(--dark-space-cadet);
+            
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 20px;
+        }
+    }
+}
+//#endregion
+
+//#region SemMedicamento
+.semMedicamento
+{
+    height: 50vh;
 
     svg
     {
-        fill: var(--white);
-        height: 80%;
+        width: 40%;
+        fill: var(--lavander);
 
-        margin-left: 10px;
+        margin-top: 10vh;
     }
 }
-/*#endregion*/
-
-/*#region Alerta*/
-.alert
-{
-    width: 70vw;
-
-    padding: 0;
-
-    h3
-    {
-        color: var(--white);
-    }
-
-    .content
-    {
-        margin-bottom: 20px;
-    }
-
-    input, p, button
-    {
-        width: 50%;
-        font-size: 2em;
-    }
-
-    input
-    {
-        background-color: transparent;      
-        height: 60px;
-
-        border: none;
-
-        color: var(--dark-space-cadet);
-
-        outline: none;
-    }
-
-    p
-    {
-        color: var(--dark-space-cadet);
-        line-height: 60px;
-    }
-
-    button
-    {
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-
-        box-shadow: none;
-
-        color: var(--white);
-    }
-
-    button:nth-of-type(1)
-    {
-        background-color: var(--space-cadet);
-
-        border-bottom-left-radius: 20px;
-        border-bottom-right-radius: 0;
-    }
-
-    button:nth-of-type(2)
-    {
-        background-color: var(--dark-space-cadet);
-
-        border-bottom-right-radius: 20px;
-        border-bottom-left-radius: 0;
-    }
-}
-/*#endregion*/
+//#endregion

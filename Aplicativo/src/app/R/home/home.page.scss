@@ -113,3 +113,18 @@
     background-color: var(--lavander);
 }
 /*#endregion*/
+
+//#region Medicamentos - Sem Medicamentos
+.naoTem
+{
+    height: 50vh;
+
+    svg
+    {
+        width: 40%;
+        fill: var(--lavander);
+
+        margin-top: 10vh;
+    }
+}
+//#endregion
