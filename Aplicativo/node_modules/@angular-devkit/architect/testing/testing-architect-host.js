@@ -73,10 +73,10 @@ class TestingArchitectHost {
         }
     }
     addTarget(target, builderName, options = {}) {
-        this._targetMap.set(src_1.targetStringFromTarget(target), { builderName, options });
+        this._targetMap.set((0, src_1.targetStringFromTarget)(target), { builderName, options });
     }
     async getBuilderNameForTarget(target) {
-        const name = src_1.targetStringFromTarget(target);
+        const name = (0, src_1.targetStringFromTarget)(target);
         const maybeTarget = this._targetMap.get(name);
         if (!maybeTarget) {
             return this._backendHost && this._backendHost.getBuilderNameForTarget(target);
@@ -101,7 +101,7 @@ class TestingArchitectHost {
         return this.workspaceRoot;
     }
     async getOptionsForTarget(target) {
-        const name = src_1.targetStringFromTarget(target);
+        const name = (0, src_1.targetStringFromTarget)(target);
         const maybeTarget = this._targetMap.get(name);
         if (!maybeTarget) {
             return this._backendHost && this._backendHost.getOptionsForTarget(target);

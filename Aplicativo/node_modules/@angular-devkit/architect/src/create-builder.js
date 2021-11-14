@@ -70,7 +70,7 @@ function createBuilder(fn) {
             function onInput(i) {
                 const builder = i.info;
                 const loggerName = i.target
-                    ? api_1.targetStringFromTarget(i.target)
+                    ? (0, api_1.targetStringFromTarget)(i.target)
                     : builder.builderName;
                 const logger = new core_1.logging.Logger(loggerName);
                 subscriptions.push(logger.subscribe((entry) => log(entry)));
@@ -82,7 +82,7 @@ function createBuilder(fn) {
                     logger: logger,
                     id: i.id,
                     async scheduleTarget(target, overrides = {}, scheduleOptions = {}) {
-                        const run = await schedule_by_name_1.scheduleByTarget(target, overrides, {
+                        const run = await (0, schedule_by_name_1.scheduleByTarget)(target, overrides, {
                             scheduler,
                             logger: scheduleOptions.logger || logger.createChild(''),
                             workspaceRoot: i.workspaceRoot,
@@ -93,7 +93,7 @@ function createBuilder(fn) {
                         return run;
                     },
                     async scheduleBuilder(builderName, options = {}, scheduleOptions = {}) {
-                        const run = await schedule_by_name_1.scheduleByName(builderName, options, {
+                        const run = await (0, schedule_by_name_1.scheduleByName)(builderName, options, {
                             scheduler,
                             target: scheduleOptions.target,
                             logger: scheduleOptions.logger || logger.createChild(''),
@@ -160,23 +160,23 @@ function createBuilder(fn) {
                 let result;
                 try {
                     result = fn(i.options, context);
-                    if (api_1.isBuilderOutput(result)) {
-                        result = rxjs_1.of(result);
+                    if ((0, api_1.isBuilderOutput)(result)) {
+                        result = (0, rxjs_1.of)(result);
                     }
-                    else if (!rxjs_1.isObservable(result) && isAsyncIterable(result)) {
-                        result = api_1.fromAsyncIterable(result);
+                    else if (!(0, rxjs_1.isObservable)(result) && isAsyncIterable(result)) {
+                        result = (0, api_1.fromAsyncIterable)(result);
                     }
                     else {
-                        result = rxjs_1.from(result);
+                        result = (0, rxjs_1.from)(result);
                     }
                 }
                 catch (e) {
-                    result = rxjs_1.throwError(e);
+                    result = (0, rxjs_1.throwError)(e);
                 }
                 // Manage some state automatically.
                 progress({ state: api_1.BuilderProgressState.Running, current: 0, total: 1 }, context);
                 subscriptions.push(result
-                    .pipe(operators_1.tap(() => {
+                    .pipe((0, operators_1.tap)(() => {
                     progress({ state: api_1.BuilderProgressState.Running, current: total }, context);
                     progress({ state: api_1.BuilderProgressState.Stopped }, context);
                 }))

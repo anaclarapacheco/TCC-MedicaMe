@@ -10,7 +10,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const rxjs_1 = require("rxjs");
 const operators_1 = require("rxjs/operators");
 const src_1 = require("../src");
-exports.default = src_1.createBuilder((options, context) => {
+exports.default = (0, src_1.createBuilder)((options, context) => {
     const allRuns = [];
     context.reportProgress(0, (options.targets ? options.targets.length : 0) +
         (options.builders ? options.builders.length : 0));
@@ -28,9 +28,9 @@ exports.default = src_1.createBuilder((options, context) => {
     let stop = null;
     let i = 0;
     context.reportProgress(i++, allRuns.length);
-    return rxjs_1.from(allRuns).pipe(operators_1.concatMap((fn) => stop
-        ? rxjs_1.of(null)
-        : rxjs_1.from(fn()).pipe(operators_1.switchMap((run) => (run === null ? rxjs_1.of(null) : run.output.pipe(operators_1.first()))))), operators_1.map((output) => {
+    return (0, rxjs_1.from)(allRuns).pipe((0, operators_1.concatMap)((fn) => stop
+        ? (0, rxjs_1.of)(null)
+        : (0, rxjs_1.from)(fn()).pipe((0, operators_1.switchMap)((run) => (run === null ? (0, rxjs_1.of)(null) : run.output.pipe((0, operators_1.first)()))))), (0, operators_1.map)((output) => {
         context.reportProgress(i++, allRuns.length);
         if (output === null || stop !== null) {
             return stop || { success: false };
@@ -41,5 +41,5 @@ exports.default = src_1.createBuilder((options, context) => {
         else {
             return output;
         }
-    }), operators_1.last());
+    }), (0, operators_1.last)());
 });

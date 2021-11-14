@@ -1,0 +1,9 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+export { USER_DEFAULTS, defaultsFactory, FlatpickrModule } from './flatpickr.module';
+export { FlatpickrDefaults } from './flatpickr-defaults.service';
+export { FlatpickrDirective } from './flatpickr.directive';
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290Ijoibmc6Ly9hbmd1bGFyeC1mbGF0cGlja3IvIiwic291cmNlcyI6WyJpbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsZ0VBQWMsb0JBQW9CLENBQUM7QUFDbkMsT0FBTyxFQUFFLGlCQUFpQixFQUFFLE1BQU0sOEJBQThCLENBQUM7QUFDakUsT0FBTyxFQUFFLGtCQUFrQixFQUFFLE1BQU0sdUJBQXVCLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgKiBmcm9tICcuL2ZsYXRwaWNrci5tb2R1bGUnO1xuZXhwb3J0IHsgRmxhdHBpY2tyRGVmYXVsdHMgfSBmcm9tICcuL2ZsYXRwaWNrci1kZWZhdWx0cy5zZXJ2aWNlJztcbmV4cG9ydCB7IEZsYXRwaWNrckRpcmVjdGl2ZSB9IGZyb20gJy4vZmxhdHBpY2tyLmRpcmVjdGl2ZSc7XG4iXX0=

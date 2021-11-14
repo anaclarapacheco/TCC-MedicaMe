@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 // declare const deepEqual: any;
 // import deepEqual from 'fast-deep-equal';
-import deepEqual from 'deep-equal';
+// import deepEqual from 'deep-equal';
 import * as core from '@angular/core';
 import { Calendar, CalendarOptions } from '@fullcalendar/core';
 import { deepCopy, shallowCopy, mapHash } from './utils';
@@ -58,15 +58,15 @@ export class FullcalendarComponent implements OnInit, core.AfterViewInit, core.D
           let optionVal = newOptions[optionName];
 
           if (deepChangeDetection && OPTION_IS_DEEP[optionName]) {
-            if (!deepEqual(optionSnapshot[optionName], optionVal)) {
-              optionSnapshot[optionName] = deepCopy(optionVal);
-              anyChanges = true;
+            // if (!deepEqual(optionSnapshot[optionName], optionVal)) {
+            //   optionSnapshot[optionName] = deepCopy(optionVal);
+            //   anyChanges = true;
 
-              // trick FC into knowing about a nested change.
-              // TODO: future versions won't need this.
-              // can't use the previously-made deep copy because it blows away prototype-association.
-              optionVal = shallowCopy(optionVal);
-            }
+            //   // trick FC into knowing about a nested change.
+            //   // TODO: future versions won't need this.
+            //   // can't use the previously-made deep copy because it blows away prototype-association.
+            //   optionVal = shallowCopy(optionVal);
+            // }
 
           } else {
             if (optionSnapshot[optionName] !== optionVal) {

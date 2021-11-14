@@ -17,7 +17,7 @@ const inputSchema = require('./input-schema.json');
 const outputSchema = require('./output-schema.json');
 function _createJobHandlerFromBuilderInfo(info, target, host, registry, baseOptions) {
     const jobDescription = {
-        name: target ? `{${api_1.targetStringFromTarget(target)}}` : info.builderName,
+        name: target ? `{${(0, api_1.targetStringFromTarget)(target)}}` : info.builderName,
         argument: { type: 'object' },
         input: inputSchema,
         output: outputSchema,
@@ -25,7 +25,7 @@ function _createJobHandlerFromBuilderInfo(info, target, host, registry, baseOpti
     };
     function handler(argument, context) {
         // Add input validation to the inbound bus.
-        const inboundBusWithInputValidation = context.inboundBus.pipe(operators_1.concatMap((message) => {
+        const inboundBusWithInputValidation = context.inboundBus.pipe((0, operators_1.concatMap)((message) => {
             if (message.kind === core_1.experimental.jobs.JobInboundMessageKind.Input) {
                 const v = message.value;
                 const options = {
@@ -33,29 +33,29 @@ function _createJobHandlerFromBuilderInfo(info, target, host, registry, baseOpti
                     ...v.options,
                 };
                 // Validate v against the options schema.
-                return registry.compile(info.optionSchema).pipe(operators_1.concatMap((validation) => validation(options)), operators_1.map((validationResult) => {
+                return registry.compile(info.optionSchema).pipe((0, operators_1.concatMap)((validation) => validation(options)), (0, operators_1.map)((validationResult) => {
                     const { data, success, errors } = validationResult;
                     if (success) {
                         return { ...v, options: data };
                     }
                     throw new core_1.json.schema.SchemaValidationException(errors);
-                }), operators_1.map((value) => ({ ...message, value })));
+                }), (0, operators_1.map)((value) => ({ ...message, value })));
             }
             else {
-                return rxjs_1.of(message);
+                return (0, rxjs_1.of)(message);
             }
         }), 
         // Using a share replay because the job might be synchronously sending input, but
         // asynchronously listening to it.
-        operators_1.shareReplay(1));
+        (0, operators_1.shareReplay)(1));
         // Make an inboundBus that completes instead of erroring out.
         // We'll merge the errors into the output instead.
-        const inboundBus = rxjs_1.onErrorResumeNext(inboundBusWithInputValidation);
-        const output = rxjs_1.from(host.loadBuilder(info)).pipe(operators_1.concatMap((builder) => {
+        const inboundBus = (0, rxjs_1.onErrorResumeNext)(inboundBusWithInputValidation);
+        const output = (0, rxjs_1.from)(host.loadBuilder(info)).pipe((0, operators_1.concatMap)((builder) => {
             if (builder === null) {
                 throw new Error(`Cannot load builder for builderInfo ${JSON.stringify(info, null, 2)}`);
             }
-            return builder.handler(argument, { ...context, inboundBus }).pipe(operators_1.map((output) => {
+            return builder.handler(argument, { ...context, inboundBus }).pipe((0, operators_1.map)((output) => {
                 if (output.kind === core_1.experimental.jobs.JobOutboundMessageKind.Output) {
                     // Add target to it.
                     return {
@@ -72,14 +72,14 @@ function _createJobHandlerFromBuilderInfo(info, target, host, registry, baseOpti
             }));
         }), 
         // Share subscriptions to the output, otherwise the the handler will be re-run.
-        operators_1.shareReplay());
+        (0, operators_1.shareReplay)());
         // Separate the errors from the inbound bus into their own observable that completes when the
         // builder output does.
-        const inboundBusErrors = inboundBusWithInputValidation.pipe(operators_1.ignoreElements(), operators_1.takeUntil(rxjs_1.onErrorResumeNext(output.pipe(operators_1.last()))));
+        const inboundBusErrors = inboundBusWithInputValidation.pipe((0, operators_1.ignoreElements)(), (0, operators_1.takeUntil)((0, rxjs_1.onErrorResumeNext)(output.pipe((0, operators_1.last)()))));
         // Return the builder output plus any input errors.
-        return rxjs_1.merge(inboundBusErrors, output);
+        return (0, rxjs_1.merge)(inboundBusErrors, output);
     }
-    return rxjs_1.of(Object.assign(handler, { jobDescription }));
+    return (0, rxjs_1.of)(Object.assign(handler, { jobDescription }));
 }
 /**
  * A JobRegistry that resolves builder targets from the host.
@@ -98,16 +98,16 @@ class ArchitectBuilderJobRegistry {
             if (maybeCache !== undefined) {
                 return maybeCache;
             }
-            const info = rxjs_1.from(this._host.resolveBuilder(name)).pipe(operators_1.shareReplay(1));
+            const info = (0, rxjs_1.from)(this._host.resolveBuilder(name)).pipe((0, operators_1.shareReplay)(1));
             cache.set(name, info);
             return info;
         }
-        return rxjs_1.from(this._host.resolveBuilder(name));
+        return (0, rxjs_1.from)(this._host.resolveBuilder(name));
     }
     _createBuilder(info, target, options) {
         const cache = this._jobCache;
         if (target) {
-            const maybeHit = cache && cache.get(api_1.targetStringFromTarget(target));
+            const maybeHit = cache && cache.get((0, api_1.targetStringFromTarget)(target));
             if (maybeHit) {
                 return maybeHit;
             }
@@ -121,10 +121,10 @@ class ArchitectBuilderJobRegistry {
         const result = _createJobHandlerFromBuilderInfo(info, target, this._host, this._registry, options || {});
         if (cache) {
             if (target) {
-                cache.set(api_1.targetStringFromTarget(target), result.pipe(operators_1.shareReplay(1)));
+                cache.set((0, api_1.targetStringFromTarget)(target), result.pipe((0, operators_1.shareReplay)(1)));
             }
             else {
-                cache.set(info.builderName, result.pipe(operators_1.shareReplay(1)));
+                cache.set(info.builderName, result.pipe((0, operators_1.shareReplay)(1)));
             }
         }
         return result;
@@ -132,9 +132,9 @@ class ArchitectBuilderJobRegistry {
     get(name) {
         const m = name.match(/^([^:]+):([^:]+)$/i);
         if (!m) {
-            return rxjs_1.of(null);
+            return (0, rxjs_1.of)(null);
         }
-        return rxjs_1.from(this._resolveBuilder(name)).pipe(operators_1.concatMap((builderInfo) => (builderInfo ? this._createBuilder(builderInfo) : rxjs_1.of(null))), operators_1.first(null, null));
+        return (0, rxjs_1.from)(this._resolveBuilder(name)).pipe((0, operators_1.concatMap)((builderInfo) => (builderInfo ? this._createBuilder(builderInfo) : (0, rxjs_1.of)(null))), (0, operators_1.first)(null, null));
     }
 }
 /**
@@ -144,27 +144,27 @@ class ArchitectTargetJobRegistry extends ArchitectBuilderJobRegistry {
     get(name) {
         const m = name.match(/^{([^:]+):([^:]+)(?::([^:]*))?}$/i);
         if (!m) {
-            return rxjs_1.of(null);
+            return (0, rxjs_1.of)(null);
         }
         const target = {
             project: m[1],
             target: m[2],
             configuration: m[3],
         };
-        return rxjs_1.from(Promise.all([
+        return (0, rxjs_1.from)(Promise.all([
             this._host.getBuilderNameForTarget(target),
             this._host.getOptionsForTarget(target),
-        ])).pipe(operators_1.concatMap(([builderStr, options]) => {
+        ])).pipe((0, operators_1.concatMap)(([builderStr, options]) => {
             if (builderStr === null || options === null) {
-                return rxjs_1.of(null);
+                return (0, rxjs_1.of)(null);
             }
-            return this._resolveBuilder(builderStr).pipe(operators_1.concatMap((builderInfo) => {
+            return this._resolveBuilder(builderStr).pipe((0, operators_1.concatMap)((builderInfo) => {
                 if (builderInfo === null) {
-                    return rxjs_1.of(null);
+                    return (0, rxjs_1.of)(null);
                 }
                 return this._createBuilder(builderInfo, target, options);
             }));
-        }), operators_1.first(null, null));
+        }), (0, operators_1.first)(null, null));
     }
 }
 function _getTargetOptionsFactory(host) {
@@ -201,7 +201,7 @@ function _getBuilderNameForTargetFactory(host) {
     return core_1.experimental.jobs.createJobHandler(async (target) => {
         const builderName = await host.getBuilderNameForTarget(target);
         if (!builderName) {
-            throw new Error(`No builder were found for target ${api_1.targetStringFromTarget(target)}.`);
+            throw new Error(`No builder were found for target ${(0, api_1.targetStringFromTarget)(target)}.`);
         }
         return builderName;
     }, {
@@ -219,9 +219,9 @@ function _validateOptionsFactory(host, registry) {
         }
         return registry
             .compile(builderInfo.optionSchema)
-            .pipe(operators_1.concatMap((validation) => validation(options)), operators_1.switchMap(({ data, success, errors }) => {
+            .pipe((0, operators_1.concatMap)((validation) => validation(options)), (0, operators_1.switchMap)(({ data, success, errors }) => {
             if (success) {
-                return rxjs_1.of(data);
+                return (0, rxjs_1.of)(data);
             }
             throw new core_1.json.schema.SchemaValidationException(errors);
         }))
@@ -262,7 +262,7 @@ class Architect {
         if (!/^[^:]+:[^:]+(:[^:]+)?$/.test(name)) {
             throw new Error('Invalid builder name: ' + JSON.stringify(name));
         }
-        return schedule_by_name_1.scheduleByName(name, options, {
+        return (0, schedule_by_name_1.scheduleByName)(name, options, {
             scheduler: this._scheduler,
             logger: scheduleOptions.logger || new core_1.logging.NullLogger(),
             currentDirectory: this._host.getCurrentDirectory(),
@@ -271,7 +271,7 @@ class Architect {
         });
     }
     scheduleTarget(target, overrides = {}, scheduleOptions = {}) {
-        return schedule_by_name_1.scheduleByTarget(target, overrides, {
+        return (0, schedule_by_name_1.scheduleByTarget)(target, overrides, {
             scheduler: this._scheduler,
             logger: scheduleOptions.logger || new core_1.logging.NullLogger(),
             currentDirectory: this._host.getCurrentDirectory(),

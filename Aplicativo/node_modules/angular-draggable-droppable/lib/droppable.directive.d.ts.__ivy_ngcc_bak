@@ -1,0 +1,61 @@
+import { OnInit, ElementRef, OnDestroy, EventEmitter, NgZone, Renderer2 } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { DraggableHelper } from './draggable-helper.provider';
+import { DraggableScrollContainerDirective } from './draggable-scroll-container.directive';
+export interface DropEvent<T = any> {
+    dropData: T;
+}
+export interface ValidateDropParams {
+    /**
+     * ClientX value of the mouse location where the drop occurred
+     */
+    clientX: number;
+    /**
+     * ClientY value of the mouse location where the drop occurred
+     */
+    clientY: number;
+    /**
+     * The target of the event where the drop occurred
+     */
+    target: EventTarget;
+}
+export declare type ValidateDrop = (params: ValidateDropParams) => boolean;
+export declare class DroppableDirective implements OnInit, OnDestroy {
+    private element;
+    private draggableHelper;
+    private zone;
+    private renderer;
+    private scrollContainer;
+    /**
+     * Added to the element when an element is dragged over it
+     */
+    dragOverClass: string;
+    /**
+     * Added to the element any time a draggable element is being dragged
+     */
+    dragActiveClass: string;
+    /**
+     * Allow custom behaviour to control when the element is dropped
+     */
+    validateDrop: ValidateDrop;
+    /**
+     * Called when a draggable element starts overlapping the element
+     */
+    dragEnter: EventEmitter<DropEvent<any>>;
+    /**
+     * Called when a draggable element stops overlapping the element
+     */
+    dragLeave: EventEmitter<DropEvent<any>>;
+    /**
+     * Called when a draggable element is moved over the element
+     */
+    dragOver: EventEmitter<DropEvent<any>>;
+    /**
+     * Called when a draggable element is dropped on this element
+     */
+    drop: EventEmitter<DropEvent<any>>;
+    currentDragSubscription: Subscription;
+    constructor(element: ElementRef<HTMLElement>, draggableHelper: DraggableHelper, zone: NgZone, renderer: Renderer2, scrollContainer: DraggableScrollContainerDirective);
+    ngOnInit(): void;
+    ngOnDestroy(): void;
+}

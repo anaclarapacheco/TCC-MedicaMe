@@ -10,7 +10,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const rxjs_1 = require("rxjs");
 const operators_1 = require("rxjs/operators");
 const src_1 = require("../src");
-exports.default = src_1.createBuilder((options, context) => {
+exports.default = (0, src_1.createBuilder)((options, context) => {
     const allRuns = [];
     context.reportProgress(0, (options.targets ? options.targets.length : 0) +
         (options.builders ? options.builders.length : 0));
@@ -32,7 +32,7 @@ exports.default = src_1.createBuilder((options, context) => {
     const allResults = allRuns.map(() => null);
     let n = 0;
     context.reportProgress(n++, allRuns.length);
-    return rxjs_1.from(allRuns).pipe(operators_1.mergeMap((runPromise) => rxjs_1.from(runPromise)), operators_1.mergeMap(([i, run]) => run.output.pipe(operators_1.map((output) => [i, output]))), operators_1.mergeMap(([i, output]) => {
+    return (0, rxjs_1.from)(allRuns).pipe((0, operators_1.mergeMap)((runPromise) => (0, rxjs_1.from)(runPromise)), (0, operators_1.mergeMap)(([i, run]) => run.output.pipe((0, operators_1.map)((output) => [i, output]))), (0, operators_1.mergeMap)(([i, output]) => {
         allResults[i] = output;
         context.reportProgress(n++, allRuns.length);
         if (allResults.some((x) => x === null)) {
@@ -40,7 +40,7 @@ exports.default = src_1.createBuilder((options, context) => {
             return rxjs_1.EMPTY;
         }
         else {
-            return rxjs_1.of({
+            return (0, rxjs_1.of)({
                 success: allResults.every((x) => (x ? x.success : false)),
             });
         }

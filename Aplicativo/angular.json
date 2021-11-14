@@ -31,10 +31,13 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["src/theme/variables.scss", "src/global.scss"],
-            "scripts": [
-              "node_modules/deep_import/name.of.minified.file.js"
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/angular-calendar/css/angular-calendar.css",
+              "src/theme/variables.scss",
+              "src/global.scss"
             ],
+            "scripts": [ ],
             "aot": false,
             "vendorChunk": true,
             "extractLicenses": false,
@@ -99,7 +102,9 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "styles": [],
+            "styles": [
+              "node_modules/angular-calendar/css/angular-calendar.css"
+            ],
             "scripts": [
               "node_modules/deep_import/name.of.minified.file.js"
             ],

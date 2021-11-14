@@ -84,7 +84,7 @@ function scheduleTargetAndForget(context, target, overrides, scheduleOptions) {
     let resolve = null;
     const promise = new Promise((r) => (resolve = r));
     context.addTeardown(() => promise);
-    return rxjs_1.from(context.scheduleTarget(target, overrides, scheduleOptions)).pipe(operators_1.switchMap((run) => new rxjs_1.Observable((observer) => {
+    return (0, rxjs_1.from)(context.scheduleTarget(target, overrides, scheduleOptions)).pipe((0, operators_1.switchMap)((run) => new rxjs_1.Observable((observer) => {
         const subscription = run.output.subscribe(observer);
         return () => {
             subscription.unsubscribe();
