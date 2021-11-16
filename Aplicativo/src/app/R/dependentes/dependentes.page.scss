@@ -24,11 +24,6 @@
 {
     width: 100vw;
 }
-
-.alert h3
-{
-    color: var(--white);    
-}
 /*#endregion*/
 
 /*#region Dependentes*/
@@ -43,27 +38,28 @@
     border-radius: 10px;
     box-sizing: border-box;
 
-    img
+    svg:nth-of-type(1)
     {
+        fill: var(--dark-space-cadet) !important;
         width: 50px;
-        height: 50px;
 
-        margin-left: 10px;
         margin-right: 20px;
+    }
+
+    svg:nth-of-type(2)
+    {
+        fill: var(--red) !important;
+        height: 30px;
+
+        position: relative;
+        top: -20px;
+        right: 0px;
     }
 
     .text
     {
-        width: 70%;
+        width: calc(65% - 30px);
         margin-top: 10px;
-
-        svg
-        {
-            height: 30px;
-            fill: var(--red);
-    
-            margin-left: auto;
-        }
     
         h3
         {
@@ -102,6 +98,29 @@
 }
 /*#endregion*/
 
+//#region Alerta
+#rDependentes, #aDependentes
+{
+    background-color: var(--dark-space-cadet);
+
+    .alert
+    {
+        opacity: 0;
+
+        h3
+        {
+            font-size: 1em;
+            color: var(--white) !important;
+        }
+    }
+
+    .important
+    {
+        position: initial;
+    }
+}
+//#endregion
+
 /*#region Botão*/
 #botao .important
 {
@@ -112,6 +131,24 @@
     bottom: calc((100vw / 5) + ((100vw / 5) / 2) + 10px);
     left: 10vw;
 
-    color: var(--white);
+    span
+    {
+        color: var(--white) !important;
+    }
 }
 /*#endregion*/
+
+//#region SemDependentes
+.semDependentes
+{
+    height: 50vh;
+
+    svg
+    {
+        width: 40%;
+        fill: var(--lavander);
+
+        margin-top: 10vh;
+    }
+}
+//#endregion

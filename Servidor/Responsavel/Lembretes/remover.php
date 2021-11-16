@@ -25,4 +25,7 @@
     $SQL = $PDO->query("DELETE FROM `agendamento` WHERE `nm_email_usuario` = '$Email' AND `cd_agendamento` = '$Codigo'");
     /*#endregion*/
 
-    echo json_encode('EU COMETERIA UM CRIME AGORA');
+    //#region Enviar
+    echo json_encode('Deletou');
+    //#endregion
+?>

@@ -59,7 +59,7 @@
 
     .text
     {
-        width: 70%;
+        width: calc(70% - 30px);
         margin-top: 10px;
 
         flex-direction: row;
@@ -85,8 +85,8 @@
         fill: var(--red);
         
         position: relative;
-        right: 10px;
-        top: -10px;
+        right: 0px;
+        top: 0px;
     }
 
     button
@@ -143,7 +143,7 @@
 
     .alert
     {
-        width: 80vw;
+        width: 70vw;
         padding: 0px;
         opacity: 0;
 
@@ -158,37 +158,55 @@
             margin: 15px;
             box-sizing: border-box;
 
+            .input
+            {
+                width: 50%;
+            }
+
+            p
+            {
+                width: 30%;
+            }
+
             .input, p
             {
-                width: calc(50% - 15px);
-
                 padding: 0px;
 
                 outline: none;
             }
         }
 
-        button
-        {
-            width: 50%;
-        }
-        button:nth-of-type(1)
+        button:nth-of-type(1), button:nth-of-type(2)
         {
             background-color: var(--space-cadet);
+            width: 50%;
+
+            margin: 0px;
+            border-radius: 0px;
+            box-shadow: none;
+
+            span
+            {
+                color: var(--white);
+                font-size: 25px;
+            }
+        }
+
+        button:nth-of-type(3)
+        {
+            background-color: var(--yellow);
+            width: 100%;
 
             border-top-left-radius: 0px;
             border-top-right-radius: 0px;
             border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 0px;
-        }
-        button:nth-of-type(2)
-        {
-            background-color: var(--dark-space-cadet);
-            
-            border-top-left-radius: 0px;
-            border-top-right-radius: 0px;
-            border-bottom-left-radius: 0px;
             border-bottom-right-radius: 20px;
+
+            span
+            {
+                color: var(--dark-space-cadet);
+                font-size: 1.3em;
+            }
         }
     }
 }

@@ -21,8 +21,13 @@
     position: absolute;
     top: 75vh;
     left: 7.5vw;
-}
-    .bot svg
+
+    button
+    {
+        position: initial;
+    }
+
+    svg
     {
         height: 20px;
 
@@ -33,6 +38,7 @@
 
         color: var(--dark-space-cadet);
     }
+}
 /*#endregion*/
 
 /*#region Parte desorganizada da Ana*/

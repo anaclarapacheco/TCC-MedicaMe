@@ -34,6 +34,7 @@
 .mid
 {
     width: 80vw;
+    padding-bottom: 10px;
     overflow: scroll;
 
     .bloco
@@ -41,15 +42,20 @@
         width: 45%;
     }
 
-    .bloco:nth-of-type(1)
+    .bloco:nth-of-type(1), .bloco:nth-of-type(3)
     {
         margin-right: 10%;
     }
 
-    span, h3, button
+    span, h3
     {
         margin-top: 20px;
         margin-bottom: 10px;
+    }
+
+    button
+    {
+        margin-top: 20px;
     }
 
     span, h3
@@ -83,13 +89,19 @@
     .important
     {
         position: inherit;
+
+        span
+        {
+            position: relative;
+            left: 13px;
+        }
         
         svg
         {
             height: 20px;
 
             position: relative;
-            right: -35%;
+            right: -32%;
 
             border-radius: 10px;
             
@@ -97,23 +109,34 @@
         }
     }
 
-    .normal svg
+    .normal
     {
-        height: 20px;
+        box-sizing: border-box;
 
-        position: relative;
-        left: -52%;
+        span
+        {
+            position: relative;
+            left: 15px;
+        }
 
-        border-radius: 10px;
-            
-        fill: var(--white);
+        svg
+        {
+            height: 20px;
 
-        transform: rotate(180deg);
-    }
+            position: relative;
+            left: -51%;
 
-    .aviso
-    {
-        margin-top: 20px;
+            border-radius: 10px;
+                
+            fill: var(--white);
+
+            transform: rotate(180deg);
+        }
+
+        .aviso
+        {
+            margin-top: 20px;
+        }
     }
 }
 /*#endregion*/
@@ -121,12 +144,20 @@
 //#region Um e Dois
 #um
 {
-    height: 74vh;
+    min-height: 74vh;
+
+    padding-bottom: 5px;
+
+    overflow: hidden;
 }
 
 #dois
 {
-    height: 80vh;
+    min-height: 80vh;
+
+    padding-bottom: 5px;
+
+    overflow: hidden;
 
     .data
     {

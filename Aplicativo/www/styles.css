@@ -12,6 +12,12 @@
 .data .hydrated {
   --padding-start: 0px !important;
 }
+.swiper-pagination-bullet {
+  background: var(--space-cadet) !important;
+}
+.swiper-pagination-bullet-active {
+  background: var(--state-blue) !important;
+}
 /*#endregion*/
 /*#region Ionic*/
 /** Ionic CSS Variables **/
@@ -1512,14 +1518,27 @@ button {
   position: fixed;
   top: calc(100vw / 5);
   left: 0px;
-  padding: 0px 0px 0px 10px;
+  padding: 0px 10px 0px 10px;
   border-width: 5px 0px 0px 0px;
   border-color: var(--white);
   border-style: solid;
   z-index: 100;
 }
+.dep .sair {
+  margin-left: auto;
+  text-decoration: underline;
+}
 .depMeio {
   margin-top: calc((100vw / 5) + 50px) !important;
+}
+.baixo {
+  bottom: 30px !important;
+}
+.baixoButton {
+  margin-bottom: 100px !important;
+}
+.baixoButton2 {
+  margin-bottom: 30px !important;
 }
 .menu {
   background-color: transparent;

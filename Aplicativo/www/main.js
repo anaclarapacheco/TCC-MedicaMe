@@ -87,7 +87,7 @@ const routes = [
     },
     {
         path: 'R/dependentes',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_R_dependentes_dependentes_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./R/dependentes/dependentes.module */ 7242)).then(m => m.DependentesPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_R_dependentes_dependentes_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./R/dependentes/dependentes.module */ 7242)).then(m => m.DependentesPageModule)
     },
     {
         path: 'R/estoque',
@@ -99,7 +99,7 @@ const routes = [
     },
     {
         path: 'R/relatorio',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_R_relatorio_relatorio_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./R/relatorio/relatorio.module */ 3911)).then(m => m.RelatorioPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_R_relatorio_relatorio_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./R/relatorio/relatorio.module */ 3911)).then(m => m.RelatorioPageModule)
     },
     {
         path: 'sintomas',
@@ -107,11 +107,11 @@ const routes = [
     },
     {
         path: 'D/home',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_D_home_home_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./D/home/home.module */ 8627)).then(m => m.HomePageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_D_home_home_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./D/home/home.module */ 8627)).then(m => m.HomePageModule)
     },
     {
         path: 'R/dependente',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_R_dependente_dependente_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./R/dependente/dependente.module */ 6394)).then(m => m.DependentePageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_R_dependente_dependente_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./R/dependente/dependente.module */ 6394)).then(m => m.DependentePageModule)
     },
     {
         path: 'R/historico',

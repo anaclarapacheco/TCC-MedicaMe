@@ -107,13 +107,13 @@ export class EstoquePage implements OnInit {
     }, 100);
 
     this.codigo = codigo;
-    this.editarQuantidade = quantidade;
+    this.editarQuantidade = 0;
     this.formaFarmaceutica = formaFarma;
   }
 
   fechar()
   {    
-    if(event.target == document.getElementById('qFundo'))
+    if(event.target == document.getElementById('qFundo') || event.target == document.getElementById('qBtn'))
     {
       //Preparação
       document.getElementById('qFundo').classList.remove('InFundo');
@@ -142,6 +142,21 @@ export class EstoquePage implements OnInit {
   mais()
   {
     this.editarQuantidade++;
+  }
+
+  adicionar()
+  {
+    //Enviar ao PHP
+    let dados = 'phpCodigo=' + this.codigo + '&phpQuantidade=' + this.editarQuantidade + '&phpEmail=' + this.email;
+
+    this.servidor.enviar('Responsavel/Estoque/editar.php', dados).subscribe(res =>{
+      if(res[0]['Erro'] == false)
+      {
+        this.carregarEstoque();
+      }
+    });
+
+    this.fechar();
   }
   //#endregion
 
@@ -229,6 +244,11 @@ export class EstoquePage implements OnInit {
     this.nav.digitarResponsavel();
   }
 
+  removDependente()
+  {
+    this.nav.rDependente();
+  }
+
   sair()
   {
     this.servidor.limpar();
@@ -271,6 +291,9 @@ export class EstoquePage implements OnInit {
     {
       document.getElementById('eDep').classList.remove('invisivel');
       document.getElementById('eMeio').classList.add('depMeio');
+      document.getElementById('eTabs').classList.add('invisivel');
+      document.getElementById('eNav').classList.add('invisivel');
+      document.getElementById('eContent').classList.add('baixoButton2');
 
       this.nomeDependente = localStorage.getItem('nomeDependente');
       this.email = localStorage.getItem('emailDependente');
@@ -279,6 +302,9 @@ export class EstoquePage implements OnInit {
     {
       document.getElementById('eDep').classList.add('invisivel');
       document.getElementById('eMeio').classList.remove('depMeio');
+      document.getElementById('eTabs').classList.remove('invisivel');
+      document.getElementById('eNav').classList.remove('invisivel');
+      document.getElementById('eContent').classList.remove('baixoButton2');
 
       this.email = localStorage.getItem('email');
     }

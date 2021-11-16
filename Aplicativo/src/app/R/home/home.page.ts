@@ -84,6 +84,7 @@ export class HomePage implements OnInit {
 
     //Enviar ao PHP
     let dados = 'phpSituacao=' + situacao + '&phpCodigo=' + codigo + '&phpEmail=' + localStorage.getItem('email');
+    
     this.servidor.enviar('Responsavel/Home/situacao.php', dados).subscribe(res => {
       this.carregarPendente();
     });

@@ -17,40 +17,31 @@
     /*#endregion*/
 
     /*#region Variavéis*/
+    $Agendamento = $_GET['phpCodigo'];
+    $Quantidade = $_GET['phpQuantidade'];
     $Email = $_GET['phpEmail'];
-    $Senha = $_GET['phpSenha'];
 
     $Erro = true;
-    $TipoUsuario = null;
     /*#endregion*/
 
     /*#region Banco de Dados*/
-    if($Email != null & $Senha != null)
+    if($Email != null && $Agendamento != null && $Quantidade != null)
     {
-        $SQL = $PDO->query("SELECT * FROM `usuario` WHERE `nm_email_usuario` = '$Email' And `nm_senha_usuario` = MD5('$Senha')");
+        $SQL = $PDO->query("SELECT `qt_medicamento_usuario` FROM `agendamento` WHERE `cd_agendamento` = '$Agendamento'");
+        $QuantidadeAtual = $SQL->fetch()['qt_medicamento_usuario'];
+        $QuantidadeNova = $QuantidadeAtual + $Quantidade;
 
-        while($dados = $SQL->fetch())
-        {
-            $Erro = false;
+        $SQL = $PDO->query("UPDATE `agendamento` SET `qt_medicamento_usuario` = '$QuantidadeNova' WHERE `nm_email_usuario` = '$Email' AND `cd_agendamento` = '$Agendamento'");
 
-            if($dados['nm_email_responsavel'] == null)
-            {
-                $TipoUsuario = 'Responsavel';
-            }
-            else
-            {
-                $TipoUsuario = 'Dependente';
-            }
-        }
+        $Erro = false;
     }
     /*#endregion*/
 
     /*#region Envio*/
     $Resposta[] = array(
-        'Erro' => $Erro,
-        'Tipo Usuario' => $TipoUsuario
+        'Erro' => $Erro
     );
-
+    
     echo json_encode($Resposta);
     /*#endregion*/
 ?>

@@ -187,6 +187,11 @@ export class LembretesPage implements OnInit {
     this.nav.digitarResponsavel();
   }
 
+  removDependente()
+  {
+    this.nav.rDependente();
+  }
+
   sair()
   {
     this.servidor.limpar();
@@ -229,6 +234,10 @@ export class LembretesPage implements OnInit {
     {
       document.getElementById('lDep').classList.remove('invisivel');
       document.getElementById('lMeio').classList.add('depMeio');
+      document.getElementById('lTabs').classList.add('invisivel');
+      document.getElementById('lNav').classList.add('invisivel');
+      document.getElementById('lButton').classList.add('baixo');
+      document.getElementById('lContent').classList.add('baixoButton');
 
       this.nomeDependente = localStorage.getItem('nomeDependente');
       this.email = localStorage.getItem('emailDependente');
@@ -237,6 +246,10 @@ export class LembretesPage implements OnInit {
     {
       document.getElementById('lDep').classList.add('invisivel');
       document.getElementById('lMeio').classList.remove('depMeio');
+      document.getElementById('lTabs').classList.remove('invisivel');
+      document.getElementById('lNav').classList.remove('invisivel');
+      document.getElementById('lButton').classList.remove('baixo');
+      document.getElementById('lContent').classList.remove('baixoButton');
 
       this.email = localStorage.getItem('email');
     }

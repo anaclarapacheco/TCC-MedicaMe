@@ -17,7 +17,7 @@ export class DigitarResponsavelPage implements OnInit {
   public erro: any;
   //#endregion
 
-  //#region Adicionar dados adicionais
+  //#region Adicionar responsavel
   registrar()
   {
     //Reset
@@ -54,6 +54,11 @@ export class DigitarResponsavelPage implements OnInit {
           localStorage.setItem('DTutorial', 'dHome');
           localStorage.removeItem('digitarResponsavel');
           this.nav.dTutorial();
+        }
+        else if(res[0]['Erro'] == 'Dependente')
+        {
+          this.erro = 'O e-mail inserido é de um dependente portanto não pode ser utilizado como responsável, digite novamente!';
+          document.getElementById('erroDigitarResponsavel').classList.remove('invisivel');
         }
         else
         {
@@ -102,6 +107,14 @@ export class DigitarResponsavelPage implements OnInit {
       
       case 'rEstoque':
         this.nav.rEstoque();
+        break;
+
+      case 'rDependentes':
+        this.nav.rDependentes();
+        break;
+
+      case 'rRelatorio':
+        this.nav.rRelatorio();
         break;
     }
 

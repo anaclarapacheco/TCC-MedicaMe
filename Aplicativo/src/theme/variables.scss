@@ -19,6 +19,16 @@
 {
   --padding-start: 0px !important;
 }
+
+.swiper-pagination-bullet
+{
+  background: var(--space-cadet) !important;
+}
+
+.swiper-pagination-bullet-active
+{
+  background: var(--state-blue) !important;
+}
 /*#endregion*/
 
 /*#region Ionic*/
