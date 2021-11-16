@@ -18,38 +18,36 @@
 
     /*#region Variavéis*/
     $Email = $_GET['phpEmail'];
-    $Senha = $_GET['phpSenha'];
 
     $Erro = true;
-    $TipoUsuario = null;
+    $foi = false;
     /*#endregion*/
 
     /*#region Banco de Dados*/
-    if($Email != null & $Senha != null)
+    if($Email != null)
     {
-        $SQL = $PDO->query("SELECT * FROM `usuario` WHERE `nm_email_usuario` = '$Email' And `nm_senha_usuario` = MD5('$Senha')");
+        $SQL = $PDO->query("SELECT `nm_usuario`, `nm_email_usuario`, TIMESTAMPDIFF(YEAR, `dt_nascimento_usuario`, NOW()) AS idade FROM `usuario` WHERE `nm_email_responsavel` = '$Email'");
 
         while($dados = $SQL->fetch())
         {
-            $Erro = false;
+            $foi = true;
 
-            if($dados['nm_email_responsavel'] == null)
-            {
-                $TipoUsuario = 'Responsavel';
-            }
-            else
-            {
-                $TipoUsuario = 'Dependente';
-            }
+            $Resposta[] = array(
+                'Nome' => $dados['nm_usuario'],
+                'Email' => $dados['nm_email_usuario'],
+                'Idade' => $dados['idade']
+            );
         }
     }
     /*#endregion*/
 
     /*#region Envio*/
-    $Resposta[] = array(
-        'Erro' => $Erro,
-        'Tipo Usuario' => $TipoUsuario
-    );
+    if(!$foi)
+    {
+        $Resposta[] = array(
+            'Erro' => $Erro
+        );
+    }
 
     echo json_encode($Resposta);
     /*#endregion*/

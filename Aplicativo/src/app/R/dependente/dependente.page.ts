@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NavegationService } from 'src/app/services/navegation.service';
+import { ServidorService } from 'src/app/services/servidor.service';
 
 @Component({
   selector: 'app-dependente',
@@ -7,9 +9,49 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DependentePage implements OnInit {
 
-  constructor() { }
+  constructor(private nav: NavegationService, private servidor: ServidorService) { }
+  
+  //#region Valores
+  public nomeDependente: any;
+  public email: any;
+  //#endregion
+  
+  //#region Navegação
+  voltar()
+  {
+    localStorage.removeItem('nomeDependente');
+    localStorage.removeItem('emailDependente');
 
-  ngOnInit() {
+    this.nav.rDependentes();
   }
 
+  lembretes()
+  {
+    this.nav.rLembretes();
+  }
+
+  estoque()
+  {
+    this.nav.rEstoque();
+  }
+
+  relatorio()
+  {
+    this.nav.rRelatorio();
+  }
+  //#endregion
+
+  //#region ViewWillEnter
+  ionViewWillEnter()
+  {
+    //Verificar Login
+    this.servidor.verificar();
+
+    //Dependente
+    this.nomeDependente = localStorage.getItem('nomeDependente');
+    this.email = localStorage.getItem('emailDependente');
+  }
+  //#endregion
+
+  ngOnInit(){}
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular'
+import { NavegationService } from 'src/app/services/navegation.service';
+import { ServidorService } from 'src/app/services/servidor.service';
 
 @Component({
   selector: 'app-dependentes',
@@ -8,135 +9,260 @@ import { NavController } from '@ionic/angular'
 })
 export class DependentesPage implements OnInit {
 
-  dependentes: any = "";
+  constructor(private nav: NavegationService, private servidor: ServidorService) {}
+  
+  //#region Valores
+  public email: any;
 
-  constructor(public navCtrl: NavController) {
-    //this.carregarDependentes();
+  public dependente: any = [];
+  public temLista: any = false;
+  public temListaNao: any = false;
+
+  public idade = [null];
+  //#endregion
+
+  //#region Abrir e Fechar o Menu
+  open()
+  {
+    //Variaveis
+    var menu = document.getElementById('mDependentes');
+    var content = document.getElementById('dMenu');
+
+    //Abre
+    menu.classList.remove('invisivel');
+
+    //Preparação
+    menu.classList.remove('OutFundo');
+    content.classList.remove('OutMenu');
+
+    //Animação
+    setTimeout(function()
+    {
+      menu.classList.add('InFundo');
+      content.classList.add('InMenu');
+    }, 100);
   }
 
+  close()
+  {
+    //Variaveis
+    var menu = document.getElementById('mDependentes');
+    var content = document.getElementById('dMenu');
+
+    //Preparação
+    menu.classList.remove('InFundo');
+    content.classList.remove('InMenu');
+
+    //Animação
+    menu.classList.add('OutFundo');
+    content.classList.add('OutMenu');
+    
+    //Fecha
+    setTimeout(function()
+    {
+      menu.classList.add('invisivel');
+    }, 301);
+  }
+  //#endregion
+
+  //#region Carregar o Estoque
+  carregarDependentes()
+  {
+    let dados = 'phpEmail=' + localStorage.getItem('email');
+
+    this.servidor.enviar('Responsavel/Dependentes/main.php', dados).subscribe(res =>{
+      if(res[0].Erro != true)
+      {
+        this.temLista = true;
+        this.temListaNao = false;
+        this.dependente = res;
+      }
+      else
+      {
+        this.temLista = false;
+        this.temListaNao = true;
+      }
+    });
+  }
+  //#endregion
+  
   //#region Remover Dependente
-  removerDependente(codigo: any)
+  removerDependente(email: any)
   {
-    var alert = document.getElementById('rDependentes');
-    alert.classList.remove('invisivel');
-  }
+    document.getElementById('rDependentes').classList.remove('invisivel');
 
-  sim()
-  {
-    console.log("Remover o Dependente");
+    //Preparação
+    document.getElementById('dFundo').classList.remove('OutFundo');
+    document.getElementById('dAlert').classList.remove('OutAlerta');
 
-    //Remover o Dependente
-    //this.carregarDependentes();
+    //Animação
+    setTimeout(function()
+    {
+      document.getElementById('dAlert').classList.add('InAlerta');
+      document.getElementById('dFundo').classList.add('InFundo');
+    }, 100);
+
+    this.email = email;
   }
 
   nao()
   {
-    if(event.target == document.getElementById('nao') || event.target == document.getElementById('naoBtn'))
+    if(event.target == document.getElementById('dFundo') || event.target == document.getElementById('dBtn'))
     {
-      var alert = document.getElementById('rDependentes');
-      alert.classList.add('invisivel');
+      //Preparação
+      document.getElementById('dFundo').classList.remove('InFundo');
+      document.getElementById('dAlert').classList.remove('InAlerta');
+
+      //Animação
+      document.getElementById('dFundo').classList.add('OutFundo');
+      document.getElementById('dAlert').classList.add('OutAlerta');
+      
+      //Fecha
+      setTimeout(function()
+      {
+        document.getElementById('rDependentes').classList.add('invisivel');
+      }, 301);
     }
+  }
+
+  sim()
+  {
+    //Remover o dependente
+    let dados = 'phpEmail=' + this.email;
+
+    this.servidor.enviar('Responsavel/Dependentes/remover.php', dados).subscribe(res =>{
+      if(res == 'Removeu')
+      {
+        //Preparação
+        document.getElementById('dFundo').classList.remove('InFundo');
+        document.getElementById('dAlert').classList.remove('InFundo');
+
+        //Animação
+        document.getElementById('dFundo').classList.add('OutFundo');
+        document.getElementById('dAlert').classList.add('OutAlerta');
+        
+        //Fecha
+        setTimeout(function()
+        {
+          document.getElementById('rDependentes').classList.add('invisivel');
+        }, 301);
+
+        //Recaregar lembretes
+        this.carregarDependentes();
+      }
+    });
+  }
+  //#endregion
+
+  //#region Editar Dependente
+  editarDependente(email, nome)
+  {
+    localStorage.setItem('emailDependente', email);
+    localStorage.setItem('nomeDependente', nome);
+
+    this.nav.rDependente();
   }
   //#endregion
 
   //#region Adicionar Dependente
   novoDependente()
   {
-    var alert = document.getElementById('aDependentes');
-    alert.classList.remove('invisivel');
+    document.getElementById('aDependentes').classList.remove('invisivel');
+
+    //Preparação
+    document.getElementById('entendi').classList.remove('OutFundo');
+    document.getElementById('entendiAlert').classList.remove('OutAlerta');
+
+    //Animação
+    setTimeout(function()
+    {
+      document.getElementById('entendiAlert').classList.add('InAlerta');
+      document.getElementById('entendi').classList.add('InFundo');
+    }, 100);
   }
 
   entendi()
   {
     if(event.target == document.getElementById('entendi') || event.target == document.getElementById('entendiBtn'))
     {
-      var alert = document.getElementById('aDependentes');
-      alert.classList.add('invisivel');
+      //Preparação
+      document.getElementById('entendi').classList.remove('InFundo');
+      document.getElementById('entendiAlert').classList.remove('InAlerta');
+
+      //Animação
+      document.getElementById('entendi').classList.add('OutFundo');
+      document.getElementById('entendiAlert').classList.add('OutAlerta');
+      
+      //Fecha
+      setTimeout(function()
+      {
+        document.getElementById('aDependentes').classList.add('invisivel');
+      }, 301);
     }
   }
-  //#endregion
+  //#endregion 
 
-  //#region Carregando os dependentes
-  carregarDependentes()
-  {
-    this.dependentes = "";
-    let data: any;
-
-    for (let i = 0; i < data.count; i++) {
-      this.dependentes += '<div class="dependentes full flex">';
-      this.dependentes += '<img src="../../../assets/IMG/Logo/Light (Base).png" alt="Logo do aplicativo MedicaMe">';
-      this.dependentes += '<div class="text flex leftA">';
-      this.dependentes += '<h3>' + data[i].nome + '</h3>';
-      this.dependentes += '<svg viewBox="0 0 24 24" (click)="removerDependente(' + data[i].codigo + ')">';
-      this.dependentes += '<path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.538l-4.592-4.548 4.546-4.587-1.416-1.403-4.545 4.589-4.588-4.543-1.405 1.405 4.593 4.552-4.547 4.592 1.405 1.405 4.555-4.596 4.591 4.55 1.403-1.416z"/>';
-      this.dependentes += '</svg>';
-      this.dependentes += '<p>E-mail: ' + data[i].email + '</p>';
-      this.dependentes += '<p>' + data[i].idade + '</p>';
-      this.dependentes += '</div>';
-      this.dependentes += '<button class="normal full flex" (click)="editarDependente(' + data[i].codigo + ')">Administrar</button>';
-      this.dependentes += '</div>';
-    }
-  }
-  //#endregion
-
-  //#region Abrir e Fechar o Menu
-  open()
-  {
-    var menu = document.getElementById('mDependentes');
-    menu.classList.remove('invisivel');
-  }
-
-  close()
-  {
-    var menu = document.getElementById('mDependentes');
-    menu.classList.add('invisivel');
-  }
-  //#endregion
-
-  //#region SideMenu
+  //#region Navegação
   tutorial()
   {
-    this.navCtrl.navigateForward('R/tutorial');
+    localStorage.setItem('RTutorial', 'rDependentes');
+    this.nav.rTutorial();
   }
 
   dadosAdicionais()
   {
-    this.navCtrl.navigateForward('dados-adicionais');
+    localStorage.setItem('dadosAdicionais', 'rDependentes');
+    this.nav.dadosAdicionais();
   }
 
   adicionarResponsavel()
   {
-    this.navCtrl.navigateForward('digitar-responsavel');
+    localStorage.setItem('digitarResponsavel', 'rDependentes');
+    this.nav.digitarResponsavel();
   }
 
   sair()
   {
-    this.navCtrl.navigateForward('first-view');
+    this.servidor.limpar();
   }
-  //#endregion
 
-  //#region Tabs
-  lembretes()
-  {
-    this.navCtrl.navigateForward('R/lembretes');
-  }
-  
   home()
   {
-    this.navCtrl.navigateForward('R/home');
+    this.nav.rHome();
+  }
+
+  lembretes()
+  {
+    this.nav.rLembretes();
   }
 
   estoque()
   {
-    this.navCtrl.navigateForward('R/estoque');
+    this.nav.rEstoque();
+  }
+
+  dependentes()
+  {
+    this.nav.rDependentes();
   }
 
   relatorio()
   {
-    this.navCtrl.navigateForward('R/relatorio');
+    this.nav.rRelatorio();
   }
   //#endregion
 
+  //#region ViewWillEnter
+  ionViewWillEnter()
+  {
+    //Verificar Login
+    this.servidor.verificar();
+
+    //Puxar lista de lembretes
+    this.carregarDependentes();
+  }
+  //#endregion
+ 
   ngOnInit() {
   }
 }

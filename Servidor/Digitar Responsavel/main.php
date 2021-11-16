@@ -30,9 +30,19 @@
 
         if($SQL->fetch() != false)
         {
-            $Erro = false;
+            $SQL = $PDO->query("SELECT `nm_email_responsavel` FROM `usuario` WHERE `nm_email_usuario` = '$EmailResponsavel'");
+            $Situacao = $SQL->fetch()['nm_email_responsavel'];
 
-            $PDO->query("UPDATE `usuario` SET `nm_email_responsavel` = '$EmailResponsavel' WHERE `nm_email_usuario` = '$EmailDependente'");
+            if($Situacao == null)
+            {
+                $Erro = false;
+
+                $PDO->query("UPDATE `usuario` SET `nm_email_responsavel` = '$EmailResponsavel' WHERE `nm_email_usuario` = '$EmailDependente'");
+            }
+            else
+            {
+                $Erro = 'Dependente';
+            }
         }    
     }
     /*#endregion*/

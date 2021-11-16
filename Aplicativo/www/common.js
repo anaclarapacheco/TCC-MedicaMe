@@ -500,6 +500,9 @@ let NavegationService = class NavegationService {
     rDependentes() {
         this.navCtrl.navigateForward('R/dependentes');
     }
+    rDependente() {
+        this.navCtrl.navigateForward('R/dependente');
+    }
     rRelatorio() {
         this.navCtrl.navigateForward('R/relatorio');
     }

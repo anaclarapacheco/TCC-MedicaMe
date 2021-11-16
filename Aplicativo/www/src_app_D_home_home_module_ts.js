@@ -92,32 +92,90 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "HomePage": () => (/* binding */ HomePage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _raw_loader_home_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./home.page.html */ 3455);
 /* harmony import */ var _home_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./home.page.scss */ 8399);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var src_app_services_navegation_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/navegation.service */ 6192);
+/* harmony import */ var src_app_services_servidor_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/servidor.service */ 8914);
+
+
 
 
 
 
 let HomePage = class HomePage {
-    constructor() { }
+    constructor(nav, servidor) {
+        this.nav = nav;
+        this.servidor = servidor;
+    }
+    //#region Valores do FrontEnd
+    //#endregion
     //#region Abrir e Fechar o Menu
     open() {
+        //Variaveis
         var menu = document.getElementById('dHome');
+        var content = document.getElementById('dMenu');
+        //Abre
         menu.classList.remove('invisivel');
+        //Preparação
+        menu.classList.remove('OutFundo');
+        content.classList.remove('OutMenu');
+        //Animação
+        setTimeout(function () {
+            menu.classList.add('InFundo');
+            content.classList.add('InMenu');
+        }, 100);
     }
     close() {
+        //Variaveis
         var menu = document.getElementById('dHome');
-        menu.classList.add('invisivel');
+        var content = document.getElementById('dMenu');
+        //Preparação
+        menu.classList.remove('InFundo');
+        content.classList.remove('InMenu');
+        //Animação
+        menu.classList.add('OutFundo');
+        content.classList.add('OutMenu');
+        //Fecha
+        setTimeout(function () {
+            menu.classList.add('invisivel');
+        }, 301);
+    }
+    //#endregion
+    //#region Navegação
+    tutorial() {
+        localStorage.setItem('DTutorial', 'dHome');
+        this.nav.dTutorial();
+    }
+    dadosAdicionais() {
+        localStorage.setItem('dadosAdicionais', 'dHome');
+        this.nav.dadosAdicionais();
+    }
+    sair() {
+        this.servidor.limpar();
+    }
+    sintomas() {
+        localStorage.setItem('sintomas', 'dHome');
+        //this.nav.adicionarSintomas();
+    }
+    //#endregion
+    //#region ViewWillEnter
+    ionViewWillEnter() {
+        //Verificar Login
+        this.servidor.verificar();
+        //Carregar medicamentos
     }
     //#endregion
     ngOnInit() {
     }
 };
-HomePage.ctorParameters = () => [];
-HomePage = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Component)({
+HomePage.ctorParameters = () => [
+    { type: src_app_services_navegation_service__WEBPACK_IMPORTED_MODULE_2__.NavegationService },
+    { type: src_app_services_servidor_service__WEBPACK_IMPORTED_MODULE_3__.ServidorService }
+];
+HomePage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
         selector: 'app-home',
         template: _raw_loader_home_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_home_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]
@@ -154,7 +212,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\r\n  <div class=\"nav vertical flex\">\r\n    <img src=\"../../../assets/IMG/Logo/Light (Simples).png\" alt=\"Logo do aplicativo: MedicaMe\">\r\n    <div class=\"button full flex\" (click)=\"open()\">\r\n      <svg viewBox=\"0 0 24 24\">\r\n        <path d=\"M24 13.616v-3.232c-1.651-.587-2.694-.752-3.219-2.019v-.001c-.527-1.271.1-2.134.847-3.707l-2.285-2.285c-1.561.742-2.433 1.375-3.707.847h-.001c-1.269-.526-1.435-1.576-2.019-3.219h-3.232c-.582 1.635-.749 2.692-2.019 3.219h-.001c-1.271.528-2.132-.098-3.707-.847l-2.285 2.285c.745 1.568 1.375 2.434.847 3.707-.527 1.271-1.584 1.438-3.219 2.02v3.232c1.632.58 2.692.749 3.219 2.019.53 1.282-.114 2.166-.847 3.707l2.285 2.286c1.562-.743 2.434-1.375 3.707-.847h.001c1.27.526 1.436 1.579 2.019 3.219h3.232c.582-1.636.75-2.69 2.027-3.222h.001c1.262-.524 2.12.101 3.698.851l2.285-2.286c-.744-1.563-1.375-2.433-.848-3.706.527-1.271 1.588-1.44 3.221-2.021zm-12 2.384c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4z\"/>\r\n      </svg>\r\n    </div>\r\n  </div>\r\n\r\n  <div id=\"dHome\" class=\"menu invisivel\">\r\n    <div id=\"back\" (click)=\"close()\"></div>\r\n\r\n    <div class=\"content\">\r\n      <div class=\"top full flex\">\r\n        <h3>Configurações</h3>\r\n\r\n        <div class=\"button full flex\">\r\n          <svg viewBox=\"0 0 24 24\">\r\n            <path d=\"M24 13.616v-3.232c-1.651-.587-2.694-.752-3.219-2.019v-.001c-.527-1.271.1-2.134.847-3.707l-2.285-2.285c-1.561.742-2.433 1.375-3.707.847h-.001c-1.269-.526-1.435-1.576-2.019-3.219h-3.232c-.582 1.635-.749 2.692-2.019 3.219h-.001c-1.271.528-2.132-.098-3.707-.847l-2.285 2.285c.745 1.568 1.375 2.434.847 3.707-.527 1.271-1.584 1.438-3.219 2.02v3.232c1.632.58 2.692.749 3.219 2.019.53 1.282-.114 2.166-.847 3.707l2.285 2.286c1.562-.743 2.434-1.375 3.707-.847h.001c1.27.526 1.436 1.579 2.019 3.219h3.232c.582-1.636.75-2.69 2.027-3.222h.001c1.262-.524 2.12.101 3.698.851l2.285-2.286c-.744-1.563-1.375-2.433-.848-3.706.527-1.271 1.588-1.44 3.221-2.021zm-12 2.384c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4z\"/>\r\n          </svg>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"mid\">\r\n        <div class=\"itens vertical flex\" (click)=\"tutorial()\">\r\n          <div class=\"button full flex\">\r\n            <svg viewBox=\"0 0 24 24\">\r\n              <path d=\"M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 18.25c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25c.691 0 1.25.56 1.25 1.25s-.559 1.25-1.25 1.25zm1.961-5.928c-.904.975-.947 1.514-.935 2.178h-2.005c-.007-1.475.02-2.125 1.431-3.468.573-.544 1.025-.975.962-1.821-.058-.805-.73-1.226-1.365-1.226-.709 0-1.538.527-1.538 2.013h-2.01c0-2.4 1.409-3.95 3.59-3.95 1.036 0 1.942.339 2.55.955.57.578.865 1.372.854 2.298-.016 1.383-.857 2.291-1.534 3.021z\"/>\r\n            </svg>\r\n          </div>\r\n          <h3>Tutorial</h3>\r\n        </div>\r\n\r\n        <div class=\"itens vertical flex\" (click)=\"dadosAdicionais()\">\r\n          <div class=\"button full flex\">\r\n            <svg viewBox=\"0 0 24 24\">\r\n              <path d=\"M18.5 15c-2.483 0-4.5 2.015-4.5 4.5s2.017 4.5 4.5 4.5 4.5-2.015 4.5-4.5-2.017-4.5-4.5-4.5zm2.5 5h-2v2h-1v-2h-2v-1h2v-2h1v2h2v1zm-7.18 4h-12.82v-24h8.409c4.857 0 3.335 8 3.335 8 3.009-.745 8.256-.419 8.256 3v2.501c-.771-.322-1.614-.501-2.5-.501-3.584 0-6.5 2.916-6.5 6.5 0 1.747.696 3.331 1.82 4.5zm-.252-23.925c2.202 1.174 5.938 4.883 7.432 6.881-1.286-.9-4.044-1.657-6.091-1.179.222-1.468-.185-4.534-1.341-5.702z\"/>\r\n            </svg>\r\n          </div>\r\n          <h3>Dados adicionais</h3>\r\n        </div>\r\n\r\n        <div class=\"itens vertical flex\" (click)=\"sair()\">\r\n          <div class=\"button full flex\">\r\n            <svg viewBox=\"0 0 24 24\">\r\n              <path d=\"M16 2v7h-2v-5h-12v16h12v-5h2v7h-16v-20h16zm2 9v-4l6 5-6 5v-4h-10v-2h10z\"/>\r\n            </svg>\r\n          </div>\r\n          <h3>Sair</h3>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"meio\">\r\n    <div class=\"alarm\">\r\n      <div class=\"top vertical flex\">\r\n        <h3>O alarme disparou!</h3>\r\n      </div>\r\n\r\n      <div class=\"medicamento full flex\">\r\n        <img src=\"../../../assets/IMG/Icon/Comprimido.png\" alt=\"Comprimido\">\r\n\r\n        <div class=\"text leftA\">\r\n          <h3>DipperZac</h3>\r\n          <p>Tomar às: <b>13:30</b></p>\r\n          <p><b>1</b> comprimido</p>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"full flex\">\r\n        <button class=\"danger full flex\">\r\n          <svg viewBox=\"0 0 24 24\">\r\n            <path d=\"M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.538l-4.592-4.548 4.546-4.587-1.416-1.403-4.545 4.589-4.588-4.543-1.405 1.405 4.593 4.552-4.547 4.592 1.405 1.405 4.555-4.596 4.591 4.55 1.403-1.416z\"/>\r\n          </svg>\r\n          Cancelei\r\n        </button>\r\n  \r\n        <button class=\"important full flex\">\r\n          <svg viewBox=\"0 0 24 24\">\r\n            <path d=\"M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm4.393 7.5l-5.643 5.784-2.644-2.506-1.856 1.858 4.5 4.364 7.5-7.643-1.857-1.857z\"/>\r\n          </svg>\r\n          Tomei\r\n        </button>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"content invisivel\">\r\n      <div class=\"top vertical flex\">\r\n        <h3>Próximos Medicamentos</h3>\r\n      </div>\r\n\r\n      <div class=\"medicamento full flex\">\r\n        <img src=\"../../../assets/IMG/Icon/Comprimido.png\" alt=\"Comprimido\">\r\n\r\n        <div class=\"text leftA\">\r\n          <h3>DipperZac</h3>\r\n          <p>Tomar às: <b>13:30</b></p>\r\n          <p><b>1</b> comprimido</p>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"line\"></div>\r\n\r\n      <div class=\"medicamento full flex\">\r\n        <img src=\"../../../assets/IMG/Icon/ContaGotas.png\" alt=\"Conta gotas\">\r\n\r\n        <div class=\"text leftA\">\r\n          <h3>DipperZac</h3>\r\n          <p>Tomar às: <b>13:30</b></p>\r\n          <p><b>20</b> gotas</p>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"line\"></div>\r\n\r\n      <div class=\"medicamento full flex\">\r\n        <img src=\"../../../assets/IMG/Icon/Comprimido.png\" alt=\"Comprimido\">\r\n\r\n        <div class=\"text leftA\">\r\n          <h3>DipperZac</h3>\r\n          <p>Tomar às: <b>13:30</b></p>\r\n          <p><b>1</b> comprimido</p>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"line\"></div>\r\n\r\n      <div class=\"medicamento full flex\">\r\n        <img src=\"../../../assets/IMG/Icon/ContaGotas.png\" alt=\"Conta gotas\">\r\n\r\n        <div class=\"text leftA\">\r\n          <h3>DipperZac</h3>\r\n          <p>Tomar às: <b>13:30</b></p>\r\n          <p><b>20</b> gotas</p>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"line\"></div>\r\n\r\n      <div class=\"medicamento full flex\">\r\n        <img src=\"../../../assets/IMG/Icon/Comprimido.png\" alt=\"Comprimido\">\r\n\r\n        <div class=\"text leftA\">\r\n          <h3>DipperZac</h3>\r\n          <p>Tomar às: <b>13:30</b></p>\r\n          <p><b>1</b> comprimido</p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"bot\">\r\n      <div class=\"top vertical flex\">\r\n        <h3>Está se sentindo bem?</h3>\r\n      </div>\r\n\r\n      <div class=\"mid full flex\">\r\n        <button class=\"normal\" (click)=\"sintomas()\">Escrever meus sintomas</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</ion-content>\r\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\r\n  <div class=\"nav vertical flex\">\r\n    <img src=\"../../../assets/IMG/Logo/Light (Simples).png\" alt=\"Logo do aplicativo: MedicaMe\">\r\n    <div class=\"button full flex\" (click)=\"open()\">\r\n      <svg viewBox=\"0 0 24 24\">\r\n        <path d=\"M24 13.616v-3.232c-1.651-.587-2.694-.752-3.219-2.019v-.001c-.527-1.271.1-2.134.847-3.707l-2.285-2.285c-1.561.742-2.433 1.375-3.707.847h-.001c-1.269-.526-1.435-1.576-2.019-3.219h-3.232c-.582 1.635-.749 2.692-2.019 3.219h-.001c-1.271.528-2.132-.098-3.707-.847l-2.285 2.285c.745 1.568 1.375 2.434.847 3.707-.527 1.271-1.584 1.438-3.219 2.02v3.232c1.632.58 2.692.749 3.219 2.019.53 1.282-.114 2.166-.847 3.707l2.285 2.286c1.562-.743 2.434-1.375 3.707-.847h.001c1.27.526 1.436 1.579 2.019 3.219h3.232c.582-1.636.75-2.69 2.027-3.222h.001c1.262-.524 2.12.101 3.698.851l2.285-2.286c-.744-1.563-1.375-2.433-.848-3.706.527-1.271 1.588-1.44 3.221-2.021zm-12 2.384c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4z\"/>\r\n      </svg>\r\n    </div>\r\n  </div>\r\n\r\n  <div id=\"dHome\" class=\"menu invisivel\">\r\n    <div id=\"back\" (click)=\"close()\"></div>\r\n\r\n    <div id=\"dMenu\" class=\"content\">\r\n      <div class=\"top full flex\">\r\n        <h3>Configurações</h3>\r\n\r\n        <div class=\"button full flex\">\r\n          <svg viewBox=\"0 0 24 24\">\r\n            <path d=\"M24 13.616v-3.232c-1.651-.587-2.694-.752-3.219-2.019v-.001c-.527-1.271.1-2.134.847-3.707l-2.285-2.285c-1.561.742-2.433 1.375-3.707.847h-.001c-1.269-.526-1.435-1.576-2.019-3.219h-3.232c-.582 1.635-.749 2.692-2.019 3.219h-.001c-1.271.528-2.132-.098-3.707-.847l-2.285 2.285c.745 1.568 1.375 2.434.847 3.707-.527 1.271-1.584 1.438-3.219 2.02v3.232c1.632.58 2.692.749 3.219 2.019.53 1.282-.114 2.166-.847 3.707l2.285 2.286c1.562-.743 2.434-1.375 3.707-.847h.001c1.27.526 1.436 1.579 2.019 3.219h3.232c.582-1.636.75-2.69 2.027-3.222h.001c1.262-.524 2.12.101 3.698.851l2.285-2.286c-.744-1.563-1.375-2.433-.848-3.706.527-1.271 1.588-1.44 3.221-2.021zm-12 2.384c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4z\"/>\r\n          </svg>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"mid\">\r\n        <div class=\"itens vertical flex\" (click)=\"tutorial()\">\r\n          <div class=\"button full flex\">\r\n            <svg viewBox=\"0 0 24 24\">\r\n              <path d=\"M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 18.25c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25c.691 0 1.25.56 1.25 1.25s-.559 1.25-1.25 1.25zm1.961-5.928c-.904.975-.947 1.514-.935 2.178h-2.005c-.007-1.475.02-2.125 1.431-3.468.573-.544 1.025-.975.962-1.821-.058-.805-.73-1.226-1.365-1.226-.709 0-1.538.527-1.538 2.013h-2.01c0-2.4 1.409-3.95 3.59-3.95 1.036 0 1.942.339 2.55.955.57.578.865 1.372.854 2.298-.016 1.383-.857 2.291-1.534 3.021z\"/>\r\n            </svg>\r\n          </div>\r\n          <h3>Tutorial</h3>\r\n        </div>\r\n\r\n        <div class=\"itens vertical flex\" (click)=\"dadosAdicionais()\">\r\n          <div class=\"button full flex\">\r\n            <svg viewBox=\"0 0 24 24\">\r\n              <path d=\"M18.5 15c-2.483 0-4.5 2.015-4.5 4.5s2.017 4.5 4.5 4.5 4.5-2.015 4.5-4.5-2.017-4.5-4.5-4.5zm2.5 5h-2v2h-1v-2h-2v-1h2v-2h1v2h2v1zm-7.18 4h-12.82v-24h8.409c4.857 0 3.335 8 3.335 8 3.009-.745 8.256-.419 8.256 3v2.501c-.771-.322-1.614-.501-2.5-.501-3.584 0-6.5 2.916-6.5 6.5 0 1.747.696 3.331 1.82 4.5zm-.252-23.925c2.202 1.174 5.938 4.883 7.432 6.881-1.286-.9-4.044-1.657-6.091-1.179.222-1.468-.185-4.534-1.341-5.702z\"/>\r\n            </svg>\r\n          </div>\r\n          <h3>Dados adicionais</h3>\r\n        </div>\r\n\r\n        <div class=\"itens vertical flex\" (click)=\"sair()\">\r\n          <div class=\"button full flex\">\r\n            <svg viewBox=\"0 0 24 24\">\r\n              <path d=\"M16 2v7h-2v-5h-12v16h12v-5h2v7h-16v-20h16zm2 9v-4l6 5-6 5v-4h-10v-2h10z\"/>\r\n            </svg>\r\n          </div>\r\n          <h3>Sair</h3>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"meio\">\r\n    <div class=\"alarm\">\r\n      <div class=\"top vertical flex\">\r\n        <h3>O alarme disparou!</h3>\r\n      </div>\r\n\r\n      <div class=\"medicamento full flex\">\r\n        <img src=\"../../../assets/IMG/Icon/Comprimido.png\" alt=\"Comprimido\">\r\n\r\n        <div class=\"text leftA\">\r\n          <h3>DipperZac</h3>\r\n          <p>Tomar às: <b>13:30</b></p>\r\n          <p><b>1</b> comprimido</p>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"full flex\">\r\n        <button class=\"danger full flex\">\r\n          <svg viewBox=\"0 0 24 24\">\r\n            <path d=\"M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.538l-4.592-4.548 4.546-4.587-1.416-1.403-4.545 4.589-4.588-4.543-1.405 1.405 4.593 4.552-4.547 4.592 1.405 1.405 4.555-4.596 4.591 4.55 1.403-1.416z\"/>\r\n          </svg>\r\n          Cancelei\r\n        </button>\r\n  \r\n        <button class=\"important full flex\">\r\n          <svg viewBox=\"0 0 24 24\">\r\n            <path d=\"M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm4.393 7.5l-5.643 5.784-2.644-2.506-1.856 1.858 4.5 4.364 7.5-7.643-1.857-1.857z\"/>\r\n          </svg>\r\n          Tomei\r\n        </button>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"content invisivel\">\r\n      <div class=\"top vertical flex\">\r\n        <h3>Próximos Medicamentos</h3>\r\n      </div>\r\n\r\n      <div class=\"medicamento full flex\">\r\n        <img src=\"../../../assets/IMG/Icon/Comprimido.png\" alt=\"Comprimido\">\r\n\r\n        <div class=\"text leftA\">\r\n          <h3>DipperZac</h3>\r\n          <p>Tomar às: <b>13:30</b></p>\r\n          <p><b>1</b> comprimido</p>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"line\"></div>\r\n\r\n      <div class=\"medicamento full flex\">\r\n        <img src=\"../../../assets/IMG/Icon/ContaGotas.png\" alt=\"Conta gotas\">\r\n\r\n        <div class=\"text leftA\">\r\n          <h3>DipperZac</h3>\r\n          <p>Tomar às: <b>13:30</b></p>\r\n          <p><b>20</b> gotas</p>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"line\"></div>\r\n\r\n      <div class=\"medicamento full flex\">\r\n        <img src=\"../../../assets/IMG/Icon/Comprimido.png\" alt=\"Comprimido\">\r\n\r\n        <div class=\"text leftA\">\r\n          <h3>DipperZac</h3>\r\n          <p>Tomar às: <b>13:30</b></p>\r\n          <p><b>1</b> comprimido</p>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"line\"></div>\r\n\r\n      <div class=\"medicamento full flex\">\r\n        <img src=\"../../../assets/IMG/Icon/ContaGotas.png\" alt=\"Conta gotas\">\r\n\r\n        <div class=\"text leftA\">\r\n          <h3>DipperZac</h3>\r\n          <p>Tomar às: <b>13:30</b></p>\r\n          <p><b>20</b> gotas</p>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"line\"></div>\r\n\r\n      <div class=\"medicamento full flex\">\r\n        <img src=\"../../../assets/IMG/Icon/Comprimido.png\" alt=\"Comprimido\">\r\n\r\n        <div class=\"text leftA\">\r\n          <h3>DipperZac</h3>\r\n          <p>Tomar às: <b>13:30</b></p>\r\n          <p><b>1</b> comprimido</p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"bot\">\r\n      <div class=\"top vertical flex\">\r\n        <h3>Está se sentindo bem?</h3>\r\n      </div>\r\n\r\n      <div class=\"mid full flex\">\r\n        <button class=\"normal\" (click)=\"sintomas()\">Escrever meus sintomas</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</ion-content>\r\n");
 
 /***/ })
 

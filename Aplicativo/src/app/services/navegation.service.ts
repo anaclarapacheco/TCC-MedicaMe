@@ -71,6 +71,11 @@ export class NavegationService {
     this.navCtrl.navigateForward('R/dependentes');
   }
 
+  rDependente()
+  {
+    this.navCtrl.navigateForward('R/dependente');
+  }
+
   rRelatorio()
   {
     this.navCtrl.navigateForward('R/relatorio');

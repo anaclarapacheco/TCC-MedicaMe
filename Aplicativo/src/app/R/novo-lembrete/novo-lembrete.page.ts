@@ -120,8 +120,13 @@ export class NovoLembretePage implements OnInit {
     }
     else if (this.dataFinal != null && this.dias == null)
     {
+      this.dataFinal = this.dataFinal + ' ' + this.horas + ':00';
       this.dias = 'null';
-    }    
+    }
+    else
+    {
+      this.dataFinal = this.dataFinal + ' ' + this.horas + ':00';
+    }
 
     if(this.dataInicial == '' || this.dataFinal == '' || this.dias == '' || this.horas == '' || this.quantidadeAtual == '' || this.quantidadeMinima == '' || this.dataInicial == null || this.dataFinal == null || this.dias == null || this.horas == null || this.quantidadeAtual == null || this.quantidadeMinima == null)
     { 
@@ -131,8 +136,8 @@ export class NovoLembretePage implements OnInit {
     else if(localStorage.getItem('agendamento') != null && localStorage.getItem('agendamento') != '')
     {
       //Enviando ao PHP
-      let dados = 'phpNomeMedicamento=' + this.nomeMedicamento + '&phpFormaFarmaceutica=' + this.formaFarma + '&phpDescricao=' + this.descricao + '&phpDosagem=' + this.dosagem + '&phpDataInicial=' + this.dataInicial.substring(0, 10) + '&phpDataFinal=' + this.dataFinal.substring(0, 10) + '&phpDias=' + this.dias + '&phpHoras=' + this.horas + '&phpQuantidadeAtual=' + this.quantidadeAtual + '&phpQuantidadeMinima=' + this.quantidadeMinima + '&phpEmail=' + this.email + '&phpCodigo=' + localStorage.getItem('agendamento');
-
+      let dados = 'phpNomeMedicamento=' + this.nomeMedicamento + '&phpFormaFarmaceutica=' + this.formaFarma + '&phpDescricao=' + this.descricao + '&phpDosagem=' + this.dosagem + '&phpDataInicial=' + this.dataInicial.substring(0, 10) + ' ' + this.horas + ':00' + '&phpDataFinal=' + this.dataFinal.substring(0, 10) + '&phpDias=' + this.dias + '&phpHoras=' + 24 + '&phpQuantidadeAtual=' + this.quantidadeAtual + '&phpQuantidadeMinima=' + this.quantidadeMinima + '&phpEmail=' + this.email + '&phpCodigo=' + localStorage.getItem('agendamento');
+      
       this.servidor.enviar('Responsavel/Novo Lembrete/atualizar.php', dados).subscribe(res => {
         if(res[0]['Erro'] == false)
         {
@@ -148,7 +153,7 @@ export class NovoLembretePage implements OnInit {
     else
     {
       //Enviando ao PHP
-      let dados = 'phpDataInicial=' + this.dataInicial.substring(0, 10) + '&phpDataFinal=' + this.dataFinal.substring(0, 10) + '&phpDias=' + this.dias + '&phpHoras=' + this.horas + '&phpQuantidadeAtual=' + this.quantidadeAtual + '&phpQuantidadeMinima=' + this.quantidadeMinima + '&phpEmail=' + this.email;
+      let dados = 'phpDataInicial=' + this.dataInicial.substring(0, 10) + ' ' + this.horas + ':00' + '&phpDataFinal=' + this.dataFinal.substring(0, 10) + '&phpDias=' + this.dias + '&phpHoras=' + 24 + '&phpQuantidadeAtual=' + this.quantidadeAtual + '&phpQuantidadeMinima=' + this.quantidadeMinima + '&phpEmail=' + this.email;
 
       this.servidor.enviar('Responsavel/Novo Lembrete/main pt2.php', dados).subscribe(res => {
         if(res[0]['Erro'] == false)
@@ -227,7 +232,7 @@ export class NovoLembretePage implements OnInit {
         this.dataInicial = String(res[0]['DataInicial']).substring(0, 10);
         this.dataFinal = String(res[0]['DataFinal']).substring(0, 10);
         this.dias = res[0]['Dias'];
-        this.horas = res[0]['Horas'];
+        this.horas = String(res[0]['DataInicial']).substring(11, 16);
         this.quantidadeAtual = res[0]['QuantidadeAtual'];
         this.quantidadeMinima = res[0]['QuantidadeMinima'];
       });

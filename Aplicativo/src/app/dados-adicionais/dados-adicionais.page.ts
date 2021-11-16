@@ -95,12 +95,24 @@ export class DadosAdicionaisPage implements OnInit {
         this.nav.rHome();
         break;
 
+      case 'dHome':
+        this.nav.dHome();
+        break;
+
       case 'rLembretes':
         this.nav.rLembretes();
         break;
       
       case 'rEstoque':
         this.nav.rEstoque();
+        break;
+
+      case 'rDependentes':
+        this.nav.rDependentes();
+        break;
+
+      case 'rRelatorio':
+        this.nav.rRelatorio();
         break;
     }
 

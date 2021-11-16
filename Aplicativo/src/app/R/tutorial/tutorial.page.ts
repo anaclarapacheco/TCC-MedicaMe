@@ -67,6 +67,14 @@ export class TutorialPage implements OnInit {
         this.nav.rEstoque();
         break;
       
+      case 'rDependentes':
+        this.nav.rDependentes();
+        break;
+
+      case 'rRelatorio':
+        this.nav.rRelatorio();
+        break;
+      
       default:
         this.nav.rHome();
         break;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavegationService } from 'src/app/services/navegation.service';
+import { ServidorService } from 'src/app/services/servidor.service';
 
 @Component({
   selector: 'app-relatorio',
@@ -8,73 +9,143 @@ import { NavController } from '@ionic/angular';
 })
 export class RelatorioPage implements OnInit {
 
-  constructor(public navCtrl: NavController) { }
+  constructor(private nav: NavegationService, private servidor: ServidorService) {}
+  
+  //#region Valores
+  public nomeDependente: any;
+  public email: any;
+  //#endregion
 
   //#region Abrir e Fechar o Menu
   open()
   {
+    //Variaveis
     var menu = document.getElementById('mRelatorio');
+    var content = document.getElementById('rMenu');
+
+    //Abre
     menu.classList.remove('invisivel');
+
+    //Preparação
+    menu.classList.remove('OutFundo');
+    content.classList.remove('OutMenu');
+
+    //Animação
+    setTimeout(function()
+    {
+      menu.classList.add('InFundo');
+      content.classList.add('InMenu');
+    }, 100);
   }
 
   close()
   {
+    //Variaveis
     var menu = document.getElementById('mRelatorio');
-    menu.classList.add('invisivel');
+    var content = document.getElementById('rMenu');
+
+    //Preparação
+    menu.classList.remove('InFundo');
+    content.classList.remove('InMenu');
+
+    //Animação
+    menu.classList.add('OutFundo');
+    content.classList.add('OutMenu');
+    
+    //Fecha
+    setTimeout(function()
+    {
+      menu.classList.add('invisivel');
+    }, 301);
   }
   //#endregion
 
   //#region Navegação
-  historico()
-  {
-    this.navCtrl.navigateBack('R/historico')
-  }
-  //#endregion
-
-  //#region SideMenu
   tutorial()
   {
-    this.navCtrl.navigateForward('R/tutorial');
+    localStorage.setItem('RTutorial', 'rRelatorio');
+    this.nav.rTutorial();
   }
 
   dadosAdicionais()
   {
-    this.navCtrl.navigateForward('dados-adicionais');
+    localStorage.setItem('dadosAdicionais', 'rRelatorio');
+    this.nav.dadosAdicionais();
   }
 
   adicionarResponsavel()
   {
-    this.navCtrl.navigateForward('digitar-responsavel');
+    localStorage.setItem('digitarResponsavel', 'rRelatorio');
+    this.nav.digitarResponsavel();
+  }
+
+  removDependente()
+  {
+    this.nav.rDependente();
   }
 
   sair()
   {
-    this.navCtrl.navigateForward('first-view');
+    this.servidor.limpar();
   }
-  //#endregion
 
-  //#region Tabs
-  dependentes()
-  {
-    this.navCtrl.navigateForward('R/dependentes');
-  }
-  
   home()
   {
-    this.navCtrl.navigateForward('R/home');
-  }
-
-  estoque()
-  {
-    this.navCtrl.navigateForward('R/estoque');
+    this.nav.rHome();
   }
 
   lembretes()
   {
-    this.navCtrl.navigateForward('R/lembretes');
+    this.nav.rLembretes();
+  }
+
+  estoque()
+  {
+    this.nav.rEstoque();
+  }
+
+  dependentes()
+  {
+    this.nav.rDependentes();
+  }
+
+  relatorio()
+  {
+    this.nav.rRelatorio();
   }
   //#endregion
 
+  //#region ViewWillEnter
+  ionViewWillEnter()
+  {
+    //Verificar Login
+    this.servidor.verificar();
+
+    //Dependente
+    if(localStorage.getItem('emailDependente') != null && localStorage.getItem('emailDependente') != '')
+    {
+      document.getElementById('rDep').classList.remove('invisivel');
+      document.getElementById('rMeio').classList.add('depMeio');
+      document.getElementById('rTabs').classList.add('invisivel');
+      document.getElementById('rNav').classList.add('invisivel');
+      document.getElementById('rContent').classList.add('baixoButton2');
+
+      this.nomeDependente = localStorage.getItem('nomeDependente');
+      this.email = localStorage.getItem('emailDependente');
+    }
+    else
+    {
+      document.getElementById('rDep').classList.add('invisivel');
+      document.getElementById('rMeio').classList.remove('depMeio');
+      document.getElementById('rTabs').classList.remove('invisivel');
+      document.getElementById('rNav').classList.remove('invisivel');
+      document.getElementById('rContent').classList.remove('baixoButton2');
+
+      this.email = localStorage.getItem('email');
+    }
+  }
+  //#endregion
+  
   ngOnInit() {
   }
 }

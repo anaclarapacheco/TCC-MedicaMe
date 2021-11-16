@@ -18,30 +18,13 @@
 
     /*#region Variavéis*/
     $Email = $_GET['phpEmail'];
-    $Senha = $_GET['phpSenha'];
-
-    $Erro = true;
     /*#endregion*/
 
     /*#region Banco de Dados*/
-    if($Email != null & $Senha != null)
-    {
-        $SQL = $PDO->query("SELECT `nm_email_usuario` FROM `usuario` WHERE `nm_email_usuario` = '$Email'");
-        
-        if($SQL->fetch() == false)
-        {
-            $Erro = false;
-
-            $PDO->query("INSERT INTO `usuario` VALUES ('$Email', MD5('$Senha'), null, null, null)");
-        }
-    }
+    $SQL = $PDO->query("UPDATE `usuario` SET `nm_email_responsavel` = null WHERE `nm_email_usuario` = '$Email'");
     /*#endregion*/
 
-    /*#region Envio*/
-    $Resposta[] = array(
-        'Erro' => $Erro
-    );
-
-    echo json_encode($Resposta);
-    /*#endregion*/
+    //#region Enviar
+    echo json_encode('Removeu');
+    //#endregion
 ?>
