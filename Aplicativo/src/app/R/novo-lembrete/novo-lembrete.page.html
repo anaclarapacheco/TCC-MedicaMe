@@ -25,7 +25,7 @@
           <p id="avisoUm" class="aviso invisivel">{{txtAvisoUm}}</p>
 
           <button (click)="proximo()" class="important full flex">
-            Próximo
+            <span>Próximo</span>
             <svg viewBox="0 0 24 24">
               <path d="M0 3.795l2.995-2.98 11.132 11.185-11.132 11.186-2.995-2.981 8.167-8.205-8.167-8.205zm18.04 8.205l-8.167 8.205 2.995 2.98 11.132-11.185-11.132-11.186-2.995 2.98 8.167 8.206z"/>
             </svg>
@@ -43,7 +43,7 @@
             </div>
           </div>
 
-          <div class="bloco flex">
+           <div class="bloco flex">
             <span class="line leftA">Final</span>
             <div class="data input">
               <ion-item class="input">
@@ -55,8 +55,21 @@
           <span class="line leftA">Quantidade de Dias</span>
           <input [(ngModel)]="dias" type="number" class="input">
 
-          <span class="line leftA">Horário</span>
-          <input [(ngModel)]="horas" type="time" class="input">
+          <div class="bloco flex">
+            <span class="line leftA">Horário Inicial</span>
+            <input [(ngModel)]="horario" type="time" class="input">
+          </div>
+
+          <div class="bloco flex">
+            <span class="line leftA">Vezes ao dia</span>
+            <select [(ngModel)]="horas" class="input">
+              <option value="vazio"></option>
+              <option value="24">Uma vez</option>
+              <option value="12">Duas vezes</option>
+              <option value="8">Três vezes</option>
+              <option value="4">Quatro vezes</option>
+            </select> 
+          </div>          
   
           <h3 class="line centerA no">Estoque</h3>
           <span class="line leftA">Quantidade atual</span>
@@ -69,7 +82,8 @@
 
           <button (click)="criar()" class="important">{{txtBotao}}</button>
 
-          <button (click)="voltar()" class="normal full flex"> Voltar
+          <button (click)="voltar()" class="normal full flex">
+            <span>Voltar</span>
             <svg viewBox="0 0 24 24">
               <path d="M0 3.795l2.995-2.98 11.132 11.185-11.132 11.186-2.995-2.981 8.167-8.205-8.167-8.205zm18.04 8.205l-8.167 8.205 2.995 2.98 11.132-11.185-11.132-11.186-2.995 2.98 8.167 8.206z"/>
             </svg>

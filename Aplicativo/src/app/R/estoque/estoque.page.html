@@ -81,7 +81,7 @@
             <h3 class="line">{{l.Nome}}</h3>
 
             <p *ngSwitchCase="formaFarma[0]">{{l.Quantidade + 'ml'}}</p>
-            <p *ngSwitchCase="formaFarma[1]">{{l.Quantidade + ' gotas'}}</p>
+            <p *ngSwitchCase="formaFarma[1]">{{l.Quantidade + 'ml'}}</p>
             <p *ngSwitchCase="formaFarma[2]">{{l.Quantidade + ' comprimido'}}</p>
             <p *ngSwitchCase="formaFarma[3]">{{l.Quantidade + ' cápsula'}}</p>
           </div>
@@ -122,7 +122,7 @@
         <div [ngSwitch]="formaFarmaceutica" class="content full flex">
           <input id="quantidade" type="number" class="input rightA" [(ngModel)]="editarQuantidade">
           <p class="leftA" *ngSwitchCase="formaFarma[0]">ml</p>
-          <p class="leftA" *ngSwitchCase="formaFarma[1]"> gotas</p>
+          <p class="leftA" *ngSwitchCase="formaFarma[1]">ml</p>
           <p class="leftA" *ngSwitchCase="formaFarma[2]"> comprimido</p>
           <p class="leftA" *ngSwitchCase="formaFarma[3]"> cápsula</p>
         </div>

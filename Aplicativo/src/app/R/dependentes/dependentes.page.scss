@@ -58,7 +58,7 @@
 
     .text
     {
-        width: 60%;
+        width: calc(65% - 30px);
         margin-top: 10px;
     
         h3

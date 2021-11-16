@@ -59,7 +59,7 @@
 
     .text
     {
-        width: 70%;
+        width: calc(70% - 30px);
         margin-top: 10px;
 
         flex-direction: row;
@@ -85,8 +85,8 @@
         fill: var(--red);
         
         position: relative;
-        right: 10px;
-        top: -10px;
+        right: 0px;
+        top: 0px;
     }
 
     button

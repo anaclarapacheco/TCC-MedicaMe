@@ -61,13 +61,13 @@
         fill: var(--red);
         
         position: relative;
-        right: 10px;
-        top: -20px;
+        right: 0px;
+        top: -10px;
     }
 
     .text
     {
-        width: 70%;
+        width: calc(70% - 30px);
         margin: 10px 0px 0px 0px;
 
         h3
@@ -124,7 +124,7 @@
     svg
     {
         stroke: var(--dark-space-cadet);
-        height: 50%;
+        height: 40%;
 
         margin: 0px 10px 0px 0px;
     }

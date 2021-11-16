@@ -44,6 +44,7 @@ export class NovoLembretePage implements OnInit {
   public dataFinal: any;
   public dias: any;
   public horas: any;
+  public horario: any;
   public quantidadeAtual: any;
   public quantidadeMinima: any;
 
@@ -120,23 +121,23 @@ export class NovoLembretePage implements OnInit {
     }
     else if (this.dataFinal != null && this.dias == null)
     {
-      this.dataFinal = this.dataFinal + ' ' + this.horas + ':00';
+      this.dataFinal = this.dataFinal + ' ' + this.horario + ':00';
       this.dias = 'null';
     }
     else
     {
-      this.dataFinal = this.dataFinal + ' ' + this.horas + ':00';
+      this.dataFinal = this.dataFinal + ' ' + this.horario + ':00';
     }
 
-    if(this.dataInicial == '' || this.dataFinal == '' || this.dias == '' || this.horas == '' || this.quantidadeAtual == '' || this.quantidadeMinima == '' || this.dataInicial == null || this.dataFinal == null || this.dias == null || this.horas == null || this.quantidadeAtual == null || this.quantidadeMinima == null)
+    if(this.dataInicial == '' || this.dataFinal == '' || this.dias == '' || this.horario == '' || this.horas == 'vazio' || this.quantidadeAtual == '' || this.quantidadeMinima == '' || this.dataInicial == null || this.dataFinal == null || this.dias == null || this.horario == null || this.quantidadeAtual == null || this.quantidadeMinima == null)
     { 
-      this.txtAvisoDois = 'O preenchimento dos campos: Data Inicial, Horas, Quantidade Atual e Quantidade mínima, são obrigatórios!';
+      this.txtAvisoDois = 'O preenchimento dos campos: Data Inicial, Horário inicial, Vezes ao dia, Horas, Quantidade Atual e Quantidade mínima, são obrigatórios!';
       document.getElementById('avisoDois').classList.remove('invisivel');
     }
     else if(localStorage.getItem('agendamento') != null && localStorage.getItem('agendamento') != '')
     {
       //Enviando ao PHP
-      let dados = 'phpNomeMedicamento=' + this.nomeMedicamento + '&phpFormaFarmaceutica=' + this.formaFarma + '&phpDescricao=' + this.descricao + '&phpDosagem=' + this.dosagem + '&phpDataInicial=' + this.dataInicial.substring(0, 10) + ' ' + this.horas + ':00' + '&phpDataFinal=' + this.dataFinal.substring(0, 10) + '&phpDias=' + this.dias + '&phpHoras=' + 24 + '&phpQuantidadeAtual=' + this.quantidadeAtual + '&phpQuantidadeMinima=' + this.quantidadeMinima + '&phpEmail=' + this.email + '&phpCodigo=' + localStorage.getItem('agendamento');
+      let dados = 'phpNomeMedicamento=' + this.nomeMedicamento + '&phpFormaFarmaceutica=' + this.formaFarma + '&phpDescricao=' + this.descricao + '&phpDosagem=' + this.dosagem + '&phpDataInicial=' + this.dataInicial.substring(0, 10) + ' ' + this.horario + ':00' + '&phpDataFinal=' + this.dataFinal.substring(0, 10) + '&phpDias=' + this.dias + '&phpHoras=' + this.horas + '&phpQuantidadeAtual=' + this.quantidadeAtual + '&phpQuantidadeMinima=' + this.quantidadeMinima + '&phpEmail=' + this.email + '&phpCodigo=' + localStorage.getItem('agendamento');
       
       this.servidor.enviar('Responsavel/Novo Lembrete/atualizar.php', dados).subscribe(res => {
         if(res[0]['Erro'] == false)
@@ -153,7 +154,7 @@ export class NovoLembretePage implements OnInit {
     else
     {
       //Enviando ao PHP
-      let dados = 'phpDataInicial=' + this.dataInicial.substring(0, 10) + ' ' + this.horas + ':00' + '&phpDataFinal=' + this.dataFinal.substring(0, 10) + '&phpDias=' + this.dias + '&phpHoras=' + 24 + '&phpQuantidadeAtual=' + this.quantidadeAtual + '&phpQuantidadeMinima=' + this.quantidadeMinima + '&phpEmail=' + this.email;
+      let dados = 'phpDataInicial=' + this.dataInicial.substring(0, 10) + ' ' + this.horario + ':00' + '&phpDataFinal=' + this.dataFinal.substring(0, 10) + '&phpDias=' + this.dias + '&phpHoras=' + this.horas + '&phpQuantidadeAtual=' + this.quantidadeAtual + '&phpQuantidadeMinima=' + this.quantidadeMinima + '&phpEmail=' + this.email;
 
       this.servidor.enviar('Responsavel/Novo Lembrete/main pt2.php', dados).subscribe(res => {
         if(res[0]['Erro'] == false)
@@ -232,7 +233,8 @@ export class NovoLembretePage implements OnInit {
         this.dataInicial = String(res[0]['DataInicial']).substring(0, 10);
         this.dataFinal = String(res[0]['DataFinal']).substring(0, 10);
         this.dias = res[0]['Dias'];
-        this.horas = String(res[0]['DataInicial']).substring(11, 16);
+        this.horario = String(res[0]['DataInicial']).substring(11, 16);
+        this.horas = res[0]['Horas'];
         this.quantidadeAtual = res[0]['QuantidadeAtual'];
         this.quantidadeMinima = res[0]['QuantidadeMinima'];
       });
