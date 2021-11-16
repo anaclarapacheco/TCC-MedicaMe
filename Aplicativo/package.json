@@ -27,6 +27,8 @@
     "@capacitor/keyboard": "1.0.2",
     "@capacitor/status-bar": "1.0.2",
     "@ionic/angular": "^5.5.2",
+    "ion2-calendar": "^3.5.0",
+    "moment": "^2.29.1",
     "p3x-angular-compile": "^2021.10.146",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",

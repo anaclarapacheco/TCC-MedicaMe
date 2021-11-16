@@ -72,7 +72,41 @@
     </div>
 
     <div class="content">
-      <div class="calendario"></div>
+      <div class="calendario">
+        <!-- <calendar 
+        [eventSource]="eventSource"
+        [calendarMode]="calendar.mode"
+        [currentDate]="calendar.currentDate"
+        (onCurrentDateChanged)="onCurrentDateChanged($event)"
+        (onRangeChanged)="reloadSource(startTime, endTime)"
+        (onEventSelected)="onEventSelected($event)"
+        (onTitleChanged)="onViewTitleChanged($event)"
+        (onTimeSelected)="onTimeSelected($event)"
+        [step]="calendar.step">
+        </calendar> -->
+        <!-- <calendar 
+        [eventSource]="eventSource"
+        [calendarMode]="calendar.mode"
+        [currentDate]="calendar.currentDate"
+        (onEventSelected)="onEventSelected($event)"
+        (onTitleChanged)="onViewTitleChanged($event)"
+        (onTimeSelected)="onTimeSelected($event)"
+        [step]="calendar.step">
+        </calendar> -->
+
+        <!-- <ion-calendar 
+              [(ngModel)]="date"
+              (change)="onChange($event)"
+              [type]="type"
+              [format]="'YYYY-MM-DD'">
+        </ion-calendar> -->
+        <ion-calendar 
+              [(ngModel)]="date"
+              (change)="onChange($event)"
+              [type]="type"
+              [format]="'DD-MM-YYYY'">
+        </ion-calendar>
+      </div>
 
       <div class="relatorio full flex">
         <h3>Relatório Semanal 08 - 14/03</h3>

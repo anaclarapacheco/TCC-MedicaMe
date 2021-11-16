@@ -8,13 +8,16 @@ import { RelatorioPageRoutingModule } from './relatorio-routing.module';
 
 import { RelatorioPage } from './relatorio.page';
 
+import { CalendarModule } from 'ion2-calendar';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RelatorioPageRoutingModule
-  ],
+    RelatorioPageRoutingModule,
+    CalendarModule
+  ],  
   declarations: [RelatorioPage]
 })
 export class RelatorioPageModule {}

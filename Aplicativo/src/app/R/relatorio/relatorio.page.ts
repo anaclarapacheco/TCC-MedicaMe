@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { CalendarModule } from 'ion2-calendar';
 
 @Component({
   selector: 'app-relatorio',
@@ -77,4 +78,32 @@ export class RelatorioPage implements OnInit {
 
   ngOnInit() {
   }
+
+  //#region Parte desorganizada da Ana
+  eventSource = [];
+  // calendarMode=[];
+  // currentDate=[];
+  calendar = {
+    mode: 'month',
+    currentDate: new Date()
+  }
+  onEventSelected(){
+
+  }
+
+  onViewTitleChanged(){
+
+  }
+
+  onTimeSelected(){
+
+  }
+
+  date: string;
+  type: 'string'; // 'string' | 'js-date' | 'moment' | 'time' | 'object'
+
+  onChange($event) {
+    console.log($event);
+  }
+  //#endregion
 }
