@@ -1524,6 +1524,9 @@ button {
   border-style: solid;
   z-index: 100;
 }
+.dep p {
+  color: var(--white) !important;
+}
 .dep .sair {
   margin-left: auto;
   text-decoration: underline;

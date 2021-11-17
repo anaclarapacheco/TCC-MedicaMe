@@ -384,6 +384,11 @@ button
 
     z-index: 100;
 
+    p
+    {
+        color: var(--white) !important;
+    }
+
     .sair
     {
         margin-left: auto;
