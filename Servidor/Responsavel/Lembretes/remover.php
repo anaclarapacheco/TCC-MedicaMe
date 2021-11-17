@@ -22,7 +22,7 @@
     /*#endregion*/
 
     /*#region Banco de Dados*/
-    $SQL = $PDO->query("DELETE FROM `agendamento` WHERE `nm_email_usuario` = '$Email' AND `cd_agendamento` = '$Codigo'");
+    $SQL = $PDO->query("UPDATE `agendamento` SET `cd_situacao_agendamento` = 2 WHERE `nm_email_usuario` = '$Email' AND `cd_agendamento` = '$Codigo'");
     /*#endregion*/
 
     //#region Enviar

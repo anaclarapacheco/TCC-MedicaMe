@@ -38,6 +38,8 @@
 {
     width: 100%;
 
+    padding-bottom: 20px;
+
     margin-bottom: 180px;
 
     .line
@@ -158,3 +160,18 @@
     }
 }
 /*#endregion*/
+
+//#region Sem Medicamentos
+.naoTem
+{
+    height: 50vh;
+
+    svg
+    {
+        width: 40%;
+        fill: var(--lavander);
+
+        margin-top: 10vh;
+    }
+}
+//#endregion

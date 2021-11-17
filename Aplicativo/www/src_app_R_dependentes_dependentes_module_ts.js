@@ -1,6 +1,6 @@
 (self["webpackChunkMedicaMe"] = self["webpackChunkMedicaMe"] || []).push([["src_app_R_dependentes_dependentes_module_ts"],{
 
-/***/ 6442:
+/***/ 76442:
 /*!*************************************************************!*\
   !*** ./src/app/R/dependentes/dependentes-routing.module.ts ***!
   \*************************************************************/
@@ -11,10 +11,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "DependentesPageRoutingModule": () => (/* binding */ DependentesPageRoutingModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4762);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 9895);
-/* harmony import */ var _dependentes_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dependentes.page */ 9199);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 64762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 37716);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 39895);
+/* harmony import */ var _dependentes_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dependentes.page */ 79199);
 
 
 
@@ -49,13 +49,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "DependentesPageModule": () => (/* binding */ DependentesPageModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 4762);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ 8583);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 64762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 37716);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ 38583);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ 3679);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 476);
-/* harmony import */ var _dependentes_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dependentes-routing.module */ 6442);
-/* harmony import */ var _dependentes_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dependentes.page */ 9199);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 80476);
+/* harmony import */ var _dependentes_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dependentes-routing.module */ 76442);
+/* harmony import */ var _dependentes_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dependentes.page */ 79199);
 
 
 
@@ -81,7 +81,7 @@ DependentesPageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
 
 /***/ }),
 
-/***/ 9199:
+/***/ 79199:
 /*!***************************************************!*\
   !*** ./src/app/R/dependentes/dependentes.page.ts ***!
   \***************************************************/
@@ -92,12 +92,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "DependentesPage": () => (/* binding */ DependentesPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 4762);
-/* harmony import */ var _raw_loader_dependentes_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./dependentes.page.html */ 457);
-/* harmony import */ var _dependentes_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dependentes.page.scss */ 2642);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 64762);
+/* harmony import */ var _raw_loader_dependentes_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./dependentes.page.html */ 50457);
+/* harmony import */ var _dependentes_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dependentes.page.scss */ 42642);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 37716);
 /* harmony import */ var src_app_services_navegation_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/navegation.service */ 6192);
-/* harmony import */ var src_app_services_servidor_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/servidor.service */ 8914);
+/* harmony import */ var src_app_services_servidor_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/servidor.service */ 58914);
 
 
 
@@ -213,7 +213,12 @@ let DependentesPage = class DependentesPage {
     //#region Editar Dependente
     editarDependente(email, nome) {
         localStorage.setItem('emailDependente', email);
-        localStorage.setItem('nomeDependente', nome);
+        if (nome == null) {
+            localStorage.setItem('nomeDependente', email);
+        }
+        else {
+            localStorage.setItem('nomeDependente', nome);
+        }
         this.nav.rDependente();
     }
     //#endregion
@@ -303,7 +308,7 @@ DependentesPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
 
 /***/ }),
 
-/***/ 2642:
+/***/ 42642:
 /*!*****************************************************!*\
   !*** ./src/app/R/dependentes/dependentes.page.scss ***!
   \*****************************************************/
@@ -314,11 +319,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("@charset \"UTF-8\";\n/*#region Geral*/\n.meio {\n  width: 90%;\n  margin-left: 5%;\n  margin-top: calc((100vw / 5) + 20px);\n  color: var(--dark-space-cadet);\n}\n.meio .top, .meio .content {\n  margin-top: 20px;\n  margin-bottom: 20px;\n}\n.meio .content {\n  margin-bottom: calc((100vw / 5) + ((100vw / 5) / 2) + 65px);\n}\n#rDependentes #back, #aDependentes #back {\n  width: 100vw;\n}\n/*#endregion*/\n/*#region Dependentes*/\n.dependentes {\n  background-color: var(--lavander);\n  width: 100%;\n  height: 130px;\n  margin-bottom: 20px;\n  border-radius: 10px;\n  box-sizing: border-box;\n}\n.dependentes svg:nth-of-type(1) {\n  fill: var(--dark-space-cadet) !important;\n  width: 50px;\n  margin-right: 20px;\n}\n.dependentes svg:nth-of-type(2) {\n  fill: var(--red) !important;\n  height: 30px;\n  position: relative;\n  top: -20px;\n  right: 0px;\n}\n.dependentes .text {\n  width: 60%;\n  margin-top: 10px;\n}\n.dependentes .text h3 {\n  width: calc(100% - 30px);\n  color: vasr(--dark-space-cadet);\n  font-family: \"Saira\";\n}\n.dependentes .text p {\n  color: var(--space-cadet);\n  font-family: \"Roboto Light\";\n}\n.dependentes button {\n  height: 30px;\n  margin-top: auto;\n  border-top-right-radius: 0%;\n  border-top-left-radius: 0%;\n  border-bottom-right-radius: 10px;\n  border-bottom-left-radius: 10px;\n}\n.dependentes svg {\n  fill: var(--white);\n  height: 80%;\n  margin-left: 10px;\n}\n/*#endregion*/\n#rDependentes, #aDependentes {\n  background-color: var(--dark-space-cadet);\n}\n#rDependentes .alert, #aDependentes .alert {\n  opacity: 0;\n}\n#rDependentes .alert h3, #aDependentes .alert h3 {\n  font-size: 1em;\n  color: var(--white) !important;\n}\n#rDependentes .important, #aDependentes .important {\n  position: initial;\n}\n/*#region Botão*/\n#botao .important {\n  background-color: var(--space-cadet);\n  width: 80vw;\n  position: fixed;\n  bottom: calc((100vw / 5) + ((100vw / 5) / 2) + 10px);\n  left: 10vw;\n}\n#botao .important span {\n  color: var(--white) !important;\n}\n/*#endregion*/\n.semDependentes {\n  height: 50vh;\n}\n.semDependentes svg {\n  width: 40%;\n  fill: var(--lavander);\n  margin-top: 10vh;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRlcGVuZGVudGVzLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxnQkFBZ0I7QUFBaEIsZ0JBQUE7QUFDQTtFQUVJLFVBQUE7RUFDQSxlQUFBO0VBRUEsb0NBQUE7RUFFQSw4QkFBQTtBQURKO0FBR0k7RUFFSSxnQkFBQTtFQUNBLG1CQUFBO0FBRlI7QUFLSTtFQUVJLDJEQUFBO0FBSlI7QUFRQTtFQUVJLFlBQUE7QUFOSjtBQVFBLGFBQUE7QUFFQSxzQkFBQTtBQUNBO0VBRUksaUNBQUE7RUFDQSxXQUFBO0VBQ0EsYUFBQTtFQUVBLG1CQUFBO0VBRUEsbUJBQUE7RUFDQSxzQkFBQTtBQVRKO0FBV0k7RUFFSSx3Q0FBQTtFQUNBLFdBQUE7RUFFQSxrQkFBQTtBQVhSO0FBY0k7RUFFSSwyQkFBQTtFQUNBLFlBQUE7RUFFQSxrQkFBQTtFQUNBLFVBQUE7RUFDQSxVQUFBO0FBZFI7QUFpQkk7RUFFSSxVQUFBO0VBQ0EsZ0JBQUE7QUFoQlI7QUFrQlE7RUFFSSx3QkFBQTtFQUVBLCtCQUFBO0VBQ0Esb0JBQUE7QUFsQlo7QUFxQlE7RUFFSSx5QkFBQTtFQUNBLDJCQUFBO0FBcEJaO0FBd0JJO0VBRUksWUFBQTtFQUVBLGdCQUFBO0VBRUEsMkJBQUE7RUFDQSwwQkFBQTtFQUNBLGdDQUFBO0VBQ0EsK0JBQUE7QUF6QlI7QUE0Qkk7RUFFSSxrQkFBQTtFQUNBLFdBQUE7RUFFQSxpQkFBQTtBQTVCUjtBQStCQSxhQUFBO0FBR0E7RUFFSSx5Q0FBQTtBQS9CSjtBQWlDSTtFQUVJLFVBQUE7QUFoQ1I7QUFrQ1E7RUFFSSxjQUFBO0VBQ0EsOEJBQUE7QUFqQ1o7QUFxQ0k7RUFFSSxpQkFBQTtBQXBDUjtBQXlDQSxnQkFBQTtBQUNBO0VBRUksb0NBQUE7RUFDQSxXQUFBO0VBRUEsZUFBQTtFQUNBLG9EQUFBO0VBQ0EsVUFBQTtBQXhDSjtBQTBDSTtFQUVJLDhCQUFBO0FBekNSO0FBNENBLGFBQUE7QUFHQTtFQUVJLFlBQUE7QUE1Q0o7QUE4Q0k7RUFFSSxVQUFBO0VBQ0EscUJBQUE7RUFFQSxnQkFBQTtBQTlDUiIsImZpbGUiOiJkZXBlbmRlbnRlcy5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJAY2hhcnNldCBcIlVURi04XCI7XG4vKiNyZWdpb24gR2VyYWwqL1xuLm1laW8ge1xuICB3aWR0aDogOTAlO1xuICBtYXJnaW4tbGVmdDogNSU7XG4gIG1hcmdpbi10b3A6IGNhbGMoKDEwMHZ3IC8gNSkgKyAyMHB4KTtcbiAgY29sb3I6IHZhcigtLWRhcmstc3BhY2UtY2FkZXQpO1xufVxuLm1laW8gLnRvcCwgLm1laW8gLmNvbnRlbnQge1xuICBtYXJnaW4tdG9wOiAyMHB4O1xuICBtYXJnaW4tYm90dG9tOiAyMHB4O1xufVxuLm1laW8gLmNvbnRlbnQge1xuICBtYXJnaW4tYm90dG9tOiBjYWxjKCgxMDB2dyAvIDUpICsgKCgxMDB2dyAvIDUpIC8gMikgKyA2NXB4KTtcbn1cblxuI3JEZXBlbmRlbnRlcyAjYmFjaywgI2FEZXBlbmRlbnRlcyAjYmFjayB7XG4gIHdpZHRoOiAxMDB2dztcbn1cblxuLyojZW5kcmVnaW9uKi9cbi8qI3JlZ2lvbiBEZXBlbmRlbnRlcyovXG4uZGVwZW5kZW50ZXMge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1sYXZhbmRlcik7XG4gIHdpZHRoOiAxMDAlO1xuICBoZWlnaHQ6IDEzMHB4O1xuICBtYXJnaW4tYm90dG9tOiAyMHB4O1xuICBib3JkZXItcmFkaXVzOiAxMHB4O1xuICBib3gtc2l6aW5nOiBib3JkZXItYm94O1xufVxuLmRlcGVuZGVudGVzIHN2ZzpudGgtb2YtdHlwZSgxKSB7XG4gIGZpbGw6IHZhcigtLWRhcmstc3BhY2UtY2FkZXQpICFpbXBvcnRhbnQ7XG4gIHdpZHRoOiA1MHB4O1xuICBtYXJnaW4tcmlnaHQ6IDIwcHg7XG59XG4uZGVwZW5kZW50ZXMgc3ZnOm50aC1vZi10eXBlKDIpIHtcbiAgZmlsbDogdmFyKC0tcmVkKSAhaW1wb3J0YW50O1xuICBoZWlnaHQ6IDMwcHg7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgdG9wOiAtMjBweDtcbiAgcmlnaHQ6IDBweDtcbn1cbi5kZXBlbmRlbnRlcyAudGV4dCB7XG4gIHdpZHRoOiA2MCU7XG4gIG1hcmdpbi10b3A6IDEwcHg7XG59XG4uZGVwZW5kZW50ZXMgLnRleHQgaDMge1xuICB3aWR0aDogY2FsYygxMDAlIC0gMzBweCk7XG4gIGNvbG9yOiB2YXNyKC0tZGFyay1zcGFjZS1jYWRldCk7XG4gIGZvbnQtZmFtaWx5OiBcIlNhaXJhXCI7XG59XG4uZGVwZW5kZW50ZXMgLnRleHQgcCB7XG4gIGNvbG9yOiB2YXIoLS1zcGFjZS1jYWRldCk7XG4gIGZvbnQtZmFtaWx5OiBcIlJvYm90byBMaWdodFwiO1xufVxuLmRlcGVuZGVudGVzIGJ1dHRvbiB7XG4gIGhlaWdodDogMzBweDtcbiAgbWFyZ2luLXRvcDogYXV0bztcbiAgYm9yZGVyLXRvcC1yaWdodC1yYWRpdXM6IDAlO1xuICBib3JkZXItdG9wLWxlZnQtcmFkaXVzOiAwJTtcbiAgYm9yZGVyLWJvdHRvbS1yaWdodC1yYWRpdXM6IDEwcHg7XG4gIGJvcmRlci1ib3R0b20tbGVmdC1yYWRpdXM6IDEwcHg7XG59XG4uZGVwZW5kZW50ZXMgc3ZnIHtcbiAgZmlsbDogdmFyKC0td2hpdGUpO1xuICBoZWlnaHQ6IDgwJTtcbiAgbWFyZ2luLWxlZnQ6IDEwcHg7XG59XG5cbi8qI2VuZHJlZ2lvbiovXG4jckRlcGVuZGVudGVzLCAjYURlcGVuZGVudGVzIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tZGFyay1zcGFjZS1jYWRldCk7XG59XG4jckRlcGVuZGVudGVzIC5hbGVydCwgI2FEZXBlbmRlbnRlcyAuYWxlcnQge1xuICBvcGFjaXR5OiAwO1xufVxuI3JEZXBlbmRlbnRlcyAuYWxlcnQgaDMsICNhRGVwZW5kZW50ZXMgLmFsZXJ0IGgzIHtcbiAgZm9udC1zaXplOiAxZW07XG4gIGNvbG9yOiB2YXIoLS13aGl0ZSkgIWltcG9ydGFudDtcbn1cbiNyRGVwZW5kZW50ZXMgLmltcG9ydGFudCwgI2FEZXBlbmRlbnRlcyAuaW1wb3J0YW50IHtcbiAgcG9zaXRpb246IGluaXRpYWw7XG59XG5cbi8qI3JlZ2lvbiBCb3TDo28qL1xuI2JvdGFvIC5pbXBvcnRhbnQge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1zcGFjZS1jYWRldCk7XG4gIHdpZHRoOiA4MHZ3O1xuICBwb3NpdGlvbjogZml4ZWQ7XG4gIGJvdHRvbTogY2FsYygoMTAwdncgLyA1KSArICgoMTAwdncgLyA1KSAvIDIpICsgMTBweCk7XG4gIGxlZnQ6IDEwdnc7XG59XG4jYm90YW8gLmltcG9ydGFudCBzcGFuIHtcbiAgY29sb3I6IHZhcigtLXdoaXRlKSAhaW1wb3J0YW50O1xufVxuXG4vKiNlbmRyZWdpb24qL1xuLnNlbURlcGVuZGVudGVzIHtcbiAgaGVpZ2h0OiA1MHZoO1xufVxuLnNlbURlcGVuZGVudGVzIHN2ZyB7XG4gIHdpZHRoOiA0MCU7XG4gIGZpbGw6IHZhcigtLWxhdmFuZGVyKTtcbiAgbWFyZ2luLXRvcDogMTB2aDtcbn0iXX0= */");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("@charset \"UTF-8\";\n/*#region Geral*/\n.meio {\n  width: 90%;\n  margin-left: 5%;\n  margin-top: calc((100vw / 5) + 20px);\n  color: var(--dark-space-cadet);\n}\n.meio .top, .meio .content {\n  margin-top: 20px;\n  margin-bottom: 20px;\n}\n.meio .content {\n  margin-bottom: calc((100vw / 5) + ((100vw / 5) / 2) + 65px);\n}\n#rDependentes #back, #aDependentes #back {\n  width: 100vw;\n}\n/*#endregion*/\n/*#region Dependentes*/\n.dependentes {\n  background-color: var(--lavander);\n  width: 100%;\n  height: 130px;\n  margin-bottom: 20px;\n  border-radius: 10px;\n  box-sizing: border-box;\n}\n.dependentes svg:nth-of-type(1) {\n  fill: var(--dark-space-cadet) !important;\n  width: 50px;\n  margin-right: 20px;\n}\n.dependentes svg:nth-of-type(2) {\n  fill: var(--red) !important;\n  height: 30px;\n  position: relative;\n  top: -20px;\n  right: 0px;\n}\n.dependentes .text {\n  width: calc(65% - 30px);\n  margin-top: 10px;\n}\n.dependentes .text h3 {\n  width: calc(100% - 30px);\n  color: vasr(--dark-space-cadet);\n  font-family: \"Saira\";\n}\n.dependentes .text p {\n  color: var(--space-cadet);\n  font-family: \"Roboto Light\";\n}\n.dependentes button {\n  height: 30px;\n  margin-top: auto;\n  border-top-right-radius: 0%;\n  border-top-left-radius: 0%;\n  border-bottom-right-radius: 10px;\n  border-bottom-left-radius: 10px;\n}\n.dependentes svg {\n  fill: var(--white);\n  height: 80%;\n  margin-left: 10px;\n}\n/*#endregion*/\n#rDependentes, #aDependentes {\n  background-color: var(--dark-space-cadet);\n}\n#rDependentes .alert, #aDependentes .alert {\n  opacity: 0;\n}\n#rDependentes .alert h3, #aDependentes .alert h3 {\n  font-size: 1em;\n  color: var(--white) !important;\n}\n#rDependentes .important, #aDependentes .important {\n  position: initial;\n}\n/*#region Botão*/\n#botao .important {\n  background-color: var(--space-cadet);\n  width: 80vw;\n  position: fixed;\n  bottom: calc((100vw / 5) + ((100vw / 5) / 2) + 10px);\n  left: 10vw;\n}\n#botao .important span {\n  color: var(--white) !important;\n}\n/*#endregion*/\n.semDependentes {\n  height: 50vh;\n}\n.semDependentes svg {\n  width: 40%;\n  fill: var(--lavander);\n  margin-top: 10vh;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRlcGVuZGVudGVzLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxnQkFBZ0I7QUFBaEIsZ0JBQUE7QUFDQTtFQUVJLFVBQUE7RUFDQSxlQUFBO0VBRUEsb0NBQUE7RUFFQSw4QkFBQTtBQURKO0FBR0k7RUFFSSxnQkFBQTtFQUNBLG1CQUFBO0FBRlI7QUFLSTtFQUVJLDJEQUFBO0FBSlI7QUFRQTtFQUVJLFlBQUE7QUFOSjtBQVFBLGFBQUE7QUFFQSxzQkFBQTtBQUNBO0VBRUksaUNBQUE7RUFDQSxXQUFBO0VBQ0EsYUFBQTtFQUVBLG1CQUFBO0VBRUEsbUJBQUE7RUFDQSxzQkFBQTtBQVRKO0FBV0k7RUFFSSx3Q0FBQTtFQUNBLFdBQUE7RUFFQSxrQkFBQTtBQVhSO0FBY0k7RUFFSSwyQkFBQTtFQUNBLFlBQUE7RUFFQSxrQkFBQTtFQUNBLFVBQUE7RUFDQSxVQUFBO0FBZFI7QUFpQkk7RUFFSSx1QkFBQTtFQUNBLGdCQUFBO0FBaEJSO0FBa0JRO0VBRUksd0JBQUE7RUFFQSwrQkFBQTtFQUNBLG9CQUFBO0FBbEJaO0FBcUJRO0VBRUkseUJBQUE7RUFDQSwyQkFBQTtBQXBCWjtBQXdCSTtFQUVJLFlBQUE7RUFFQSxnQkFBQTtFQUVBLDJCQUFBO0VBQ0EsMEJBQUE7RUFDQSxnQ0FBQTtFQUNBLCtCQUFBO0FBekJSO0FBNEJJO0VBRUksa0JBQUE7RUFDQSxXQUFBO0VBRUEsaUJBQUE7QUE1QlI7QUErQkEsYUFBQTtBQUdBO0VBRUkseUNBQUE7QUEvQko7QUFpQ0k7RUFFSSxVQUFBO0FBaENSO0FBa0NRO0VBRUksY0FBQTtFQUNBLDhCQUFBO0FBakNaO0FBcUNJO0VBRUksaUJBQUE7QUFwQ1I7QUF5Q0EsZ0JBQUE7QUFDQTtFQUVJLG9DQUFBO0VBQ0EsV0FBQTtFQUVBLGVBQUE7RUFDQSxvREFBQTtFQUNBLFVBQUE7QUF4Q0o7QUEwQ0k7RUFFSSw4QkFBQTtBQXpDUjtBQTRDQSxhQUFBO0FBR0E7RUFFSSxZQUFBO0FBNUNKO0FBOENJO0VBRUksVUFBQTtFQUNBLHFCQUFBO0VBRUEsZ0JBQUE7QUE5Q1IiLCJmaWxlIjoiZGVwZW5kZW50ZXMucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiQGNoYXJzZXQgXCJVVEYtOFwiO1xuLyojcmVnaW9uIEdlcmFsKi9cbi5tZWlvIHtcbiAgd2lkdGg6IDkwJTtcbiAgbWFyZ2luLWxlZnQ6IDUlO1xuICBtYXJnaW4tdG9wOiBjYWxjKCgxMDB2dyAvIDUpICsgMjBweCk7XG4gIGNvbG9yOiB2YXIoLS1kYXJrLXNwYWNlLWNhZGV0KTtcbn1cbi5tZWlvIC50b3AsIC5tZWlvIC5jb250ZW50IHtcbiAgbWFyZ2luLXRvcDogMjBweDtcbiAgbWFyZ2luLWJvdHRvbTogMjBweDtcbn1cbi5tZWlvIC5jb250ZW50IHtcbiAgbWFyZ2luLWJvdHRvbTogY2FsYygoMTAwdncgLyA1KSArICgoMTAwdncgLyA1KSAvIDIpICsgNjVweCk7XG59XG5cbiNyRGVwZW5kZW50ZXMgI2JhY2ssICNhRGVwZW5kZW50ZXMgI2JhY2sge1xuICB3aWR0aDogMTAwdnc7XG59XG5cbi8qI2VuZHJlZ2lvbiovXG4vKiNyZWdpb24gRGVwZW5kZW50ZXMqL1xuLmRlcGVuZGVudGVzIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tbGF2YW5kZXIpO1xuICB3aWR0aDogMTAwJTtcbiAgaGVpZ2h0OiAxMzBweDtcbiAgbWFyZ2luLWJvdHRvbTogMjBweDtcbiAgYm9yZGVyLXJhZGl1czogMTBweDtcbiAgYm94LXNpemluZzogYm9yZGVyLWJveDtcbn1cbi5kZXBlbmRlbnRlcyBzdmc6bnRoLW9mLXR5cGUoMSkge1xuICBmaWxsOiB2YXIoLS1kYXJrLXNwYWNlLWNhZGV0KSAhaW1wb3J0YW50O1xuICB3aWR0aDogNTBweDtcbiAgbWFyZ2luLXJpZ2h0OiAyMHB4O1xufVxuLmRlcGVuZGVudGVzIHN2ZzpudGgtb2YtdHlwZSgyKSB7XG4gIGZpbGw6IHZhcigtLXJlZCkgIWltcG9ydGFudDtcbiAgaGVpZ2h0OiAzMHB4O1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIHRvcDogLTIwcHg7XG4gIHJpZ2h0OiAwcHg7XG59XG4uZGVwZW5kZW50ZXMgLnRleHQge1xuICB3aWR0aDogY2FsYyg2NSUgLSAzMHB4KTtcbiAgbWFyZ2luLXRvcDogMTBweDtcbn1cbi5kZXBlbmRlbnRlcyAudGV4dCBoMyB7XG4gIHdpZHRoOiBjYWxjKDEwMCUgLSAzMHB4KTtcbiAgY29sb3I6IHZhc3IoLS1kYXJrLXNwYWNlLWNhZGV0KTtcbiAgZm9udC1mYW1pbHk6IFwiU2FpcmFcIjtcbn1cbi5kZXBlbmRlbnRlcyAudGV4dCBwIHtcbiAgY29sb3I6IHZhcigtLXNwYWNlLWNhZGV0KTtcbiAgZm9udC1mYW1pbHk6IFwiUm9ib3RvIExpZ2h0XCI7XG59XG4uZGVwZW5kZW50ZXMgYnV0dG9uIHtcbiAgaGVpZ2h0OiAzMHB4O1xuICBtYXJnaW4tdG9wOiBhdXRvO1xuICBib3JkZXItdG9wLXJpZ2h0LXJhZGl1czogMCU7XG4gIGJvcmRlci10b3AtbGVmdC1yYWRpdXM6IDAlO1xuICBib3JkZXItYm90dG9tLXJpZ2h0LXJhZGl1czogMTBweDtcbiAgYm9yZGVyLWJvdHRvbS1sZWZ0LXJhZGl1czogMTBweDtcbn1cbi5kZXBlbmRlbnRlcyBzdmcge1xuICBmaWxsOiB2YXIoLS13aGl0ZSk7XG4gIGhlaWdodDogODAlO1xuICBtYXJnaW4tbGVmdDogMTBweDtcbn1cblxuLyojZW5kcmVnaW9uKi9cbiNyRGVwZW5kZW50ZXMsICNhRGVwZW5kZW50ZXMge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1kYXJrLXNwYWNlLWNhZGV0KTtcbn1cbiNyRGVwZW5kZW50ZXMgLmFsZXJ0LCAjYURlcGVuZGVudGVzIC5hbGVydCB7XG4gIG9wYWNpdHk6IDA7XG59XG4jckRlcGVuZGVudGVzIC5hbGVydCBoMywgI2FEZXBlbmRlbnRlcyAuYWxlcnQgaDMge1xuICBmb250LXNpemU6IDFlbTtcbiAgY29sb3I6IHZhcigtLXdoaXRlKSAhaW1wb3J0YW50O1xufVxuI3JEZXBlbmRlbnRlcyAuaW1wb3J0YW50LCAjYURlcGVuZGVudGVzIC5pbXBvcnRhbnQge1xuICBwb3NpdGlvbjogaW5pdGlhbDtcbn1cblxuLyojcmVnaW9uIEJvdMOjbyovXG4jYm90YW8gLmltcG9ydGFudCB7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXNwYWNlLWNhZGV0KTtcbiAgd2lkdGg6IDgwdnc7XG4gIHBvc2l0aW9uOiBmaXhlZDtcbiAgYm90dG9tOiBjYWxjKCgxMDB2dyAvIDUpICsgKCgxMDB2dyAvIDUpIC8gMikgKyAxMHB4KTtcbiAgbGVmdDogMTB2dztcbn1cbiNib3RhbyAuaW1wb3J0YW50IHNwYW4ge1xuICBjb2xvcjogdmFyKC0td2hpdGUpICFpbXBvcnRhbnQ7XG59XG5cbi8qI2VuZHJlZ2lvbiovXG4uc2VtRGVwZW5kZW50ZXMge1xuICBoZWlnaHQ6IDUwdmg7XG59XG4uc2VtRGVwZW5kZW50ZXMgc3ZnIHtcbiAgd2lkdGg6IDQwJTtcbiAgZmlsbDogdmFyKC0tbGF2YW5kZXIpO1xuICBtYXJnaW4tdG9wOiAxMHZoO1xufSJdfQ== */");
 
 /***/ }),
 
-/***/ 457:
+/***/ 50457:
 /*!*******************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/R/dependentes/dependentes.page.html ***!
   \*******************************************************************************************/

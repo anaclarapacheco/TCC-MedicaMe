@@ -12,7 +12,13 @@ export class HomePage implements OnInit {
   constructor(private nav: NavegationService, private servidor: ServidorService){}
 
   //#region Valores do FrontEnd
+  public temLista: any = false;
+  public temListaCont: any = false;
+  public temListaNao: any = false;
+  public pendentes: any = [];
+  public medicamento: any = [];
 
+  public formaFarma = ['1', '2', '3', '4'];
   //#endregion
 
   //#region Abrir e Fechar o Menu
@@ -59,6 +65,58 @@ export class HomePage implements OnInit {
   }
   //#endregion
 
+  //#region Carregar
+  carregar()
+  {
+    let dados = 'phpEmail=' + localStorage.getItem('email');
+
+    this.servidor.enviar('Home/pendente.php', dados).subscribe(res =>{
+      if(res[0].Erro != true)
+      { 
+        this.temLista = true;
+        this.temListaCont = false;
+        this.pendentes[0] = res[0];
+      }
+      else
+      {
+        this.temLista = false;
+
+        let dados = 'phpEmail=' + localStorage.getItem('email');
+        
+        this.servidor.enviar('Home/main.php', dados).subscribe(res =>{
+          if(res[0].Erro != true)
+          {
+            this.temListaCont = true;
+            this.temListaNao = false;
+            this.medicamento = res;
+          }
+          else
+          {
+            this.temListaCont = false;
+            this.temListaNao = true;
+          }
+        });
+      }
+    });
+  }
+  //#endregion
+
+  //#region Tomei ou Não tomei
+  enviar(codigo, situacao)
+  {
+    //Animação
+    document.getElementById(codigo).classList.add('OutAlerta');
+    setTimeout(function(){}, 301);
+
+    //Enviar ao PHP
+    let dados = 'phpSituacao=' + situacao + '&phpCodigo=' + codigo + '&phpEmail=' + localStorage.getItem('email');
+    
+    this.servidor.enviar('Home/situacao.php', dados).subscribe(res => {
+      this.carregar();
+    });
+  }
+  //#endregion
+
   //#region Navegação
   tutorial()
   {
@@ -80,7 +138,7 @@ export class HomePage implements OnInit {
   sintomas()
   {
     localStorage.setItem('sintomas', 'dHome');
-    //this.nav.adicionarSintomas();
+    this.nav.adicionarSintomas();
   }
   //#endregion
 
@@ -91,10 +149,9 @@ export class HomePage implements OnInit {
     this.servidor.verificar();
 
     //Carregar medicamentos
-    
+    this.carregar();
   }
   //#endregion
 
-  ngOnInit() {
-  }
+  ngOnInit(){}
 }

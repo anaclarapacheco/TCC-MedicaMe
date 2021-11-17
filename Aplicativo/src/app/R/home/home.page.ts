@@ -6,8 +6,6 @@ import { ServidorService } from 'src/app/services/servidor.service';
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
-
-
 })
 export class HomePage implements OnInit {
 
@@ -85,7 +83,7 @@ export class HomePage implements OnInit {
     //Enviar ao PHP
     let dados = 'phpSituacao=' + situacao + '&phpCodigo=' + codigo + '&phpEmail=' + localStorage.getItem('email');
     
-    this.servidor.enviar('Responsavel/Home/situacao.php', dados).subscribe(res => {
+    this.servidor.enviar('Home/situacao.php', dados).subscribe(res => {
       this.carregarPendente();
     });
   }
@@ -96,7 +94,7 @@ export class HomePage implements OnInit {
   {
     let dados = 'phpEmail=' + localStorage.getItem('email');
 
-    this.servidor.enviar('Responsavel/Home/pendente.php', dados).subscribe(res =>{
+    this.servidor.enviar('Home/pendente.php', dados).subscribe(res =>{
       if(res[0].Erro != true)
       {
         this.temPendente = true;
@@ -115,7 +113,7 @@ export class HomePage implements OnInit {
   {
     let dados = 'phpEmail=' + localStorage.getItem('email');
 
-    this.servidor.enviar('Responsavel/Home/main.php', dados).subscribe(res =>{
+    this.servidor.enviar('Home/main.php', dados).subscribe(res =>{
       if(res[0].Erro != true)
       {
         this.temMedic = true;

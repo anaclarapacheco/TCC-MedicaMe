@@ -7,8 +7,8 @@
       
       <div class="mid full flex">
         <h3 class="line centerA">Como está se sentindo?</h3>
-        <textarea class="input" placeholder="EX: Hoje eu me senti enjoado..."></textarea>
-        <p class="aviso invisivel">Preencha o campo, por favor</p>
+        <textarea class="input" [(ngModel)]="sintoma" placeholder="EX: Hoje eu me senti enjoado..."></textarea>
+        <p id="erroSintoma" class="aviso invisivel">Preencha o campo, por favor!</p>
 
         <button (click)="adicionarSintoma()" class="important">Adicionar sintoma</button>
         <button (click)="cancelar()" class="normal">Cancelar</button>

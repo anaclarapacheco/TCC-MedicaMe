@@ -120,11 +120,11 @@
         </div>
 
         <div [ngSwitch]="formaFarmaceutica" class="content full flex">
-          <input id="quantidade" type="number" class="input rightA" [(ngModel)]="editarQuantidade">
-          <p class="leftA" *ngSwitchCase="formaFarma[0]">ml</p>
-          <p class="leftA" *ngSwitchCase="formaFarma[1]">ml</p>
-          <p class="leftA" *ngSwitchCase="formaFarma[2]"> comprimido</p>
-          <p class="leftA" *ngSwitchCase="formaFarma[3]"> cápsula</p>
+          <input id="quantidade" type="number" class="input centerA" [(ngModel)]="editarQuantidade">
+          <p class="centerA" *ngSwitchCase="formaFarma[0]">ml</p>
+          <p class="centerA" *ngSwitchCase="formaFarma[1]">ml</p>
+          <p class="centerA" *ngSwitchCase="formaFarma[2]"> comprimido</p>
+          <p class="centerA" *ngSwitchCase="formaFarma[3]"> cápsula</p>
         </div>
 
         <button (click)="menos()"><span>-</span></button>

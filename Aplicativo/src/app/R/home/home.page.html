@@ -73,11 +73,11 @@
         <h3>Pendentes</h3>
 
         <div *ngFor="let l of pendentes" id="{{l.Agendamento}}" class="medicamentos vertical flex">
-          <img src="../../../assets/IMG/Icon/{{l.FormaFarmaceutica}}.png" alt="Logo do aplicativo MedicaMe">
+          <img src="../../../assets/IMG/Icon/{{l.FormaFarmaceutica}}.png">
 
           <div [ngSwitch]="l.FormaFarmaceutica" class="text">
             <h3>{{l.Nome}}</h3>
-            <p>{{l.Previsao.substring(8, 10) + '/' + l.Previsao.substring(5, 7) + ' - ' +l.Previsao.substring(11, 13) + 'h' + l.Previsao.substring(14, 16)}}</p>
+            <p>{{l.Previsao.substring(8, 10) + '/' + l.Previsao.substring(5, 7) + ' - ' + l.Previsao.substring(11, 13) + 'h' + l.Previsao.substring(14, 16)}}</p>
             <p *ngSwitchCase="formaFarma[0]">{{l.Dosagem + 'ml'}}</p>
             <p *ngSwitchCase="formaFarma[1]">{{l.Dosagem + ' gotas'}}</p>
             <p *ngSwitchCase="formaFarma[2]">{{l.Dosagem + ' comprimido'}}</p>

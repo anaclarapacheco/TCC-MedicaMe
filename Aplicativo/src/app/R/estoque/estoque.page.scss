@@ -158,18 +158,10 @@
             margin: 15px;
             box-sizing: border-box;
 
-            .input
-            {
-                width: 50%;
-            }
-
-            p
-            {
-                width: 30%;
-            }
-
             .input, p
             {
+                width: 100%;
+                
                 padding: 0px;
 
                 outline: none;

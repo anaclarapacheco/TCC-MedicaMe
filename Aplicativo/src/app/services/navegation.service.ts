@@ -38,6 +38,11 @@ export class NavegationService {
   {
     this.navCtrl.navigateForward('digitar-responsavel');
   }
+
+  adicionarSintomas()
+  {
+    this.navCtrl.navigateForward('sintomas');
+  }
   //#endregion
 
   //#region Responsável

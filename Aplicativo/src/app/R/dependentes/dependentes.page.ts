@@ -158,7 +158,15 @@ export class DependentesPage implements OnInit {
   editarDependente(email, nome)
   {
     localStorage.setItem('emailDependente', email);
-    localStorage.setItem('nomeDependente', nome);
+
+    if(nome == null)
+    {
+      localStorage.setItem('nomeDependente', email);
+    }
+    else
+    {
+      localStorage.setItem('nomeDependente', nome);
+    }
 
     this.nav.rDependente();
   }

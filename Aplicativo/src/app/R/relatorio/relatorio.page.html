@@ -101,16 +101,12 @@
               [type]="type"
               [format]="'YYYY-MM-DD'">
         </ion-calendar> -->
-        <ion-calendar 
-              [(ngModel)]="date"
-              (change)="onChange($event)"
-              [type]="type"
-              [format]="'DD-MM-YYYY'">
-        </ion-calendar>
+
+        <ion-calendar [(ngModel)]="date" (change)="onChange($event)" [type]="type" [format]="'DD-MM-YYYY'"></ion-calendar>
       </div>
 
       <div class="relatorio full flex">
-        <h3>Relatório Semanal 08 - 14/03</h3>
+        <h3>Relatório Semanal ?? - ??/??</h3>
       </div>
 
       <div class="buttons">
