@@ -1528,6 +1528,7 @@ button {
   color: var(--white) !important;
 }
 .dep .sair {
+  color: var(--yellow) !important;
   margin-left: auto;
   text-decoration: underline;
 }
@@ -1643,7 +1644,7 @@ button {
 }
 .tabs .middle p {
   position: relative;
-  top: calc((-100vw / 5) / 2);
+  top: -9vw;
   color: var(--baby-blue);
 }
 .tabs .button .principal {
@@ -1660,7 +1661,7 @@ button {
 }
 .tabs .button .principal svg {
   fill: var(--dark-space-cadet);
-  width: 55%;
+  width: 50%;
   margin: 0px;
 }
 /*#endregion*/

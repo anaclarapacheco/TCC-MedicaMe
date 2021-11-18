@@ -26,7 +26,7 @@ export class HomePage implements OnInit {
   {
     //Variaveis
     var menu = document.getElementById('dHome');
-    var content = document.getElementById('dMenu');
+    var content = document.getElementById('depMenu');
 
     //Abre
     menu.classList.remove('invisivel');
@@ -47,7 +47,7 @@ export class HomePage implements OnInit {
   {
     //Variaveis
     var menu = document.getElementById('dHome');
-    var content = document.getElementById('dMenu');
+    var content = document.getElementById('depMenu');
 
     //Preparação
     menu.classList.remove('InFundo');
@@ -75,7 +75,40 @@ export class HomePage implements OnInit {
       { 
         this.temLista = true;
         this.temListaCont = false;
+        this.temListaNao = false;
         this.pendentes[0] = res[0];
+
+        this.pendentes.forEach(medic => {
+          if(medic['FormaFarmaceutica'] == '4' || medic['FormaFarmaceutica'] == '3')
+          {
+            let plural = false;
+
+            medic['Dosagem'] = Math.trunc(medic['Dosagem']);
+
+            if(medic['Dosagem'] > 1)
+            {
+              plural = true;
+            }
+
+            if(medic['FormaFarmaceutica'] == '3')
+            {
+              medic['Dosagem'] += ' comprimido';
+            }
+            else
+            {
+              medic['Dosagem'] += ' cápsula';
+            }
+
+            if(plural)
+            {
+              medic['Dosagem'] += 's';
+            }
+          }
+          else
+          {
+            medic['Dosagem'] = medic['Dosagem'].replace('.', ',') + 'ml';
+          }
+        });
       }
       else
       {
@@ -86,12 +119,46 @@ export class HomePage implements OnInit {
         this.servidor.enviar('Home/main.php', dados).subscribe(res =>{
           if(res[0].Erro != true)
           {
+            this.temLista = false;
             this.temListaCont = true;
             this.temListaNao = false;
             this.medicamento = res;
+
+            this.medicamento.forEach(medic => {
+              if(medic['FormaFarmaceutica'] == '4' || medic['FormaFarmaceutica'] == '3')
+              {
+                let plural = false;
+    
+                medic['Dosagem'] = Math.trunc(medic['Dosagem']);
+    
+                if(medic['Dosagem'] > 1)
+                {
+                  plural = true;
+                }
+    
+                if(medic['FormaFarmaceutica'] == '3')
+                {
+                  medic['Dosagem'] += ' comprimido';
+                }
+                else
+                {
+                  medic['Dosagem'] += ' cápsula';
+                }
+    
+                if(plural)
+                {
+                  medic['Dosagem'] += 's';
+                }
+              }
+              else
+              {
+                medic['Dosagem'] = medic['Dosagem'].replace('.', ',') + 'ml';
+              }
+            });
           }
           else
           {
+            this.temLista = false;
             this.temListaCont = false;
             this.temListaNao = true;
           }

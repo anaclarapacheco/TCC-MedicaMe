@@ -22,7 +22,7 @@ export class EstoquePage implements OnInit {
   public temListaNao: any = false;
 
   public formaFarmaceutica: any;
-  public formaFarma = ['1', '2', '3', '4'];
+  public quantidadeAdicional: any;
   //#endregion
 
   //#region Abrir e Fechar o Menu
@@ -80,6 +80,38 @@ export class EstoquePage implements OnInit {
         this.temLista = true;
         this.temListaNao = false;
         this.medicamentos = res;
+
+        this.medicamentos.forEach(medic => {
+          if(medic['FormaFarmaceutica'] == '4' || medic['FormaFarmaceutica'] == '3')
+          {
+            let plural = false;
+
+            medic['Quantidade'] = Math.trunc(medic['Quantidade']);
+
+            if(medic['Quantidade'] > 1)
+            {
+              plural = true;
+            }
+
+            if(medic['FormaFarmaceutica'] == '3')
+            {
+              medic['Quantidade'] += ' comprimido';
+            }
+            else
+            {
+              medic['Quantidade'] += ' cápsula';
+            }
+
+            if(plural)
+            {
+              medic['Quantidade'] += 's';
+            }
+          }
+          else
+          {
+            medic['Quantidade'] = medic['Quantidade'].replace('.', ',') + 'ml';
+          }
+        });
       }
       else
       {
@@ -106,14 +138,15 @@ export class EstoquePage implements OnInit {
       document.getElementById('qFundo').classList.add('InFundo');
     }, 100);
 
+    var reg = new RegExp('0|1|2|3|4|5|6|7|8|9|,', 'g');
     this.codigo = codigo;
     this.editarQuantidade = 0;
-    this.formaFarmaceutica = formaFarma;
+    this.quantidadeAdicional = quantidade.replace(reg, '');
   }
 
   fechar()
   {    
-    if(event.target == document.getElementById('qFundo') || event.target == document.getElementById('qBtn'))
+    if(event.target == document.getElementById('qFundo') || event.target == document.getElementById('qBtn') || event.target == document.getElementById('qSpn'))
     {
       //Preparação
       document.getElementById('qFundo').classList.remove('InFundo');
@@ -150,13 +183,14 @@ export class EstoquePage implements OnInit {
     let dados = 'phpCodigo=' + this.codigo + '&phpQuantidade=' + this.editarQuantidade + '&phpEmail=' + this.email;
 
     this.servidor.enviar('Responsavel/Estoque/editar.php', dados).subscribe(res =>{
+      console.log(res);
+      
       if(res[0]['Erro'] == false)
       {
+        this.fechar();
         this.carregarEstoque();
       }
     });
-
-    this.fechar();
   }
   //#endregion
 

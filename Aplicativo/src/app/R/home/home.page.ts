@@ -18,15 +18,13 @@ export class HomePage implements OnInit {
   }
   //#endregion
 
-  //#region Valores do FrontEnd
+  //#region Valores
   public data: any = "";
   public medicamentos: any = [];
   public pendentes: any = [];
   public temMedic: any = false;
   public temPendente: any = false;
   public temMedicNao: any = false;
-
-  public formaFarma = ['1', '2', '3', '4'];
   //#endregion
 
   //#region Abrir e Fechar o Menu
@@ -99,6 +97,38 @@ export class HomePage implements OnInit {
       {
         this.temPendente = true;
         this.pendentes = res;
+
+        this.pendentes.forEach(medic => {
+          if(medic['FormaFarmaceutica'] == '4' || medic['FormaFarmaceutica'] == '3')
+          {
+            let plural = false;
+
+            medic['Dosagem'] = Math.trunc(medic['Dosagem']);
+
+            if(medic['Dosagem'] > 1)
+            {
+              plural = true;
+            }
+
+            if(medic['FormaFarmaceutica'] == '3')
+            {
+              medic['Dosagem'] += ' comprimido';
+            }
+            else
+            {
+              medic['Dosagem'] += ' cápsula';
+            }
+
+            if(plural)
+            {
+              medic['Dosagem'] += 's';
+            }
+          }
+          else
+          {
+            medic['Dosagem'] = medic['Dosagem'].replace('.', ',') + 'ml';
+          }
+        });
       }
       else
       {
@@ -119,6 +149,41 @@ export class HomePage implements OnInit {
         this.temMedic = true;
         this.temMedicNao = false;
         this.medicamentos = res;
+
+        console.log(this.medicamentos);
+        
+
+        this.medicamentos.forEach(medic => {
+          if(medic['FormaFarmaceutica'] == '4' || medic['FormaFarmaceutica'] == '3')
+          {
+            let plural = false;
+
+            medic['Dosagem'] = Math.trunc(medic['Dosagem']);
+
+            if(medic['Dosagem'] > 1)
+            {
+              plural = true;
+            }
+
+            if(medic['FormaFarmaceutica'] == '3')
+            {
+              medic['Dosagem'] += ' comprimido';
+            }
+            else
+            {
+              medic['Dosagem'] += ' cápsula';
+            }
+
+            if(plural)
+            {
+              medic['Dosagem'] += 's';
+            }
+          }
+          else
+          {
+            medic['Dosagem'] = medic['Dosagem'].replace('.', ',') + 'ml';
+          }
+        });
       }
       else
       {
