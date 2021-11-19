@@ -17,6 +17,24 @@ export class EntrarPage implements OnInit {
 
   public erro: any;
   //#endregion
+  
+  //#region Olho
+  olho(input)
+  {
+    if(document.getElementById(input).getAttribute('type') == 'password')
+    {
+      document.getElementById(input).setAttribute('type', 'text');
+      document.getElementById(input + 'SVG2').classList.add('invisivel');
+      document.getElementById(input + 'SVG1').classList.remove('invisivel');
+    }
+    else
+    {
+      document.getElementById(input).setAttribute('type', 'password');
+      document.getElementById(input + 'SVG1').classList.add('invisivel');
+      document.getElementById(input + 'SVG2').classList.remove('invisivel');
+    }
+  }
+  //#endregion
 
   //#region Entrar
   entrar()

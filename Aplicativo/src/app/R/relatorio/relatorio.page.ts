@@ -67,16 +67,16 @@ export class RelatorioPage implements OnInit {
     this.nav.rTutorial();
   }
 
-  dadosAdicionais()
-  {
-    localStorage.setItem('dadosAdicionais', 'rRelatorio');
-    this.nav.dadosAdicionais();
-  }
-
   adicionarResponsavel()
   {
     localStorage.setItem('digitarResponsavel', 'rRelatorio');
     this.nav.digitarResponsavel();
+  }
+
+  adicionarSintomas()
+  {
+    localStorage.setItem('sintomas', 'rRelatorio');
+    this.nav.adicionarSintomas();
   }
 
   removDependente()
@@ -146,34 +146,5 @@ export class RelatorioPage implements OnInit {
   }
   //#endregion
   
-  ngOnInit() {
-  }
-
-  //#region Parte desorganizada da Ana
-  eventSource = [];
-  // calendarMode=[];
-  // currentDate=[];
-  calendar = {
-    mode: 'month',
-    currentDate: new Date()
-  }
-  onEventSelected(){
-
-  }
-
-  onViewTitleChanged(){
-
-  }
-
-  onTimeSelected(){
-
-  }
-
-  date: string;
-  type: 'string'; // 'string' | 'js-date' | 'moment' | 'time' | 'object'
-
-  onChange($event) {
-    console.log($event);
-  }
-  //#endregion
+  ngOnInit(){}
 }

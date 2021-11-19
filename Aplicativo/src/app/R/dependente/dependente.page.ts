@@ -35,6 +35,12 @@ export class DependentePage implements OnInit {
     this.nav.rEstoque();
   }
 
+  adicionarSintomas()
+  {
+    localStorage.setItem('sintomas', 'rDependente');
+    this.nav.adicionarSintomas();
+  }
+
   relatorio()
   {
     this.nav.rRelatorio();

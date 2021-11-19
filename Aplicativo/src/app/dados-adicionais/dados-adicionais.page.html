@@ -12,20 +12,14 @@
         <h3 class="line">Dados adicionais</h3>
 
         <span class="line leftA">Nome</span>
-        <input [(ngModel)]="nome" type="text" class="input">
+        <input [(ngModel)]="nome" type="text" class="input" maxlength="100">
 
         <span class="line leftA">Data de nascimento</span>
-        <div class="data input">
-          <ion-item class="input">
-            <ion-datetime [(ngModel)]="data" displayFormat="DD/MM/YYYY" min="{{minimo}}" max="{{maximo}}"></ion-datetime>
-          </ion-item>
-        </div>
+        <input [(ngModel)]="data" type="date" class="input" min="{{minimo}}" max="{{maximo}}">
 
         <p id="erroDadosAdicionais" class="aviso invisivel">Preencha todos os campos!</p>
 
-        <button (click)="adicionar()" class="important full flex"><span>{{txtAdicionar}}</span></button>
-
-        <button (click)="continuar()" class="normal full flex"><span>Deixar para depois</span></button>
+        <button (click)="adicionar()" class="important full flex"><span (click)="adicionar()">Adicionar</span></button>
       </div>
 
       <div class="bot full flex">

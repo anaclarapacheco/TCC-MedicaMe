@@ -78,12 +78,19 @@
     width: 80vw;
     overflow: hidden;
 
-    span, p, button
-    {
-        position: initial;
-        
+    padding-bottom: 5px;
+
+    span, p
+    {        
         margin-top: 20px;
         margin-bottom: 10px;
+    }
+
+    button
+    {
+        position: initial;
+
+        margin-top: 30px;
     }
 
     span, h3

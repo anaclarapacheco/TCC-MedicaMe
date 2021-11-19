@@ -43,8 +43,32 @@ export class SintomasPage implements OnInit {
   cancelar()
   {
     switch (localStorage.getItem('sintomas')) {
-      case 'dHome':
-        this.nav.dHome();
+      case 'rHome':
+        this.nav.rHome();
+        break;
+
+      case 'rLembretes':
+        this.nav.rLembretes();
+        break;
+
+      case 'rEstoque':
+        this.nav.rEstoque();
+        break;
+      
+      case 'rDependentes':
+        this.nav.rDependentes();
+        break;
+
+      case 'rDependente':
+        this.nav.rDependente();
+        break;
+
+      case 'rRelatorio':
+        this.nav.rRelatorio();
+        break;
+      
+      default:
+        this.nav.rHome();
         break;
     }
 

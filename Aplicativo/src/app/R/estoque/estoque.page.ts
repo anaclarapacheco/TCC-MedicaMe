@@ -266,16 +266,16 @@ export class EstoquePage implements OnInit {
     this.nav.rTutorial();
   }
 
-  dadosAdicionais()
-  {
-    localStorage.setItem('dadosAdicionais', 'rEstoque');
-    this.nav.dadosAdicionais();
-  }
-
   adicionarResponsavel()
   {
     localStorage.setItem('digitarResponsavel', 'rEstoque');
     this.nav.digitarResponsavel();
+  }
+
+  adicionarSintomas()
+  {
+    localStorage.setItem('sintomas', 'rEstoque');
+    this.nav.adicionarSintomas();
   }
 
   removDependente()
@@ -348,6 +348,5 @@ export class EstoquePage implements OnInit {
   }
   //#endregion
   
-  ngOnInit() {
-  }
+  ngOnInit(){}
 }

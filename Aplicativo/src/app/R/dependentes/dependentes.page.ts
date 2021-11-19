@@ -217,16 +217,16 @@ export class DependentesPage implements OnInit {
     this.nav.rTutorial();
   }
 
-  dadosAdicionais()
-  {
-    localStorage.setItem('dadosAdicionais', 'rDependentes');
-    this.nav.dadosAdicionais();
-  }
-
   adicionarResponsavel()
   {
     localStorage.setItem('digitarResponsavel', 'rDependentes');
     this.nav.digitarResponsavel();
+  }
+
+  adicionarSintomas()
+  {
+    localStorage.setItem('sintomas', 'rDependentes');
+    this.nav.adicionarSintomas();
   }
 
   sair()

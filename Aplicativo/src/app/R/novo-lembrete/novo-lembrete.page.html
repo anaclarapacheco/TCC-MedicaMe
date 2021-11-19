@@ -9,7 +9,7 @@
       <div class="mid full flex">
         <div id="um" class="full flex">
           <span class="line leftA">Nome do medicamento</span>
-          <input [(ngModel)]="nomeMedicamento" type="text" class="input">
+          <input [(ngModel)]="nomeMedicamento" type="text" class="input" maxlength="100">
   
           <span class="line leftA">Forma farmacêutica</span>
           <select [(ngModel)]="formaFarma" class="input">
@@ -20,8 +20,8 @@
           <span class="line leftA">Dosagem</span>
           <input [(ngModel)]="dosagem" type="number" class="input">
   
-          <h3 class="line centerA">Descrição</h3>
-          <textarea [(ngModel)]="descricao" class="input"></textarea>
+          <h3 class="line centerA">Observação</h3>
+          <textarea [(ngModel)]="descricao" class="input" maxlength="300"></textarea>
           <p id="avisoUm" class="aviso invisivel">{{txtAvisoUm}}</p>
 
           <button (click)="proximo()" class="important full flex">
@@ -35,29 +35,15 @@
   
         <div id="dois" class="full flex invisivel">
           <div class="bloco flex">
-            <span class="line leftA">Ínicio</span>
-            <div class="data input">
-              <ion-item class="input">
-                <ion-datetime [(ngModel)]="dataInicial" displayFormat="DD/MM/YYYY" min="{{minimo}}" max="{{maximo}}"></ion-datetime>
-              </ion-item>
-            </div>
+            <span class="line leftA">Data Inicial</span>
+            <input type="date" [(ngModel)]="dataInicial" min="{{minimo}}" max="{{maximo}}" class="input">
           </div>
 
            <div class="bloco flex">
-            <span class="line leftA">Final</span>
-            <div class="data input">
-              <ion-item class="input">
-                <ion-datetime [(ngModel)]="dataFinal" displayFormat="DD/MM/YYYY" min="{{minimo}}" max="{{maximo}}"></ion-datetime>
-              </ion-item>
-            </div>
-          </div>
+            <span class="line leftA">Quantidade de Dias</span>
+            <input [(ngModel)]="dias" type="number" class="input">
 
-          <span class="line leftA">Quantidade de Dias</span>
-          <input [(ngModel)]="dias" type="number" class="input">
-
-          <div class="bloco flex">
-            <span class="line leftA">Horário Inicial</span>
-            <input [(ngModel)]="horario" type="time" class="input">
+            <input id="semData" type="checkbox" class="check"> <p>Sem Data</p>
           </div>
 
           <div class="bloco flex">
@@ -69,6 +55,11 @@
               <option value="8">Três vezes</option>
               <option value="4">Quatro vezes</option>
             </select> 
+          </div>
+          
+          <div class="bloco flex">
+            <span class="line leftA">Horário Inicial</span>
+            <input [(ngModel)]="horario" type="time" class="input">
           </div>          
   
           <h3 class="line centerA no">Estoque</h3>

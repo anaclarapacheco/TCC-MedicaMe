@@ -12,18 +12,12 @@
         <h3 class="line">Digite o e-mail do responsável</h3>
 
         <span class="line leftA">E-mail</span>
-        <input [(ngModel)]="email" type="email" class="input">
+        <input [(ngModel)]="email" type="email" class="input" maxlength="100">
         <p id="erroDigitarResponsavel" class="aviso invisivel">{{erro}}<a id="erroEmailInexistente" class="aqui invisivel" (click)="criar()">aqui!</a></p>
 
-        <button (click)="registrar()" class="important full flex">
-          <div></div>
-          <span>Registrar</span>
-        </button>
+        <button (click)="registrar()" class="important full flex"><span>Registrar</span></button>
 
-        <button (click)="voltar()" class="normal full flex">
-          <div></div>
-          <span>Voltar</span>
-        </button>
+        <button (click)="voltar()" class="normal full flex"><span>Voltar</span></button>
       </div>
 
       <div class="bot full flex">

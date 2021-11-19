@@ -7,7 +7,7 @@
       
       <div class="mid full flex">
         <h3 class="line centerA">Como está se sentindo?</h3>
-        <textarea class="input" [(ngModel)]="sintoma" placeholder="EX: Hoje eu me senti enjoado..."></textarea>
+        <textarea class="input" [(ngModel)]="sintoma" placeholder="EX: Hoje eu me senti enjoado..." maxlength="400"></textarea>
         <p id="erroSintoma" class="aviso invisivel">Preencha o campo, por favor!</p>
 
         <button (click)="adicionarSintoma()" class="important">Adicionar sintoma</button>

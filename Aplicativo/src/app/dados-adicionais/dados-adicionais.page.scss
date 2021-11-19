@@ -80,14 +80,15 @@
         padding-left: 0px !important;
     }
 
-    span, p, button:nth-of-type(1)
+    span, p
     {
         margin-top: 20px;
         margin-bottom: 10px;
     }
-    button:nth-of-type(2)
+
+    button:nth-of-type(1)
     {
-        margin-top: 15px;
+        margin-top: 30px;
     }
 
     span, h3

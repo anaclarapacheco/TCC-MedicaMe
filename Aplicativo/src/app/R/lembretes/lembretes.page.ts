@@ -175,16 +175,16 @@ export class LembretesPage implements OnInit {
     this.nav.rTutorial();
   }
 
-  dadosAdicionais()
-  {
-    localStorage.setItem('dadosAdicionais', 'rLembretes');
-    this.nav.dadosAdicionais();
-  }
-
   adicionarResponsavel()
   {
     localStorage.setItem('digitarResponsavel', 'rLembretes');
     this.nav.digitarResponsavel();
+  }
+
+  adicionarSintomas()
+  {
+    localStorage.setItem('sintomas', 'rLembretes');
+    this.nav.adicionarSintomas();
   }
 
   removDependente()

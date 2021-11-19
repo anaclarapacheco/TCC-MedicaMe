@@ -24,12 +24,6 @@
     width: 80vw;
     overflow: hidden;
 
-    h3, button
-    {
-        margin-top: 20px;
-        margin-bottom: 10px;
-    }
-
     h3
     {
         color: var(--white);
@@ -40,6 +34,7 @@
 
         line-height: 40px;
 
+        margin-top: 20px;
         margin-bottom: 20px;
     }
 
@@ -58,6 +53,8 @@
     button
     {
         position: initial !important;
+
+        margin-top: 30px;
     }
 }
 /*#endregion*/

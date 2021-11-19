@@ -99,29 +99,43 @@ export class HomePage implements OnInit {
         this.pendentes = res;
 
         this.pendentes.forEach(medic => {
-          if(medic['FormaFarmaceutica'] == '4' || medic['FormaFarmaceutica'] == '3')
+          if(medic['FormaFarmaceutica'] == '4')
           {
-            let plural = false;
-
             medic['Dosagem'] = Math.trunc(medic['Dosagem']);
 
             if(medic['Dosagem'] > 1)
             {
-              plural = true;
-            }
-
-            if(medic['FormaFarmaceutica'] == '3')
-            {
-              medic['Dosagem'] += ' comprimido';
+              medic['Dosagem'] +=' cápsulas';
             }
             else
             {
-              medic['Dosagem'] += ' cápsula';
+              medic['Dosagem'] +=' cápsula';
             }
+          }
+          else if(medic['FormaFarmaceutica'] == '3')
+          {
+            medic['Dosagem'] = Math.trunc(medic['Dosagem']);
 
-            if(plural)
+            if(medic['Dosagem'] > 1)
             {
-              medic['Dosagem'] += 's';
+              medic['Dosagem'] +=' comprimidos';
+            }
+            else
+            {
+              medic['Dosagem'] +=' comprimido';
+            }
+          }
+          else if(medic['FormaFarmaceutica'] == '2')
+          {
+            medic['Dosagem'] = Math.trunc(medic['Dosagem']);
+
+            if(medic['Dosagem'] > 1)
+            {
+              medic['Dosagem'] +=' gotas';
+            }
+            else
+            {
+              medic['Dosagem'] +=' gota';
             }
           }
           else
@@ -201,16 +215,16 @@ export class HomePage implements OnInit {
     this.nav.rTutorial();
   }
 
-  dadosAdicionais()
-  {
-    localStorage.setItem('dadosAdicionais', 'rHome');
-    this.nav.dadosAdicionais();
-  }
-
   adicionarResponsavel()
   {
     localStorage.setItem('digitarResponsavel', 'rHome');
     this.nav.digitarResponsavel();
+  }
+
+  adicionarSintomas()
+  {
+    localStorage.setItem('sintomas', 'rHome');
+    this.nav.adicionarSintomas();
   }
 
   sair()

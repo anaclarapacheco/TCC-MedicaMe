@@ -6,7 +6,7 @@ import { NavController } from '@ionic/angular';
 })
 export class NavegationService {
 
-  constructor(public navCtrl: NavController) { }
+  constructor(private navCtrl: NavController) { }
 
   //#region Geral
   firstView()

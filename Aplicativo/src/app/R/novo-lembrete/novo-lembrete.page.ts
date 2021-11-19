@@ -51,6 +51,8 @@ export class NovoLembretePage implements OnInit {
   //Extra
   public titulo: any;
 
+  public check: any;
+
   public maximo: any;
   public minimo: any;
 

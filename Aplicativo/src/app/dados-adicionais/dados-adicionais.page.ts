@@ -9,9 +9,6 @@ import { ServidorService } from '../services/servidor.service';
 })
 export class DadosAdicionaisPage implements OnInit {
 
-  customYearValues = [2020, 2016, 2008, 2004, 2000, 1996];
-  customDayShortNames = ['s\u00f8n', 'man', 'tir', 'ons', 'tor', 'fre', 'l\u00f8r'];
-  customPickerOptions: any;
 
   //#region Constructor
   constructor(public nav: NavegationService, public servidor: ServidorService)
@@ -21,31 +18,15 @@ export class DadosAdicionaisPage implements OnInit {
 
     this.maximo = nowData.getFullYear() + '-' + String(nowData.getMonth() + 1).padStart(2, '0') + '-' + String(nowData.getDate()).padStart(2, '0');
     this.minimo = String(nowData.getFullYear() - 100) + '-12-31';
-
-    //Backend ion-date-picker
-    this.customPickerOptions = {
-      buttons: [{
-        text: 'Save',
-        handler: () => console.log('Clicked Save!')
-      }, {
-        text: 'Log',
-        handler: () => {
-          console.log('Clicked Log. Do not Dismiss.');
-          return false;
-        }
-      }]
-    }
   }
   //#endregion
 
-  //#region Valores do Frontend
+  //#region Valores
   public nome: any;
   public data: any;
 
   public maximo: any;
   public minimo: any;
-
-  public txtAdicionar: any;
   //#endregion
 
   //#region Adicionar dados adicionais
@@ -68,7 +49,7 @@ export class DadosAdicionaisPage implements OnInit {
       this.servidor.enviar('Dados Adicionais/main.php', dados).subscribe(res => {
         if (res[0]['Erro'] == false)
         {
-          this.continuar();
+          this.nav.dependente();
         }
       });
      }
@@ -82,69 +63,16 @@ export class DadosAdicionaisPage implements OnInit {
   }
   //#endregion
 
-  //#region Navegação
-  continuar()
-  {
-    switch (localStorage.getItem('dadosAdicionais'))
-    {
-      case 'dependente':
-        this.nav.dependente();
-        break;
-
-      case 'rHome':
-        this.nav.rHome();
-        break;
-
-      case 'dHome':
-        this.nav.dHome();
-        break;
-
-      case 'rLembretes':
-        this.nav.rLembretes();
-        break;
-      
-      case 'rEstoque':
-        this.nav.rEstoque();
-        break;
-
-      case 'rDependentes':
-        this.nav.rDependentes();
-        break;
-
-      case 'rRelatorio':
-        this.nav.rRelatorio();
-        break;
-    }
-
-    localStorage.removeItem('dadosAdicionais');
-  }
-  //#endregion
-
-  //#region OnInit
-  ngOnInit()
+  //#region ViewWillEnter
+  ionViewWillEnter()
   {
     //Reset
     this.reset();
 
     //Verificar Login
     this.servidor.verificar();
-
-    //Puxar valores se já existentes
-    let dados = 'phpEmail=' + localStorage.getItem('email');
-
-    this.servidor.enviar('Dados Adicionais/valores.php', dados).subscribe(res => {
-      if(res[0]['Nome'] != null)
-      {
-        this.nome = res[0]['Nome'];
-        this.data = res[0]['Data de Nascimento']
-
-        this.txtAdicionar = 'Atualizar';
-      }
-      else
-      {
-        this.txtAdicionar = 'Adicionar';
-      }
-    });
   }
   //#endregion
+
+  ngOnInit(){}
 }
