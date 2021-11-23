@@ -22,7 +22,7 @@
     $Descricao = $_GET['phpDescricao'];
     $Dosagem = $_GET['phpDosagem'];
     $DataInicial = $_GET['phpDataInicial'];
-    $DataFinal = $_GET['phpDataFinal'];
+    $DataFinal = 'null';
     $Dias = $_GET['phpDias'];
     $Horas = $_GET['phpHoras'];
     $QuantidadeAtual = $_GET['phpQuantidadeAtual'];
@@ -36,68 +36,63 @@
     /*#region Banco de Dados*/
     if($NomeMedicamento != null && $FormaFarmaceutica != null && $Dosagem != null && $Email != null && $DataInicial != null && $DataFinal != null && $Dias != null && $Horas != null && $QuantidadeAtual != null && $QuantidadeMinima != null && $Email != null)
     {
-        //Registro
         $SQL = $PDO->query("SELECT MAX(`dt_registro_agendamento`) FROM `registro_agendamento` WHERE `cd_agendamento` = '$Codigo'");
         $Registro = $SQL->fetch()['MAX(`dt_registro_agendamento`)'];
 
-        //Atualizar
-        if($DataFinal == 'null' && $Dias == 'null')
-        {
-            $SQL = $PDO->query("UPDATE `agendamento` SET `dt_inicio_agendamento` = '$DataInicial', `dt_final_agendamento` = null, `qt_dias_agendamento` = null, `ds_recomendacao_medicamento` = '$Descricao', `qt_dosagem_medicamento` = '$Dosagem', `qt_horas_periodo_medicamento` = '$Horas', `qt_medicamento_usuario` = '$QuantidadeAtual', `qt_minima_medicamento_usuario` = '$QuantidadeMinima' WHERE `cd_agendamento` = '$Codigo'");
-        }
-        else if($DataFinal == 'null')
-        {
-            $SQL = $PDO->query("UPDATE `agendamento` SET `dt_inicio_agendamento` = '$DataInicial', `dt_final_agendamento` = null, `qt_dias_agendamento` = '$Dias', `ds_recomendacao_medicamento` = '$Descricao', `qt_dosagem_medicamento` = '$Dosagem', `qt_horas_periodo_medicamento` = '$Horas', `qt_medicamento_usuario` = '$QuantidadeAtual', `qt_minima_medicamento_usuario` = '$QuantidadeMinima' WHERE `cd_agendamento` = '$Codigo'");
-        }
-        else if($Dias == 'null')
-        {
-            $SQL = $PDO->query("UPDATE `agendamento` SET `dt_inicio_agendamento` = '$DataInicial', `dt_final_agendamento` = '$DataFinal', `qt_dias_agendamento` = null, `ds_recomendacao_medicamento` = '$Descricao', `qt_dosagem_medicamento` = '$Dosagem', `qt_horas_periodo_medicamento` = '$Horas', `qt_medicamento_usuario` = '$QuantidadeAtual', `qt_minima_medicamento_usuario` = '$QuantidadeMinima' WHERE `cd_agendamento` = '$Codigo'");
-        }
+        $SQL = $PDO->query("UPDATE `agendamento` SET `dt_inicio_agendamento` = '$DataInicial', `ds_recomendacao_medicamento` = '$Descricao', `qt_dosagem_medicamento` = '$Dosagem', `qt_horas_periodo_medicamento` = '$Horas', `qt_medicamento_usuario` = '$QuantidadeAtual', `qt_minima_medicamento_usuario` = '$QuantidadeMinima' WHERE `cd_agendamento` = '$Codigo'");
 
-        //Codigo do Medicamento
-        $SQL = $PDO->query("SELECT `cd_medicamento` FROM `medicamento` WHERE `nm_medicamento` = '$NomeMedicamento' AND `cd_forma_farmaceutica` = '$FormaFarmaceutica'");
-        $CodigoMedicamento = $SQL->fetch()['cd_medicamento'];
-
-        //Codigo Máximo do Medicamento
-        $SQL = $PDO->query("SELECT IFNULL(MAX(`cd_medicamento`) + 1, 1) FROM `medicamento`");
-        $MaxMedicamento = $SQL->fetch()['IFNULL(MAX(`cd_medicamento`) + 1, 1)'];
-
-        //Atualizando Nome e Forma Farmacêutica
-        if($CodigoMedicamento == null)
+        if($Dias != 'null')
         {
-            $SQL = $PDO->query("INSERT INTO `medicamento` VALUES ('$MaxMedicamento', '$NomeMedicamento', '$FormaFarmaceutica')");
-            $SQL = $PDO->query("UPDATE `agendamento` SET `cd_medicamento` = '$MaxMedicamento' WHERE `cd_agendamento` = '$Codigo'");
-        }
-        else
-        {
-            $SQL = $PDO->query("UPDATE `agendamento` SET `cd_medicamento` = '$CodigoMedicamento' WHERE `cd_agendamento` = '$Codigo'");
-        }
-
-        //Atualizando Data
-        if($DataFinal == 'null' && $Dias != 'null')
-        {
-            //DataFinal
             $SQL = $PDO->query("SELECT DATE_ADD('$DataInicial', INTERVAL '$Dias' DAY) FROM `agendamento` WHERE `cd_agendamento` = '$Codigo'");
             $DataFinal = $SQL->fetch()["DATE_ADD('$DataInicial', INTERVAL '$Dias' DAY)"];
 
             $SQL = $PDO->query("UPDATE `agendamento` SET `dt_final_agendamento` = '$DataFinal', `qt_dias_agendamento` = '$Dias' WHERE `cd_agendamento` = '$Codigo'");
         }
-        else if($DataFinal == 'null' && $Dias == 'null')
+        else if($Dias == 'null')
         {
-            $SQL = $PDO->query("UPDATE `agendamento` SET `dt_inicio_agendamento` = null, `dt_final_agendamento` = null WHERE `cd_agendamento` = '$Codigo'");
-        }
-        else if($DataFinal != 'null')
-        {
-            $SQL = $PDO->query("UPDATE `agendamento` SET `dt_final_agendamento` = '$DataFinal', `qt_dias_agendamento` = null WHERE `cd_agendamento` = '$Codigo'");
+            $SQL = $PDO->query("UPDATE `agendamento` SET `dt_final_agendamento` = null, `qt_dias_agendamento` = null WHERE `cd_agendamento` = '$Codigo'");
         }
 
-        if($Registro > $DataFinal)
+        $SQL = $PDO->query("SELECT `dt_final_agendamento` FROM `agendamento` WHERE `cd_agendamento` = '$Codigo'");
+        $DataFinal = $SQL->fetch()["dt_final_agendamento"];
+
+        if($DataFinal != null && $Registro > $DataFinal)
         {
             $SQL = $PDO->query("UPDATE `agendamento` SET `cd_situacao_agendamento` = 2 WHERE `cd_agendamento` = '$Codigo'");
         }
         else
         {
             $SQL = $PDO->query("UPDATE `agendamento` SET `cd_situacao_agendamento` = 1 WHERE `cd_agendamento` = '$Codigo'");
+        }
+
+        $SQL = $PDO->query("SELECT `cd_medicamento` FROM `agendamento` WHERE `cd_agendamento` = '$Codigo'");
+        $CodigoMedicamento = $SQL->fetch()['cd_medicamento'];
+
+        $SQL = $PDO->query("SELECT MIN(`cd_registro_agendamento`) FROM `registro_agendamento` WHERE `cd_agendamento` = '$Codigo'");
+        $PrimeiroCodigo = $SQL->fetch()['MIN(`cd_registro_agendamento`)'];
+
+        $SQL = $PDO->query("SELECT `ic_tomado_registro_agendamento` FROM `registro_agendamento` WHERE `cd_registro_agendamento` = $PrimeiroCodigo");
+        $ICTomou = $SQL->fetch()['ic_tomado_registro_agendamento'];
+
+        $SQL = $PDO->query("SELECT IFNULL(MAX(`cd_registro_agendamento`) + 1, 1) FROM `registro_agendamento`");
+        $NovoRegistro = $SQL->fetch()['IFNULL(MAX(`cd_registro_agendamento`) + 1, 1)'];
+
+        if($ICTomou == null)
+        {
+            $SQL = $PDO->query("SELECT DATE_SUB('$DataInicial', INTERVAL '$Horas' HOUR) FROM `agendamento` WHERE `cd_agendamento` = '$Codigo'");
+            $DataRegistro = $SQL->fetch()["DATE_SUB('$DataInicial', INTERVAL '$Horas' HOUR)"];
+        
+            $SQL = $PDO->query("UPDATE `registro_agendamento` SET `dt_registro_agendamento` = '$DataRegistro', `ic_tomado_registro_agendamento` = null, `nm_email_usuario` = '$Email', `cd_medicamento` = '$CodigoMedicamento', `cd_agendamento` = '$Codigo' WHERE `cd_registro_agendamento` = '$PrimeiroCodigo'");
+        }
+        else
+        {
+            if($DataInicial > $Registro)
+            {
+                $SQL = $PDO->query("SELECT DATE_SUB('$DataInicial', INTERVAL '$Horas' HOUR) FROM `agendamento` WHERE `cd_agendamento` = '$Codigo'");
+                $DataRegistro = $SQL->fetch()["DATE_SUB('$DataInicial', INTERVAL '$Horas' HOUR)"];
+        
+                $SQL = $PDO->query("INSERT INTO `registro_agendamento` VALUES ('$NovoRegistro', '$DataRegistro', null, '$Email', '$CodigoMedicamento', '$Codigo')");
+            }
         }
 
         $Erro = false;

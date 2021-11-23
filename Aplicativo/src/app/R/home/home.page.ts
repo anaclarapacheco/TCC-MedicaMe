@@ -164,9 +164,6 @@ export class HomePage implements OnInit {
         this.temMedicNao = false;
         this.medicamentos = res;
 
-        console.log(this.medicamentos);
-        
-
         this.medicamentos.forEach(medic => {
           if(medic['FormaFarmaceutica'] == '4' || medic['FormaFarmaceutica'] == '3')
           {

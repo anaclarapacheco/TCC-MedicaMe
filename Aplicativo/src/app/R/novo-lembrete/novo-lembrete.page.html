@@ -41,9 +41,11 @@
 
            <div class="bloco flex">
             <span class="line leftA">Quantidade de Dias</span>
-            <input [(ngModel)]="dias" type="number" class="input">
+            <input id="qtDias" [(ngModel)]="dias" type="number" class="input">
+          </div>
 
-            <input id="semData" type="checkbox" class="check"> <p>Sem Data</p>
+          <div class="check vertical flex">
+            <input [(ngModel)]="check" (change)="change()" type="checkbox"> <p>Sem data final</p>
           </div>
 
           <div class="bloco flex">

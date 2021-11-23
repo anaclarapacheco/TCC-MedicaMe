@@ -18,7 +18,7 @@
 
     /*#region Variavéis*/
     $DataInicial = $_GET['phpDataInicial'];
-    $DataFinal = $_GET['phpDataFinal'];
+    $DataFinal = 'null';
     $Dias = $_GET['phpDias'];
     $Horas = $_GET['phpHoras'];
     $QuantidadeAtual = $_GET['phpQuantidadeAtual'];
@@ -29,7 +29,7 @@
     /*#endregion*/
 
     /*#region Banco de Dados*/
-    if($DataInicial != null && $DataFinal != null && $Dias != null && $Horas != null && $QuantidadeAtual != null && $QuantidadeMinima != null && $Email != null)
+    if($DataInicial != null && $Horas != null && $QuantidadeAtual != null && $QuantidadeMinima != null && $Email != null)
     {
         //Código Máximo dos Agendamentos
         $SQL = $PDO->query("SELECT MAX(`cd_agendamento`) FROM `agendamento` WHERE `nm_email_usuario` = '$Email'");
@@ -44,7 +44,7 @@
         $Dosagem = $SQL->fetch()['qt_dosagem_medicamento'];
 
         //Verificação de Combinação
-        if($DataFinal == 'null' && $Dias != 'null')
+        if($Dias != 'null')
         {
             $SQL = $PDO->query("SELECT DATE_ADD('$DataInicial', INTERVAL '$Dias' DAY) FROM `agendamento` WHERE `cd_agendamento` = '$MaxAgenda'");
             $DataFinal = $SQL->fetch()["DATE_ADD('$DataInicial', INTERVAL '$Dias' DAY)"];
