@@ -113,6 +113,25 @@
         }
     }
 }
+
+.comprar
+{
+    animation-name: pendente;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes pendente
+{
+    0%{transform: rotate(0deg);}
+    75%{transform: rotate(0deg);}
+    80%{transform: rotate(-2deg);}
+    85%{transform: rotate(2deg);}
+    90%{transform: rotate(-2deg);}
+    95%{transform: rotate(2deg);}
+    100%{transform: rotate(0deg);}
+}
 /*#endregion*/
 
 //#region Alerta
@@ -158,6 +177,12 @@
             margin: 15px;
             box-sizing: border-box;
 
+            .input
+            {
+                border-bottom: solid 3px var(--dark-space-cadet);
+                margin-bottom: 10px;
+            }
+
             .input, p
             {
                 width: 100%;
@@ -168,35 +193,33 @@
             }
         }
 
-        button:nth-of-type(1), button:nth-of-type(2)
-        {
-            background-color: var(--space-cadet);
-            width: 50%;
-
-            margin: 0px;
-            border-radius: 0px;
-            box-shadow: none;
-
-            span
-            {
-                color: var(--white);
-                font-size: 25px;
-            }
-        }
-
-        button:nth-of-type(3)
+        button:nth-of-type(1)
         {
             background-color: var(--yellow);
             width: 100%;
 
-            border-top-left-radius: 0px;
-            border-top-right-radius: 0px;
-            border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 20px;
+            border-radius: 0px;
 
             span
             {
                 color: var(--dark-space-cadet);
+                font-size: 1.3em;
+            }
+        }
+
+        button:nth-of-type(2)
+        {
+            background-color: var(--red);
+            width: 100%;
+
+            border-top-left-radius: 0px;
+            border-bottom-left-radius: 20px;
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 20px;
+
+            span
+            {
+                color: var(--white);
                 font-size: 1.3em;
             }
         }

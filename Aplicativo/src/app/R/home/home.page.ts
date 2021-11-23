@@ -96,6 +96,7 @@ export class HomePage implements OnInit {
       if(res[0].Erro != true)
       {
         this.temPendente = true;
+        this.temMedicNao = false;
         this.pendentes = res;
 
         this.pendentes.forEach(medic => {
@@ -147,6 +148,7 @@ export class HomePage implements OnInit {
       else
       {
         this.temPendente = false;
+        this.temMedicNao = true;
       }
     });
   }

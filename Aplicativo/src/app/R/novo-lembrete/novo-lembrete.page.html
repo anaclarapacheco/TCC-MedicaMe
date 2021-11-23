@@ -18,7 +18,7 @@
           </select> 
   
           <span class="line leftA">Dosagem</span>
-          <input [(ngModel)]="dosagem" type="number" class="input">
+          <input [(ngModel)]="dosagem" type="decimal" maxlength="9" class="input">
   
           <h3 class="line centerA">Observação</h3>
           <textarea [(ngModel)]="descricao" class="input" maxlength="300"></textarea>
@@ -41,7 +41,7 @@
 
            <div class="bloco flex">
             <span class="line leftA">Quantidade de Dias</span>
-            <input id="qtDias" [(ngModel)]="dias" type="number" class="input">
+            <input id="qtDias" [(ngModel)]="dias" type="decimal" maxlength="3" class="input">
           </div>
 
           <div class="check vertical flex">
@@ -66,10 +66,10 @@
   
           <h3 class="line centerA no">Estoque</h3>
           <span class="line leftA">Quantidade atual</span>
-          <input [(ngModel)]="quantidadeAtual" type="number" class="input">
+          <input [(ngModel)]="quantidadeAtual" type="decimal" maxlength="9" class="input">
 
           <span class="line leftA">Quantidade mínima (notificação)</span>
-          <input [(ngModel)]="quantidadeMinima" type="number" class="input">
+          <input [(ngModel)]="quantidadeMinima" type="decimal" maxlength="9" class="input">
 
           <p id="avisoDois" class="aviso invisivel">{{txtAvisoDois}}</p>
 

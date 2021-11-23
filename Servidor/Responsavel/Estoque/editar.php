@@ -19,17 +19,31 @@
     /*#region Variavéis*/
     $Agendamento = $_GET['phpCodigo'];
     $Quantidade = $_GET['phpQuantidade'];
+    $Operacao = $_GET['phpOperacao'];
     $Email = $_GET['phpEmail'];
 
     $Erro = true;
     /*#endregion*/
 
     /*#region Banco de Dados*/
-    if($Email != null && $Agendamento != null && $Quantidade != null)
+    if($Email != null && $Agendamento != null && $Quantidade != null && $Operacao != null)
     {
         $SQL = $PDO->query("SELECT `qt_medicamento_usuario` FROM `agendamento` WHERE `cd_agendamento` = '$Agendamento'");
         $QuantidadeAtual = $SQL->fetch()['qt_medicamento_usuario'];
-        $QuantidadeNova = $QuantidadeAtual + $Quantidade;
+
+        if($Operacao == 'Adicionar')
+        {
+            $QuantidadeNova = $QuantidadeAtual + $Quantidade;
+        }
+        else
+        {
+            $QuantidadeNova = $QuantidadeAtual - $Quantidade;
+        }
+
+        if($QuantidadeNova < 0)
+        {
+            $QuantidadeNova = 0;
+        }
 
         $SQL = $PDO->query("UPDATE `agendamento` SET `qt_medicamento_usuario` = '$QuantidadeNova' WHERE `nm_email_usuario` = '$Email' AND `cd_agendamento` = '$Agendamento'");
 

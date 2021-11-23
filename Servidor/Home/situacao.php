@@ -90,7 +90,7 @@
         $DataFinal = $SQL->fetch()['dt_final_agendamento'];
 
         //Atualizar Agendamento
-        if($DataRegistro > $DataFinal)
+        if($DataFinal != null && $DataRegistro > $DataFinal)
         {
             $SQL = $PDO->query("UPDATE `agendamento` SET `cd_situacao_agendamento` = 2 WHERE `cd_agendamento` = '$Agendamento'");
         }

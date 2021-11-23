@@ -23,6 +23,8 @@ export class EstoquePage implements OnInit {
 
   public formaFarmaceutica: any;
   public quantidadeAdicional: any;
+
+  public situacao = ['aviso'];
   //#endregion
 
   //#region Abrir e Fechar o Menu
@@ -92,6 +94,10 @@ export class EstoquePage implements OnInit {
             {
               plural = true;
             }
+            else if(medic['Quantidade'] < 0)
+            {
+              medic['Quantidade'] = 0;
+            }
 
             if(medic['FormaFarmaceutica'] == '3')
             {
@@ -146,7 +152,7 @@ export class EstoquePage implements OnInit {
 
   fechar()
   {    
-    if(event.target == document.getElementById('qFundo') || event.target == document.getElementById('qBtn') || event.target == document.getElementById('qSpn'))
+    if(event.target == document.getElementById('qFundo') || event.target == document.getElementById('qBtn') || event.target == document.getElementById('qSpn') || event.target == document.getElementById('qBtn2') || event.target == document.getElementById('qSpn2'))
     {
       //Preparação
       document.getElementById('qFundo').classList.remove('InFundo');
@@ -164,27 +170,26 @@ export class EstoquePage implements OnInit {
     }
   }
 
-  menos()
-  {
-    if(this.editarQuantidade != 0)
-    {
-      this.editarQuantidade--;
-    }
-  }
-
-  mais()
-  {
-    this.editarQuantidade++;
-  }
-
   adicionar()
   {
     //Enviar ao PHP
-    let dados = 'phpCodigo=' + this.codigo + '&phpQuantidade=' + this.editarQuantidade + '&phpEmail=' + this.email;
+    let dados = 'phpCodigo=' + this.codigo + '&phpQuantidade=' + this.editarQuantidade + '&phpOperacao=Adicionar' + '&phpEmail=' + this.email;
 
     this.servidor.enviar('Responsavel/Estoque/editar.php', dados).subscribe(res =>{
-      console.log(res);
-      
+      if(res[0]['Erro'] == false)
+      {
+        this.fechar();
+        this.carregarEstoque();
+      }
+    });
+  }
+
+  retirar()
+  {
+    //Enviar ao PHP
+    let dados = 'phpCodigo=' + this.codigo + '&phpQuantidade=' + this.editarQuantidade + '&phpOperacao=Retirar' + '&phpEmail=' + this.email;
+
+    this.servidor.enviar('Responsavel/Estoque/editar.php', dados).subscribe(res =>{
       if(res[0]['Erro'] == false)
       {
         this.fechar();

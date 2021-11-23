@@ -74,25 +74,48 @@
 
     <div id="eContent" class="content">
       <div *ngIf="temLista">
-        <div *ngFor="let l of medicamentos" class="medicamentos full flex">
-          <img src="../../../assets/IMG/Icon/{{l.FormaFarmaceutica}}.png">
+        <div *ngFor="let l of medicamentos" [ngSwitch]="l.Situacao">
+          <div *ngSwitchDefault class="medicamentos full flex">     
+            <img src="../../../assets/IMG/Icon/{{l.FormaFarmaceutica}}.png">
 
-          <div class="text flex leftA">
-            <h3 class="line">{{l.Nome}}</h3>
-            <p>{{l.Quantidade}}</p>
+            <div class="text flex leftA">
+              <h3 class="line">{{l.Nome}}</h3>
+              <p>{{l.Quantidade}}</p>
+            </div>
+
+            <svg viewBox="0 0 24 24" (click)="removerMedicamento(l.Agendamento)">
+              <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.538l-4.592-4.548 4.546-4.587-1.416-1.403-4.545 4.589-4.588-4.543-1.405 1.405 4.593 4.552-4.547 4.592 1.405 1.405 4.555-4.596 4.591 4.55 1.403-1.416z"/>
+            </svg>
+
+            <button class="normal full flex" (click)="editar(l.Agendamento, l.Quantidade, l.FormaFarmaceutica)">
+              Editar quantidade
+
+              <svg viewBox="0 0 24 24">
+                <path d="M19.769 9.923l-12.642 12.639-7.127 1.438 1.438-7.128 12.641-12.64 5.69 5.691zm1.414-1.414l2.817-2.82-5.691-5.689-2.816 2.817 5.69 5.692z"/>
+              </svg>
+            </button>
           </div>
 
-          <svg viewBox="0 0 24 24" (click)="removerMedicamento(l.Agendamento)">
-            <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.538l-4.592-4.548 4.546-4.587-1.416-1.403-4.545 4.589-4.588-4.543-1.405 1.405 4.593 4.552-4.547 4.592 1.405 1.405 4.555-4.596 4.591 4.55 1.403-1.416z"/>
-          </svg>
+          <div *ngSwitchCase="situacao[0]" class="medicamentos comprar full flex">     
+            <img src="../../../assets/IMG/Icon/{{l.FormaFarmaceutica}}.png">
 
-          <button class="normal full flex" (click)="editar(l.Agendamento, l.Quantidade, l.FormaFarmaceutica)">
-            Editar quantidade
+            <div class="text flex leftA">
+              <h3 class="line">{{l.Nome}}</h3>
+              <p class="aviso">{{l.Quantidade}}</p>
+            </div>
 
-            <svg viewBox="0 0 24 24">
-              <path d="M19.769 9.923l-12.642 12.639-7.127 1.438 1.438-7.128 12.641-12.64 5.69 5.691zm1.414-1.414l2.817-2.82-5.691-5.689-2.816 2.817 5.69 5.692z"/>
+            <svg viewBox="0 0 24 24" (click)="removerMedicamento(l.Agendamento)">
+              <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.538l-4.592-4.548 4.546-4.587-1.416-1.403-4.545 4.589-4.588-4.543-1.405 1.405 4.593 4.552-4.547 4.592 1.405 1.405 4.555-4.596 4.591 4.55 1.403-1.416z"/>
             </svg>
-          </button>
+
+            <button class="danger full flex" (click)="editar(l.Agendamento, l.Quantidade, l.FormaFarmaceutica)">
+              Editar quantidade
+
+              <svg viewBox="0 0 24 24">
+                <path d="M19.769 9.923l-12.642 12.639-7.127 1.438 1.438-7.128 12.641-12.64 5.69 5.691zm1.414-1.414l2.817-2.82-5.691-5.689-2.816 2.817 5.69 5.692z"/>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -120,9 +143,8 @@
           <p>{{quantidadeAdicional}}</p>
         </div>
 
-        <button (click)="menos()"><span>-</span></button>
-        <button (click)="mais()"><span>+</span></button>
         <button id="qBtn" (click)="adicionar()"><span id="qSpn">Adicionar</span></button>
+        <button id="qBtn2" (click)="retirar()"><span id="qSpn2">Retirar</span></button>
       </div>
     </div>
   </div>
