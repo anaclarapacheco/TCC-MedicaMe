@@ -21,38 +21,11 @@
 /*#endregion*/
 
 /*#region Meio*/
-.calendario
-{
-    width: 90%;
-
-    margin: 20px 0px 0px 5%;
-
-    border-radius: 10px;
-}
-
-.relatorio
-{
-    background-color: var(--lavander);
-    width: 100%;
-    height: 50px;
-
-    margin: 30px 0px 0px 0px;
-
-    border-radius: 10px;
-
-    box-shadow: 0px 4px 4px rgb(122, 122, 165, 0.5);
-
-    h3
-    {
-        font-family: 'Saira';
-    }
-}
-
 .buttons
 {
     width: 90%;
 
-    margin: 20px 0px 0px 5%;
+    margin: 20px 0px 20px 5%;
 
     button
     {
@@ -131,6 +104,75 @@
                 font-size: 1.3em;
             }
         }
+    }
+}
+//#endregion
+
+//#region Relatório
+.relatorio
+{
+    background-color: var(--lavander);
+    width: 100%;
+    min-height: 85px;
+    overflow: hidden;
+
+    margin: 5px 0px 30px 0px;
+
+    border-radius: 10px;
+
+    box-shadow: 0px 4px 4px rgb(122, 122, 165, 0.5);
+
+    padding: 20px;
+
+    .bloco:nth-of-type(1)
+    {
+        width: 15%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .bloco:nth-of-type(2)
+    {
+        width: 55%;
+
+        margin-left: 10%;
+
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;  
+    }
+
+    .bloco:nth-of-type(3)
+    {
+        width: 20%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    img
+    {
+        width: 100%;
+    }
+
+    h3
+    {
+        color: var(--dark-space-cadet);
+        font-family: 'Saira Bold';
+        font-size: 1.3em;
+
+        margin-bottom: 5px;
+    }
+
+    p
+    {
+        color: var(--space-cadet);
+        font-family: 'Roboto';
+        text-align: justify;
     }
 }
 //#endregion

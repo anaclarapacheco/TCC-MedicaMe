@@ -20,6 +20,11 @@ export class RelatorioPage implements OnInit {
 
   public erro: any;
   public temNao: any;
+  public temRelatorio: any;
+  public lista: any = [];
+
+  public situacao: any = ['Tomou.', 'Cancelou.', 'Sintomas'];
+  public diaAtual: any = '2021-11-24';
   //#endregion
 
   //#region Abrir e Fechar o Menu
@@ -119,24 +124,29 @@ export class RelatorioPage implements OnInit {
     {
       this.erro = 'Preencha todos os campos!';
       document.getElementById('erroPeriodo').classList.remove('invisivel');
+      return;
     }
     else if(this.dataInicial > this.dataFinal)
     {
       this.erro = 'O periodo inicial deve ser menor que o periodo final, digite novamente!';
       document.getElementById('erroPeriodo').classList.remove('invisivel');
+      return;
     }
     else
     {
       let dados = 'phpEmail=' + this.email + '&phpDataInicial=' + this.dataInicial + '&phpDataFinal=' + this.dataFinal;
       
       //Enviando ao PHP
-      this.servidor.enviar('', dados).subscribe(res => {
+      this.servidor.enviar('Responsavel/Relatorio/main.php', dados).subscribe(res => {
         if (res[0]['Erro'] != true)
         {
+          this.temRelatorio = true;
           this.temNao = false;
+          this.puxar(res);
         }
         else
         {
+          this.temRelatorio = false;
           this.temNao = true;
         }
       });
@@ -145,6 +155,34 @@ export class RelatorioPage implements OnInit {
     }
   }
   //#endregion
+
+  puxar(res)
+  {
+    this.lista = res;
+    let i = 0;
+
+    this.lista.forEach(l => {
+      l['Dia'] = l['Dia'].substring(8, 10) + '/' + l['Dia'].substring(5, 7) + '/' + l['Dia'].substring(0, 4);
+
+      if(i > 0)
+      {
+        if(l['Dia'] == this.diaAtual)
+        {
+          l['Dia'] = 'null';
+        }
+        else
+        {
+          this.diaAtual = l['Dia'];
+        }
+      }
+      else
+      {
+        this.diaAtual = l['Dia'];
+      }
+
+      i++
+    });
+  }
 
   //#region Navegação
   tutorial()

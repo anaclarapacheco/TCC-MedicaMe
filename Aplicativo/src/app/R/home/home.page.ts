@@ -82,13 +82,13 @@ export class HomePage implements OnInit {
     let dados = 'phpSituacao=' + situacao + '&phpCodigo=' + codigo + '&phpEmail=' + localStorage.getItem('email');
     
     this.servidor.enviar('Home/situacao.php', dados).subscribe(res => {
-      this.carregarPendente();
+      this.carregar();
     });
   }
   //#endregion
 
-  //#region Carregar medicamentos pendentes
-  carregarPendente()
+  //#region Carregar medicamentos
+  carregar()
   {
     let dados = 'phpEmail=' + localStorage.getItem('email');
 
@@ -96,7 +96,6 @@ export class HomePage implements OnInit {
       if(res[0].Erro != true)
       {
         this.temPendente = true;
-        this.temMedicNao = false;
         this.pendentes = res;
 
         this.pendentes.forEach(medic => {
@@ -148,22 +147,13 @@ export class HomePage implements OnInit {
       else
       {
         this.temPendente = false;
-        this.temMedicNao = true;
       }
     });
-  }
-  //#endregion
-
-  //#region Carregar medicamentos de hoje
-  carregar()
-  {
-    let dados = 'phpEmail=' + localStorage.getItem('email');
 
     this.servidor.enviar('Home/main.php', dados).subscribe(res =>{
       if(res[0].Erro != true)
       {
         this.temMedic = true;
-        this.temMedicNao = false;
         this.medicamentos = res;
 
         this.medicamentos.forEach(medic => {
@@ -201,9 +191,17 @@ export class HomePage implements OnInit {
       else
       {
         this.temMedic = false;
-        this.temMedicNao = true;
       }
     });
+
+    if(this.temPendente == false && this.temMedic == false)
+    {
+      this.temMedicNao = true;
+    }
+    else
+    {
+      this.temMedicNao = false;
+    }
   }
   //#endregion
 
@@ -265,7 +263,6 @@ export class HomePage implements OnInit {
 
     //Carregar medicamentos
     this.carregar();
-    this.carregarPendente();
   }
   //#endregion
 

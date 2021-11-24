@@ -76,6 +76,42 @@
       <div class="buttons">
         <button (click)="periodo()" class="important">Definir período</button>
       </div>
+
+      <div *ngIf="temRelatorio">
+        <div *ngFor="let l of lista" [ngSwitch]="l.Situacao">
+          <h3 *ngIf="l.Dia != 'null'">{{l.Dia}}</h3>
+
+          <div *ngSwitchCase="situacao[0]">
+            <div class="relatorio full flex">
+              <div class="bloco">
+                <img src="../../../assets/IMG/Icon/{{l.FormaFarma}}.png">
+              </div>
+
+              <div class="bloco">
+                <h3>{{l.Texto}}</h3>
+                <p>{{l.Horas}} - {{l.Dosagem}}</p>
+              </div>
+
+              <div class="bloco">
+                
+              </div>
+            </div>
+          </div>
+
+          <div *ngSwitchCase="situacao[1]" >
+            <div class="relatorio">
+              <img src="../../../assets/IMG/Icon/{{l.FormaFarma}}.png">
+            </div>
+          </div>
+
+          <div *ngSwitchCase="situacao[2]" >
+            <div class="relatorio">
+              <h3 class="line">{{l.Horas}}</h3>
+              <p>{{l.Texto}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
