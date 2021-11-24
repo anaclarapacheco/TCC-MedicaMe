@@ -14,6 +14,12 @@ export class RelatorioPage implements OnInit {
   //#region Valores
   public nomeDependente: any;
   public email: any;
+
+  public dataInicial: any;
+  public dataFinal: any;
+
+  public erro: any;
+  public temNao: any;
   //#endregion
 
   //#region Abrir e Fechar o Menu
@@ -57,6 +63,86 @@ export class RelatorioPage implements OnInit {
     {
       menu.classList.add('invisivel');
     }, 301);
+  }
+  //#endregion
+
+  //#region Definir periodo
+  periodo()
+  {
+    document.getElementById('erroPeriodo').classList.add('invisivel');
+
+    document.getElementById('dPeriodo').classList.remove('invisivel');
+
+    //Preparação
+    document.getElementById('pFundo').classList.remove('OutFundo');
+    document.getElementById('pAlert').classList.remove('OutAlerta');
+
+    //Animação
+    setTimeout(function()
+    {
+      document.getElementById('pAlert').classList.add('InAlerta');
+      document.getElementById('pFundo').classList.add('InFundo');
+    }, 100);
+
+    //Valores das datas
+    let nowData = new Date();
+    let data = new Date(nowData.getFullYear(), nowData.getMonth() + 1, 0);
+    this.dataInicial = nowData.getFullYear() + '-' + String(nowData.getMonth() + 1).padStart(2, '0') + '-01';
+    this.dataFinal = nowData.getFullYear() + '-' + String(nowData.getMonth() + 1).padStart(2, '0') + '-' + data.getDate();
+  }
+
+  fechar()
+  {    
+    if(event.target == document.getElementById('pFundo') || event.target == document.getElementById('pBtn') || event.target == document.getElementById('pSpn'))
+    {
+      //Preparação
+      document.getElementById('pFundo').classList.remove('InFundo');
+      document.getElementById('pAlert').classList.remove('InAlerta');
+
+      //Animação
+      document.getElementById('pFundo').classList.add('OutFundo');
+      document.getElementById('pAlert').classList.add('OutAlerta');
+      
+      //Fecha
+      setTimeout(function()
+      {
+        document.getElementById('dPeriodo').classList.add('invisivel');
+      }, 301);
+    }
+  }
+
+  definir()
+  {
+    document.getElementById('erroPeriodo').classList.add('invisivel');
+
+    if(this.dataInicial == '' || this.dataFinal == '' || this.dataInicial == null || this.dataFinal == null)
+    {
+      this.erro = 'Preencha todos os campos!';
+      document.getElementById('erroPeriodo').classList.remove('invisivel');
+    }
+    else if(this.dataInicial > this.dataFinal)
+    {
+      this.erro = 'O periodo inicial deve ser menor que o periodo final, digite novamente!';
+      document.getElementById('erroPeriodo').classList.remove('invisivel');
+    }
+    else
+    {
+      let dados = 'phpEmail=' + this.email + '&phpDataInicial=' + this.dataInicial + '&phpDataFinal=' + this.dataFinal;
+      
+      //Enviando ao PHP
+      this.servidor.enviar('', dados).subscribe(res => {
+        if (res[0]['Erro'] != true)
+        {
+          this.temNao = false;
+        }
+        else
+        {
+          this.temNao = true;
+        }
+      });
+
+      this.fechar();
+    }
   }
   //#endregion
 

@@ -69,17 +69,38 @@
 
   <div id="rMeio" class="meio">
     <div class="top centerA">
-      <h3>Relatórios Mensais e Semanais</h3>
+      <h3>Relatórios de lembretes e sintomas</h3>
     </div>
 
     <div id="rContent" class="content">
-      
-      <div class="relatorio full flex">
-        <h3>Relatório Semanal ?? - ??/??</h3>
-      </div>
-
       <div class="buttons">
-        <button (click)="historico()" class="normal">Histórico</button>
+        <button (click)="periodo()" class="important">Definir período</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="dPeriodo" class="invisivel">
+    <div id="pFundo" class="centraliza full flex" (click)="fechar()">
+      <div id="pAlert" class="alert">
+        <div class="top full flex">
+          <h3>Periodo do relatório</h3>
+        </div>
+
+        <div class="content full flex">
+          <div class="bloco flex">
+            <p class="leftA">Início</p>
+            <input [(ngModel)]="dataInicial" type="date" class="input" min="2021-10-01" max="2031-12-31">
+          </div>
+
+          <div class="bloco flex">
+            <p class="leftA">Final</p>
+            <input [(ngModel)]="dataFinal" type="date" class="input" min="2021-10-01" max="2031-12-31">
+          </div>
+
+          <p id="erroPeriodo" class="aviso invisivel">{{erro}}</p>
+        </div>
+
+        <button id="pBtn" (click)="definir()"><span id="pSpn">Definir</span></button>
       </div>
     </div>
   </div>

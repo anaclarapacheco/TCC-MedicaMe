@@ -17,6 +17,11 @@
     color: var(--white);
 }
 
+::-webkit-calendar-picker-indicator
+{
+    filter: invert(1);
+}
+
 h3
 {
     font-family: 'Saira Bold';

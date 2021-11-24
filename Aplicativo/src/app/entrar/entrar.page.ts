@@ -43,8 +43,6 @@ export class EntrarPage implements OnInit {
     this.reset();
 
     //Verificação dos valores do input
-    let validacaoEmail = /\S+@\S+\.\S+/;
-
     if(this.email == '' || this.senha == '' || this.email == null || this.senha == null)
     {
       this.erro = 'Preencha todos os campos!';

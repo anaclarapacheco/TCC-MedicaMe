@@ -57,15 +57,80 @@
     button
     {
         position: initial;
-        margin: 20px 0px 0px 0px;
     }
 }
 /*#endregion*/
 
-//#region Calendário
-.ng-untouched
+//#region Alerta
+#dPeriodo
 {
-  background-color: var(--white) !important;
-  padding: 10px 10px !important;
+    background-color: var(--dark-space-cadet);
+
+    .alert
+    {
+        width: 70vw;
+        padding: 0px;
+        opacity: 0;
+
+        h3
+        {
+            font-size: 1em;
+            color: var(--white) !important;
+        }
+
+        .content
+        {
+            margin: 15px;
+            box-sizing: border-box;
+
+            .bloco
+            {
+                width: 100%;
+
+                flex-direction: column;
+            }
+
+            .bloco:nth-of-type(1)
+            {
+                margin-bottom: 5%;
+            }
+
+            .input
+            {
+                border-bottom: solid 3px var(--dark-space-cadet);
+                margin-bottom: 10px;
+
+                font-size: 1em;
+            }
+
+            .aviso
+            {
+                font-size: 0.7em;
+            }
+
+            .input, p
+            {
+                width: 100%;
+                
+                padding: 0px;
+
+                outline: none;
+            }
+        }
+
+        button:nth-of-type(1)
+        {
+            background-color: var(--yellow);
+            width: 100%;
+
+            border-radius: 0px;
+
+            span
+            {
+                color: var(--dark-space-cadet);
+                font-size: 1.3em;
+            }
+        }
+    }
 }
 //#endregion
