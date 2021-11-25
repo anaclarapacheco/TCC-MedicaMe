@@ -177,6 +177,14 @@
 
     overflow: hidden;
 
+    .check
+    {
+        p
+        {
+            color: var(--white) !important;
+        }
+    }
+
     .data
     {
         padding-left: 0px !important;
@@ -196,6 +204,11 @@
         overflow: hidden;
 
         font-family: 'Saira';
+
+        p
+        {
+            color: var(--white) !important;
+        }
     }
 }
 //#endregion

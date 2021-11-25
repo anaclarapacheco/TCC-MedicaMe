@@ -96,6 +96,7 @@ export class HomePage implements OnInit {
       if(res[0].Erro != true)
       {
         this.temPendente = true;
+        this.temMedicNao = false;
         this.pendentes = res;
 
         this.pendentes.forEach(medic => {
@@ -153,7 +154,8 @@ export class HomePage implements OnInit {
     this.servidor.enviar('Home/main.php', dados).subscribe(res =>{
       if(res[0].Erro != true)
       {
-        this.temMedic = true;
+        this.temMedic = true;  
+        this.temMedicNao = false;
         this.medicamentos = res;
 
         this.medicamentos.forEach(medic => {

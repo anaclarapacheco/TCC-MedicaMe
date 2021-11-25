@@ -67,7 +67,7 @@
     <p class="aviso sair" (click)="removDependente()">Voltar</p>
   </div>
 
-  <div id="rMeio" class="meio">
+  <div id="rMeio" class="meio foila">
     <div class="top centerA">
       <h3>Relatórios de lembretes e sintomas</h3>
     </div>
@@ -75,6 +75,7 @@
     <div id="rContent" class="content">
       <div class="buttons">
         <button (click)="periodo()" class="important">Definir período</button>
+        <button (click)="historico()" class="full flex">Histórico</button>
       </div>
 
       <div *ngIf="temRelatorio">
@@ -117,7 +118,7 @@
 
               <div class="bloco">
                 <svg viewBox="0 0 24 24" class="naotomou">
-                  <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.538l-4.592-4.548 4.546-4.587-1.416-1.403-4.545 4.589-4.588-4.543-1.405 1.405 4.593 4.552-4.547 4.592 1.405 1.405 4.555-4.596 4.591 4.55 1.403-1.416z"/>
+                  <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm4.151 17.943l-4.143-4.102-4.117 4.159-1.833-1.833 4.104-4.157-4.162-4.119 1.833-1.833 4.155 4.102 4.106-4.16 1.849 1.849-4.1 4.141 4.157 4.104-1.849 1.849z"/>
                 </svg>
               </div>
 

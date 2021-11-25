@@ -85,6 +85,11 @@ export class NavegationService {
   {
     this.navCtrl.navigateForward('R/relatorio');
   }
+
+  rHistorico()
+  {
+    this.navCtrl.navigateForward('R/historico');
+  }
   //#endregion
 
   //#region Dependete

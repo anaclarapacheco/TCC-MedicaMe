@@ -63,12 +63,21 @@
             //Atualizar Agendamento
             if($TipoMedicamento == 2)
             {
-                $SQL = $PDO->query("UPDATE `agendamento` SET `qt_medicamento_usuario` = f_CalcGotas('$Dosagem', '$MedicamentoUsuario') WHERE `cd_agendamento` = '$Agendamento'");
+                $SQL = $PDO->query("SELECT f_CalcGotas('$Dosagem', '$MedicamentoUsuario')");
+                $NovaQuantidade = $SQL->fetch()["f_CalcGotas('$Dosagem', '$MedicamentoUsuario')"];
             }
             else
             {
-                $SQL = $PDO->query("UPDATE `agendamento` SET `qt_medicamento_usuario` = f_CalcMedic('$Dosagem', '$MedicamentoUsuario') WHERE `cd_agendamento` = '$Agendamento'");
+                $SQL = $PDO->query("SELECT f_CalcMedic('$Dosagem', '$MedicamentoUsuario')");
+                $NovaQuantidade = $SQL->fetch()["f_CalcMedic('$Dosagem', '$MedicamentoUsuario')"];
             }
+
+            if($NovaQuantidade < 0)
+            {
+                $NovaQuantidade = 0;
+            }
+
+            $SQL = $PDO->query("UPDATE `agendamento` SET `qt_medicamento_usuario` = $NovaQuantidade WHERE `cd_agendamento` = '$Agendamento'");
         }
 
         //Medicamento Usuário

@@ -8,9 +8,11 @@
 
     color: var(--dark-space-cadet);
 
+    transition: margin-top 1s;
+
     .content
     {
-        margin-bottom: calc((100vw / 5) + ((100vw / 5) / 2) + 20px);
+        margin-bottom: calc((100vw / 5) + ((100vw / 5) / 2) + 75px);
     }
 }
 
@@ -30,6 +32,14 @@
     button
     {
         position: initial;
+    }
+
+    button:nth-of-type(2)
+    {
+        background-color: var(--space-cadet);
+        color: var(--white);
+
+        margin-top: 20px;
     }
 }
 /*#endregion*/
@@ -222,6 +232,12 @@
 .sintomas
 {
     padding: 15px;
+}
+
+.foila
+{
+    margin-top: 40vh;
+    margin-bottom: 0px;
 }
 //#endregion
 

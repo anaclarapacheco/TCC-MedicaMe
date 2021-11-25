@@ -28,7 +28,7 @@
     /*#region Banco de Dados*/
     if($Email != null)
     {
-        $SQL = $PDO->query("SELECT * FROM ((SELECT r.`dt_registro_agendamento`, m.`nm_medicamento`, m.`cd_forma_farmaceutica`, a.`qt_dosagem_medicamento`, r.`ic_tomado_registro_agendamento`, '' AS `dt_sintoma`, '' as `ds_sintoma` FROM `registro_agendamento` r JOIN `medicamento` m ON (r.`cd_medicamento` = m.`cd_medicamento`) JOIN `agendamento` a ON (r.`cd_agendamento` = a.`cd_agendamento`) WHERE r.`nm_email_usuario` = '$Email' AND r.`dt_registro_agendamento`) UNION ALL (SELECT '', '', '', '', '', s.`dt_sintoma`, s.`ds_sintoma` FROM `sintoma` s JOIN `usuario_has_sintoma` u ON (s.`cd_sintoma` = u.`cd_sintoma`) WHERE u.`nm_email_usuario` = '$Email')) AS t3 WHERE GREATEST(t3.`dt_registro_agendamento`, t3.`dt_sintoma`) BETWEEN '$DataInicial' AND DATE_ADD('$DataFinal', INTERVAL 1 DAY) ORDER BY GREATEST(t3.`dt_registro_agendamento`, t3.`dt_sintoma`) DESC");
+        $SQL = $PDO->query("SELECT * FROM ((SELECT r.`dt_registro_agendamento`, m.`nm_medicamento`, m.`cd_forma_farmaceutica`, a.`qt_dosagem_medicamento`, r.`ic_tomado_registro_agendamento`, '' AS `dt_sintoma`, '' as `ds_sintoma` FROM `registro_agendamento` r JOIN `medicamento` m ON (r.`cd_medicamento` = m.`cd_medicamento`) JOIN `agendamento` a ON (r.`cd_agendamento` = a.`cd_agendamento`) WHERE r.`nm_email_usuario` = '$Email' AND r.`ic_tomado_registro_agendamento` IS NOT NULL AND r.`dt_registro_agendamento`) UNION ALL (SELECT '', '', '', '', '', s.`dt_sintoma`, s.`ds_sintoma` FROM `sintoma` s JOIN `usuario_has_sintoma` u ON (s.`cd_sintoma` = u.`cd_sintoma`) WHERE u.`nm_email_usuario` = '$Email')) AS t3 WHERE GREATEST(t3.`dt_registro_agendamento`, t3.`dt_sintoma`) BETWEEN '$DataInicial' AND DATE_ADD('$DataFinal', INTERVAL 1 DAY) ORDER BY GREATEST(t3.`dt_registro_agendamento`, t3.`dt_sintoma`) DESC");
 
         while($dados = $SQL->fetch())
         {
@@ -51,7 +51,6 @@
                 $Situacao = 'Sintomas';
                 $FormaFarmaceutica = null;
                 $Dosagem = null;
-
             }
 
             $Resposta[] = array(

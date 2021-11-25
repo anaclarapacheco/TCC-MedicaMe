@@ -178,6 +178,13 @@ export class RelatorioPage implements OnInit {
             document.getElementById('dPeriodo').classList.add('invisivel');
           }, 301);
         }
+
+        document.getElementById('rMeio').classList.remove('foila');
+
+        if(localStorage.getItem('emailDependente') != null)
+        {
+          document.getElementById('rMeio').classList.add('depMeio');
+        }
       });
 
       this.fechar();
@@ -282,6 +289,11 @@ export class RelatorioPage implements OnInit {
     this.nav.adicionarSintomas();
   }
 
+  historico()
+  {
+    this.nav.rHistorico();
+  }
+
   removDependente()
   {
     this.nav.rDependente();
@@ -321,6 +333,8 @@ export class RelatorioPage implements OnInit {
   //#region ViewWillEnter
   ionViewWillEnter()
   {
+    document.getElementById('rMeio').classList.add('foila');
+    document.getElementById('rMeio').classList.remove('depMeio');
     this.temNao = false;
     this.temRelatorio = false;
 
@@ -331,7 +345,6 @@ export class RelatorioPage implements OnInit {
     if(localStorage.getItem('emailDependente') != null && localStorage.getItem('emailDependente') != '')
     {
       document.getElementById('rDep').classList.remove('invisivel');
-      document.getElementById('rMeio').classList.add('depMeio');
       document.getElementById('rTabs').classList.add('invisivel');
       document.getElementById('rNav').classList.add('invisivel');
       document.getElementById('rContent').classList.add('baixoButton2');
@@ -342,8 +355,7 @@ export class RelatorioPage implements OnInit {
     else
     {
       document.getElementById('rDep').classList.add('invisivel');
-      document.getElementById('rMeio').classList.remove('depMeio');
-      document.getElementById('rTabs').classList.remove('invisivel');
+      document.getElementById('rTabs').classList.remove('invisivel')
       document.getElementById('rNav').classList.remove('invisivel');
       document.getElementById('rContent').classList.remove('baixoButton2');
 

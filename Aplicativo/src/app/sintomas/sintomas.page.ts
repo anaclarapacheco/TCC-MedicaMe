@@ -47,6 +47,10 @@ export class SintomasPage implements OnInit {
         this.nav.rHome();
         break;
 
+      case 'dHome':
+        this.nav.dHome();
+        break;
+
       case 'rLembretes':
         this.nav.rLembretes();
         break;
