@@ -98,7 +98,7 @@ export class RelatorioPage implements OnInit {
 
   fechar()
   {    
-    if(event.target == document.getElementById('pFundo') || event.target == document.getElementById('pBtn') || event.target == document.getElementById('pSpn'))
+    if(event.target == document.getElementById('pFundo'))
     {
       //Preparação
       document.getElementById('pFundo').classList.remove('InFundo');
@@ -142,12 +142,41 @@ export class RelatorioPage implements OnInit {
         {
           this.temRelatorio = true;
           this.temNao = false;
+
+          //Preparação
+          document.getElementById('pFundo').classList.remove('InFundo');
+          document.getElementById('pAlert').classList.remove('InAlerta');
+
+          //Animação
+          document.getElementById('pFundo').classList.add('OutFundo');
+          document.getElementById('pAlert').classList.add('OutAlerta');
+          
+          //Fecha
+          setTimeout(function()
+          {
+            document.getElementById('dPeriodo').classList.add('invisivel');
+          }, 301);
+
           this.puxar(res);
         }
         else
         {
           this.temRelatorio = false;
           this.temNao = true;
+
+          //Preparação
+          document.getElementById('pFundo').classList.remove('InFundo');
+          document.getElementById('pAlert').classList.remove('InAlerta');
+
+          //Animação
+          document.getElementById('pFundo').classList.add('OutFundo');
+          document.getElementById('pAlert').classList.add('OutAlerta');
+          
+          //Fecha
+          setTimeout(function()
+          {
+            document.getElementById('dPeriodo').classList.add('invisivel');
+          }, 301);
         }
       });
 
@@ -156,6 +185,7 @@ export class RelatorioPage implements OnInit {
   }
   //#endregion
 
+  //#region Puxar relatório
   puxar(res)
   {
     this.lista = res;
@@ -163,6 +193,7 @@ export class RelatorioPage implements OnInit {
 
     this.lista.forEach(l => {
       l['Dia'] = l['Dia'].substring(8, 10) + '/' + l['Dia'].substring(5, 7) + '/' + l['Dia'].substring(0, 4);
+      l['Horas'] = l['Horas'].substring(0, 2) + 'h' + l['Horas'].substring(3, 5);
 
       if(i > 0)
       {
@@ -181,8 +212,56 @@ export class RelatorioPage implements OnInit {
       }
 
       i++
+
+      if(l['Situacao'] != 'Sintomas')
+      {
+        if(l['FormaFarmaceutica'] == '4')
+        {
+          l['Dosagem'] = Math.trunc(l['Dosagem']);
+  
+          if(l['Dosagem'] > 1)
+          {
+            l['Dosagem'] +=' cápsulas';
+          }
+          else
+          {
+            l['Dosagem'] +=' cápsula';
+          }
+        }
+        else if(l['FormaFarmaceutica'] == '3')
+        {
+          l['Dosagem'] = Math.trunc(l['Dosagem']);
+  
+          if(l['Dosagem'] > 1)
+          {
+            l['Dosagem'] +=' comprimidos';
+          }
+          else
+          {
+            l['Dosagem'] +=' comprimido';
+          }
+        }
+        else if(l['FormaFarmaceutica'] == '2')
+        {
+          l['Dosagem'] = Math.trunc(l['Dosagem']);
+  
+          if(l['Dosagem'] > 1)
+          {
+            l['Dosagem'] +=' gotas';
+          }
+          else
+          {
+            l['Dosagem'] +=' gota';
+          }
+        }
+        else
+        {
+          l['Dosagem'] = l['Dosagem'].replace('.', ',') + 'ml';
+        }
+      }
     });
   }
+  //#endregion
 
   //#region Navegação
   tutorial()
@@ -242,6 +321,9 @@ export class RelatorioPage implements OnInit {
   //#region ViewWillEnter
   ionViewWillEnter()
   {
+    this.temNao = false;
+    this.temRelatorio = false;
+
     //Verificar Login
     this.servidor.verificar();
 

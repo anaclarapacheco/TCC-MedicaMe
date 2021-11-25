@@ -49,6 +49,7 @@ export class NovoLembretePage implements OnInit {
 
   //Extra
   public titulo: any;
+  public previsao: any;
 
   public check: any;
 
@@ -94,6 +95,7 @@ export class NovoLembretePage implements OnInit {
           document.getElementById('dois').classList.remove('invisivel');
           this.titulo = 'Período';
           this.txtBotao = 'Criar Lembrete';
+          this.horass();
         }
         else
         {
@@ -223,6 +225,30 @@ export class NovoLembretePage implements OnInit {
   }
   //#endregion
   
+  //#region Horas
+  horass()
+  {
+    if(this.horario != null && this.horas != 'vazio')
+    {
+      var data = new Date();
+      data.setHours(this.horario.substring(0, 2));
+      data.setMinutes(this.horario.substring(3, 5));
+    
+      this.previsao = this.horario;
+
+      for (let i = 1; i < (24 / this.horas); i++)
+      {
+        data.setHours(data.getHours() + parseInt(this.horas));
+        this.previsao += ' - ' + String(data.getHours()).padStart(2, '0') + ':' + String(data.getMinutes()).padEnd(2, '0');
+      }  
+    }
+    else
+    {
+      this.previsao = 'Horários em que o alareme será disparado';
+    }
+  }
+  //#endregion
+
   //#region Navegação
   voltar()
   {
@@ -281,6 +307,7 @@ export class NovoLembretePage implements OnInit {
         this.dataInicial = String(res[0]['DataInicial']).substring(0, 10);
         this.horario = String(res[0]['DataInicial']).substring(11, 16);
         this.horas = res[0]['Horas'];
+        this.horass();
 
         if(res[0]['Dosagem'] - Math.floor(res[0]['Dosagem']) == 0)
         {

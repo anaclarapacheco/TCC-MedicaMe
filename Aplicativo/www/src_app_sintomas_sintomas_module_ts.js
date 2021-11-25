@@ -129,8 +129,26 @@ let SintomasPage = class SintomasPage {
     //#region Navegação
     cancelar() {
         switch (localStorage.getItem('sintomas')) {
-            case 'dHome':
-                this.nav.dHome();
+            case 'rHome':
+                this.nav.rHome();
+                break;
+            case 'rLembretes':
+                this.nav.rLembretes();
+                break;
+            case 'rEstoque':
+                this.nav.rEstoque();
+                break;
+            case 'rDependentes':
+                this.nav.rDependentes();
+                break;
+            case 'rDependente':
+                this.nav.rDependente();
+                break;
+            case 'rRelatorio':
+                this.nav.rRelatorio();
+                break;
+            default:
+                this.nav.rHome();
                 break;
         }
         localStorage.removeItem('sintomas');
@@ -178,7 +196,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/*#region Geral*/\n.content {\n  overflow: hidden;\n}\n/*#endregion*/\n/*#region Top*/\n.top {\n  width: 80vw;\n  overflow: hidden;\n}\n.top img {\n  width: 80%;\n}\n/*#endregion*/\n/*#region Middle*/\n.mid {\n  width: 80vw;\n  overflow: hidden;\n}\n.mid h3, .mid button {\n  margin-top: 20px;\n  margin-bottom: 10px;\n}\n.mid h3 {\n  color: var(--white);\n  border-bottom-color: var(--white);\n  border-bottom-width: 3px;\n  border-bottom-style: solid;\n  line-height: 40px;\n  margin-bottom: 20px;\n}\n.mid textarea {\n  height: 200px;\n  resize: none;\n}\n.mid .aviso {\n  margin-top: 20px;\n}\n.mid button {\n  position: initial !important;\n}\n/*#endregion*/\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNpbnRvbWFzLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxnQkFBQTtBQUNBO0VBRUksZ0JBQUE7QUFBSjtBQUVBLGFBQUE7QUFFQSxjQUFBO0FBQ0E7RUFFSSxXQUFBO0VBQ0EsZ0JBQUE7QUFESjtBQUdJO0VBRUksVUFBQTtBQUZSO0FBS0EsYUFBQTtBQUVBLGlCQUFBO0FBQ0E7RUFFSSxXQUFBO0VBQ0EsZ0JBQUE7QUFKSjtBQU1JO0VBRUksZ0JBQUE7RUFDQSxtQkFBQTtBQUxSO0FBUUk7RUFFSSxtQkFBQTtFQUVBLGlDQUFBO0VBQ0Esd0JBQUE7RUFDQSwwQkFBQTtFQUVBLGlCQUFBO0VBRUEsbUJBQUE7QUFWUjtBQWFJO0VBRUksYUFBQTtFQUVBLFlBQUE7QUFiUjtBQWdCSTtFQUVJLGdCQUFBO0FBZlI7QUFrQkk7RUFFSSw0QkFBQTtBQWpCUjtBQW9CQSxhQUFBIiwiZmlsZSI6InNpbnRvbWFzLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qI3JlZ2lvbiBHZXJhbCovXHJcbi5jb250ZW50XHJcbntcclxuICAgIG92ZXJmbG93OiBoaWRkZW47XHJcbn1cclxuLyojZW5kcmVnaW9uKi9cclxuXHJcbi8qI3JlZ2lvbiBUb3AqL1xyXG4udG9wXHJcbntcclxuICAgIHdpZHRoOiA4MHZ3O1xyXG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcclxuXHJcbiAgICBpbWdcclxuICAgIHtcclxuICAgICAgICB3aWR0aDogODAlO1xyXG4gICAgfVxyXG59XHJcbi8qI2VuZHJlZ2lvbiovXHJcblxyXG4vKiNyZWdpb24gTWlkZGxlKi9cclxuLm1pZFxyXG57XHJcbiAgICB3aWR0aDogODB2dztcclxuICAgIG92ZXJmbG93OiBoaWRkZW47XHJcblxyXG4gICAgaDMsIGJ1dHRvblxyXG4gICAge1xyXG4gICAgICAgIG1hcmdpbi10b3A6IDIwcHg7XHJcbiAgICAgICAgbWFyZ2luLWJvdHRvbTogMTBweDtcclxuICAgIH1cclxuXHJcbiAgICBoM1xyXG4gICAge1xyXG4gICAgICAgIGNvbG9yOiB2YXIoLS13aGl0ZSk7XHJcbiAgICBcclxuICAgICAgICBib3JkZXItYm90dG9tLWNvbG9yOiB2YXIoLS13aGl0ZSk7XHJcbiAgICAgICAgYm9yZGVyLWJvdHRvbS13aWR0aDogM3B4O1xyXG4gICAgICAgIGJvcmRlci1ib3R0b20tc3R5bGU6IHNvbGlkO1xyXG5cclxuICAgICAgICBsaW5lLWhlaWdodDogNDBweDtcclxuXHJcbiAgICAgICAgbWFyZ2luLWJvdHRvbTogMjBweDtcclxuICAgIH1cclxuXHJcbiAgICB0ZXh0YXJlYVxyXG4gICAge1xyXG4gICAgICAgIGhlaWdodDogMjAwcHg7XHJcblxyXG4gICAgICAgIHJlc2l6ZTogbm9uZTtcclxuICAgIH1cclxuXHJcbiAgICAuYXZpc29cclxuICAgIHtcclxuICAgICAgICBtYXJnaW4tdG9wOiAyMHB4O1xyXG4gICAgfVxyXG5cclxuICAgIGJ1dHRvblxyXG4gICAge1xyXG4gICAgICAgIHBvc2l0aW9uOiBpbml0aWFsICFpbXBvcnRhbnQ7XHJcbiAgICB9XHJcbn1cclxuLyojZW5kcmVnaW9uKi9cclxuIl19 */");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/*#region Geral*/\n.content {\n  overflow: hidden;\n}\n/*#endregion*/\n/*#region Top*/\n.top {\n  width: 80vw;\n  overflow: hidden;\n}\n.top img {\n  width: 80%;\n}\n/*#endregion*/\n/*#region Middle*/\n.mid {\n  width: 80vw;\n  overflow: hidden;\n}\n.mid h3 {\n  color: var(--white);\n  border-bottom-color: var(--white);\n  border-bottom-width: 3px;\n  border-bottom-style: solid;\n  line-height: 40px;\n  margin-top: 20px;\n  margin-bottom: 20px;\n}\n.mid textarea {\n  height: 200px;\n  resize: none;\n}\n.mid .aviso {\n  margin-top: 20px;\n}\n.mid button {\n  position: initial !important;\n  margin-top: 30px;\n}\n/*#endregion*/\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNpbnRvbWFzLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxnQkFBQTtBQUNBO0VBRUksZ0JBQUE7QUFBSjtBQUVBLGFBQUE7QUFFQSxjQUFBO0FBQ0E7RUFFSSxXQUFBO0VBQ0EsZ0JBQUE7QUFESjtBQUdJO0VBRUksVUFBQTtBQUZSO0FBS0EsYUFBQTtBQUVBLGlCQUFBO0FBQ0E7RUFFSSxXQUFBO0VBQ0EsZ0JBQUE7QUFKSjtBQU1JO0VBRUksbUJBQUE7RUFFQSxpQ0FBQTtFQUNBLHdCQUFBO0VBQ0EsMEJBQUE7RUFFQSxpQkFBQTtFQUVBLGdCQUFBO0VBQ0EsbUJBQUE7QUFSUjtBQVdJO0VBRUksYUFBQTtFQUVBLFlBQUE7QUFYUjtBQWNJO0VBRUksZ0JBQUE7QUFiUjtBQWdCSTtFQUVJLDRCQUFBO0VBRUEsZ0JBQUE7QUFoQlI7QUFtQkEsYUFBQSIsImZpbGUiOiJzaW50b21hcy5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiNyZWdpb24gR2VyYWwqL1xyXG4uY29udGVudFxyXG57XHJcbiAgICBvdmVyZmxvdzogaGlkZGVuO1xyXG59XHJcbi8qI2VuZHJlZ2lvbiovXHJcblxyXG4vKiNyZWdpb24gVG9wKi9cclxuLnRvcFxyXG57XHJcbiAgICB3aWR0aDogODB2dztcclxuICAgIG92ZXJmbG93OiBoaWRkZW47XHJcblxyXG4gICAgaW1nXHJcbiAgICB7XHJcbiAgICAgICAgd2lkdGg6IDgwJTtcclxuICAgIH1cclxufVxyXG4vKiNlbmRyZWdpb24qL1xyXG5cclxuLyojcmVnaW9uIE1pZGRsZSovXHJcbi5taWRcclxue1xyXG4gICAgd2lkdGg6IDgwdnc7XHJcbiAgICBvdmVyZmxvdzogaGlkZGVuO1xyXG5cclxuICAgIGgzXHJcbiAgICB7XHJcbiAgICAgICAgY29sb3I6IHZhcigtLXdoaXRlKTtcclxuICAgIFxyXG4gICAgICAgIGJvcmRlci1ib3R0b20tY29sb3I6IHZhcigtLXdoaXRlKTtcclxuICAgICAgICBib3JkZXItYm90dG9tLXdpZHRoOiAzcHg7XHJcbiAgICAgICAgYm9yZGVyLWJvdHRvbS1zdHlsZTogc29saWQ7XHJcblxyXG4gICAgICAgIGxpbmUtaGVpZ2h0OiA0MHB4O1xyXG5cclxuICAgICAgICBtYXJnaW4tdG9wOiAyMHB4O1xyXG4gICAgICAgIG1hcmdpbi1ib3R0b206IDIwcHg7XHJcbiAgICB9XHJcblxyXG4gICAgdGV4dGFyZWFcclxuICAgIHtcclxuICAgICAgICBoZWlnaHQ6IDIwMHB4O1xyXG5cclxuICAgICAgICByZXNpemU6IG5vbmU7XHJcbiAgICB9XHJcblxyXG4gICAgLmF2aXNvXHJcbiAgICB7XHJcbiAgICAgICAgbWFyZ2luLXRvcDogMjBweDtcclxuICAgIH1cclxuXHJcbiAgICBidXR0b25cclxuICAgIHtcclxuICAgICAgICBwb3NpdGlvbjogaW5pdGlhbCAhaW1wb3J0YW50O1xyXG5cclxuICAgICAgICBtYXJnaW4tdG9wOiAzMHB4O1xyXG4gICAgfVxyXG59XHJcbi8qI2VuZHJlZ2lvbiovXHJcbiJdfQ== */");
 
 /***/ }),
 
@@ -193,7 +211,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\r\n  <div class=\"card full flex\">\r\n    <div class=\"content\">\r\n      <div class=\"top full flex\">\r\n        <img src=\"../../../assets/IMG/Logo/Light (Simples).png\" alt=\"Logo do aplicativo: MedicaMe\">\r\n      </div>\r\n      \r\n      <div class=\"mid full flex\">\r\n        <h3 class=\"line centerA\">Como está se sentindo?</h3>\r\n        <textarea class=\"input\" [(ngModel)]=\"sintoma\" placeholder=\"EX: Hoje eu me senti enjoado...\"></textarea>\r\n        <p id=\"erroSintoma\" class=\"aviso invisivel\">Preencha o campo, por favor!</p>\r\n\r\n        <button (click)=\"adicionarSintoma()\" class=\"important\">Adicionar sintoma</button>\r\n        <button (click)=\"cancelar()\" class=\"normal\">Cancelar</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</ion-content>\r\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\r\n  <div class=\"card full flex\">\r\n    <div class=\"content\">\r\n      <div class=\"top full flex\">\r\n        <img src=\"../../../assets/IMG/Logo/Light (Simples).png\" alt=\"Logo do aplicativo: MedicaMe\">\r\n      </div>\r\n      \r\n      <div class=\"mid full flex\">\r\n        <h3 class=\"line centerA\">Como está se sentindo?</h3>\r\n        <textarea class=\"input\" [(ngModel)]=\"sintoma\" placeholder=\"EX: Hoje eu me senti enjoado...\" maxlength=\"400\"></textarea>\r\n        <p id=\"erroSintoma\" class=\"aviso invisivel\">Preencha o campo, por favor!</p>\r\n\r\n        <button (click)=\"adicionarSintoma()\" class=\"important\">Adicionar sintoma</button>\r\n        <button (click)=\"cancelar()\" class=\"normal\">Cancelar</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</ion-content>\r\n");
 
 /***/ })
 

@@ -110,6 +110,7 @@ let NovoLembretePage = class NovoLembretePage {
         this.nav = nav;
         this.servidor = servidor;
         this.descricao = '';
+        this.dias = '';
         this.listaFarma = [];
         //Mudando titulo
         this.titulo = 'Informações do medicamento';
@@ -132,7 +133,7 @@ let NovoLembretePage = class NovoLembretePage {
             document.getElementById('avisoUm').classList.remove('invisivel');
         }
         else if (localStorage.getItem('agendamento') != null && localStorage.getItem('agendamento') != '') {
-            //Trocnado pro 2
+            //Trocando pro 2
             document.getElementById('um').classList.add('invisivel');
             document.getElementById('dois').classList.remove('invisivel');
             this.titulo = 'Período';
@@ -148,6 +149,7 @@ let NovoLembretePage = class NovoLembretePage {
                     document.getElementById('dois').classList.remove('invisivel');
                     this.titulo = 'Período';
                     this.txtBotao = 'Criar Lembrete';
+                    this.horass();
                 }
                 else {
                     this.txtAvisoUm = 'Erro na hora de criar o lembrete!';
@@ -157,56 +159,110 @@ let NovoLembretePage = class NovoLembretePage {
         }
     }
     //#endregion
+    //#region Mudanças
+    change() {
+        if (this.check == true) {
+            this.dias = '';
+            document.getElementById('qtDias').setAttribute('disabled', 'true');
+        }
+        else {
+            document.getElementById('qtDias').removeAttribute('disabled');
+        }
+    }
+    //#endregion
     //#region Criar lembrete
     criar() {
         //Verificação dos valores
         document.getElementById('avisoDois').classList.add('invisivel');
-        if (this.dataFinal == null && this.dias != null) {
-            this.dataFinal = 'null';
-        }
-        else if (this.dataFinal == null && this.dias == null) {
-            this.dataFinal = 'null';
-            this.dias = 'null';
-        }
-        else if (this.dataFinal != null && this.dias == null) {
-            this.dataFinal = this.dataFinal + ' ' + this.horario + ':00';
-            this.dias = 'null';
+        if (this.check == true) {
+            if (this.dataInicial == '' || this.horas == 'vazio' || this.horario == '' || this.quantidadeAtual == '' || this.quantidadeMinima == '' || this.dataInicial == null || this.horario == null || this.quantidadeAtual == null || this.quantidadeMinima == null) {
+                this.txtAvisoDois = 'O preenchimento dos campos: Data inicial, Vezes ao dia, Horário inicial, Quantidade atual e Quantidade mínima, são obrigatórios!';
+                document.getElementById('avisoDois').classList.remove('invisivel');
+            }
+            else if (this.quantidadeAtual <= this.quantidadeMinima) {
+                this.txtAvisoDois = 'A quantidade atual tem que ser maior que a quantidade mínima, digite novamente!';
+                document.getElementById('avisoDois').classList.remove('invisivel');
+            }
+            else if (localStorage.getItem('agendamento') != null && localStorage.getItem('agendamento') != '') {
+                //Enviando ao PHP
+                let dados = 'phpNomeMedicamento=' + this.nomeMedicamento + '&phpFormaFarmaceutica=' + this.formaFarma + '&phpDescricao=' + this.descricao + '&phpDosagem=' + this.dosagem + '&phpDataInicial=' + this.dataInicial.substring(0, 10) + ' ' + this.horario + ':00' + '&phpDias=null' + '&phpHoras=' + this.horas + '&phpQuantidadeAtual=' + this.quantidadeAtual + '&phpQuantidadeMinima=' + this.quantidadeMinima + '&phpEmail=' + this.email + '&phpCodigo=' + localStorage.getItem('agendamento');
+                this.servidor.enviar('Responsavel/Novo Lembrete/atualizar.php', dados).subscribe(res => {
+                    if (res[0]['Erro'] == false) {
+                        this.cancelar();
+                    }
+                    else {
+                        this.txtAvisoDois = 'Erro na hora de atualizar o lembrete!';
+                        document.getElementById('avisoDois').classList.remove('invisivel');
+                    }
+                });
+            }
+            else {
+                //Enviando ao PHP
+                let dados = 'phpDataInicial=' + this.dataInicial.substring(0, 10) + ' ' + this.horario + ':00' + '&phpDias=null' + '&phpHoras=' + this.horas + '&phpQuantidadeAtual=' + this.quantidadeAtual + '&phpQuantidadeMinima=' + this.quantidadeMinima + '&phpEmail=' + this.email;
+                this.servidor.enviar('Responsavel/Novo Lembrete/main pt2.php', dados).subscribe(res => {
+                    if (res[0]['Erro'] == false) {
+                        this.cancelar();
+                    }
+                    else {
+                        this.txtAvisoDois = 'Erro na hora de criar o lembrete!';
+                        document.getElementById('avisoDois').classList.remove('invisivel');
+                    }
+                });
+            }
         }
         else {
-            this.dataFinal = this.dataFinal + ' ' + this.horario + ':00';
+            if (this.dataInicial == '' || this.dias == '' || this.horas == 'vazio' || this.horario == '' || this.quantidadeAtual == '' || this.quantidadeMinima == '' || this.dataInicial == null || this.dias == null || this.horario == null || this.quantidadeAtual == null || this.quantidadeMinima == null) {
+                this.txtAvisoDois = 'O preenchimento dos campos: Data inicial, Quantidade de dias, Vezes ao dia, Horário inicial, Quantidade atual e Quantidade mínima, são obrigatórios!';
+                document.getElementById('avisoDois').classList.remove('invisivel');
+            }
+            else if (this.quantidadeAtual <= this.quantidadeMinima) {
+                this.txtAvisoDois = 'A quantidade atual tem que ser maior que a quantidade mínima, digite novamente!';
+                document.getElementById('avisoDois').classList.remove('invisivel');
+            }
+            else if (localStorage.getItem('agendamento') != null && localStorage.getItem('agendamento') != '') {
+                //Enviando ao PHP
+                let dados = 'phpNomeMedicamento=' + this.nomeMedicamento + '&phpFormaFarmaceutica=' + this.formaFarma + '&phpDescricao=' + this.descricao + '&phpDosagem=' + this.dosagem + '&phpDataInicial=' + this.dataInicial.substring(0, 10) + ' ' + this.horario + ':00' + '&phpDias=' + this.dias + '&phpHoras=' + this.horas + '&phpQuantidadeAtual=' + this.quantidadeAtual + '&phpQuantidadeMinima=' + this.quantidadeMinima + '&phpEmail=' + this.email + '&phpCodigo=' + localStorage.getItem('agendamento');
+                this.servidor.enviar('Responsavel/Novo Lembrete/atualizar.php', dados).subscribe(res => {
+                    if (res[0]['Erro'] == false) {
+                        this.cancelar();
+                    }
+                    else {
+                        this.txtAvisoDois = 'Erro na hora de atualizar o lembrete!';
+                        document.getElementById('avisoDois').classList.remove('invisivel');
+                    }
+                });
+            }
+            else {
+                //Enviando ao PHP
+                let dados = 'phpDataInicial=' + this.dataInicial.substring(0, 10) + ' ' + this.horario + ':00' + '&phpDias=' + this.dias + '&phpHoras=' + this.horas + '&phpQuantidadeAtual=' + this.quantidadeAtual + '&phpQuantidadeMinima=' + this.quantidadeMinima + '&phpEmail=' + this.email;
+                this.servidor.enviar('Responsavel/Novo Lembrete/main pt2.php', dados).subscribe(res => {
+                    if (res[0]['Erro'] == false) {
+                        this.cancelar();
+                    }
+                    else {
+                        this.txtAvisoDois = 'Erro na hora de criar o lembrete!';
+                        document.getElementById('avisoDois').classList.remove('invisivel');
+                    }
+                });
+            }
         }
-        if (this.dataInicial == '' || this.dataFinal == '' || this.dias == '' || this.horario == '' || this.horas == 'vazio' || this.quantidadeAtual == '' || this.quantidadeMinima == '' || this.dataInicial == null || this.dataFinal == null || this.dias == null || this.horario == null || this.quantidadeAtual == null || this.quantidadeMinima == null) {
-            this.txtAvisoDois = 'O preenchimento dos campos: Data Inicial, Horário inicial, Vezes ao dia, Horas, Quantidade Atual e Quantidade mínima, são obrigatórios!';
-            document.getElementById('avisoDois').classList.remove('invisivel');
-        }
-        else if (localStorage.getItem('agendamento') != null && localStorage.getItem('agendamento') != '') {
-            //Enviando ao PHP
-            let dados = 'phpNomeMedicamento=' + this.nomeMedicamento + '&phpFormaFarmaceutica=' + this.formaFarma + '&phpDescricao=' + this.descricao + '&phpDosagem=' + this.dosagem + '&phpDataInicial=' + this.dataInicial.substring(0, 10) + ' ' + this.horario + ':00' + '&phpDataFinal=' + this.dataFinal.substring(0, 10) + '&phpDias=' + this.dias + '&phpHoras=' + this.horas + '&phpQuantidadeAtual=' + this.quantidadeAtual + '&phpQuantidadeMinima=' + this.quantidadeMinima + '&phpEmail=' + this.email + '&phpCodigo=' + localStorage.getItem('agendamento');
-            this.servidor.enviar('Responsavel/Novo Lembrete/atualizar.php', dados).subscribe(res => {
-                if (res[0]['Erro'] == false) {
-                    this.cancelar();
-                }
-                else {
-                    this.txtAvisoDois = 'Erro na hora de criar o lembrete!';
-                    document.getElementById('avisoDois').classList.remove('invisivel');
-                }
-            });
+    }
+    //#endregion
+    //#region Horas
+    horass() {
+        if (this.horario != null && this.horas != 'vazio') {
+            var data = new Date();
+            data.setHours(this.horario.substring(0, 2));
+            data.setMinutes(this.horario.substring(3, 5));
+            this.previsao = this.horario;
+            for (let i = 1; i < (24 / this.horas); i++) {
+                data.setHours(data.getHours() + parseInt(this.horas));
+                this.previsao += ' - ' + String(data.getHours()).padStart(2, '0') + ':' + String(data.getMinutes()).padEnd(2, '0');
+            }
         }
         else {
-            //Enviando ao PHP
-            let dados = 'phpDataInicial=' + this.dataInicial.substring(0, 10) + ' ' + this.horario + ':00' + '&phpDataFinal=' + this.dataFinal.substring(0, 10) + '&phpDias=' + this.dias + '&phpHoras=' + this.horas + '&phpQuantidadeAtual=' + this.quantidadeAtual + '&phpQuantidadeMinima=' + this.quantidadeMinima + '&phpEmail=' + this.email;
-            this.servidor.enviar('Responsavel/Novo Lembrete/main pt2.php', dados).subscribe(res => {
-                if (res[0]['Erro'] == false) {
-                    this.cancelar();
-                }
-                else {
-                    this.txtAvisoDois = 'Erro na hora de criar o lembrete!';
-                    document.getElementById('avisoDois').classList.remove('invisivel');
-                }
-            });
+            this.previsao = 'Horários em que o alareme será disparado';
         }
-        this.dataFinal = null;
-        this.dias = null;
     }
     //#endregion
     //#region Navegação
@@ -249,15 +305,36 @@ let NovoLembretePage = class NovoLembretePage {
                 //Botando na tela
                 this.nomeMedicamento = res[0]['Nome'];
                 this.formaFarma = res[0]['FormaFarmaceutica'];
-                this.dosagem = res[0]['Dosagem'];
                 this.descricao = res[0]['Descricao'];
                 this.dataInicial = String(res[0]['DataInicial']).substring(0, 10);
-                this.dataFinal = String(res[0]['DataFinal']).substring(0, 10);
-                this.dias = res[0]['Dias'];
                 this.horario = String(res[0]['DataInicial']).substring(11, 16);
                 this.horas = res[0]['Horas'];
-                this.quantidadeAtual = res[0]['QuantidadeAtual'];
-                this.quantidadeMinima = res[0]['QuantidadeMinima'];
+                this.horass();
+                if (res[0]['Dosagem'] - Math.floor(res[0]['Dosagem']) == 0) {
+                    this.dosagem = Math.trunc(res[0]['Dosagem']);
+                }
+                else {
+                    this.dosagem = res[0]['Dosagem'];
+                }
+                if (res[0]['QuantidadeAtual'] - Math.floor(res[0]['QuantidadeAtual']) == 0) {
+                    this.quantidadeAtual = Math.trunc(res[0]['QuantidadeAtual']);
+                }
+                else {
+                    this.quantidadeAtual = res[0]['QuantidadeAtual'];
+                }
+                if (res[0]['QuantidadeMinima'] - Math.floor(res[0]['QuantidadeMinima']) == 0) {
+                    this.quantidadeMinima = Math.trunc(res[0]['QuantidadeMinima']);
+                }
+                else {
+                    this.quantidadeMinima = res[0]['QuantidadeMinima'];
+                }
+                if (res[0]['Dias'] == null) {
+                    this.check = true;
+                    this.change();
+                }
+                else {
+                    this.dias = res[0]['Dias'];
+                }
             });
         }
     }
@@ -291,7 +368,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/*#region Geral*/\n.content {\n  overflow: hidden;\n}\n/*#endregion*/\n/*#region Top*/\n.top {\n  width: 80vw;\n  overflow: hidden;\n  border-bottom-color: var(--white);\n  border-bottom-width: 3px;\n  border-bottom-style: solid;\n}\n.top h3 {\n  color: var(--white);\n  margin-top: 20px;\n  margin-bottom: 10px;\n}\n.top img {\n  width: 80%;\n}\n/*#endregion*/\n/*#region Middle*/\n.mid {\n  width: 80vw;\n  padding-bottom: 10px;\n  overflow: scroll;\n}\n.mid .bloco {\n  width: 45%;\n}\n.mid .bloco:nth-of-type(1), .mid .bloco:nth-of-type(3) {\n  margin-right: 10%;\n}\n.mid span, .mid h3 {\n  margin-top: 20px;\n  margin-bottom: 10px;\n}\n.mid button {\n  margin-top: 20px;\n}\n.mid span, .mid h3 {\n  color: var(--white);\n}\n.mid h3 {\n  border-bottom-color: var(--white);\n  border-bottom-width: 3px;\n  border-bottom-style: solid;\n  line-height: 40px;\n  margin-bottom: 20px;\n}\n.mid .no {\n  margin-bottom: 0px;\n}\n.mid textarea {\n  height: 80px;\n  resize: none;\n}\n.mid .important {\n  position: inherit;\n}\n.mid .important span {\n  position: relative;\n  left: 13px;\n}\n.mid .important svg {\n  height: 20px;\n  position: relative;\n  right: -32%;\n  border-radius: 10px;\n  fill: var(--dark-space-cadet);\n}\n.mid .normal {\n  box-sizing: border-box;\n}\n.mid .normal span {\n  position: relative;\n  left: 15px;\n}\n.mid .normal svg {\n  height: 20px;\n  position: relative;\n  left: -51%;\n  border-radius: 10px;\n  fill: var(--white);\n  transform: rotate(180deg);\n}\n.mid .normal .aviso {\n  margin-top: 20px;\n}\n/*#endregion*/\n#um {\n  min-height: 74vh;\n  padding-bottom: 5px;\n  overflow: hidden;\n}\n#dois {\n  min-height: 80vh;\n  padding-bottom: 5px;\n  overflow: hidden;\n}\n#dois .data {\n  padding-left: 0px !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm5vdm8tbGVtYnJldGUucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLGdCQUFBO0FBQ0E7RUFFSSxnQkFBQTtBQUFKO0FBRUEsYUFBQTtBQUVBLGNBQUE7QUFDQTtFQUVJLFdBQUE7RUFDQSxnQkFBQTtFQUVBLGlDQUFBO0VBQ0Esd0JBQUE7RUFDQSwwQkFBQTtBQUZKO0FBSUk7RUFFSSxtQkFBQTtFQUVBLGdCQUFBO0VBQ0EsbUJBQUE7QUFKUjtBQU9JO0VBRUksVUFBQTtBQU5SO0FBU0EsYUFBQTtBQUVBLGlCQUFBO0FBQ0E7RUFFSSxXQUFBO0VBQ0Esb0JBQUE7RUFDQSxnQkFBQTtBQVJKO0FBVUk7RUFFSSxVQUFBO0FBVFI7QUFZSTtFQUVJLGlCQUFBO0FBWFI7QUFjSTtFQUVJLGdCQUFBO0VBQ0EsbUJBQUE7QUFiUjtBQWdCSTtFQUVJLGdCQUFBO0FBZlI7QUFrQkk7RUFFSSxtQkFBQTtBQWpCUjtBQW9CSTtFQUVJLGlDQUFBO0VBQ0Esd0JBQUE7RUFDQSwwQkFBQTtFQUVBLGlCQUFBO0VBRUEsbUJBQUE7QUFyQlI7QUF3Qkk7RUFFSSxrQkFBQTtBQXZCUjtBQTBCSTtFQUVJLFlBQUE7RUFFQSxZQUFBO0FBMUJSO0FBNkJJO0VBRUksaUJBQUE7QUE1QlI7QUE4QlE7RUFFSSxrQkFBQTtFQUNBLFVBQUE7QUE3Qlo7QUFnQ1E7RUFFSSxZQUFBO0VBRUEsa0JBQUE7RUFDQSxXQUFBO0VBRUEsbUJBQUE7RUFFQSw2QkFBQTtBQWxDWjtBQXNDSTtFQUVJLHNCQUFBO0FBckNSO0FBdUNRO0VBRUksa0JBQUE7RUFDQSxVQUFBO0FBdENaO0FBeUNRO0VBRUksWUFBQTtFQUVBLGtCQUFBO0VBQ0EsVUFBQTtFQUVBLG1CQUFBO0VBRUEsa0JBQUE7RUFFQSx5QkFBQTtBQTVDWjtBQStDUTtFQUVJLGdCQUFBO0FBOUNaO0FBa0RBLGFBQUE7QUFHQTtFQUVJLGdCQUFBO0VBRUEsbUJBQUE7RUFFQSxnQkFBQTtBQXBESjtBQXVEQTtFQUVJLGdCQUFBO0VBRUEsbUJBQUE7RUFFQSxnQkFBQTtBQXZESjtBQXlESTtFQUVJLDRCQUFBO0FBeERSIiwiZmlsZSI6Im5vdm8tbGVtYnJldGUucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLyojcmVnaW9uIEdlcmFsKi9cclxuLmNvbnRlbnRcclxue1xyXG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcclxufVxyXG4vKiNlbmRyZWdpb24qL1xyXG5cclxuLyojcmVnaW9uIFRvcCovXHJcbi50b3Bcclxue1xyXG4gICAgd2lkdGg6IDgwdnc7XHJcbiAgICBvdmVyZmxvdzogaGlkZGVuO1xyXG5cclxuICAgIGJvcmRlci1ib3R0b20tY29sb3I6IHZhcigtLXdoaXRlKTtcclxuICAgIGJvcmRlci1ib3R0b20td2lkdGg6IDNweDtcclxuICAgIGJvcmRlci1ib3R0b20tc3R5bGU6IHNvbGlkO1xyXG5cclxuICAgIGgzXHJcbiAgICB7XHJcbiAgICAgICAgY29sb3I6IHZhcigtLXdoaXRlKTtcclxuXHJcbiAgICAgICAgbWFyZ2luLXRvcDogMjBweDtcclxuICAgICAgICBtYXJnaW4tYm90dG9tOiAxMHB4O1xyXG4gICAgfVxyXG5cclxuICAgIGltZ1xyXG4gICAge1xyXG4gICAgICAgIHdpZHRoOiA4MCU7XHJcbiAgICB9XHJcbn1cclxuLyojZW5kcmVnaW9uKi9cclxuXHJcbi8qI3JlZ2lvbiBNaWRkbGUqL1xyXG4ubWlkXHJcbntcclxuICAgIHdpZHRoOiA4MHZ3O1xyXG4gICAgcGFkZGluZy1ib3R0b206IDEwcHg7XHJcbiAgICBvdmVyZmxvdzogc2Nyb2xsO1xyXG5cclxuICAgIC5ibG9jb1xyXG4gICAge1xyXG4gICAgICAgIHdpZHRoOiA0NSU7XHJcbiAgICB9XHJcblxyXG4gICAgLmJsb2NvOm50aC1vZi10eXBlKDEpLCAuYmxvY286bnRoLW9mLXR5cGUoMylcclxuICAgIHtcclxuICAgICAgICBtYXJnaW4tcmlnaHQ6IDEwJTtcclxuICAgIH1cclxuXHJcbiAgICBzcGFuLCBoM1xyXG4gICAge1xyXG4gICAgICAgIG1hcmdpbi10b3A6IDIwcHg7XHJcbiAgICAgICAgbWFyZ2luLWJvdHRvbTogMTBweDtcclxuICAgIH1cclxuXHJcbiAgICBidXR0b25cclxuICAgIHtcclxuICAgICAgICBtYXJnaW4tdG9wOiAyMHB4O1xyXG4gICAgfVxyXG5cclxuICAgIHNwYW4sIGgzXHJcbiAgICB7XHJcbiAgICAgICAgY29sb3I6IHZhcigtLXdoaXRlKTtcclxuICAgIH1cclxuXHJcbiAgICBoM1xyXG4gICAge1xyXG4gICAgICAgIGJvcmRlci1ib3R0b20tY29sb3I6IHZhcigtLXdoaXRlKTtcclxuICAgICAgICBib3JkZXItYm90dG9tLXdpZHRoOiAzcHg7XHJcbiAgICAgICAgYm9yZGVyLWJvdHRvbS1zdHlsZTogc29saWQ7XHJcblxyXG4gICAgICAgIGxpbmUtaGVpZ2h0OiA0MHB4O1xyXG5cclxuICAgICAgICBtYXJnaW4tYm90dG9tOiAyMHB4O1xyXG4gICAgfVxyXG5cclxuICAgIC5ub1xyXG4gICAge1xyXG4gICAgICAgIG1hcmdpbi1ib3R0b206IDBweDtcclxuICAgIH1cclxuXHJcbiAgICB0ZXh0YXJlYVxyXG4gICAge1xyXG4gICAgICAgIGhlaWdodDogODBweDtcclxuXHJcbiAgICAgICAgcmVzaXplOiBub25lO1xyXG4gICAgfVxyXG5cclxuICAgIC5pbXBvcnRhbnRcclxuICAgIHtcclxuICAgICAgICBwb3NpdGlvbjogaW5oZXJpdDtcclxuXHJcbiAgICAgICAgc3BhblxyXG4gICAgICAgIHtcclxuICAgICAgICAgICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gICAgICAgICAgICBsZWZ0OiAxM3B4O1xyXG4gICAgICAgIH1cclxuICAgICAgICBcclxuICAgICAgICBzdmdcclxuICAgICAgICB7XHJcbiAgICAgICAgICAgIGhlaWdodDogMjBweDtcclxuXHJcbiAgICAgICAgICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgICAgICAgICAgcmlnaHQ6IC0zMiU7XHJcblxyXG4gICAgICAgICAgICBib3JkZXItcmFkaXVzOiAxMHB4O1xyXG4gICAgICAgICAgICBcclxuICAgICAgICAgICAgZmlsbDogdmFyKC0tZGFyay1zcGFjZS1jYWRldCk7XHJcbiAgICAgICAgfVxyXG4gICAgfVxyXG5cclxuICAgIC5ub3JtYWxcclxuICAgIHtcclxuICAgICAgICBib3gtc2l6aW5nOiBib3JkZXItYm94O1xyXG5cclxuICAgICAgICBzcGFuXHJcbiAgICAgICAge1xyXG4gICAgICAgICAgICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgICAgICAgICAgIGxlZnQ6IDE1cHg7XHJcbiAgICAgICAgfVxyXG5cclxuICAgICAgICBzdmdcclxuICAgICAgICB7XHJcbiAgICAgICAgICAgIGhlaWdodDogMjBweDtcclxuXHJcbiAgICAgICAgICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgICAgICAgICAgbGVmdDogLTUxJTtcclxuXHJcbiAgICAgICAgICAgIGJvcmRlci1yYWRpdXM6IDEwcHg7XHJcbiAgICAgICAgICAgICAgICBcclxuICAgICAgICAgICAgZmlsbDogdmFyKC0td2hpdGUpO1xyXG5cclxuICAgICAgICAgICAgdHJhbnNmb3JtOiByb3RhdGUoMTgwZGVnKTtcclxuICAgICAgICB9XHJcblxyXG4gICAgICAgIC5hdmlzb1xyXG4gICAgICAgIHtcclxuICAgICAgICAgICAgbWFyZ2luLXRvcDogMjBweDtcclxuICAgICAgICB9XHJcbiAgICB9XHJcbn1cclxuLyojZW5kcmVnaW9uKi9cclxuXHJcbi8vI3JlZ2lvbiBVbSBlIERvaXNcclxuI3VtXHJcbntcclxuICAgIG1pbi1oZWlnaHQ6IDc0dmg7XHJcblxyXG4gICAgcGFkZGluZy1ib3R0b206IDVweDtcclxuXHJcbiAgICBvdmVyZmxvdzogaGlkZGVuO1xyXG59XHJcblxyXG4jZG9pc1xyXG57XHJcbiAgICBtaW4taGVpZ2h0OiA4MHZoO1xyXG5cclxuICAgIHBhZGRpbmctYm90dG9tOiA1cHg7XHJcblxyXG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcclxuXHJcbiAgICAuZGF0YVxyXG4gICAge1xyXG4gICAgICAgIHBhZGRpbmctbGVmdDogMHB4ICFpbXBvcnRhbnQ7XHJcbiAgICB9XHJcbn1cclxuLy8jZW5kcmVnaW9uXHJcbiJdfQ== */");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/*#region Geral*/\n.content {\n  overflow: hidden;\n}\n/*#endregion*/\n/*#region Top*/\n.top {\n  width: 80vw;\n  overflow: hidden;\n  border-bottom-color: var(--white);\n  border-bottom-width: 3px;\n  border-bottom-style: solid;\n}\n.top h3 {\n  color: var(--white);\n  margin-top: 20px;\n  margin-bottom: 10px;\n}\n.top img {\n  width: 80%;\n}\n/*#endregion*/\n/*#region Middle*/\n.mid {\n  width: 80vw;\n  padding-bottom: 10px;\n  overflow: scroll;\n}\n.mid .bloco {\n  width: 45%;\n}\n.mid .bloco:nth-of-type(1), .mid .bloco:nth-of-type(4) {\n  margin-right: 10%;\n}\n.mid .check {\n  width: 45%;\n  margin-top: 10px;\n  margin-left: 55%;\n}\n.mid .check input {\n  width: 15px;\n  height: 15px;\n}\n.mid .check p {\n  margin-left: 10px;\n}\n.mid span, .mid h3 {\n  margin-top: 20px;\n  margin-bottom: 10px;\n}\n.mid button {\n  margin-top: 20px;\n}\n.mid span, .mid h3 {\n  color: var(--white);\n}\n.mid h3 {\n  border-bottom-color: var(--white);\n  border-bottom-width: 3px;\n  border-bottom-style: solid;\n  line-height: 40px;\n  margin-bottom: 20px;\n}\n.mid .no {\n  margin-bottom: 0px;\n}\n.mid textarea {\n  height: 80px;\n  resize: none;\n}\n.mid .important {\n  position: inherit;\n}\n.mid .important span {\n  position: relative;\n  left: 13px;\n}\n.mid .important svg {\n  height: 20px;\n  position: relative;\n  right: -32%;\n  border-radius: 10px;\n  fill: var(--dark-space-cadet);\n}\n.mid .normal {\n  box-sizing: border-box;\n}\n.mid .normal span {\n  position: relative;\n  left: 15px;\n}\n.mid .normal svg {\n  height: 20px;\n  position: relative;\n  left: -51%;\n  border-radius: 10px;\n  fill: var(--white);\n  transform: rotate(180deg);\n}\n.mid .aviso {\n  margin-top: 20px;\n}\n/*#endregion*/\n#um {\n  min-height: 74vh;\n  padding-bottom: 5px;\n  overflow: hidden;\n}\n#dois {\n  min-height: 80vh;\n  padding-bottom: 5px;\n  overflow: hidden;\n}\n#dois .data {\n  padding-left: 0px !important;\n}\n#dois .horas {\n  background-color: var(--state-blue);\n  width: 100%;\n  min-height: 20px;\n  margin: 30px 0px 0px 0px;\n  padding: 10px;\n  border-radius: 10px;\n  overflow: hidden;\n  font-family: \"Saira\";\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm5vdm8tbGVtYnJldGUucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLGdCQUFBO0FBQ0E7RUFFSSxnQkFBQTtBQUFKO0FBRUEsYUFBQTtBQUVBLGNBQUE7QUFDQTtFQUVJLFdBQUE7RUFDQSxnQkFBQTtFQUVBLGlDQUFBO0VBQ0Esd0JBQUE7RUFDQSwwQkFBQTtBQUZKO0FBSUk7RUFFSSxtQkFBQTtFQUVBLGdCQUFBO0VBQ0EsbUJBQUE7QUFKUjtBQU9JO0VBRUksVUFBQTtBQU5SO0FBU0EsYUFBQTtBQUVBLGlCQUFBO0FBQ0E7RUFFSSxXQUFBO0VBQ0Esb0JBQUE7RUFDQSxnQkFBQTtBQVJKO0FBVUk7RUFFSSxVQUFBO0FBVFI7QUFZSTtFQUVJLGlCQUFBO0FBWFI7QUFjSTtFQUVJLFVBQUE7RUFDQSxnQkFBQTtFQUNBLGdCQUFBO0FBYlI7QUFlUTtFQUVJLFdBQUE7RUFDQSxZQUFBO0FBZFo7QUFpQlE7RUFFSSxpQkFBQTtBQWhCWjtBQW9CSTtFQUVJLGdCQUFBO0VBQ0EsbUJBQUE7QUFuQlI7QUFzQkk7RUFFSSxnQkFBQTtBQXJCUjtBQXdCSTtFQUVJLG1CQUFBO0FBdkJSO0FBMEJJO0VBRUksaUNBQUE7RUFDQSx3QkFBQTtFQUNBLDBCQUFBO0VBRUEsaUJBQUE7RUFFQSxtQkFBQTtBQTNCUjtBQThCSTtFQUVJLGtCQUFBO0FBN0JSO0FBZ0NJO0VBRUksWUFBQTtFQUVBLFlBQUE7QUFoQ1I7QUFtQ0k7RUFFSSxpQkFBQTtBQWxDUjtBQW9DUTtFQUVJLGtCQUFBO0VBQ0EsVUFBQTtBQW5DWjtBQXNDUTtFQUVJLFlBQUE7RUFFQSxrQkFBQTtFQUNBLFdBQUE7RUFFQSxtQkFBQTtFQUVBLDZCQUFBO0FBeENaO0FBNENJO0VBRUksc0JBQUE7QUEzQ1I7QUE2Q1E7RUFFSSxrQkFBQTtFQUNBLFVBQUE7QUE1Q1o7QUErQ1E7RUFFSSxZQUFBO0VBRUEsa0JBQUE7RUFDQSxVQUFBO0VBRUEsbUJBQUE7RUFFQSxrQkFBQTtFQUVBLHlCQUFBO0FBbERaO0FBc0RJO0VBRUksZ0JBQUE7QUFyRFI7QUF3REEsYUFBQTtBQUdBO0VBRUksZ0JBQUE7RUFFQSxtQkFBQTtFQUVBLGdCQUFBO0FBMURKO0FBNkRBO0VBRUksZ0JBQUE7RUFFQSxtQkFBQTtFQUVBLGdCQUFBO0FBN0RKO0FBK0RJO0VBRUksNEJBQUE7QUE5RFI7QUFpRUk7RUFFSSxtQ0FBQTtFQUNBLFdBQUE7RUFDQSxnQkFBQTtFQUVBLHdCQUFBO0VBQ0EsYUFBQTtFQUVBLG1CQUFBO0VBRUEsZ0JBQUE7RUFFQSxvQkFBQTtBQXBFUiIsImZpbGUiOiJub3ZvLWxlbWJyZXRlLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qI3JlZ2lvbiBHZXJhbCovXHJcbi5jb250ZW50XHJcbntcclxuICAgIG92ZXJmbG93OiBoaWRkZW47XHJcbn1cclxuLyojZW5kcmVnaW9uKi9cclxuXHJcbi8qI3JlZ2lvbiBUb3AqL1xyXG4udG9wXHJcbntcclxuICAgIHdpZHRoOiA4MHZ3O1xyXG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcclxuXHJcbiAgICBib3JkZXItYm90dG9tLWNvbG9yOiB2YXIoLS13aGl0ZSk7XHJcbiAgICBib3JkZXItYm90dG9tLXdpZHRoOiAzcHg7XHJcbiAgICBib3JkZXItYm90dG9tLXN0eWxlOiBzb2xpZDtcclxuXHJcbiAgICBoM1xyXG4gICAge1xyXG4gICAgICAgIGNvbG9yOiB2YXIoLS13aGl0ZSk7XHJcblxyXG4gICAgICAgIG1hcmdpbi10b3A6IDIwcHg7XHJcbiAgICAgICAgbWFyZ2luLWJvdHRvbTogMTBweDtcclxuICAgIH1cclxuXHJcbiAgICBpbWdcclxuICAgIHtcclxuICAgICAgICB3aWR0aDogODAlO1xyXG4gICAgfVxyXG59XHJcbi8qI2VuZHJlZ2lvbiovXHJcblxyXG4vKiNyZWdpb24gTWlkZGxlKi9cclxuLm1pZFxyXG57XHJcbiAgICB3aWR0aDogODB2dztcclxuICAgIHBhZGRpbmctYm90dG9tOiAxMHB4O1xyXG4gICAgb3ZlcmZsb3c6IHNjcm9sbDtcclxuXHJcbiAgICAuYmxvY29cclxuICAgIHtcclxuICAgICAgICB3aWR0aDogNDUlO1xyXG4gICAgfVxyXG5cclxuICAgIC5ibG9jbzpudGgtb2YtdHlwZSgxKSwgLmJsb2NvOm50aC1vZi10eXBlKDQpXHJcbiAgICB7XHJcbiAgICAgICAgbWFyZ2luLXJpZ2h0OiAxMCU7XHJcbiAgICB9XHJcblxyXG4gICAgLmNoZWNrXHJcbiAgICB7XHJcbiAgICAgICAgd2lkdGg6IDQ1JTtcclxuICAgICAgICBtYXJnaW4tdG9wOiAxMHB4O1xyXG4gICAgICAgIG1hcmdpbi1sZWZ0OiA1NSU7XHJcblxyXG4gICAgICAgIGlucHV0XHJcbiAgICAgICAge1xyXG4gICAgICAgICAgICB3aWR0aDogMTVweDtcclxuICAgICAgICAgICAgaGVpZ2h0OiAxNXB4O1xyXG4gICAgICAgIH1cclxuXHJcbiAgICAgICAgcFxyXG4gICAgICAgIHtcclxuICAgICAgICAgICAgbWFyZ2luLWxlZnQ6IDEwcHg7XHJcbiAgICAgICAgfVxyXG4gICAgfVxyXG5cclxuICAgIHNwYW4sIGgzXHJcbiAgICB7XHJcbiAgICAgICAgbWFyZ2luLXRvcDogMjBweDtcclxuICAgICAgICBtYXJnaW4tYm90dG9tOiAxMHB4O1xyXG4gICAgfVxyXG5cclxuICAgIGJ1dHRvblxyXG4gICAge1xyXG4gICAgICAgIG1hcmdpbi10b3A6IDIwcHg7XHJcbiAgICB9XHJcblxyXG4gICAgc3BhbiwgaDNcclxuICAgIHtcclxuICAgICAgICBjb2xvcjogdmFyKC0td2hpdGUpO1xyXG4gICAgfVxyXG5cclxuICAgIGgzXHJcbiAgICB7XHJcbiAgICAgICAgYm9yZGVyLWJvdHRvbS1jb2xvcjogdmFyKC0td2hpdGUpO1xyXG4gICAgICAgIGJvcmRlci1ib3R0b20td2lkdGg6IDNweDtcclxuICAgICAgICBib3JkZXItYm90dG9tLXN0eWxlOiBzb2xpZDtcclxuXHJcbiAgICAgICAgbGluZS1oZWlnaHQ6IDQwcHg7XHJcblxyXG4gICAgICAgIG1hcmdpbi1ib3R0b206IDIwcHg7XHJcbiAgICB9XHJcblxyXG4gICAgLm5vXHJcbiAgICB7XHJcbiAgICAgICAgbWFyZ2luLWJvdHRvbTogMHB4O1xyXG4gICAgfVxyXG5cclxuICAgIHRleHRhcmVhXHJcbiAgICB7XHJcbiAgICAgICAgaGVpZ2h0OiA4MHB4O1xyXG5cclxuICAgICAgICByZXNpemU6IG5vbmU7XHJcbiAgICB9XHJcblxyXG4gICAgLmltcG9ydGFudFxyXG4gICAge1xyXG4gICAgICAgIHBvc2l0aW9uOiBpbmhlcml0O1xyXG5cclxuICAgICAgICBzcGFuXHJcbiAgICAgICAge1xyXG4gICAgICAgICAgICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgICAgICAgICAgIGxlZnQ6IDEzcHg7XHJcbiAgICAgICAgfVxyXG4gICAgICAgIFxyXG4gICAgICAgIHN2Z1xyXG4gICAgICAgIHtcclxuICAgICAgICAgICAgaGVpZ2h0OiAyMHB4O1xyXG5cclxuICAgICAgICAgICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gICAgICAgICAgICByaWdodDogLTMyJTtcclxuXHJcbiAgICAgICAgICAgIGJvcmRlci1yYWRpdXM6IDEwcHg7XHJcbiAgICAgICAgICAgIFxyXG4gICAgICAgICAgICBmaWxsOiB2YXIoLS1kYXJrLXNwYWNlLWNhZGV0KTtcclxuICAgICAgICB9XHJcbiAgICB9XHJcblxyXG4gICAgLm5vcm1hbFxyXG4gICAge1xyXG4gICAgICAgIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XHJcblxyXG4gICAgICAgIHNwYW5cclxuICAgICAgICB7XHJcbiAgICAgICAgICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgICAgICAgICAgbGVmdDogMTVweDtcclxuICAgICAgICB9XHJcblxyXG4gICAgICAgIHN2Z1xyXG4gICAgICAgIHtcclxuICAgICAgICAgICAgaGVpZ2h0OiAyMHB4O1xyXG5cclxuICAgICAgICAgICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gICAgICAgICAgICBsZWZ0OiAtNTElO1xyXG5cclxuICAgICAgICAgICAgYm9yZGVyLXJhZGl1czogMTBweDtcclxuICAgICAgICAgICAgICAgIFxyXG4gICAgICAgICAgICBmaWxsOiB2YXIoLS13aGl0ZSk7XHJcblxyXG4gICAgICAgICAgICB0cmFuc2Zvcm06IHJvdGF0ZSgxODBkZWcpO1xyXG4gICAgICAgIH1cclxuICAgIH1cclxuXHJcbiAgICAuYXZpc29cclxuICAgIHtcclxuICAgICAgICBtYXJnaW4tdG9wOiAyMHB4O1xyXG4gICAgfVxyXG59XHJcbi8qI2VuZHJlZ2lvbiovXHJcblxyXG4vLyNyZWdpb24gVW0gZSBEb2lzXHJcbiN1bVxyXG57XHJcbiAgICBtaW4taGVpZ2h0OiA3NHZoO1xyXG5cclxuICAgIHBhZGRpbmctYm90dG9tOiA1cHg7XHJcblxyXG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcclxufVxyXG5cclxuI2RvaXNcclxue1xyXG4gICAgbWluLWhlaWdodDogODB2aDtcclxuXHJcbiAgICBwYWRkaW5nLWJvdHRvbTogNXB4O1xyXG5cclxuICAgIG92ZXJmbG93OiBoaWRkZW47XHJcblxyXG4gICAgLmRhdGFcclxuICAgIHtcclxuICAgICAgICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xyXG4gICAgfVxyXG5cclxuICAgIC5ob3Jhc1xyXG4gICAge1xyXG4gICAgICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXN0YXRlLWJsdWUpO1xyXG4gICAgICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgICAgIG1pbi1oZWlnaHQ6IDIwcHg7XHJcblxyXG4gICAgICAgIG1hcmdpbjogMzBweCAwcHggMHB4IDBweDtcclxuICAgICAgICBwYWRkaW5nOiAxMHB4O1xyXG5cclxuICAgICAgICBib3JkZXItcmFkaXVzOiAxMHB4O1xyXG5cclxuICAgICAgICBvdmVyZmxvdzogaGlkZGVuO1xyXG5cclxuICAgICAgICBmb250LWZhbWlseTogJ1NhaXJhJztcclxuICAgIH1cclxufVxyXG4vLyNlbmRyZWdpb25cclxuIl19 */");
 
 /***/ }),
 
@@ -306,7 +383,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\r\n  <div class=\"card full flex\">\r\n    <div class=\"content\">\r\n      <div class=\"top full flex\">\r\n        <img src=\"../../../assets/IMG/Logo/Light (Simples).png\" alt=\"Logo do aplicativo: MedicaMe\">\r\n        <h3 class=\"line\">{{titulo}}</h3>\r\n      </div>\r\n      \r\n      <div class=\"mid full flex\">\r\n        <div id=\"um\" class=\"full flex\">\r\n          <span class=\"line leftA\">Nome do medicamento</span>\r\n          <input [(ngModel)]=\"nomeMedicamento\" type=\"text\" class=\"input\">\r\n  \r\n          <span class=\"line leftA\">Forma farmacêutica</span>\r\n          <select [(ngModel)]=\"formaFarma\" class=\"input\">\r\n            <option value=\"vazio\"></option>\r\n            <option *ngFor=\"let l of listaFarma\" [ngValue]=\"l.Codigo\">{{l.Nome}}</option>\r\n          </select> \r\n  \r\n          <span class=\"line leftA\">Dosagem</span>\r\n          <input [(ngModel)]=\"dosagem\" type=\"number\" class=\"input\">\r\n  \r\n          <h3 class=\"line centerA\">Descrição</h3>\r\n          <textarea [(ngModel)]=\"descricao\" class=\"input\"></textarea>\r\n          <p id=\"avisoUm\" class=\"aviso invisivel\">{{txtAvisoUm}}</p>\r\n\r\n          <button (click)=\"proximo()\" class=\"important full flex\">\r\n            <span>Próximo</span>\r\n            <svg viewBox=\"0 0 24 24\">\r\n              <path d=\"M0 3.795l2.995-2.98 11.132 11.185-11.132 11.186-2.995-2.981 8.167-8.205-8.167-8.205zm18.04 8.205l-8.167 8.205 2.995 2.98 11.132-11.185-11.132-11.186-2.995 2.98 8.167 8.206z\"/>\r\n            </svg>\r\n          </button>\r\n          <button (click)=\"cancelar()\" class=\"normal\">Cancelar</button>\r\n        </div>\r\n  \r\n        <div id=\"dois\" class=\"full flex invisivel\">\r\n          <div class=\"bloco flex\">\r\n            <span class=\"line leftA\">Ínicio</span>\r\n            <div class=\"data input\">\r\n              <ion-item class=\"input\">\r\n                <ion-datetime [(ngModel)]=\"dataInicial\" displayFormat=\"DD/MM/YYYY\" min=\"{{minimo}}\" max=\"{{maximo}}\"></ion-datetime>\r\n              </ion-item>\r\n            </div>\r\n          </div>\r\n\r\n           <div class=\"bloco flex\">\r\n            <span class=\"line leftA\">Final</span>\r\n            <div class=\"data input\">\r\n              <ion-item class=\"input\">\r\n                <ion-datetime [(ngModel)]=\"dataFinal\" displayFormat=\"DD/MM/YYYY\" min=\"{{minimo}}\" max=\"{{maximo}}\"></ion-datetime>\r\n              </ion-item>\r\n            </div>\r\n          </div>\r\n\r\n          <span class=\"line leftA\">Quantidade de Dias</span>\r\n          <input [(ngModel)]=\"dias\" type=\"number\" class=\"input\">\r\n\r\n          <div class=\"bloco flex\">\r\n            <span class=\"line leftA\">Horário Inicial</span>\r\n            <input [(ngModel)]=\"horario\" type=\"time\" class=\"input\">\r\n          </div>\r\n\r\n          <div class=\"bloco flex\">\r\n            <span class=\"line leftA\">Vezes ao dia</span>\r\n            <select [(ngModel)]=\"horas\" class=\"input\">\r\n              <option value=\"vazio\"></option>\r\n              <option value=\"24\">Uma vez</option>\r\n              <option value=\"12\">Duas vezes</option>\r\n              <option value=\"8\">Três vezes</option>\r\n              <option value=\"4\">Quatro vezes</option>\r\n            </select> \r\n          </div>          \r\n  \r\n          <h3 class=\"line centerA no\">Estoque</h3>\r\n          <span class=\"line leftA\">Quantidade atual</span>\r\n          <input [(ngModel)]=\"quantidadeAtual\" type=\"number\" class=\"input\">\r\n\r\n          <span class=\"line leftA\">Quantidade mínima (notificação)</span>\r\n          <input [(ngModel)]=\"quantidadeMinima\" type=\"number\" class=\"input\">\r\n\r\n          <p id=\"avisoDois\" class=\"aviso invisivel\">{{txtAvisoDois}}</p>\r\n\r\n          <button (click)=\"criar()\" class=\"important\">{{txtBotao}}</button>\r\n\r\n          <button (click)=\"voltar()\" class=\"normal full flex\">\r\n            <span>Voltar</span>\r\n            <svg viewBox=\"0 0 24 24\">\r\n              <path d=\"M0 3.795l2.995-2.98 11.132 11.185-11.132 11.186-2.995-2.981 8.167-8.205-8.167-8.205zm18.04 8.205l-8.167 8.205 2.995 2.98 11.132-11.185-11.132-11.186-2.995 2.98 8.167 8.206z\"/>\r\n            </svg>\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</ion-content>\r\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\r\n  <div class=\"card full flex\">\r\n    <div class=\"content\">\r\n      <div class=\"top full flex\">\r\n        <img src=\"../../../assets/IMG/Logo/Light (Simples).png\" alt=\"Logo do aplicativo: MedicaMe\">\r\n        <h3 class=\"line\">{{titulo}}</h3>\r\n      </div>\r\n      \r\n      <div class=\"mid full flex\">\r\n        <div id=\"um\" class=\"full flex\">\r\n          <span class=\"line leftA\">Nome do medicamento</span>\r\n          <input [(ngModel)]=\"nomeMedicamento\" type=\"text\" class=\"input\" maxlength=\"100\">\r\n  \r\n          <span class=\"line leftA\">Forma farmacêutica</span>\r\n          <select [(ngModel)]=\"formaFarma\" class=\"input\">\r\n            <option value=\"vazio\"></option>\r\n            <option *ngFor=\"let l of listaFarma\" [ngValue]=\"l.Codigo\">{{l.Nome}}</option>\r\n          </select> \r\n  \r\n          <span class=\"line leftA\">Dosagem</span>\r\n          <input [(ngModel)]=\"dosagem\" type=\"decimal\" maxlength=\"9\" class=\"input\">\r\n  \r\n          <h3 class=\"line centerA\">Observação</h3>\r\n          <textarea [(ngModel)]=\"descricao\" class=\"input\" maxlength=\"300\"></textarea>\r\n          <p id=\"avisoUm\" class=\"aviso invisivel\">{{txtAvisoUm}}</p>\r\n\r\n          <button (click)=\"proximo()\" class=\"important full flex\">\r\n            <span>Próximo</span>\r\n            <svg viewBox=\"0 0 24 24\">\r\n              <path d=\"M0 3.795l2.995-2.98 11.132 11.185-11.132 11.186-2.995-2.981 8.167-8.205-8.167-8.205zm18.04 8.205l-8.167 8.205 2.995 2.98 11.132-11.185-11.132-11.186-2.995 2.98 8.167 8.206z\"/>\r\n            </svg>\r\n          </button>\r\n          <button (click)=\"cancelar()\" class=\"normal\">Cancelar</button>\r\n        </div>\r\n  \r\n        <div id=\"dois\" class=\"full flex invisivel\">\r\n          <div class=\"bloco flex\">\r\n            <span class=\"line leftA\">Data Inicial</span>\r\n            <input type=\"date\" [(ngModel)]=\"dataInicial\" min=\"{{minimo}}\" max=\"{{maximo}}\" class=\"input\">\r\n          </div>\r\n\r\n           <div class=\"bloco flex\">\r\n            <span class=\"line leftA\">Quantidade de Dias</span>\r\n            <input id=\"qtDias\" [(ngModel)]=\"dias\" type=\"decimal\" maxlength=\"3\" class=\"input\">\r\n          </div>\r\n\r\n          <div class=\"check vertical flex\">\r\n            <input [(ngModel)]=\"check\" (change)=\"change()\" type=\"checkbox\"> <p>Sem data final</p>\r\n          </div>\r\n\r\n          <div class=\"bloco flex\">\r\n            <span class=\"line leftA\">Vezes ao dia</span>\r\n            <select [(ngModel)]=\"horas\" class=\"input\" (change)=\"horass()\">\r\n              <option value=\"vazio\"></option>\r\n              <option value=\"24\">Uma vez</option>\r\n              <option value=\"12\">Duas vezes</option>\r\n              <option value=\"8\">Três vezes</option>\r\n              <option value=\"6\">Quatro vezes</option>\r\n            </select> \r\n          </div>\r\n          \r\n          <div class=\"bloco flex\">\r\n            <span class=\"line leftA\">Horário Inicial</span>\r\n            <input [(ngModel)]=\"horario\" type=\"time\" class=\"input\" (change)=\"horass()\">\r\n          </div>\r\n\r\n          <div class=\"horas full flex\">\r\n            <p>{{previsao}}</p>\r\n          </div>\r\n  \r\n          <h3 class=\"line centerA no\">Estoque</h3>\r\n          <span class=\"line leftA\">Quantidade atual</span>\r\n          <input [(ngModel)]=\"quantidadeAtual\" type=\"decimal\" maxlength=\"9\" class=\"input\">\r\n\r\n          <span class=\"line leftA\">Quantidade mínima (notificação)</span>\r\n          <input [(ngModel)]=\"quantidadeMinima\" type=\"decimal\" maxlength=\"9\" class=\"input\">\r\n\r\n          <p id=\"avisoDois\" class=\"aviso invisivel\">{{txtAvisoDois}}</p>\r\n\r\n          <button (click)=\"criar()\" class=\"important\">{{txtBotao}}</button>\r\n\r\n          <button (click)=\"voltar()\" class=\"normal full flex\">\r\n            <span>Voltar</span>\r\n            <svg viewBox=\"0 0 24 24\">\r\n              <path d=\"M0 3.795l2.995-2.98 11.132 11.185-11.132 11.186-2.995-2.981 8.167-8.205-8.167-8.205zm18.04 8.205l-8.167 8.205 2.995 2.98 11.132-11.185-11.132-11.186-2.995 2.98 8.167 8.206z\"/>\r\n            </svg>\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</ion-content>\r\n");
 
 /***/ })
 

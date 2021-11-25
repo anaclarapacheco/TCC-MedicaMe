@@ -53,6 +53,22 @@
             $SQL = $PDO->query("UPDATE `agendamento` SET `dt_final_agendamento` = null, `qt_dias_agendamento` = null WHERE `cd_agendamento` = '$Codigo'");
         }
 
+        $SQL = $PDO->query("SELECT `cd_medicamento` FROM `medicamento` WHERE `nm_medicamento` = '$NomeMedicamento' AND `cd_forma_farmaceutica` = '$FormaFarmaceutica'");
+        $CodigoMedicamento = $SQL->fetch()['cd_medicamento'];
+
+        $SQL = $PDO->query("SELECT IFNULL(MAX(`cd_medicamento`) + 1, 1) FROM `medicamento`");
+        $MaxMedicamento = $SQL->fetch()['IFNULL(MAX(`cd_medicamento`) + 1, 1)'];
+
+        if($CodigoMedicamento == null)
+        {
+            $SQL = $PDO->query("INSERT INTO `medicamento` VALUES ('$MaxMedicamento', '$NomeMedicamento', '$FormaFarmaceutica')");
+            $SQL = $PDO->query("UPDATE `agendamento` SET `cd_medicamento` = '$MaxMedicamento' WHERE `cd_agendamento` = '$Codigo'");
+        }
+        else
+        {
+            $SQL = $PDO->query("UPDATE `agendamento` SET `cd_medicamento` = '$CodigoMedicamento' WHERE cd_agendamento = '$Codigo'");
+        }    
+
         $SQL = $PDO->query("SELECT `dt_final_agendamento` FROM `agendamento` WHERE `cd_agendamento` = '$Codigo'");
         $DataFinal = $SQL->fetch()["dt_final_agendamento"];
 

@@ -1267,6 +1267,9 @@ sub {
   background-color: var(--dark-space-cadet);
   color: var(--white);
 }
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
 h3 {
   font-family: "Saira Bold";
   font-size: 1.3em;
@@ -1421,6 +1424,21 @@ button {
 .aviso {
   font-family: "Saira Italic";
   color: var(--red) !important;
+}
+.olho {
+  background-color: var(--state-blue);
+  width: 15%;
+  height: 40px;
+  margin: 0px !important;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 4px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 4px;
+  box-shadow: none;
+}
+.olho svg {
+  fill: var(--white);
+  width: 80%;
 }
 /*#endregion*/
 /*#region Card*/

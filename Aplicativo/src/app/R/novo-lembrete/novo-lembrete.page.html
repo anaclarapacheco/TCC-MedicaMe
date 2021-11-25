@@ -50,19 +50,23 @@
 
           <div class="bloco flex">
             <span class="line leftA">Vezes ao dia</span>
-            <select [(ngModel)]="horas" class="input">
+            <select [(ngModel)]="horas" class="input" (change)="horass()">
               <option value="vazio"></option>
               <option value="24">Uma vez</option>
               <option value="12">Duas vezes</option>
               <option value="8">Três vezes</option>
-              <option value="4">Quatro vezes</option>
+              <option value="6">Quatro vezes</option>
             </select> 
           </div>
           
           <div class="bloco flex">
             <span class="line leftA">Horário Inicial</span>
-            <input [(ngModel)]="horario" type="time" class="input">
-          </div>          
+            <input [(ngModel)]="horario" type="time" class="input" (change)="horass()">
+          </div>
+
+          <div class="horas full flex">
+            <p>{{previsao}}</p>
+          </div>
   
           <h3 class="line centerA no">Estoque</h3>
           <span class="line leftA">Quantidade atual</span>
