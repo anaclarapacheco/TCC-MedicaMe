@@ -15,14 +15,16 @@
       </svg>
     </div>
 
-    <div>
+    <div class="content line full flex">
       <div *ngFor="let l of lista">
-        <h3 *ngIf="l.Letra != null">{{l.Letra}}</h3>
+        <h3 *ngIf="l.Letra != null" class="leftA">{{l.Letra}}</h3>
 
-        <div>
-          <img src="../../../assets/IMG/Icon/{{l.FormaFarma}}.png">
+        <div class="bloco full flex">
+          <div class="bot full flex">
+            <img src="../../../assets/IMG/Icon/{{l.FormaFarma}}.png">
+          </div>
 
-          <div>
+          <div class="bot full flex">
             <h3>{{l.Nome}}</h3>
           </div>
         </div>

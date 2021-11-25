@@ -28,10 +28,9 @@ export class HistoricoPage implements OnInit {
       {
         this.lista = res;
         let letraAtual = '';
+        let i = 0;
 
         this.lista.forEach(l => {
-          let i = 0;
-
           if(i > 0)
           {
             if(l['Letra'] == letraAtual)
@@ -43,7 +42,11 @@ export class HistoricoPage implements OnInit {
           {
             letraAtual = l['Letra'];
           }
+
+          i++
         });
+
+        console.log(this.lista);
       }
     })
   }
