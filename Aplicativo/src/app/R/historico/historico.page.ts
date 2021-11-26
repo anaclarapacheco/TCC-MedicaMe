@@ -15,7 +15,11 @@ export class HistoricoPage implements OnInit {
   public email: any;
   public nomeDependente: any;
 
+  public temLista: any;
+  public temListaNao: any;
+
   public lista: any;
+  public ordem: any = [null];
   //#endregion
   
   //#region Carregar
@@ -26,27 +30,14 @@ export class HistoricoPage implements OnInit {
     this.servidor.enviar('Responsavel/Relatorio/historico.php', dados).subscribe(res =>{
       if(res[0]['Erro'] != true)
       {
+        this.temLista = true;
+        this.temListaNao = false;
         this.lista = res;
-        let letraAtual = '';
-        let i = 0;
-
-        this.lista.forEach(l => {
-          if(i > 0)
-          {
-            if(l['Letra'] == letraAtual)
-            {
-              l['Letra'] = null;
-            }
-          }
-          else
-          {
-            letraAtual = l['Letra'];
-          }
-
-          i++
-        });
-
-        console.log(this.lista);
+      }
+      else
+      {
+        this.temLista = false;
+        this.temListaNao = true;
       }
     })
   }

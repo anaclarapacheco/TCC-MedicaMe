@@ -132,6 +132,9 @@ let SintomasPage = class SintomasPage {
             case 'rHome':
                 this.nav.rHome();
                 break;
+            case 'dHome':
+                this.nav.dHome();
+                break;
             case 'rLembretes':
                 this.nav.rLembretes();
                 break;

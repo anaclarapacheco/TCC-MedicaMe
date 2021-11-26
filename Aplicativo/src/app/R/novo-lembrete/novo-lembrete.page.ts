@@ -143,7 +143,7 @@ export class NovoLembretePage implements OnInit {
       else if(localStorage.getItem('agendamento') != null && localStorage.getItem('agendamento') != '')
       {
         //Enviando ao PHP
-        let dados = 'phpNomeMedicamento=' + this.nomeMedicamento + '&phpFormaFarmaceutica=' + this.formaFarma + '&phpDescricao=' + this.descricao + '&phpDosagem=' + this.dosagem + '&phpDataInicial=' + this.dataInicial.substring(0, 10) + ' ' + this.horario + ':00' + '&phpDias=null' + '&phpHoras=' + this.horas + '&phpQuantidadeAtual=' + this.quantidadeAtual.replace(',', '.') + '&phpQuantidadeMinima=' + this.quantidadeMinima.replace(',', '.') + '&phpEmail=' + this.email + '&phpCodigo=' + localStorage.getItem('agendamento');
+        let dados = 'phpNomeMedicamento=' + this.nomeMedicamento + '&phpFormaFarmaceutica=' + this.formaFarma + '&phpDescricao=' + this.descricao + '&phpDosagem=' + this.dosagem + '&phpDataInicial=' + this.dataInicial.substring(0, 10) + ' ' + this.horario + ':00' + '&phpDias=null' + '&phpHoras=' + this.horas + '&phpQuantidadeAtual=' + this.quantidadeAtual + '&phpQuantidadeMinima=' + this.quantidadeMinima + '&phpEmail=' + this.email + '&phpCodigo=' + localStorage.getItem('agendamento');
         
         this.servidor.enviar('Responsavel/Novo Lembrete/atualizar.php', dados).subscribe(res => {
           if(res[0]['Erro'] == false)
@@ -160,7 +160,7 @@ export class NovoLembretePage implements OnInit {
       else
       {
         //Enviando ao PHP
-        let dados = 'phpDataInicial=' + this.dataInicial.substring(0, 10) + ' ' + this.horario + ':00' + '&phpDias=null' + '&phpHoras=' + this.horas + '&phpQuantidadeAtual=' + this.quantidadeAtual.replace(',', '.') + '&phpQuantidadeMinima=' + this.quantidadeMinima.replace(',', '.') + '&phpEmail=' + this.email;
+        let dados = 'phpDataInicial=' + this.dataInicial.substring(0, 10) + ' ' + this.horario + ':00' + '&phpDias=null' + '&phpHoras=' + this.horas + '&phpQuantidadeAtual=' + this.quantidadeAtual + '&phpQuantidadeMinima=' + this.quantidadeMinima + '&phpEmail=' + this.email;
 
         this.servidor.enviar('Responsavel/Novo Lembrete/main pt2.php', dados).subscribe(res => {
           if(res[0]['Erro'] == false)
@@ -190,7 +190,7 @@ export class NovoLembretePage implements OnInit {
       else if(localStorage.getItem('agendamento') != null && localStorage.getItem('agendamento') != '')
       {
         //Enviando ao PHP
-        let dados = 'phpNomeMedicamento=' + this.nomeMedicamento + '&phpFormaFarmaceutica=' + this.formaFarma + '&phpDescricao=' + this.descricao + '&phpDosagem=' + this.dosagem + '&phpDataInicial=' + this.dataInicial.substring(0, 10) + ' ' + this.horario + ':00' + '&phpDias=' + this.dias + '&phpHoras=' + this.horas + '&phpQuantidadeAtual=' + this.quantidadeAtual.replace(',', '.') + '&phpQuantidadeMinima=' + this.quantidadeMinima.replace(',', '.') + '&phpEmail=' + this.email + '&phpCodigo=' + localStorage.getItem('agendamento');
+        let dados = 'phpNomeMedicamento=' + this.nomeMedicamento + '&phpFormaFarmaceutica=' + this.formaFarma + '&phpDescricao=' + this.descricao + '&phpDosagem=' + this.dosagem + '&phpDataInicial=' + this.dataInicial.substring(0, 10) + ' ' + this.horario + ':00' + '&phpDias=' + this.dias + '&phpHoras=' + this.horas + '&phpQuantidadeAtual=' + this.quantidadeAtual + '&phpQuantidadeMinima=' + this.quantidadeMinima + '&phpEmail=' + this.email + '&phpCodigo=' + localStorage.getItem('agendamento');
         
         this.servidor.enviar('Responsavel/Novo Lembrete/atualizar.php', dados).subscribe(res => {
           if(res[0]['Erro'] == false)
@@ -207,7 +207,7 @@ export class NovoLembretePage implements OnInit {
       else
       {
         //Enviando ao PHP
-        let dados = 'phpDataInicial=' + this.dataInicial.substring(0, 10) + ' ' + this.horario + ':00' + '&phpDias=' + this.dias + '&phpHoras=' + this.horas + '&phpQuantidadeAtual=' + this.quantidadeAtual.replace(',', '.') + '&phpQuantidadeMinima=' + this.quantidadeMinima.replace(',', '.') + '&phpEmail=' + this.email;
+        let dados = 'phpDataInicial=' + this.dataInicial.substring(0, 10) + ' ' + this.horario + ':00' + '&phpDias=' + this.dias + '&phpHoras=' + this.horas + '&phpQuantidadeAtual=' + this.quantidadeAtual + '&phpQuantidadeMinima=' + this.quantidadeMinima + '&phpEmail=' + this.email;
 
         this.servidor.enviar('Responsavel/Novo Lembrete/main pt2.php', dados).subscribe(res => {
           if(res[0]['Erro'] == false)

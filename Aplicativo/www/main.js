@@ -115,7 +115,7 @@ const routes = [
     },
     {
         path: 'R/historico',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_R_historico_historico_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./R/historico/historico.module */ 96513)).then(m => m.HistoricoPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_R_historico_historico_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./R/historico/historico.module */ 96513)).then(m => m.HistoricoPageModule)
     },
 ];
 let AppRoutingModule = class AppRoutingModule {

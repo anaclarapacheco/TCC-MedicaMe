@@ -509,6 +509,9 @@ let NavegationService = class NavegationService {
     rRelatorio() {
         this.navCtrl.navigateForward('R/relatorio');
     }
+    rHistorico() {
+        this.navCtrl.navigateForward('R/historico');
+    }
     //#endregion
     //#region Dependete
     dTutorial() {

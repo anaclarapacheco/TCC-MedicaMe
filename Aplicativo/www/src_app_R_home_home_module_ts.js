@@ -172,6 +172,7 @@ let HomePage = class HomePage {
         this.servidor.enviar('Home/pendente.php', dados).subscribe(res => {
             if (res[0].Erro != true) {
                 this.temPendente = true;
+                this.temMedicNao = false;
                 this.pendentes = res;
                 this.pendentes.forEach(medic => {
                     if (medic['FormaFarmaceutica'] == '4') {
@@ -213,6 +214,7 @@ let HomePage = class HomePage {
         this.servidor.enviar('Home/main.php', dados).subscribe(res => {
             if (res[0].Erro != true) {
                 this.temMedic = true;
+                this.temMedicNao = false;
                 this.medicamentos = res;
                 this.medicamentos.forEach(medic => {
                     if (medic['FormaFarmaceutica'] == '4' || medic['FormaFarmaceutica'] == '3') {

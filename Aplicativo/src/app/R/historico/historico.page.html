@@ -10,24 +10,42 @@
 
   <div id="hisMeio" class="meio">
     <div class="top full flex">
-      <svg viewBox="0 0 24 24" class="svg" (click)="voltar()">
-        <path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/>
-      </svg>
+      <div class="bloco">
+        <svg viewBox="0 0 24 24" class="svg" (click)="voltar()">
+          <path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/>
+        </svg>
+      </div>
+
+      <div class="bloco">
+        <h3>Medicamentos já adicionados</h3>
+      </div>
     </div>
 
-    <div class="content line full flex">
-      <div *ngFor="let l of lista">
-        <h3 *ngIf="l.Letra != null" class="leftA">{{l.Letra}}</h3>
-
-        <div class="bloco full flex">
+    <div *ngIf="temLista" class="historico full flex">
+      <div *ngFor="let l of lista" [ngSwitch]="l.Letra" class="conteudo">
+        <div *ngSwitchDefault class="linha">
+          <h3 class="leftA">{{l.Letra}}</h3>
+        </div>
+  
+        <div *ngSwitchCase="ordem[0]" class="bloco full flex">
           <div class="bot full flex">
             <img src="../../../assets/IMG/Icon/{{l.FormaFarma}}.png">
           </div>
-
+  
           <div class="bot full flex">
             <h3>{{l.Nome}}</h3>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div *ngIf="temListaNao">
+      <div class="semMedicamento full flex">
+        <svg viewBox="0 0 24 24">
+        <path d="M12 5.177l8.631 15.823h-17.262l8.631-15.823zm0-4.177l-12 22h24l-12-22zm-1 9h2v6h-2v-6zm1 9.75c-.689 0-1.25-.56-1.25-1.25s.561-1.25 1.25-1.25 1.25.56 1.25 1.25-.561 1.25-1.25 1.25z"/>
+        </svg>
+        
+        <p>Você ainda não possui nenhum medicamento vá para lembretes, clique no botão: "Novo Lembrete" e crie o primeiro!</p>
       </div>
     </div>
   </div>

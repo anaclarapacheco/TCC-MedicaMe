@@ -268,6 +268,8 @@ let EstoquePage = class EstoquePage {
         //Deletar o medicamento
         let dados = 'phpEmail=' + this.email + '&phpCodigo=' + this.codigo;
         this.servidor.enviar('Responsavel/Lembretes/remover.php', dados).subscribe(res => { });
+        //Recaregar lembretes
+        this.carregarEstoque();
         //Preparação
         document.getElementById('eFundo').classList.remove('InFundo');
         document.getElementById('eAlert').classList.remove('InFundo');
@@ -278,8 +280,6 @@ let EstoquePage = class EstoquePage {
         setTimeout(function () {
             document.getElementById('rEstoque').classList.add('invisivel');
         }, 301);
-        //Recaregar lembretes
-        this.carregarEstoque();
     }
     //#endregion
     //#region Navegação
