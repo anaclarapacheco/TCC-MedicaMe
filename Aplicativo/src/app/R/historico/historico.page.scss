@@ -1,12 +1,14 @@
 //#region Meio
 .meio
 {
+    margin-left: 5%;
+    margin-right: 5%;
     width: 100%;
 
     .top
     {
         width: 90%;
-        margin-left: 5%;
+        margin-left: 0%;
 
         margin-top: calc((100vw / 5) + 20px);
 
@@ -37,7 +39,7 @@
 
     .historico
     {
-        margin-left: 5%;
+        margin-left: 0%;
 
         flex-direction: row;
         justify-content: left;

@@ -73,32 +73,28 @@ export class HomePage implements OnInit {
   //#endregion
 
   //#region Tomei ou Não tomei
-  enviar(codigo, situacao)
+  enviar(nome, codigo: number, situacao)
   {
     //Animação
-    document.getElementById(codigo).classList.add('OutAlerta');
+    document.getElementById(String(codigo)).classList.add('OutAlerta');
     setTimeout(function(){}, 301);
 
     //Enviar ao PHP
     let dados = 'phpSituacao=' + situacao + '&phpCodigo=' + codigo + '&phpEmail=' + localStorage.getItem('email');
     
     this.servidor.enviar('Home/situacao.php', dados).subscribe(res => {
-      if(res[0]['Erro'] == 'Notificar')
-      {
+      console.log("Banana")
+      if(res[0]['Erro'] == 'Notificar') {
         LocalNotifications.schedule({
           notifications: [{
-            id: parseInt(codigo),
-            title: 'Seu medicamento está acabando!',
-            body: 'Dipirona está acabando no seu estoque, reabasteça o mais rápido possível',
+            id: codigo,
+            title: "Seu medicamento está acabando!",
+            body: `${nome} está terminando em seu estoque, reabasteça o mais rápido possível.`,
             autoCancel: false,
-            schedule: {
-              on: { second: 5 }
-            }
           }]
-        }).then(data => alert('Cu'));
+        }).then((data) => { console.log(data) })
+        this.carregar();
       }
-      
-      this.carregar();
     });
   }
   //#endregion
