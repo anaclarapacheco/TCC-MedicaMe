@@ -14,13 +14,13 @@ export class HomePage implements OnInit {
   constructor(private nav: NavegationService, private servidor: ServidorService)
   {
     //Data de hoje
-    let nowData = new Date();
+    const nowData = new Date();
     this.data = String(nowData.getDate()).padStart(2, '0') + '/' + String(nowData.getMonth() + 1).padStart(2, '0')  + '/' + nowData.getFullYear();
   }
   //#endregion
 
   //#region Valores
-  public data: any = "";
+  public data: any = '';
   public medicamentos: any = [];
   public pendentes: any = [];
   public temMedic: any = false;
@@ -32,8 +32,8 @@ export class HomePage implements OnInit {
   open()
   {
     //Variaveis
-    var menu = document.getElementById('mHome');
-    var content = document.getElementById('hMenu');
+    const menu = document.getElementById('mHome');
+    const content = document.getElementById('hMenu');
 
     //Abre
     menu.classList.remove('invisivel');
@@ -53,8 +53,8 @@ export class HomePage implements OnInit {
   close()
   {
     //Variaveis
-    var menu = document.getElementById('mHome');
-    var content = document.getElementById('hMenu');
+    const menu = document.getElementById('mHome');
+    const content = document.getElementById('hMenu');
 
     //Preparação
     menu.classList.remove('InFundo');
@@ -63,7 +63,7 @@ export class HomePage implements OnInit {
     //Animação
     menu.classList.add('OutFundo');
     content.classList.add('OutMenu');
-    
+
     //Fecha
     setTimeout(function()
     {
@@ -73,28 +73,40 @@ export class HomePage implements OnInit {
   //#endregion
 
   //#region Tomei ou Não tomei
-  enviar(nome, codigo: number, situacao)
+  async enviar(nome, codigo: number, situacao)
   {
     //Animação
     document.getElementById(String(codigo)).classList.add('OutAlerta');
     setTimeout(function(){}, 301);
 
     //Enviar ao PHP
-    let dados = 'phpSituacao=' + situacao + '&phpCodigo=' + codigo + '&phpEmail=' + localStorage.getItem('email');
-    
-    this.servidor.enviar('Home/situacao.php', dados).subscribe(res => {
-      console.log("Banana")
-      if(res[0]['Erro'] == 'Notificar') {
-        LocalNotifications.schedule({
+    const dados = 'phpSituacao=' + situacao + '&phpCodigo=' + codigo + '&phpEmail=' + localStorage.getItem('email');
+
+    this.servidor.enviar('Home/situacao.php', dados).subscribe(async res => {
+      if(res[0].Erro == 'Notificar')
+      {
+        await LocalNotifications.removeAllListeners();
+        await LocalNotifications.schedule({
           notifications: [{
             id: codigo,
-            title: "Seu medicamento está acabando!",
-            body: `${nome} está terminando em seu estoque, reabasteça o mais rápido possível.`,
-            autoCancel: false,
+            smallIcon: 'ic_medicame',
+            iconColor: '#B2CAFF',
+            title: 'Seu medicamento está acabando!',
+            body: `${nome} está terminando em seu estoque!`,
+            autoCancel: true,
+
+            schedule: {
+              repeats: true,
+              every: 'minute',
+              on: { second: 1 }
+
+              //Eu não sei se ele tá funcionando, não sei pq mas ele tava enviando a notificão dps do horario queera, vou tentar mostrar 
+            }
           }]
-        }).then((data) => { console.log(data) })
-        this.carregar();
+        });
       }
+
+      this.carregar();
     });
   }
   //#endregion
@@ -102,7 +114,7 @@ export class HomePage implements OnInit {
   //#region Carregar medicamentos
   carregar()
   {
-    let dados = 'phpEmail=' + localStorage.getItem('email');
+    const dados = 'phpEmail=' + localStorage.getItem('email');
 
     this.servidor.enviar('Home/pendente.php', dados).subscribe(res =>{
       if(res[0].Erro != true)
@@ -112,48 +124,48 @@ export class HomePage implements OnInit {
         this.pendentes = res;
 
         this.pendentes.forEach(medic => {
-          if(medic['FormaFarmaceutica'] == '4')
+          if(medic.FormaFarmaceutica == '4')
           {
-            medic['Dosagem'] = Math.trunc(medic['Dosagem']);
+            medic.Dosagem = Math.trunc(medic.Dosagem);
 
-            if(medic['Dosagem'] > 1)
+            if(medic.Dosagem > 1)
             {
-              medic['Dosagem'] +=' cápsulas';
+              medic.Dosagem +=' cápsulas';
             }
             else
             {
-              medic['Dosagem'] +=' cápsula';
+              medic.Dosagem +=' cápsula';
             }
           }
-          else if(medic['FormaFarmaceutica'] == '3')
+          else if(medic.FormaFarmaceutica == '3')
           {
-            medic['Dosagem'] = Math.trunc(medic['Dosagem']);
+            medic.Dosagem = Math.trunc(medic.Dosagem);
 
-            if(medic['Dosagem'] > 1)
+            if(medic.Dosagem > 1)
             {
-              medic['Dosagem'] +=' comprimidos';
+              medic.Dosagem +=' comprimidos';
             }
             else
             {
-              medic['Dosagem'] +=' comprimido';
+              medic.Dosagem +=' comprimido';
             }
           }
-          else if(medic['FormaFarmaceutica'] == '2')
+          else if(medic.FormaFarmaceutica == '2')
           {
-            medic['Dosagem'] = Math.trunc(medic['Dosagem']);
+            medic.Dosagem = Math.trunc(medic.Dosagem);
 
-            if(medic['Dosagem'] > 1)
+            if(medic.Dosagem > 1)
             {
-              medic['Dosagem'] +=' gotas';
+              medic.Dosagem +=' gotas';
             }
             else
             {
-              medic['Dosagem'] +=' gota';
+              medic.Dosagem +=' gota';
             }
           }
           else
           {
-            medic['Dosagem'] = medic['Dosagem'].replace('.', ',') + 'ml';
+            medic.Dosagem = medic.Dosagem.replace('.', ',') + 'ml';
           }
         });
       }
@@ -166,39 +178,39 @@ export class HomePage implements OnInit {
     this.servidor.enviar('Home/main.php', dados).subscribe(res =>{
       if(res[0].Erro != true)
       {
-        this.temMedic = true;  
+        this.temMedic = true;
         this.temMedicNao = false;
         this.medicamentos = res;
 
         this.medicamentos.forEach(medic => {
-          if(medic['FormaFarmaceutica'] == '4' || medic['FormaFarmaceutica'] == '3')
+          if(medic.FormaFarmaceutica == '4' || medic.FormaFarmaceutica == '3')
           {
             let plural = false;
 
-            medic['Dosagem'] = Math.trunc(medic['Dosagem']);
+            medic.Dosagem = Math.trunc(medic.Dosagem);
 
-            if(medic['Dosagem'] > 1)
+            if(medic.Dosagem > 1)
             {
               plural = true;
             }
 
-            if(medic['FormaFarmaceutica'] == '3')
+            if(medic.FormaFarmaceutica == '3')
             {
-              medic['Dosagem'] += ' comprimido';
+              medic.Dosagem += ' comprimido';
             }
             else
             {
-              medic['Dosagem'] += ' cápsula';
+              medic.Dosagem += ' cápsula';
             }
 
             if(plural)
             {
-              medic['Dosagem'] += 's';
+              medic.Dosagem += 's';
             }
           }
           else
           {
-            medic['Dosagem'] = medic['Dosagem'].replace('.', ',') + 'ml';
+            medic.Dosagem = medic.Dosagem.replace('.', ',') + 'ml';
           }
         });
       }

@@ -2,5 +2,10 @@
 	"appId": "io.ionic.starter",
 	"appName": "MedicaMe",
 	"webDir": "www",
-	"bundledWebRuntime": false
+	"bundledWebRuntime": false,
+	"plugins": {
+		"LocalNotifications": {
+			"iconColor": "#488AFF"
+		}
+	}
 }
